@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c0b2dd28j33x8"]
+
+[ext_resource type="Script" uid="uid://djgd0tu2vtfm" path="res://menu.gd" id="1_lti8b"]
+[ext_resource type="PackedScene" uid="uid://c7r0jvigia3fm" path="res://bg.tscn" id="2_ouk20"]
+
+[sub_resource type="FontVariation" id="FontVariation_ouk20"]
+
+[node name="Menu" type="Node2D" unique_id=837508162]
+script = ExtResource("1_lti8b")
+
+[node name="BG" parent="." unique_id=1968208251 instance=ExtResource("2_ouk20")]
+
+[node name="Button" type="Button" parent="." unique_id=150820706]
+offset_left = 367.0
+offset_top = 385.0
+offset_right = 817.67566
+offset_bottom = 530.0
+theme_override_colors/font_color = Color(0.1882353, 0.3764706, 0.6627451, 1)
+theme_override_colors/font_pressed_color = Color(0.99607843, 0.99215686, 0.8352941, 1)
+theme_override_colors/font_hover_color = Color(0.99215686, 0.79607844, 0.21568628, 1)
+theme_override_colors/font_outline_color = Color(0.003921569, 0.11372549, 0.32941177, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = SubResource("FontVariation_ouk20")
+theme_override_font_sizes/font_size = 50
+text = "GO shitting "
+flat = true
+icon_alignment = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

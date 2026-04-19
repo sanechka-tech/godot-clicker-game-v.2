@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://d3i0ipediwrhe"]
+
+[ext_resource type="Script" uid="uid://d03g4n30rpj4t" path="res://main_screen.gd" id="1_7a4el"]
+[ext_resource type="PackedScene" uid="uid://chrkyh8fvbdnd" path="res://character/character.tscn" id="1_tjn2e"]
+[ext_resource type="PackedScene" uid="uid://b075ljg8yulrm" path="res://main_background.tscn" id="1_w0p2i"]
+
+[sub_resource type="FontVariation" id="FontVariation_w0p2i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7a4el"]
+font = SubResource("FontVariation_w0p2i")
+font_size = 22
+font_color = Color(0.99607843, 0.99215686, 0.8352941, 1)
+shadow_color = Color(0.89411765, 0.6313726, 0.30588236, 1)
+shadow_offset = Vector2(0.2, 0)
+
+[node name="Main_screen" type="Node2D" unique_id=591086808]
+script = ExtResource("1_7a4el")
+
+[node name="main_background" parent="." unique_id=262141879 instance=ExtResource("1_w0p2i")]
+
+[node name="Character" parent="." unique_id=286549002 instance=ExtResource("1_tjn2e")]
+position = Vector2(-33, 32)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=864686036]
+
+[node name="CoinsLabel" type="Label" parent="CanvasLayer" unique_id=1685039839]
+offset_left = 959.0
+offset_top = 14.0
+offset_right = 1032.0
+offset_bottom = 48.0
+text = "0"
+label_settings = SubResource("LabelSettings_7a4el")

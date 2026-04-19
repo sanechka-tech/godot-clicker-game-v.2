@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c7r0jvigia3fm"]
+
+[ext_resource type="Texture2D" uid="uid://bmwc0vkqv4oj0" path="res://Menu BG.png" id="1_t4gw0"]
+
+[node name="BG" type="Node2D" unique_id=1968208251]
+
+[node name="MenuBg" type="Sprite2D" parent="." unique_id=675270185]
+position = Vector2(576, 324.5)
+scale = Vector2(0.75, 0.63378906)
+texture = ExtResource("1_t4gw0")
