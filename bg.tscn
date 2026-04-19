@@ -1,6 +1,62 @@
 [gd_scene format=3 uid="uid://c7r0jvigia3fm"]
 
 [ext_resource type="Texture2D" uid="uid://bmwc0vkqv4oj0" path="res://Menu BG.png" id="1_t4gw0"]
+[ext_resource type="Texture2D" uid="uid://b2no3s0utcfsh" path="res://Menu BG 2.png" id="2_e8j8q"]
+[ext_resource type="Texture2D" uid="uid://csgnhfvqlk3jg" path="res://Menu BG 3.png" id="3_iq1of"]
+
+[sub_resource type="Animation" id="Animation_t4gw0"]
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuBg:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.53, 4.99),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.75, 0.63378906), Vector2(0.905, 0.765), Vector2(0.75, 0.63378906)]
+}
+
+[sub_resource type="Animation" id="Animation_tuaf8"]
+resource_name = "bg_idle"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuBg:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.75, 0.63378906), Vector2(0.905, 0.766), Vector2(0.75, 0.63378906)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e8j8q"]
+_data = {
+&"RESET": SubResource("Animation_t4gw0"),
+&"bg_idle": SubResource("Animation_tuaf8")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_36ycx"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": ExtResource("1_t4gw0")
+}, {
+"duration": 5.0,
+"texture": ExtResource("2_e8j8q")
+}, {
+"duration": 5.0,
+"texture": ExtResource("3_iq1of")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}]
 
 [node name="BG" type="Node2D" unique_id=1968208251]
 
@@ -8,3 +64,16 @@
 position = Vector2(576, 324.5)
 scale = Vector2(0.75, 0.63378906)
 texture = ExtResource("1_t4gw0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuBg" unique_id=1885206187]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_e8j8q")
+autoplay = &"bg_idle"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2076595412]
+position = Vector2(576, 324)
+scale = Vector2(0.75, 0.6328125)
+sprite_frames = SubResource("SpriteFrames_36ycx")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.83495384
