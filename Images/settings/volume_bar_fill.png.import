@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b550s5v1ptr7n"
-path="res://.godot/imported/togle.png-049bb9bd90dfa04fd046784e7155311e.ctex"
+uid="uid://ba4uqfxpcwndo"
+path="res://.godot/imported/volume_bar_fill.png-d13041c225bd93c9059a75853f51e41d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/settings/togle.png"
-dest_files=["res://.godot/imported/togle.png-049bb9bd90dfa04fd046784e7155311e.ctex"]
+source_file="res://Images/settings/volume_bar_fill.png"
+dest_files=["res://.godot/imported/volume_bar_fill.png-d13041c225bd93c9059a75853f51e41d.ctex"]
 
 [params]
 
