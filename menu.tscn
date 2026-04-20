@@ -44,14 +44,14 @@ offset_right = 768.0
 offset_bottom = 544.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4hy44")
 
-[node name="TextureButton" type="TextureButton" parent="." unique_id=1746628193]
+[node name="TextureButton GO" type="TextureButton" parent="." unique_id=1746628193]
 offset_left = 400.0
-offset_top = 456.0
+offset_top = 408.0
 offset_right = 751.0
-offset_bottom = 536.0
+offset_bottom = 488.0
 texture_normal = ExtResource("3_4hy44")
 texture_pressed = ExtResource("4_ytr4m")
 texture_hover = ExtResource("4_ytr4m")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="TextureButton GO" to="." method="_on_texture_button_pressed"]

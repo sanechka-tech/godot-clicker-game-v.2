@@ -44,18 +44,18 @@ _data = {
 [sub_resource type="SpriteFrames" id="SpriteFrames_36ycx"]
 animations = [{
 "frames": [{
-"duration": 5.0,
+"duration": 7.0,
 "texture": ExtResource("1_t4gw0")
 }, {
-"duration": 5.0,
+"duration": 7.0,
 "texture": ExtResource("2_e8j8q")
 }, {
-"duration": 5.0,
+"duration": 7.0,
 "texture": ExtResource("3_iq1of")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 4.0
+"speed": 3.0
 }]
 
 [node name="BG" type="Node2D" unique_id=1968208251]
@@ -76,4 +76,4 @@ scale = Vector2(0.75, 0.6328125)
 sprite_frames = SubResource("SpriteFrames_36ycx")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.83495384
+frame_progress = 0.75896406
