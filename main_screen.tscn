@@ -19,7 +19,7 @@ script = ExtResource("1_7a4el")
 [node name="main_background" parent="." unique_id=262141879 instance=ExtResource("1_w0p2i")]
 
 [node name="Character" parent="." unique_id=286549002 instance=ExtResource("1_tjn2e")]
-position = Vector2(-33, 32)
+position = Vector2(-258, 106)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=864686036]
 
@@ -32,8 +32,8 @@ text = "0"
 label_settings = SubResource("LabelSettings_7a4el")
 
 [node name="ProgressGoal" type="ProgressBar" parent="." unique_id=925841609]
-offset_left = 746.0
-offset_top = 54.0
-offset_right = 1149.0
-offset_bottom = 108.0
+offset_left = 25.0
+offset_top = 40.0
+offset_right = 428.0
+offset_bottom = 75.0
 rounded = true

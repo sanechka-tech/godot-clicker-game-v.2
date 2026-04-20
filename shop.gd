@@ -57,12 +57,12 @@ func _on_shop_changed() -> void:
 
 
 func _update_ui() -> void:
-	coins_label.text = str(GameState.shitty_coins)
+	coins_label.text = GameState.format_number(GameState.shitty_coins)
 
-	plunger_price_label.text = str(GameState.upgrade_prices["plunger"])
-	turbo_toilet_paper_price_label.text = str(GameState.upgrade_prices["turbo_toilet_paper"])
-	bathroom_reader_price_label.text = str(GameState.upgrade_prices["bathroom_reader"])
-	golden_toilet_seat_price_label.text = str(GameState.upgrade_prices["golden_toilet_seat"])
+	plunger_price_label.text = GameState.format_number(GameState.upgrade_prices["plunger"])
+	turbo_toilet_paper_price_label.text = GameState.format_number(GameState.upgrade_prices["turbo_toilet_paper"])
+	bathroom_reader_price_label.text = GameState.format_number(GameState.upgrade_prices["bathroom_reader"])
+	golden_toilet_seat_price_label.text = GameState.format_number(GameState.upgrade_prices["golden_toilet_seat"])
 
 	plunger_button.disabled = not GameState.can_buy_upgrade("plunger")
 	turbo_toilet_paper_button.disabled = not GameState.can_buy_upgrade("turbo_toilet_paper")

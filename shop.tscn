@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bvvypoq4sji6s" path="res://Images/Background_Main_screen.png" id="1_blqjs"]
 [ext_resource type="Texture2D" uid="uid://bcyiyw1rm3yvr" path="res://Images/shop_screen 1.png" id="1_viryw"]
 [ext_resource type="Texture2D" uid="uid://b25l4ktin1uki" path="res://Images/buttons.png" id="2_e7rdd"]
+[ext_resource type="Texture2D" uid="uid://s2ebaxofaxh6" path="res://Images/NewBGMain.png" id="3_xqmyw"]
 [ext_resource type="Texture2D" uid="uid://cnohma3ut6506" path="res://Images/Shitty-Coins counter.png" id="4_fgaav"]
 [ext_resource type="Texture2D" uid="uid://dwqq11mj4q4t8" path="res://Images/Turbo Toilet Paper (no price).png" id="6_p5a0g"]
 [ext_resource type="Texture2D" uid="uid://bti55pd3ucpkd" path="res://Images/Plunger (no price).png" id="7_xqmyw"]
@@ -23,9 +24,15 @@ shadow_offset = Vector2(0.2, 0)
 script = ExtResource("1_6lah5")
 
 [node name="BackgroundMainScreen" type="Sprite2D" parent="." unique_id=176953350]
+visible = false
 position = Vector2(575.99994, 324.00003)
 scale = Vector2(2.8728178, 1.61596)
 texture = ExtResource("1_blqjs")
+
+[node name="NewBgMain" type="Sprite2D" parent="." unique_id=1081963979]
+position = Vector2(575.4846, 326.37494)
+scale = Vector2(0.72564703, 0.7298086)
+texture = ExtResource("3_xqmyw")
 
 [node name="ShopScreen1" type="Sprite2D" parent="." unique_id=1799249673]
 position = Vector2(432, 324.25)

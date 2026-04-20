@@ -11,7 +11,7 @@ var score: int = 0
 var tap_power: int = 1
 var passive_score_per_second: int = 0
 var score_goal: int = 1000000
-var _passive_score_buffer: float = 0.0
+var _passive_income_buffer: float = 0.0
 
 var upgrade_purchase_counts := {
 	"golden_toilet_seat": 0,
@@ -21,10 +21,10 @@ var upgrade_purchase_counts := {
 }
 
 var upgrade_base_prices := {
-	"golden_toilet_seat": 5000,
-	"bathroom_reader": 900,
-	"turbo_toilet_paper": 80,
-	"plunger": 25,
+	"golden_toilet_seat": 25000,
+	"bathroom_reader": 4500,
+	"turbo_toilet_paper": 400,
+	"plunger": 125,
 }
 
 var upgrade_price_growth := {
@@ -35,10 +35,10 @@ var upgrade_price_growth := {
 }
 
 var upgrade_prices := {
-	"golden_toilet_seat": 5000,
-	"bathroom_reader": 900,
-	"turbo_toilet_paper": 80,
-	"plunger": 25,
+	"golden_toilet_seat": 25000,
+	"bathroom_reader": 4500,
+	"turbo_toilet_paper": 400,
+	"plunger": 125,
 }
 
 var upgrade_effects := {
@@ -65,14 +65,16 @@ func _process(delta: float) -> void:
 	if passive_score_per_second <= 0:
 		return
 
-	_passive_score_buffer += passive_score_per_second * delta
-	var score_to_add := floori(_passive_score_buffer)
+	_passive_income_buffer += passive_score_per_second * delta
+	var income_to_add := floori(_passive_income_buffer)
 
-	if score_to_add <= 0:
+	if income_to_add <= 0:
 		return
 
-	_passive_score_buffer -= score_to_add
-	_add_score(score_to_add)
+	_passive_income_buffer -= income_to_add
+	_add_score(income_to_add)
+	shitty_coins += income_to_add
+	coins_changed.emit(shitty_coins)
 
 
 func add_tap_coins() -> void:
@@ -121,3 +123,13 @@ func _calculate_upgrade_price(upgrade_id: String) -> int:
 	var purchases: int = upgrade_purchase_counts[upgrade_id]
 
 	return roundi(base_price * pow(growth, purchases))
+
+
+func format_number(value: int) -> String:
+	if value >= 1000000:
+		return str(floori(value / 1000000.0)) + "M"
+
+	if value >= 1000:
+		return str(floori(value / 1000.0)) + "k"
+
+	return str(value)

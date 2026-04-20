@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://b075ljg8yulrm"]
 
 [ext_resource type="Script" uid="uid://dpokck0hvjm5i" path="res://main_background.gd" id="1_dk7qp"]
-[ext_resource type="Texture2D" uid="uid://bvvypoq4sji6s" path="res://Images/Background_Main_screen.png" id="2_c17hs"]
+[ext_resource type="Texture2D" uid="uid://s2ebaxofaxh6" path="res://Images/NewBGMain.png" id="2_c17hs"]
 [ext_resource type="Texture2D" uid="uid://b25l4ktin1uki" path="res://Images/buttons.png" id="3_7x3al"]
 [ext_resource type="Texture2D" uid="uid://cnohma3ut6506" path="res://Images/Shitty-Coins counter.png" id="4_c17hs"]
 
 [node name="main_background" type="Node2D" unique_id=262141879]
 script = ExtResource("1_dk7qp")
 
-[node name="BackgroundMainScreen" type="Sprite2D" parent="." unique_id=441294366]
-position = Vector2(575.99994, 324.00003)
-scale = Vector2(2.8728178, 1.61596)
+[node name="NewBgMain" type="Sprite2D" parent="." unique_id=1806573547]
+position = Vector2(575.4846, 326.37494)
+scale = Vector2(0.72564703, 0.7298086)
 texture = ExtResource("2_c17hs")
 
 [node name="Buttons" type="Sprite2D" parent="." unique_id=1551028605]

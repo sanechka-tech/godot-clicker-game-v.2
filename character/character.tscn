@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://b6h74a2cdj7du" path="res://Images/After(withoutBG).png" id="2_ugqs2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vu45j"]
-radius = 312.0
-height = 624.0
+radius = 257.0
+height = 514.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_glpr6"]
 animations = [{
@@ -33,8 +33,8 @@ position = Vector2(490, 330)
 shape = SubResource("CapsuleShape2D_vu45j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1951268959]
-position = Vector2(483, 336)
-scale = Vector2(0.98258704, 0.98258674)
+position = Vector2(488, 318.00003)
+scale = Vector2(0.74315935, 0.7431591)
 sprite_frames = SubResource("SpriteFrames_glpr6")
 animation = &"tap"
 frame = 2

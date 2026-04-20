@@ -28,7 +28,7 @@ func _on_score_changed(_new_value: int) -> void:
 
 
 func _update_coins_label() -> void:
-	coins_label.text = str(GameState.shitty_coins)
+	coins_label.text = GameState.format_number(GameState.shitty_coins)
 
 
 func _setup_goal_progress() -> void:
