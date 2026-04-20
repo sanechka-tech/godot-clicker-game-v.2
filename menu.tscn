@@ -4,15 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://c7r0jvigia3fm" path="res://bg.tscn" id="2_ouk20"]
 [ext_resource type="Texture2D" uid="uid://cmtbbm0efhxd2" path="res://Images/start button/button_normal.png" id="3_4hy44"]
 [ext_resource type="Texture2D" uid="uid://bqfa1omoepxl1" path="res://Images/start button/button_pressed.png" id="4_ytr4m"]
+[ext_resource type="Texture2D" uid="uid://c38hshh6lw3bp" path="res://Images/start button/settings_button_normal.png" id="5_l48gv"]
+[ext_resource type="Texture2D" uid="uid://dirp4npifad1s" path="res://Images/start button/settings_button_pressed.png" id="6_ecwwl"]
+[ext_resource type="Texture2D" uid="uid://6av6evuyrcpn" path="res://Images/settings/settings_background.png" id="7_iqepy"]
+[ext_resource type="Texture2D" uid="uid://cm8x0lskx6e4x" path="res://Images/settings/back_button.png" id="8_h1wq0"]
+[ext_resource type="Texture2D" uid="uid://tqrqeaeibj30" path="res://Images/settings/mute_on.png" id="9_dwrpx"]
 
 [sub_resource type="FontVariation" id="FontVariation_ouk20"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hy44"]
-bg_color = Color(0, 0, 0, 0.61960787)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [node name="Menu" type="Node2D" unique_id=837508162]
 script = ExtResource("1_lti8b")
@@ -36,14 +34,6 @@ text = "GO shitting "
 flat = true
 icon_alignment = 2
 
-[node name="Panel" type="Panel" parent="." unique_id=954577438]
-visible = false
-offset_left = 384.0
-offset_top = 448.0
-offset_right = 768.0
-offset_bottom = 544.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_4hy44")
-
 [node name="TextureButton GO" type="TextureButton" parent="." unique_id=1746628193]
 offset_left = 400.0
 offset_top = 408.0
@@ -53,5 +43,56 @@ texture_normal = ExtResource("3_4hy44")
 texture_pressed = ExtResource("4_ytr4m")
 texture_hover = ExtResource("4_ytr4m")
 
+[node name="TextureButton Settings" type="TextureButton" parent="." unique_id=503985658]
+offset_left = 403.0
+offset_top = 493.0
+offset_right = 748.0
+offset_bottom = 567.0
+texture_normal = ExtResource("5_l48gv")
+texture_pressed = ExtResource("6_ecwwl")
+texture_hover = ExtResource("6_ecwwl")
+
+[node name="SettingsPanel" type="Control" parent="." unique_id=927669708]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="ColorRect" type="ColorRect" parent="SettingsPanel" unique_id=1529073022]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.019607844, 0.019607844, 0.019607844, 0.8)
+
+[node name="TextureRect" type="TextureRect" parent="SettingsPanel" unique_id=1675688003]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 160.0
+offset_right = 792.0
+offset_bottom = 480.0
+texture = ExtResource("7_iqepy")
+
+[node name="TextureButton Back" type="TextureButton" parent="SettingsPanel" unique_id=465944742]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 392.0
+offset_right = 685.0
+offset_bottom = 450.0
+texture_normal = ExtResource("8_h1wq0")
+
+[node name="TextureButton Mute" type="TextureButton" parent="SettingsPanel" unique_id=425537842]
+layout_mode = 0
+offset_left = 688.0
+offset_top = 256.0
+offset_right = 752.0
+offset_bottom = 322.0
+texture_normal = ExtResource("9_dwrpx")
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="TextureButton GO" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="TextureButton Settings" to="." method="_on_texture_button_settings_pressed"]
+[connection signal="pressed" from="SettingsPanel/TextureButton Back" to="." method="_on_texture_button_back_pressed"]
