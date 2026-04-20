@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var coins_label: Label = $CanvasLayer/CoinsLabel
+@onready var progress_goal: Range = _find_progress_goal()
 
 @onready var plunger_price_label: Label = $CanvasLayer/PlungerPrice
 @onready var turbo_toilet_paper_price_label: Label = $CanvasLayer/TurboToiletPaperPrice
@@ -15,6 +16,7 @@ extends Node2D
 
 func _ready() -> void:
 	GameState.coins_changed.connect(_on_coins_changed)
+	GameState.score_changed.connect(_on_score_changed)
 	GameState.shop_changed.connect(_on_shop_changed)
 
 	plunger_button.pressed.connect(_on_plunger_pressed)
@@ -22,6 +24,7 @@ func _ready() -> void:
 	bathroom_reader_button.pressed.connect(_on_bathroom_reader_pressed)
 	golden_toilet_seat_button.pressed.connect(_on_golden_toilet_seat_pressed)
 
+	_setup_goal_progress()
 	_update_ui()
 
 
@@ -45,6 +48,10 @@ func _on_coins_changed(_new_value: int) -> void:
 	_update_ui()
 
 
+func _on_score_changed(_new_value: int) -> void:
+	_update_goal_progress()
+
+
 func _on_shop_changed() -> void:
 	_update_ui()
 
@@ -61,6 +68,31 @@ func _update_ui() -> void:
 	turbo_toilet_paper_button.disabled = not GameState.can_buy_upgrade("turbo_toilet_paper")
 	bathroom_reader_button.disabled = not GameState.can_buy_upgrade("bathroom_reader")
 	golden_toilet_seat_button.disabled = not GameState.can_buy_upgrade("golden_toilet_seat")
+
+	_update_goal_progress()
+
+
+func _find_progress_goal() -> Range:
+	var root_progress := get_node_or_null("ProgressGoal") as Range
+	if root_progress != null:
+		return root_progress
+
+	return get_node_or_null("CanvasLayer/ProgressGoal") as Range
+
+
+func _setup_goal_progress() -> void:
+	if progress_goal == null:
+		return
+
+	progress_goal.min_value = 0
+	progress_goal.max_value = GameState.score_goal
+
+
+func _update_goal_progress() -> void:
+	if progress_goal == null:
+		return
+
+	progress_goal.value = min(GameState.score, GameState.score_goal)
 
 
 func _on_button_toilet_pressed() -> void:

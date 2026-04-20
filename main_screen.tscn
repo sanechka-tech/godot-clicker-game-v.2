@@ -30,3 +30,10 @@ offset_right = 1032.0
 offset_bottom = 48.0
 text = "0"
 label_settings = SubResource("LabelSettings_7a4el")
+
+[node name="ProgressGoal" type="ProgressBar" parent="." unique_id=925841609]
+offset_left = 746.0
+offset_top = 54.0
+offset_right = 1149.0
+offset_bottom = 108.0
+rounded = true
