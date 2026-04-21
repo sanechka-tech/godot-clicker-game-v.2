@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://bj4olbfx4auwn"]
+
+[ext_resource type="Script" uid="uid://b3f4pg6ctgw04" path="res://level_2_train.gd" id="1_h1v4g"]
+[ext_resource type="Texture2D" uid="uid://morcink88t75" path="res://Images/BGlevel2Train.png" id="1_wl44b"]
+[ext_resource type="PackedScene" uid="uid://chrkyh8fvbdnd" path="res://character/character.tscn" id="2_3rlsd"]
+[ext_resource type="Texture2D" uid="uid://cnohma3ut6506" path="res://Images/Shitty-Coins counter.png" id="3_f4tl7"]
+[ext_resource type="Texture2D" uid="uid://blrmi5btjs6se" path="res://icon.svg" id="5_v6j0g"]
+[ext_resource type="Texture2D" uid="uid://cmtbbm0efhxd2" path="res://Images/start button/button_normal.png" id="6_8dgme"]
+[ext_resource type="Texture2D" uid="uid://bvvypoq4sji6s" path="res://Images/Background_Main_screen.png" id="6_hwe8d"]
+[ext_resource type="Texture2D" uid="uid://bqfa1omoepxl1" path="res://Images/start button/button_pressed.png" id="7_m1edi"]
+
+[sub_resource type="FontVariation" id="FontVariation_w0p2i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v6j0g"]
+font = SubResource("FontVariation_w0p2i")
+font_size = 22
+font_color = Color(0.99607843, 0.99215686, 0.8352941, 1)
+shadow_color = Color(0.89411765, 0.6313726, 0.30588236, 1)
+shadow_offset = Vector2(0.2, 0)
+
+[node name="Level2_train" type="Node2D" unique_id=930383090]
+script = ExtResource("1_h1v4g")
+
+[node name="BGlevel2Train" type="Sprite2D" parent="." unique_id=1726829534]
+position = Vector2(578.00006, 326.00003)
+scale = Vector2(0.6950055, 0.6950053)
+texture = ExtResource("1_wl44b")
+
+[node name="Character" parent="." unique_id=286549002 instance=ExtResource("2_3rlsd")]
+position = Vector2(-266, 117)
+
+[node name="ShittyCoinsCounter" type="Sprite2D" parent="." unique_id=116568550]
+position = Vector2(948.99994, 27)
+scale = Vector2(1.009434, 1.009434)
+texture = ExtResource("3_f4tl7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1172452749]
+
+[node name="CoinsLabel" type="Label" parent="CanvasLayer" unique_id=210394457]
+offset_left = 959.0
+offset_top = 14.0
+offset_right = 1032.0
+offset_bottom = 48.0
+text = "0"
+label_settings = SubResource("LabelSettings_v6j0g")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=1477322307]
+offset_left = 494.0
+offset_top = 24.0
+offset_right = 676.0
+offset_bottom = 74.0
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer/TextureRect" unique_id=1240614888]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 10.0
+offset_right = 112.0
+offset_bottom = 33.0
+text = "05:00"
+
+[node name="ProgressGoalLvl2" type="ProgressBar" parent="." unique_id=136285984]
+offset_left = 43.0
+offset_top = 123.0
+offset_right = 446.0
+offset_bottom = 158.0
+rounded = true
+
+[node name="Lvl2Win" type="TextureRect" parent="." unique_id=1329865549]
+visible = false
+offset_left = 329.0
+offset_top = 166.0
+offset_right = 813.0
+offset_bottom = 499.0
+texture = ExtResource("5_v6j0g")
+
+[node name="TextEdit" type="TextEdit" parent="Lvl2Win" unique_id=1923828481]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 84.0
+offset_right = 294.0
+offset_bottom = 146.0
+text = "You won"
+
+[node name="Lvl2Passed" type="TextureButton" parent="Lvl2Win" unique_id=1941807197]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 190.0
+offset_right = 429.0
+offset_bottom = 266.0
+action_mode = 0
+texture_normal = ExtResource("6_8dgme")
+texture_pressed = ExtResource("6_8dgme")
+texture_hover = ExtResource("7_m1edi")
+
+[node name="Lvl2Lose" type="TextureRect" parent="." unique_id=572542563]
+visible = false
+offset_left = 389.0
+offset_top = 143.0
+offset_right = 793.0
+offset_bottom = 544.0
+texture = ExtResource("6_hwe8d")
+
+[node name="Lvl2Retry" type="TextureButton" parent="Lvl2Lose" unique_id=882034792]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 265.0
+offset_right = 383.0
+offset_bottom = 341.0
+action_mode = 0
+texture_normal = ExtResource("6_8dgme")
+texture_pressed = ExtResource("6_8dgme")
+texture_hover = ExtResource("7_m1edi")
+
+[node name="TextEdit" type="TextEdit" parent="Lvl2Lose" unique_id=204706255]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 119.0
+offset_right = 265.0
+offset_bottom = 181.0
+text = "LOST"

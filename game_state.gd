@@ -133,3 +133,22 @@ func format_number(value: int) -> String:
 		return str(floori(value / 1000.0)) + "k"
 
 	return str(value)
+
+
+func start_level(new_score_goal: int) -> void:
+	shitty_coins = 0
+	score = 0
+	tap_power = 1
+	passive_score_per_second = 0
+	score_goal = new_score_goal
+	_passive_income_buffer = 0.0
+
+	for upgrade_id in upgrade_purchase_counts.keys():
+		upgrade_purchase_counts[upgrade_id] = 0
+		upgrade_prices[upgrade_id] = upgrade_base_prices[upgrade_id]
+
+	coins_changed.emit(shitty_coins)
+	score_changed.emit(score)
+	tap_power_changed.emit(tap_power)
+	passive_score_per_second_changed.emit(passive_score_per_second)
+	shop_changed.emit()
