@@ -3,20 +3,14 @@
 [ext_resource type="Script" uid="uid://b3f4pg6ctgw04" path="res://level_2_train.gd" id="1_h1v4g"]
 [ext_resource type="Texture2D" uid="uid://morcink88t75" path="res://Images/BGlevel2Train.png" id="1_wl44b"]
 [ext_resource type="PackedScene" uid="uid://chrkyh8fvbdnd" path="res://character/character.tscn" id="2_3rlsd"]
-[ext_resource type="Texture2D" uid="uid://cnohma3ut6506" path="res://Images/Shitty-Coins counter.png" id="3_f4tl7"]
+[ext_resource type="Texture2D" uid="uid://byr5yplsiaom1" path="res://Images/Shitty-coint_Train.png" id="4_h7rvc"]
 [ext_resource type="Texture2D" uid="uid://blrmi5btjs6se" path="res://icon.svg" id="5_v6j0g"]
+[ext_resource type="FontFile" uid="uid://do6v0lv2ape1i" path="res://CustomFont/custom_font_atlas.fnt" id="5_yyfn6"]
 [ext_resource type="Texture2D" uid="uid://cmtbbm0efhxd2" path="res://Images/start button/button_normal.png" id="6_8dgme"]
 [ext_resource type="Texture2D" uid="uid://bvvypoq4sji6s" path="res://Images/Background_Main_screen.png" id="6_hwe8d"]
+[ext_resource type="FontFile" uid="uid://bnjo7pprumegh" path="res://CustomFont/extended.fnt" id="6_rjla6"]
 [ext_resource type="Texture2D" uid="uid://bqfa1omoepxl1" path="res://Images/start button/button_pressed.png" id="7_m1edi"]
-
-[sub_resource type="FontVariation" id="FontVariation_w0p2i"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_v6j0g"]
-font = SubResource("FontVariation_w0p2i")
-font_size = 22
-font_color = Color(0.99607843, 0.99215686, 0.8352941, 1)
-shadow_color = Color(0.89411765, 0.6313726, 0.30588236, 1)
-shadow_offset = Vector2(0.2, 0)
+[ext_resource type="Texture2D" uid="uid://dkvu0uv0d35cg" path="res://Images/ShopTrain(without_price).png" id="11_yyfn6"]
 
 [node name="Level2_train" type="Node2D" unique_id=930383090]
 script = ExtResource("1_h1v4g")
@@ -27,37 +21,41 @@ scale = Vector2(0.6950055, 0.6950053)
 texture = ExtResource("1_wl44b")
 
 [node name="Character" parent="." unique_id=286549002 instance=ExtResource("2_3rlsd")]
-position = Vector2(-266, 117)
+position = Vector2(-260, 134)
 
-[node name="ShittyCoinsCounter" type="Sprite2D" parent="." unique_id=116568550]
-position = Vector2(948.99994, 27)
-scale = Vector2(1.009434, 1.009434)
-texture = ExtResource("3_f4tl7")
+[node name="ShittyCointTrain" type="Sprite2D" parent="." unique_id=335732966]
+position = Vector2(939.00006, 186.00002)
+scale = Vector2(0.1464089, 0.14640893)
+texture = ExtResource("4_h7rvc")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1172452749]
-
-[node name="CoinsLabel" type="Label" parent="CanvasLayer" unique_id=210394457]
-offset_left = 959.0
-offset_top = 14.0
-offset_right = 1032.0
-offset_bottom = 48.0
-text = "0"
-label_settings = SubResource("LabelSettings_v6j0g")
-metadata/_edit_use_anchors_ = true
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=1477322307]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1477322307]
 offset_left = 494.0
 offset_top = 24.0
 offset_right = 676.0
 offset_bottom = 74.0
 
-[node name="TimeLabel" type="Label" parent="CanvasLayer/TextureRect" unique_id=1240614888]
-layout_mode = 0
-offset_left = 72.0
-offset_top = 10.0
-offset_right = 112.0
-offset_bottom = 33.0
+[node name="TimeLabel" type="Label" parent="." unique_id=1361530198]
+offset_left = 524.0
+offset_top = 27.0
+offset_right = 654.0
+offset_bottom = 69.0
+theme_override_fonts/font = ExtResource("6_rjla6")
+theme_override_font_sizes/font_size = 36
 text = "05:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1172452749]
+
+[node name="CoinsLabel" type="Label" parent="CanvasLayer" unique_id=760029660]
+offset_left = 899.00006
+offset_top = 167.99997
+offset_right = 1050.125
+offset_bottom = 206.99997
+theme_override_fonts/font = ExtResource("5_yyfn6")
+theme_override_font_sizes/font_size = 36
+text = "0"
+vertical_alignment = 1
 
 [node name="ProgressGoalLvl2" type="ProgressBar" parent="." unique_id=136285984]
 offset_left = 43.0
@@ -119,3 +117,8 @@ offset_top = 119.0
 offset_right = 265.0
 offset_bottom = 181.0
 text = "LOST"
+
+[node name="ShopTrain(withoutPrice)" type="Sprite2D" parent="." unique_id=1201474556]
+position = Vector2(964.99994, 440)
+scale = Vector2(0.48873872, 0.48873875)
+texture = ExtResource("11_yyfn6")

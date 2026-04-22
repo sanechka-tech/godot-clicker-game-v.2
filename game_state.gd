@@ -130,7 +130,7 @@ func format_number(value: int) -> String:
 		return str(floori(value / 1000000.0)) + "M"
 
 	if value >= 1000:
-		return str(floori(value / 1000.0)) + "k"
+		return str(floori(value / 1000.0)) + "K"
 
 	return str(value)
 

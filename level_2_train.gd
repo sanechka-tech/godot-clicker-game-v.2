@@ -5,7 +5,7 @@ const LEVEL_GOAL_SCORE := 216000
 
 @onready var character = $Character
 @onready var coins_label: Label = $CanvasLayer/CoinsLabel
-@onready var time_label: Label = $CanvasLayer/TextureRect/TimeLabel
+@onready var time_label: Label = _find_time_label()
 @onready var progress_goal: Range = $ProgressGoalLvl2
 @onready var level_2_win: CanvasItem = $Lvl2Win
 @onready var level_2_lose: CanvasItem = $Lvl2Lose
@@ -70,6 +70,9 @@ func _update_coins_label() -> void:
 
 
 func _update_time_label() -> void:
+	if time_label == null:
+		return
+
 	var total_seconds := ceili(time_left_seconds)
 	var minutes := int(total_seconds / 60)
 	var seconds := int(total_seconds % 60)
@@ -106,3 +109,11 @@ func _on_lvl_2_retry_pressed() -> void:
 
 func _on_lvl_2_passed_pressed() -> void:
 	pass
+
+
+func _find_time_label() -> Label:
+	var root_time_label := get_node_or_null("TimeLabel") as Label
+	if root_time_label != null:
+		return root_time_label
+
+	return get_node_or_null("CanvasLayer/TextureRect/TimeLabel") as Label
