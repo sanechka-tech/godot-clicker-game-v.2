@@ -135,6 +135,11 @@ func format_number(value: int) -> String:
 	return str(value)
 
 
+func add_bonus_coins(amount: int) -> void:
+	shitty_coins += amount
+	coins_changed.emit(shitty_coins)
+
+
 func start_level(new_score_goal: int) -> void:
 	shitty_coins = 0
 	score = 0

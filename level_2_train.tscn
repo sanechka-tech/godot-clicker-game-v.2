@@ -8,12 +8,12 @@
 [ext_resource type="FontFile" uid="uid://do6v0lv2ape1i" path="res://CustomFont/custom_font_atlas.fnt" id="5_yyfn6"]
 [ext_resource type="Texture2D" uid="uid://cmtbbm0efhxd2" path="res://Images/start button/button_normal.png" id="6_8dgme"]
 [ext_resource type="Texture2D" uid="uid://bvvypoq4sji6s" path="res://Images/Background_Main_screen.png" id="6_hwe8d"]
-[ext_resource type="FontFile" uid="uid://bnjo7pprumegh" path="res://CustomFont/extended.fnt" id="6_rjla6"]
 [ext_resource type="Texture2D" uid="uid://bqfa1omoepxl1" path="res://Images/start button/button_pressed.png" id="7_m1edi"]
 [ext_resource type="Texture2D" uid="uid://dkvu0uv0d35cg" path="res://Images/ShopTrain(without_price).png" id="11_yyfn6"]
 
 [node name="Level2_train" type="Node2D" unique_id=930383090]
 script = ExtResource("1_h1v4g")
+metadata/_edit_horizontal_guides_ = [631.0]
 
 [node name="BGlevel2Train" type="Sprite2D" parent="." unique_id=1726829534]
 position = Vector2(578.00006, 326.00003)
@@ -21,7 +21,7 @@ scale = Vector2(0.6950055, 0.6950053)
 texture = ExtResource("1_wl44b")
 
 [node name="Character" parent="." unique_id=286549002 instance=ExtResource("2_3rlsd")]
-position = Vector2(-260, 134)
+position = Vector2(-262, 99)
 
 [node name="ShittyCointTrain" type="Sprite2D" parent="." unique_id=335732966]
 position = Vector2(939.00006, 186.00002)
@@ -39,7 +39,6 @@ offset_left = 524.0
 offset_top = 27.0
 offset_right = 654.0
 offset_bottom = 69.0
-theme_override_fonts/font = ExtResource("6_rjla6")
 theme_override_font_sizes/font_size = 36
 text = "05:00"
 horizontal_alignment = 1

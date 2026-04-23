@@ -1,24 +1,24 @@
 [gd_scene format=3 uid="uid://chrkyh8fvbdnd"]
 
-[ext_resource type="Texture2D" uid="uid://btrdvaymsht1u" path="res://Images/Before(wihoutBG).png" id="1_1l1n4"]
 [ext_resource type="Script" uid="uid://dh7t7078hcugx" path="res://character/character.gd" id="1_ugqs2"]
-[ext_resource type="Texture2D" uid="uid://b6h74a2cdj7du" path="res://Images/After(withoutBG).png" id="2_ugqs2"]
+[ext_resource type="Texture2D" uid="uid://515fr750xyxt" path="res://Images/Character/Before new(withoutBG).png" id="2_ugqs2"]
+[ext_resource type="Texture2D" uid="uid://c48ovrw5kcbaq" path="res://Images/Character/After new(withoutBG).png" id="3_hx151"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vu45j"]
-radius = 257.0
-height = 514.0
+radius = 193.0
+height = 506.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_glpr6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_1l1n4")
-}, {
-"duration": 5.5,
 "texture": ExtResource("2_ugqs2")
 }, {
+"duration": 5.5,
+"texture": ExtResource("3_hx151")
+}, {
 "duration": 1.0,
-"texture": ExtResource("1_1l1n4")
+"texture": ExtResource("2_ugqs2")
 }],
 "loop": false,
 "name": &"tap",
@@ -29,12 +29,12 @@ animations = [{
 script = ExtResource("1_ugqs2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=116409453]
-position = Vector2(490, 330)
+position = Vector2(507, 342)
 shape = SubResource("CapsuleShape2D_vu45j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1951268959]
-position = Vector2(488, 318.00003)
-scale = Vector2(0.74315935, 0.7431591)
+position = Vector2(489, 327)
+scale = Vector2(1.1949154, 1.194915)
 sprite_frames = SubResource("SpriteFrames_glpr6")
 animation = &"tap"
 frame = 2

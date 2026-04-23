@@ -6,6 +6,20 @@ signal music_volume_changed(value: float)
 var music_player: AudioStreamPlayer
 var music_muted := false
 var music_volume := 1.0
+var pops_since_last_fart := 0
+
+var bubble_burst_streams: Array[AudioStream] = [
+	preload("res://Audio/bubble_burst1.mp3"),
+	preload("res://Audio/bubble_burst2.mp3"),
+	preload("res://Audio/bubble_burst3.mp3"),
+	preload("res://Audio/bubble_burst4.mp3"),
+]
+
+var fart_streams: Array[AudioStream] = [
+	preload("res://Audio/fart_sound1.mp3"),
+	preload("res://Audio/fart_sound2.mp3"),
+	preload("res://Audio/fart_sound3.mp3"),
+]
 
 
 func _ready() -> void:
@@ -58,3 +72,27 @@ func _apply_music_volume() -> void:
 
 	var volume_db := -80.0 if music_volume <= 0.0 else linear_to_db(music_volume)
 	AudioServer.set_bus_volume_db(music_bus_index, volume_db)
+
+
+func play_fart_mob_pop_sounds() -> void:
+	_play_random_stream(bubble_burst_streams)
+
+	var should_play_fart := pops_since_last_fart >= 3 or randf() < 0.25
+	if should_play_fart:
+		_play_random_stream(fart_streams)
+		pops_since_last_fart = 0
+		return
+
+	pops_since_last_fart += 1
+
+
+func _play_random_stream(streams: Array[AudioStream]) -> void:
+	if streams.is_empty():
+		return
+
+	var player := AudioStreamPlayer.new()
+	player.bus = "Master"
+	player.stream = streams[randi() % streams.size()]
+	add_child(player)
+	player.finished.connect(player.queue_free)
+	player.play()

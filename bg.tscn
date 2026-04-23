@@ -71,8 +71,8 @@ libraries/ = SubResource("AnimationLibrary_e8j8q")
 autoplay = &"bg_idle"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2076595412]
-position = Vector2(576, 324)
-scale = Vector2(0.75, 0.6328125)
+position = Vector2(1230, 600)
+scale = Vector2(1.6666663, 1.4062501)
 sprite_frames = SubResource("SpriteFrames_36ycx")
 animation = &"idle"
 autoplay = "idle"

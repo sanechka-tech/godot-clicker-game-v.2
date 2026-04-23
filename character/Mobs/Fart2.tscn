@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bu46nqgsqwlem"]
+
+[ext_resource type="Texture2D" uid="uid://dv63knx6fh4ne" path="res://Images/Mobs/Fart2.png" id="1_4owxk"]
+[ext_resource type="Script" uid="uid://o7qyjejjhqgh" path="res://character/Mobs/fart_mob.gd" id="1_7luuf"]
+[ext_resource type="Texture2D" uid="uid://dabg1xhc3d72y" path="res://Images/Mobs/Fart2Dead.png" id="3_p4jey"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yesju"]
+radius = 27.073973
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_45oyu"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("1_4owxk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_p4jey")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}]
+
+[node name="Fart2" type="CharacterBody2D" unique_id=1871530975]
+script = ExtResource("1_7luuf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1425982961]
+shape = SubResource("CircleShape2D_yesju")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=872060509]
+scale = Vector2(0.052631605, 0.052631613)
+texture = ExtResource("1_4owxk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=773554838]
+visible = false
+scale = Vector2(0.05263158, 0.05263158)
+sprite_frames = SubResource("SpriteFrames_45oyu")
+animation = &"Death"

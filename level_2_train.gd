@@ -1,7 +1,12 @@
 extends Node2D
 
 const ROUND_DURATION_SECONDS := 300.0
-const LEVEL_GOAL_SCORE := 216000
+const LEVEL_GOAL_SCORE := 325000
+const MOB_SPAWN_INTERVAL := 5.0
+
+const FART_1_SCENE := preload("res://character/Mobs/Fart1.tscn")
+const FART_2_SCENE := preload("res://character/Mobs/Fart2.tscn")
+const FART_3_SCENE := preload("res://character/Mobs/Fart3.tscn")
 
 @onready var character = $Character
 @onready var coins_label: Label = $CanvasLayer/CoinsLabel
@@ -14,6 +19,13 @@ const LEVEL_GOAL_SCORE := 216000
 
 var time_left_seconds := ROUND_DURATION_SECONDS
 var round_finished := false
+var mob_spawn_time_left := MOB_SPAWN_INTERVAL
+
+var fart_scenes := [
+	FART_1_SCENE,
+	FART_2_SCENE,
+	FART_3_SCENE,
+]
 
 
 func _ready() -> void:
@@ -38,6 +50,7 @@ func _process(delta: float) -> void:
 
 	time_left_seconds = maxf(time_left_seconds - delta, 0.0)
 	_update_time_label()
+	_update_mob_spawner(delta)
 
 	if GameState.score >= LEVEL_GOAL_SCORE:
 		_finish_round(true)
@@ -102,6 +115,9 @@ func _finish_round(did_win: bool) -> void:
 	level_2_win.visible = did_win
 	level_2_lose.visible = not did_win
 
+	for fart_mob in get_tree().get_nodes_in_group("fart_mobs"):
+		fart_mob.queue_free()
+
 
 func _on_lvl_2_retry_pressed() -> void:
 	get_tree().reload_current_scene()
@@ -117,3 +133,33 @@ func _find_time_label() -> Label:
 		return root_time_label
 
 	return get_node_or_null("CanvasLayer/TextureRect/TimeLabel") as Label
+
+
+func _update_mob_spawner(delta: float) -> void:
+	mob_spawn_time_left -= delta
+
+	if mob_spawn_time_left > 0.0:
+		return
+
+	mob_spawn_time_left += MOB_SPAWN_INTERVAL
+	_spawn_random_fart_mob()
+
+
+func _spawn_random_fart_mob() -> void:
+	var fart_scene: PackedScene = fart_scenes[randi() % fart_scenes.size()]
+	var fart_mob := fart_scene.instantiate()
+
+	fart_mob.global_position = Vector2(
+		randf_range(40.0, 220.0),
+		randf_range(260.0, 560.0)
+	)
+	fart_mob.popped.connect(_on_fart_mob_popped)
+	add_child(fart_mob)
+
+
+func _on_fart_mob_popped() -> void:
+	if round_finished:
+		return
+
+	GameState.add_bonus_coins(GameState.tap_power * 10)
+	AudioManager.play_fart_mob_pop_sounds()

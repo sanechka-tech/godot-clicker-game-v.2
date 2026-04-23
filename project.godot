@@ -24,6 +24,13 @@ buses/default_bus_layout="uid://ct3hrshwq0bc5"
 GameState="*uid://df4exf47b5xih"
 AudioManager="*uid://djnrq2bpggjoc"
 
+[display]
+
+window/size/viewport_width=2340
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
