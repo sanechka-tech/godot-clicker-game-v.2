@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c48ovrw5kcbaq"
-path="res://.godot/imported/After new(withoutBG).png-8b1d41fbae267b3c577a9ea8de386e88.ctex"
+uid="uid://dwcv1nx2rts4a"
+path="res://.godot/imported/After(withoutBG).png-a125b725d5809ea76f3c5734f94e7c75.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Character/After new(withoutBG).png"
-dest_files=["res://.godot/imported/After new(withoutBG).png-8b1d41fbae267b3c577a9ea8de386e88.ctex"]
+source_file="res://Images/Character/After(withoutBG).png"
+dest_files=["res://.godot/imported/After(withoutBG).png-a125b725d5809ea76f3c5734f94e7c75.ctex"]
 
 [params]
 

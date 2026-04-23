@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://515fr750xyxt"
-path="res://.godot/imported/Before new(withoutBG).png-b9bd2fcdc39a2cd12ada7e1d88799dd0.ctex"
+uid="uid://dm4xiq46lmho2"
+path="res://.godot/imported/Before(withoutBG).png-74c69c3db76153585a8e7edf841088e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Character/Before new(withoutBG).png"
-dest_files=["res://.godot/imported/Before new(withoutBG).png-b9bd2fcdc39a2cd12ada7e1d88799dd0.ctex"]
+source_file="res://Images/Character/Before(withoutBG).png"
+dest_files=["res://.godot/imported/Before(withoutBG).png-74c69c3db76153585a8e7edf841088e8.ctex"]
 
 [params]
 
