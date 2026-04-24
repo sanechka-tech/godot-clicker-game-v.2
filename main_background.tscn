@@ -2,8 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dpokck0hvjm5i" path="res://main_background.gd" id="1_dk7qp"]
 [ext_resource type="Texture2D" uid="uid://s2ebaxofaxh6" path="res://Images/NewBGMain.png" id="2_c17hs"]
-[ext_resource type="Texture2D" uid="uid://b25l4ktin1uki" path="res://Images/buttons.png" id="3_7x3al"]
-[ext_resource type="Texture2D" uid="uid://cnohma3ut6506" path="res://Images/Shitty-Coins counter.png" id="4_c17hs"]
 
 [node name="main_background" type="Node2D" unique_id=262141879]
 script = ExtResource("1_dk7qp")
@@ -12,30 +10,3 @@ script = ExtResource("1_dk7qp")
 position = Vector2(575.4846, 326.37494)
 scale = Vector2(0.72564703, 0.7298086)
 texture = ExtResource("2_c17hs")
-
-[node name="Buttons" type="Sprite2D" parent="." unique_id=1551028605]
-position = Vector2(907.1923, 600.5)
-scale = Vector2(1.2179487, 1.2179487)
-texture = ExtResource("3_7x3al")
-
-[node name="Button toilet" type="Button" parent="." unique_id=749983211]
-offset_left = 662.0
-offset_top = 553.0
-offset_right = 916.0
-offset_bottom = 648.0
-flat = true
-
-[node name="Button shop" type="Button" parent="." unique_id=576352442]
-offset_left = 916.0
-offset_top = 554.0
-offset_right = 1152.0
-offset_bottom = 649.0
-flat = true
-
-[node name="ShittyCoinsCounter" type="Sprite2D" parent="." unique_id=1175522767]
-position = Vector2(948.99994, 27)
-scale = Vector2(1.009434, 1.009434)
-texture = ExtResource("4_c17hs")
-
-[connection signal="pressed" from="Button toilet" to="." method="_on_button_toilet_pressed"]
-[connection signal="pressed" from="Button shop" to="." method="_on_button_shop_pressed"]
