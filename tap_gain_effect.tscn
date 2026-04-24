@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://b58d5n2lg4kd0"]
+
+[ext_resource type="Script" uid="uid://dkqewyr0v0ta5" path="res://tap_gain_effect.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="2"]
+[ext_resource type="Texture2D" uid="uid://dy2vfa62kwtqb" path="res://Images/Coin/coin1.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://b2d1ak2umf37p" path="res://Images/Coin/coin2.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dwninfnkwjpgw" path="res://Images/Coin/coin3.png" id="5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tap_gain"]
+font = ExtResource("2")
+font_size = 40
+font_color = Color(0.914, 0.651, 0.239, 1)
+outline_size = 8
+outline_color = Color(0.11, 0.05, 0.02, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 0.55)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_coin"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}],
+"loop": true,
+"name": &"spin",
+"speed": 14.0
+}]
+
+[node name="TapGainEffect" type="Node2D" unique_id=1358480897]
+script = ExtResource("1")
+
+[node name="PlusLabel" type="Label" parent="." unique_id=1021831545]
+offset_top = -34.0
+offset_right = 38.0
+offset_bottom = 12.0
+text = "+"
+label_settings = SubResource("LabelSettings_tap_gain")
+
+[node name="Coin" type="AnimatedSprite2D" parent="." unique_id=1256706052]
+position = Vector2(65, -12.000001)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_coin")
+animation = &"spin"
+frame = 1
+frame_progress = 0.78878266
+
+[node name="AmountLabel" type="Label" parent="." unique_id=1020926355]
+offset_left = 22.0
+offset_top = -34.0
+offset_right = 82.0
+offset_bottom = 12.0
+text = "1"
+label_settings = SubResource("LabelSettings_tap_gain")

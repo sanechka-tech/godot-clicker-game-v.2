@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://do6v0lv2ape1i" path="res://CustomFont/custom_font_atlas.fnt" id="5_yyfn6"]
 [ext_resource type="Texture2D" uid="uid://cmtbbm0efhxd2" path="res://Images/start button/button_normal.png" id="6_8dgme"]
 [ext_resource type="Texture2D" uid="uid://bvvypoq4sji6s" path="res://Images/Background_Main_screen.png" id="6_hwe8d"]
+[ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="6_yyfn6"]
 [ext_resource type="Texture2D" uid="uid://bqfa1omoepxl1" path="res://Images/start button/button_pressed.png" id="7_m1edi"]
 [ext_resource type="Texture2D" uid="uid://dkvu0uv0d35cg" path="res://Images/ShopTrain(without_price).png" id="11_yyfn6"]
 
@@ -47,12 +48,28 @@ vertical_alignment = 1
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1172452749]
 
 [node name="CoinsLabel" type="Label" parent="CanvasLayer" unique_id=760029660]
+visible = false
 offset_left = 899.00006
 offset_top = 167.99997
 offset_right = 1050.125
 offset_bottom = 206.99997
 theme_override_fonts/font = ExtResource("5_yyfn6")
 theme_override_font_sizes/font_size = 36
+text = "0"
+vertical_alignment = 1
+
+[node name="CoinsLabel2" type="Label" parent="CanvasLayer" unique_id=1931459731]
+offset_left = 901.0
+offset_top = 152.0
+offset_right = 1052.1249
+offset_bottom = 223.0
+theme_override_colors/font_color = Color(0.16078432, 0.21176471, 0.27450982, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.36862746)
+theme_override_colors/font_outline_color = Color(0.9372549, 0.8627451, 0.7372549, 1)
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("6_yyfn6")
+theme_override_font_sizes/font_size = 52
 text = "0"
 vertical_alignment = 1
 

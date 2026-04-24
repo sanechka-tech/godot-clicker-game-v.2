@@ -21,6 +21,8 @@ script = ExtResource("1_7a4el")
 [node name="Character" parent="." unique_id=286549002 instance=ExtResource("1_tjn2e")]
 position = Vector2(-258, 106)
 
+[node name="TapEffects" type="Node2D" parent="." unique_id=1024279730]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=864686036]
 
 [node name="CoinsLabel" type="Label" parent="CanvasLayer" unique_id=1685039839]
