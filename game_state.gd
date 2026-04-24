@@ -77,12 +77,14 @@ func _process(delta: float) -> void:
 	coins_changed.emit(shitty_coins)
 
 
-func add_tap_coins() -> void:
+func add_tap_coins() -> int:
 	var tap_gain := tap_power + 1
 
 	_add_score(tap_gain)
 	shitty_coins += tap_gain
 	coins_changed.emit(shitty_coins)
+
+	return tap_gain
 
 
 func can_buy_upgrade(upgrade_id: String) -> bool:
