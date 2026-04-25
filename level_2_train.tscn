@@ -22,7 +22,7 @@ scale = Vector2(0.6950055, 0.6950053)
 texture = ExtResource("1_wl44b")
 
 [node name="Character" parent="." unique_id=286549002 instance=ExtResource("2_3rlsd")]
-position = Vector2(-262, 99)
+position = Vector2(-269, 87)
 
 [node name="ShittyCointTrain" type="Sprite2D" parent="." unique_id=335732966]
 position = Vector2(939.00006, 186.00002)
@@ -40,6 +40,12 @@ offset_left = 524.0
 offset_top = 27.0
 offset_right = 654.0
 offset_bottom = 69.0
+theme_override_colors/font_color = Color(0.16078432, 0.21176471, 0.27450982, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.3647059)
+theme_override_colors/font_outline_color = Color(0.87058824, 0.7647059, 0.6117647, 1)
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("6_yyfn6")
 theme_override_font_sizes/font_size = 36
 text = "05:00"
 horizontal_alignment = 1
