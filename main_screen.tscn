@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b075ljg8yulrm" path="res://main_background.tscn" id="1_w0p2i"]
 [ext_resource type="Texture2D" uid="uid://dorthgpxjhvpn" path="res://Images/Progress bars/loading_bar_empty_lvl1.png" id="4_4sclt"]
 [ext_resource type="Texture2D" uid="uid://b2chawp30og2a" path="res://Images/Progress bars/loading_bar_full_lvl1.png" id="5_ywh4s"]
+[ext_resource type="Texture2D" uid="uid://bn0fddij1qj3v" path="res://Images/Progress bars/poogoal.png" id="6_ywh4s"]
 
 [sub_resource type="FontVariation" id="FontVariation_w0p2i"]
 
@@ -44,3 +45,13 @@ rounded = true
 nine_patch_stretch = true
 texture_under = ExtResource("4_4sclt")
 texture_progress = ExtResource("5_ywh4s")
+
+[node name="GoalIcon" type="TextureRect" parent="ProgressGoal" unique_id=997456549]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 1.0
+offset_right = 81.0
+offset_bottom = 41.0
+mouse_filter = 2
+texture = ExtResource("6_ywh4s")
+expand_mode = 1

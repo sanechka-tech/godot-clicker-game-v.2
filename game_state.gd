@@ -10,7 +10,7 @@ var shitty_coins: int = 0
 var score: int = 0
 var tap_power: int = 1
 var passive_score_per_second: int = 0
-var score_goal: int = 1000000
+var score_goal: int = 100
 var _passive_income_buffer: float = 0.0
 
 var upgrade_purchase_counts := {
