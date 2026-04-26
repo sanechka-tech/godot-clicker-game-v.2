@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dsbvhi0cpts08"]
+
+[ext_resource type="PackedScene" uid="uid://ca8quewlxc18f" path="res://minigame_bg.tscn" id="1_a1pjn"]
+[ext_resource type="Texture2D" uid="uid://bafk2ttlettaj" path="res://Images/MiniGame/GayBoyBG.png" id="1_snhvf"]
+[ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="3_nh48r"]
+
+[node name="MiniGame" type="Node2D" unique_id=2022557404]
+
+[node name="Minigame_bg" parent="." unique_id=398314814 instance=ExtResource("1_a1pjn")]
+scroll_offset = Vector2(-32, 42)
+
+[node name="GayBoyBg" type="Sprite2D" parent="." unique_id=1607312090]
+position = Vector2(644, 279)
+scale = Vector2(1.2773646, 1.2773645)
+texture = ExtResource("1_snhvf")
+
+[node name="MinigameStart" type="Button" parent="GayBoyBg" unique_id=2087433211]
+offset_left = -82.20049
+offset_top = -1.5657234
+offset_right = 77.79951
+offset_bottom = 62.434277
+theme_override_fonts/font = ExtResource("3_nh48r")
+theme_override_font_sizes/font_size = 40
+text = "START"
+flat = true
