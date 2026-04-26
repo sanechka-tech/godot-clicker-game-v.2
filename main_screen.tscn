@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://d03g4n30rpj4t" path="res://main_screen.gd" id="1_7a4el"]
 [ext_resource type="PackedScene" uid="uid://chrkyh8fvbdnd" path="res://character/character.tscn" id="1_tjn2e"]
 [ext_resource type="PackedScene" uid="uid://b075ljg8yulrm" path="res://main_background.tscn" id="1_w0p2i"]
+[ext_resource type="Texture2D" uid="uid://dorthgpxjhvpn" path="res://Images/Progress bars/loading_bar_empty_lvl1.png" id="4_4sclt"]
+[ext_resource type="Texture2D" uid="uid://b2chawp30og2a" path="res://Images/Progress bars/loading_bar_full_lvl1.png" id="5_ywh4s"]
 
 [sub_resource type="FontVariation" id="FontVariation_w0p2i"]
 
@@ -19,7 +21,7 @@ script = ExtResource("1_7a4el")
 [node name="main_background" parent="." unique_id=262141879 instance=ExtResource("1_w0p2i")]
 
 [node name="Character" parent="." unique_id=286549002 instance=ExtResource("1_tjn2e")]
-position = Vector2(-258, 106)
+position = Vector2(-258, 47)
 
 [node name="TapEffects" type="Node2D" parent="." unique_id=1024279730]
 
@@ -33,9 +35,12 @@ offset_bottom = 48.0
 text = "0"
 label_settings = SubResource("LabelSettings_7a4el")
 
-[node name="ProgressGoal" type="ProgressBar" parent="." unique_id=925841609]
-offset_left = 37.0
-offset_top = 117.0
-offset_right = 440.0
-offset_bottom = 152.0
+[node name="ProgressGoal" type="TextureProgressBar" parent="." unique_id=710880973]
+offset_left = 87.0
+offset_top = 82.0
+offset_right = 427.0
+offset_bottom = 122.0
 rounded = true
+nine_patch_stretch = true
+texture_under = ExtResource("4_4sclt")
+texture_progress = ExtResource("5_ywh4s")
