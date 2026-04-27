@@ -8,7 +8,7 @@ signal shop_changed
 
 var shitty_coins: int = 0
 var score: int = 0
-var tap_power: int = 10
+var tap_power: int = 0
 var passive_score_per_second: int = 0
 var score_goal: int = 1000000
 var _passive_income_buffer: float = 0.0

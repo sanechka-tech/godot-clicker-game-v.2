@@ -38,7 +38,6 @@ texture_pressed = ExtResource("6_ecwwl")
 texture_hover = ExtResource("6_ecwwl")
 
 [node name="SettingsPanel" type="Control" parent="." unique_id=927669708]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0

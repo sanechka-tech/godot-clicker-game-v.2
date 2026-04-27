@@ -24,10 +24,12 @@
 [ext_resource type="Texture2D" uid="uid://ka7v655d3l1b" path="res://Images/Shops/lvl1/button_kran_disable.png" id="17_sqqhh"]
 [ext_resource type="Texture2D" uid="uid://c8mj4fopw8ppf" path="res://Images/Shops/lvl1/button_clism_disable.png" id="20_qx06n"]
 [ext_resource type="PackedScene" uid="uid://dkvxnimt40xbc" path="res://coins_counter.tscn" id="23_0dp34"]
+[ext_resource type="Texture2D" uid="uid://b6khfgkm5leio" path="res://Images/settings/settings.png" id="25_1utv4"]
+[ext_resource type="Texture2D" uid="uid://djamwdx0uj0v8" path="res://Images/settings/settings_push.png" id="26_0wrnf"]
 
 [node name="Main_screen" type="Node2D" unique_id=591086808]
 script = ExtResource("1_7a4el")
-metadata/_edit_vertical_guides_ = [1116.0, 958.0, 1030.0]
+metadata/_edit_horizontal_guides_ = [100.0, 20.0]
 
 [node name="main_background" parent="." unique_id=262141879 instance=ExtResource("1_w0p2i")]
 
@@ -76,18 +78,18 @@ offset_bottom = 587.0
 
 [node name="ShopBG" type="TextureRect" parent="ShopLvl1" unique_id=565553494]
 layout_mode = 0
-offset_left = -28.0
+offset_left = -58.0
 offset_top = 3.0
-offset_right = 457.0
+offset_right = 427.0
 offset_bottom = 502.89572
 texture = ExtResource("8_0osx7")
 expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ShopLvl1" unique_id=1099341455]
 layout_mode = 0
-offset_left = -2.0
+offset_left = -32.0
 offset_top = 22.0
-offset_right = 429.0
+offset_right = 399.0
 offset_bottom = 444.0
 theme_override_constants/separation = 2
 
@@ -294,7 +296,17 @@ text = "999k"
 [node name="Counter" type="CanvasLayer" parent="." unique_id=1215763883]
 
 [node name="CoinsCounter" parent="Counter" unique_id=721065191 instance=ExtResource("23_0dp34")]
-offset_left = 844.0
+offset_left = 814.0
 offset_top = 11.0
-offset_right = 1153.0
+offset_right = 1123.0
 offset_bottom = 105.0
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=820838825]
+offset_left = 1193.0
+offset_top = 18.0
+offset_right = 1253.0
+offset_bottom = 78.0
+texture_normal = ExtResource("25_1utv4")
+texture_pressed = ExtResource("26_0wrnf")
+ignore_texture_size = true
+stretch_mode = 0

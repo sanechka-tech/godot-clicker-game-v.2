@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://dg5opcmsrei71"]
+
+[ext_resource type="Texture2D" uid="uid://6av6evuyrcpn" path="res://Images/settings/settings_background.png" id="1_imxq5"]
+[ext_resource type="Texture2D" uid="uid://cm8x0lskx6e4x" path="res://Images/settings/back_button.png" id="2_nhjgm"]
+[ext_resource type="Texture2D" uid="uid://da18mrcqtlmcl" path="res://Images/settings/volume_bar_empty.png" id="4_43uju"]
+[ext_resource type="Texture2D" uid="uid://ba4uqfxpcwndo" path="res://Images/settings/volume_bar_fill.png" id="5_eh5sn"]
+[ext_resource type="Texture2D" uid="uid://b550s5v1ptr7n" path="res://Images/settings/slider.png" id="6_10may"]
+[ext_resource type="Texture2D" uid="uid://cxdfc6f5me2t3" path="res://Images/settings/sound_icon.png" id="7_a43k4"]
+
+[node name="SettingsPopup" type="Control" unique_id=138112148]
+layout_mode = 3
+anchors_preset = 0
+metadata/_edit_vertical_guides_ = [872.0, 656.0, 872.0]
+metadata/_edit_horizontal_guides_ = [300.0]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=35190839]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1300.0
+offset_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.019607844, 0.019607844, 0.019607844, 0.72156864)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2006680615]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 128.0
+offset_right = 872.0
+offset_bottom = 448.0
+texture = ExtResource("1_imxq5")
+
+[node name="TextureButton Back" type="TextureButton" parent="." unique_id=102015321]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 360.0
+offset_right = 765.0
+offset_bottom = 418.0
+texture_normal = ExtResource("2_nhjgm")
+
+[node name="VolumeTrack" type="TextureRect" parent="." unique_id=327644432]
+layout_mode = 0
+offset_left = 514.0
+offset_top = 236.0
+offset_right = 758.0
+offset_bottom = 278.0
+texture = ExtResource("4_43uju")
+
+[node name="VolumeFillClip" type="Control" parent="." unique_id=1860033576]
+clip_contents = true
+anchors_preset = 0
+offset_left = 521.0
+offset_top = 242.0
+offset_right = 751.0
+offset_bottom = 267.0
+
+[node name="VolumeFill" type="TextureRect" parent="VolumeFillClip" unique_id=462987765]
+layout_mode = 0
+offset_left = -7.0
+offset_top = -6.0
+offset_right = 237.0
+offset_bottom = 36.0
+texture = ExtResource("5_eh5sn")
+
+[node name="VolumeKnob" type="TextureRect" parent="." unique_id=614854138]
+layout_mode = 0
+offset_left = 521.0
+offset_top = 230.0
+offset_right = 550.0
+offset_bottom = 283.0
+texture = ExtResource("6_10may")
+
+[node name="HSlider" type="HSlider" parent="." unique_id=560383334]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 525.0
+offset_top = 237.0
+offset_right = 747.0
+offset_bottom = 272.0
+
+[node name="SoundIcon" type="Sprite2D" parent="." unique_id=2111577849]
+position = Vector2(493, 255)
+scale = Vector2(0.7651513, 0.76515126)
+texture = ExtResource("7_a43k4")
