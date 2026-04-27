@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ca8quewlxc18f"]
+
+[ext_resource type="Script" uid="uid://dsg85wcq6qi46" path="res://minigame_bg.gd" id="1_8d6r8"]
+[ext_resource type="Texture2D" uid="uid://b70o8ijqvikvb" path="res://Images/MiniGame/pixelart_starfield.png" id="1_htkqa"]
+
+[node name="Minigame_bg" type="Parallax2D" unique_id=398314814]
+script = ExtResource("1_8d6r8")
+
+[node name="PixelartStarfield" type="Sprite2D" parent="." unique_id=297745607]
+texture_repeat = 3
+position = Vector2(682, 673)
+scale = Vector2(5.41875, 5.4187503)
+texture = ExtResource("1_htkqa")

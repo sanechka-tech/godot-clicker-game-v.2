@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://chrkyh8fvbdnd" path="res://character/character.tscn" id="1_tjn2e"]
 [ext_resource type="PackedScene" uid="uid://b075ljg8yulrm" path="res://main_background.tscn" id="1_w0p2i"]
 [ext_resource type="Texture2D" uid="uid://dorthgpxjhvpn" path="res://Images/Progress bars/loading_bar_empty_lvl1.png" id="4_4sclt"]
+[ext_resource type="PackedScene" uid="uid://d01iaugj3xypo" path="res://onboarding.tscn" id="4_ue4rx"]
 [ext_resource type="Texture2D" uid="uid://88kvdjol2juk" path="res://Images/Progress bars/loading_bar_empty_lvl1(short).png" id="5_ue4rx"]
 [ext_resource type="Texture2D" uid="uid://dv5tg3wmwdk0k" path="res://Images/Progress bars/loading_bar_full_lvl1(short).png" id="6_sjiej"]
 [ext_resource type="Texture2D" uid="uid://bn0fddij1qj3v" path="res://Images/Progress bars/poogoal.png" id="6_ywh4s"]
@@ -33,6 +34,9 @@ script = ExtResource("1_7a4el")
 position = Vector2(-258, 47)
 
 [node name="TapEffects" type="Node2D" parent="." unique_id=1024279730]
+
+[node name="Onboarding" parent="." unique_id=1256674528 instance=ExtResource("4_ue4rx")]
+position = Vector2(170, 232)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=864686036]
 
