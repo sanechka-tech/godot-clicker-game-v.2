@@ -1,0 +1,170 @@
+[gd_scene format=3 uid="uid://dukyrdvroijfy"]
+
+[ext_resource type="Texture2D" uid="uid://dsvvhlxhu5621" path="res://Images/MiniGame/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Full health.png" id="1_yexho"]
+[ext_resource type="Texture2D" uid="uid://cxhpmws0ubuin" path="res://Images/MiniGame/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Slight damage.png" id="2_20tfk"]
+[ext_resource type="Texture2D" uid="uid://bybls0wosph7x" path="res://Images/MiniGame/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Damaged.png" id="3_3xcyh"]
+[ext_resource type="Texture2D" uid="uid://klsnqvsnu74f" path="res://Images/MiniGame/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Very damaged.png" id="4_pgefa"]
+[ext_resource type="Texture2D" uid="uid://c7d7yhfkdtkvk" path="res://Images/MiniGame/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Big Pulse Engine - Idle.png" id="5_20tfk"]
+[ext_resource type="Texture2D" uid="uid://o0huomh7mp28" path="res://Images/MiniGame/Main ship weapons/PNGs/Main ship weapon - Projectile - Big Space Gun.png" id="6_3xcyh"]
+[ext_resource type="Script" uid="uid://hj2ukey8ml48" path="res://mini_game_player.gd" id="7_h8t3w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_04d50"]
+radius = 6.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e5yl4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yexho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_20tfk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3xcyh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pgefa")
+}],
+"loop": false,
+"name": &"Mainspaceship_damaged",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xcyh"]
+atlas = ExtResource("5_20tfk")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgefa"]
+atlas = ExtResource("5_20tfk")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5yl4"]
+atlas = ExtResource("5_20tfk")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1roup"]
+atlas = ExtResource("5_20tfk")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ljnq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xcyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgefa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5yl4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1roup")
+}],
+"loop": true,
+"name": &"Spaceship_flying",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ljnq"]
+atlas = ExtResource("6_3xcyh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljipa"]
+atlas = ExtResource("6_3xcyh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_joyun"]
+atlas = ExtResource("6_3xcyh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lnfg"]
+atlas = ExtResource("6_3xcyh")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwvoj"]
+atlas = ExtResource("6_3xcyh")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vym5"]
+atlas = ExtResource("6_3xcyh")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jmcx"]
+atlas = ExtResource("6_3xcyh")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8twb"]
+atlas = ExtResource("6_3xcyh")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osxbc"]
+atlas = ExtResource("6_3xcyh")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g4us"]
+atlas = ExtResource("6_3xcyh")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_20tfk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ljnq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljipa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_joyun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0lnfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwvoj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vym5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jmcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8twb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osxbc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g4us")
+}],
+"loop": true,
+"name": &"Spaceship_shoot",
+"speed": 5.0
+}]
+
+[node name="Mainspaceship" type="CharacterBody2D" unique_id=1034546570]
+script = ExtResource("7_h8t3w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=929939282]
+shape = SubResource("CircleShape2D_04d50")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1335495479]
+position = Vector2(0, -1)
+scale = Vector2(0.6666666, 0.6666666)
+sprite_frames = SubResource("SpriteFrames_e5yl4")
+animation = &"Mainspaceship_damaged"
+
+[node name="Spaceship_fly" type="AnimatedSprite2D" parent="AnimatedSprite2D" unique_id=1594715489]
+sprite_frames = SubResource("SpriteFrames_0ljnq")
+animation = &"Spaceship_flying"
+frame_progress = 0.72490484
+
+[node name="Spaceship_shoot" type="AnimatedSprite2D" parent="AnimatedSprite2D" unique_id=492937316]
+position = Vector2(0, -16.500002)
+scale = Vector2(0.37500003, 0.375)
+sprite_frames = SubResource("SpriteFrames_20tfk")
+animation = &"Spaceship_shoot"
+frame_progress = 0.5139635
