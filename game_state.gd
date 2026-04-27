@@ -8,55 +8,55 @@ signal shop_changed
 
 var shitty_coins: int = 0
 var score: int = 0
-var tap_power: int = 1
+var tap_power: int = 10
 var passive_score_per_second: int = 0
 var score_goal: int = 1000000
 var _passive_income_buffer: float = 0.0
 
 var upgrade_purchase_counts := {
-	"golden_toilet_seat": 0,
-	"bathroom_reader": 0,
-	"turbo_toilet_paper": 0,
-	"plunger": 0,
+	"spread_the_cheeks": 0,
+	"scroll_tiktok": 0,
+	"run_the_tap": 0,
+	"use_an_enema": 0,
 }
 
 var upgrade_base_prices := {
-	"golden_toilet_seat": 25000,
-	"bathroom_reader": 4500,
-	"turbo_toilet_paper": 400,
-	"plunger": 125,
+	"spread_the_cheeks": 125,
+	"scroll_tiktok": 400,
+	"run_the_tap": 4500,
+	"use_an_enema": 25000,
 }
 
 var upgrade_price_growth := {
-	"golden_toilet_seat": 1.18,
-	"bathroom_reader": 1.17,
-	"turbo_toilet_paper": 1.14,
-	"plunger": 1.12,
+	"spread_the_cheeks": 1.12,
+	"scroll_tiktok": 1.14,
+	"run_the_tap": 1.17,
+	"use_an_enema": 1.18,
 }
 
 var upgrade_prices := {
-	"golden_toilet_seat": 25000,
-	"bathroom_reader": 4500,
-	"turbo_toilet_paper": 400,
-	"plunger": 125,
+	"spread_the_cheeks": 125,
+	"scroll_tiktok": 400,
+	"run_the_tap": 4500,
+	"use_an_enema": 25000,
 }
 
 var upgrade_effects := {
-	"golden_toilet_seat": {
-		"tap_power": 0,
-		"passive_score_per_second": 900,
+	"spread_the_cheeks": {
+		"tap_power": 1,
+		"passive_score_per_second": 0,
 	},
-	"bathroom_reader": {
-		"tap_power": 0,
-		"passive_score_per_second": 180,
-	},
-	"turbo_toilet_paper": {
+	"scroll_tiktok": {
 		"tap_power": 0,
 		"passive_score_per_second": 25,
 	},
-	"plunger": {
-		"tap_power": 1,
-		"passive_score_per_second": 0,
+	"run_the_tap": {
+		"tap_power": 0,
+		"passive_score_per_second": 180,
+	},
+	"use_an_enema": {
+		"tap_power": 0,
+		"passive_score_per_second": 900,
 	},
 }
 
@@ -129,12 +129,36 @@ func _calculate_upgrade_price(upgrade_id: String) -> int:
 
 func format_number(value: int) -> String:
 	if value >= 1000000:
-		return str(floori(value / 1000000.0)) + "M"
+		return _format_compact_number(value / 1000000.0, 2) + "m"
 
 	if value >= 1000:
-		return str(floori(value / 1000.0)) + "K"
+		return _format_compact_number(value / 1000.0, 2) + "k"
 
 	return str(value)
+
+
+func format_price(value: int) -> String:
+	if value >= 1000000:
+		return _format_compact_number(value / 1000000.0, 1) + "m"
+
+	if value >= 1000:
+		return _format_compact_number(value / 1000.0, 1) + "k"
+
+	return str(value)
+
+
+func _format_compact_number(value: float, decimal_places: int) -> String:
+	var step := pow(10.0, -decimal_places)
+	var rounded_value := snappedf(value, step)
+	var formatted_value := "%.*f" % [decimal_places, rounded_value]
+
+	while formatted_value.ends_with("0"):
+		formatted_value = formatted_value.left(formatted_value.length() - 1)
+
+	if formatted_value.ends_with("."):
+		formatted_value = formatted_value.left(formatted_value.length() - 1)
+
+	return formatted_value
 
 
 func add_bonus_coins(amount: int) -> void:
@@ -145,7 +169,7 @@ func add_bonus_coins(amount: int) -> void:
 func start_level(new_score_goal: int) -> void:
 	shitty_coins = 0
 	score = 0
-	tap_power = 1
+	tap_power = 0
 	passive_score_per_second = 0
 	score_goal = new_score_goal
 	_passive_income_buffer = 0.0

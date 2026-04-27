@@ -44,7 +44,7 @@ text = "+"
 label_settings = SubResource("LabelSettings_tap_gain")
 
 [node name="Coin" type="AnimatedSprite2D" parent="." unique_id=1256706052]
-position = Vector2(65, -12.000001)
+position = Vector2(102.00001, -12)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_coin")
 animation = &"spin"

@@ -5,6 +5,12 @@ const PROGRESS_GOAL_ICON_TRACK_START_OFFSET := 0.0
 const PROGRESS_GOAL_ICON_TRACK_END_OFFSET := 0.0
 const PROGRESS_GOAL_ICON_OFFSET := Vector2.ZERO
 const SHOP_BUTTON_TEXT_PRESS_OFFSET := Vector2(0.0, 2.0)
+const SHOP_UPGRADE_BUTTONS := {
+	"spread_the_cheeks": "ShopLvl1/VBoxContainer/SpreadtheCheeks",
+	"scroll_tiktok": "ShopLvl1/VBoxContainer/ScrollTikTok",
+	"run_the_tap": "ShopLvl1/VBoxContainer/RuntheTap",
+	"use_an_enema": "ShopLvl1/VBoxContainer/UseanEnema",
+}
 const ONBOARDING_ANIMATION_NAMES: Array[StringName] = [&"Onboarding_tap", &"Oboarding_tap"]
 
 @onready var character = $Character
@@ -22,9 +28,12 @@ func _ready() -> void:
 	character.tapped.connect(_on_character_tapped)
 	GameState.coins_changed.connect(_on_coins_changed)
 	GameState.score_changed.connect(_on_score_changed)
+	GameState.shop_changed.connect(_on_shop_changed)
 	_setup_shop_button_press_offsets()
+	_setup_shop_buttons()
 
 	_update_coins_label()
+	_update_shop_buttons()
 	_setup_goal_progress()
 	_update_goal_progress()
 	_update_onboarding_visibility()
@@ -39,19 +48,19 @@ func _on_character_tapped(tap_position: Vector2) -> void:
 
 func _on_coins_changed(_new_value: int) -> void:
 	_update_coins_label()
+	_update_shop_buttons()
 
 
 func _on_score_changed(_new_value: int) -> void:
 	_update_goal_progress()
 
 
+func _on_shop_changed() -> void:
+	_update_shop_buttons()
+
+
 func _setup_shop_button_press_offsets() -> void:
-	for button_path in [
-		"ShopLvl1/VBoxContainer/SpreadtheCheeks",
-		"ShopLvl1/VBoxContainer/ScrollTikTok",
-		"ShopLvl1/VBoxContainer/RuntheTap",
-		"ShopLvl1/VBoxContainer/UseanEnema",
-	]:
+	for button_path in SHOP_UPGRADE_BUTTONS.values():
 		var button := get_node(button_path) as TextureButton
 		var text_group := button.get_node("TextGroup") as Control
 		shop_button_text_group_start_positions[text_group] = text_group.position
@@ -65,6 +74,25 @@ func _on_shop_button_down(text_group: Control) -> void:
 
 func _on_shop_button_up(text_group: Control) -> void:
 	text_group.position = shop_button_text_group_start_positions[text_group]
+
+
+func _setup_shop_buttons() -> void:
+	for upgrade_id in SHOP_UPGRADE_BUTTONS:
+		var button := get_node(SHOP_UPGRADE_BUTTONS[upgrade_id]) as TextureButton
+		button.pressed.connect(_on_shop_upgrade_pressed.bind(upgrade_id))
+
+
+func _on_shop_upgrade_pressed(upgrade_id: String) -> void:
+	GameState.buy_upgrade(upgrade_id)
+
+
+func _update_shop_buttons() -> void:
+	for upgrade_id in SHOP_UPGRADE_BUTTONS:
+		var button := get_node(SHOP_UPGRADE_BUTTONS[upgrade_id]) as TextureButton
+		var price_label := button.get_node("TextGroup/Price") as Label
+
+		price_label.text = GameState.format_price(GameState.upgrade_prices[upgrade_id])
+		button.disabled = not GameState.can_buy_upgrade(upgrade_id)
 
 
 func _update_coins_label() -> void:
