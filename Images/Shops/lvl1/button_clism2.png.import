@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://colyheeig3xwa"
-path="res://.godot/imported/ShittyCoinsLevel1.png-d76f7c15d10064b4336c9f17ea1a1101.ctex"
+uid="uid://jis4gaqkf47"
+path="res://.godot/imported/button_clism2.png-b6f3667bb1cbb33cc2f565254338133a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Shitty Coins/ShittyCoinsLevel1.png"
-dest_files=["res://.godot/imported/ShittyCoinsLevel1.png-d76f7c15d10064b4336c9f17ea1a1101.ctex"]
+source_file="res://Images/Shops/lvl1/button_clism2.png"
+dest_files=["res://.godot/imported/button_clism2.png-b6f3667bb1cbb33cc2f565254338133a.ctex"]
 
 [params]
 

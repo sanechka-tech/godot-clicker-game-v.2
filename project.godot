@@ -33,7 +33,7 @@ window/stretch/aspect="expand"
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://Localization/strings.csv")
+locale/translations=PackedStringArray("res://Localization/strings.en.translation", "res://Localization/strings.ru.translation", "res://Localization/strings.es.translation", "res://Localization/strings.de.translation")
 
 [physics]
 

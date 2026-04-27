@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dkvxnimt40xbc"]
+
+[ext_resource type="Texture2D" uid="uid://cx51baoimhftb" path="res://Images/Counters/ShittyCoinsLevel1.png" id="1_8duvw"]
+[ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="2_cbua2"]
+
+[node name="CoinsCounter" type="Control" unique_id=721065191]
+layout_mode = 3
+anchors_preset = 0
+metadata/_edit_vertical_guides_ = [310.0]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=175598070]
+layout_mode = 0
+offset_right = 309.4737
+offset_bottom = 98.0
+texture = ExtResource("1_8duvw")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="." unique_id=981972309]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 28.0
+offset_right = 254.0
+offset_bottom = 69.0
+theme_override_colors/font_color = Color(0.105882354, 0.18431373, 0.32156864, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.36078432)
+theme_override_colors/font_outline_color = Color(0.9529412, 0.89411765, 0.7921569, 1)
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("2_cbua2")
+theme_override_font_sizes/font_size = 40
+text = "999k"

@@ -1,18 +1,25 @@
 extends Node2D
 
 const TAP_GAIN_EFFECT_SCENE = preload("res://tap_gain_effect.tscn")
+const PROGRESS_GOAL_ICON_TRACK_START_OFFSET := 0.0
+const PROGRESS_GOAL_ICON_TRACK_END_OFFSET := 0.0
+const PROGRESS_GOAL_ICON_OFFSET := Vector2.ZERO
+const SHOP_BUTTON_TEXT_PRESS_OFFSET := Vector2(0.0, 2.0)
 
 @onready var character = $Character
-@onready var coins_label: Label = $CanvasLayer/CoinsLabel
+@onready var coins_label: Label = $Counter/CoinsCounter/Label
 @onready var progress_goal: Range = $ProgressGoal
 @onready var progress_goal_icon: Control = _find_progress_goal_icon()
 @onready var effects_layer: Node2D = $TapEffects
+
+var shop_button_text_group_start_positions := {}
 
 
 func _ready() -> void:
 	character.tapped.connect(_on_character_tapped)
 	GameState.coins_changed.connect(_on_coins_changed)
 	GameState.score_changed.connect(_on_score_changed)
+	_setup_shop_button_press_offsets()
 
 	_update_coins_label()
 	_setup_goal_progress()
@@ -30,6 +37,28 @@ func _on_coins_changed(_new_value: int) -> void:
 
 func _on_score_changed(_new_value: int) -> void:
 	_update_goal_progress()
+
+
+func _setup_shop_button_press_offsets() -> void:
+	for button_path in [
+		"ShopLvl1/VBoxContainer/SpreadtheCheeks",
+		"ShopLvl1/VBoxContainer/ScrollTikTok",
+		"ShopLvl1/VBoxContainer/RuntheTap",
+		"ShopLvl1/VBoxContainer/UseanEnema",
+	]:
+		var button := get_node(button_path) as TextureButton
+		var text_group := button.get_node("TextGroup") as Control
+		shop_button_text_group_start_positions[text_group] = text_group.position
+		button.button_down.connect(_on_shop_button_down.bind(text_group))
+		button.button_up.connect(_on_shop_button_up.bind(text_group))
+
+
+func _on_shop_button_down(text_group: Control) -> void:
+	text_group.position = shop_button_text_group_start_positions[text_group] + SHOP_BUTTON_TEXT_PRESS_OFFSET
+
+
+func _on_shop_button_up(text_group: Control) -> void:
+	text_group.position = shop_button_text_group_start_positions[text_group]
 
 
 func _update_coins_label() -> void:
@@ -65,11 +94,13 @@ func _update_goal_icon() -> void:
 		1.0
 	)
 	var icon_size := progress_goal_icon.size
-	var target_x := progress_control.size.x * progress_ratio - icon_size.x * 0.5
-	var max_x := maxf(progress_control.size.x - icon_size.x, 0.0)
+	var half_icon_width := icon_size.x * 0.5
+	var start_x := PROGRESS_GOAL_ICON_TRACK_START_OFFSET - half_icon_width
+	var end_x := progress_control.size.x - PROGRESS_GOAL_ICON_TRACK_END_OFFSET - half_icon_width
+	var target_x := lerpf(start_x, end_x, progress_ratio)
 
-	progress_goal_icon.position.x = clampf(target_x, 0.0, max_x)
-	progress_goal_icon.position.y = progress_control.size.y * 0.5 - icon_size.y * 0.5
+	progress_goal_icon.position.x = target_x + PROGRESS_GOAL_ICON_OFFSET.x
+	progress_goal_icon.position.y = progress_control.size.y * 0.5 - icon_size.y * 0.5 + PROGRESS_GOAL_ICON_OFFSET.y
 
 
 func _find_progress_goal_icon() -> Control:
