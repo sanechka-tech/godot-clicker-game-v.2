@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://dkvxnimt40xbc" path="res://coins_counter.tscn" id="23_0dp34"]
 [ext_resource type="Texture2D" uid="uid://b6khfgkm5leio" path="res://Images/settings/settings.png" id="25_1utv4"]
 [ext_resource type="Texture2D" uid="uid://djamwdx0uj0v8" path="res://Images/settings/settings_push.png" id="26_0wrnf"]
+[ext_resource type="PackedScene" uid="uid://dg5opcmsrei71" path="res://settings_popup.tscn" id="27_g7q6i"]
 
 [node name="Main_screen" type="Node2D" unique_id=591086808]
 script = ExtResource("1_7a4el")
@@ -301,7 +302,7 @@ offset_top = 11.0
 offset_right = 1123.0
 offset_bottom = 105.0
 
-[node name="TextureButton" type="TextureButton" parent="." unique_id=820838825]
+[node name="SettingsButton" type="TextureButton" parent="." unique_id=820838825]
 offset_left = 1193.0
 offset_top = 18.0
 offset_right = 1253.0
@@ -310,3 +311,9 @@ texture_normal = ExtResource("25_1utv4")
 texture_pressed = ExtResource("26_0wrnf")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=135258283]
+layer = 100
+
+[node name="SettingsPopup" parent="SettingsLayer" unique_id=793784747 instance=ExtResource("27_g7q6i")]
+visible = false

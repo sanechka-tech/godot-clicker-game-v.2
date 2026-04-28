@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da6cv4f3aq2i0"
-path="res://.godot/imported/mute_off.png-5da91b52815dc50c3ba8aa658844097f.ctex"
+uid="uid://bkaxkvni8nfcw"
+path="res://.godot/imported/germany.png-c4d1a18318919b89b8f95178b3390fc7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/settings/mute_off.png"
-dest_files=["res://.godot/imported/mute_off.png-5da91b52815dc50c3ba8aa658844097f.ctex"]
+source_file="res://Images/settings/flags/germany.png"
+dest_files=["res://.godot/imported/germany.png-c4d1a18318919b89b8f95178b3390fc7.ctex"]
 
 [params]
 

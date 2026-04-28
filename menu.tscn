@@ -6,13 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bqfa1omoepxl1" path="res://Images/start button/button_pressed.png" id="4_ytr4m"]
 [ext_resource type="Texture2D" uid="uid://c38hshh6lw3bp" path="res://Images/start button/settings_button_normal.png" id="5_l48gv"]
 [ext_resource type="Texture2D" uid="uid://dirp4npifad1s" path="res://Images/start button/settings_button_pressed.png" id="6_ecwwl"]
-[ext_resource type="Texture2D" uid="uid://6av6evuyrcpn" path="res://Images/settings/settings_background.png" id="7_iqepy"]
-[ext_resource type="Texture2D" uid="uid://cm8x0lskx6e4x" path="res://Images/settings/back_button.png" id="8_h1wq0"]
-[ext_resource type="Texture2D" uid="uid://tqrqeaeibj30" path="res://Images/settings/mute_on.png" id="9_dwrpx"]
-[ext_resource type="Texture2D" uid="uid://cxdfc6f5me2t3" path="res://Images/settings/sound_icon.png" id="10_2c3q8"]
-[ext_resource type="Texture2D" uid="uid://da18mrcqtlmcl" path="res://Images/settings/volume_bar_empty.png" id="10_h1wq0"]
-[ext_resource type="Texture2D" uid="uid://ba4uqfxpcwndo" path="res://Images/settings/volume_bar_fill.png" id="11_dwrpx"]
-[ext_resource type="Texture2D" uid="uid://b550s5v1ptr7n" path="res://Images/settings/slider.png" id="12_g7jxm"]
+[ext_resource type="PackedScene" uid="uid://dg5opcmsrei71" path="res://settings_popup.tscn" id="7_bhf4v"]
 
 [node name="Menu" type="Node2D" unique_id=837508162]
 script = ExtResource("1_lti8b")
@@ -37,90 +31,8 @@ texture_normal = ExtResource("5_l48gv")
 texture_pressed = ExtResource("6_ecwwl")
 texture_hover = ExtResource("6_ecwwl")
 
-[node name="SettingsPanel" type="Control" parent="." unique_id=927669708]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-
-[node name="ColorRect" type="ColorRect" parent="SettingsPanel" unique_id=1529073022]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.019607844, 0.019607844, 0.019607844, 0.8)
-
-[node name="TextureRect" type="TextureRect" parent="SettingsPanel" unique_id=1675688003]
-layout_mode = 0
-offset_left = 360.0
-offset_top = 160.0
-offset_right = 792.0
-offset_bottom = 480.0
-texture = ExtResource("7_iqepy")
-
-[node name="TextureButton Back" type="TextureButton" parent="SettingsPanel" unique_id=465944742]
-layout_mode = 0
-offset_left = 464.0
-offset_top = 392.0
-offset_right = 685.0
-offset_bottom = 450.0
-texture_normal = ExtResource("8_h1wq0")
-
-[node name="TextureButton Mute" type="TextureButton" parent="SettingsPanel" unique_id=425537842]
-layout_mode = 0
-offset_left = 688.0
-offset_top = 256.0
-offset_right = 752.0
-offset_bottom = 322.0
-texture_normal = ExtResource("9_dwrpx")
-
-[node name="VolumeTrack" type="TextureRect" parent="SettingsPanel" unique_id=1118497200]
-layout_mode = 0
-offset_left = 434.0
-offset_top = 268.0
-offset_right = 678.0
-offset_bottom = 310.0
-texture = ExtResource("10_h1wq0")
-
-[node name="VolumeFillClip" type="Control" parent="SettingsPanel" unique_id=1161376068]
-clip_contents = true
-anchors_preset = 0
-offset_left = 441.0
-offset_top = 274.0
-offset_right = 671.0
-offset_bottom = 299.0
-
-[node name="VolumeFill" type="TextureRect" parent="SettingsPanel/VolumeFillClip" unique_id=1107947977]
-layout_mode = 0
-offset_left = -7.0
-offset_top = -6.0
-offset_right = 237.0
-offset_bottom = 36.0
-texture = ExtResource("11_dwrpx")
-
-[node name="VolumeKnob" type="TextureRect" parent="SettingsPanel" unique_id=1627424121]
-layout_mode = 0
-offset_left = 441.0
-offset_top = 262.0
-offset_right = 470.0
-offset_bottom = 315.0
-texture = ExtResource("12_g7jxm")
-
-[node name="HSlider" type="HSlider" parent="SettingsPanel" unique_id=89748141]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_left = 445.0
-offset_top = 269.0
-offset_right = 667.0
-offset_bottom = 304.0
-
-[node name="SoundIcon" type="Sprite2D" parent="SettingsPanel" unique_id=1631054982]
-position = Vector2(413, 287)
-scale = Vector2(0.7651513, 0.76515126)
-texture = ExtResource("10_2c3q8")
+[node name="SettingsPopup" parent="." unique_id=1433266954 instance=ExtResource("7_bhf4v")]
+visible = false
 
 [connection signal="pressed" from="TextureButton GO" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="TextureButton Settings" to="." method="_on_texture_button_settings_pressed"]
-[connection signal="pressed" from="SettingsPanel/TextureButton Back" to="." method="_on_texture_button_back_pressed"]
