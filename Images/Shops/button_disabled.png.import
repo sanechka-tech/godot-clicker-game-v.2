@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwqq11mj4q4t8"
-path="res://.godot/imported/Turbo Toilet Paper (no price).png-58d1aae67af34c67d4b7b4cec2b5f6ce.ctex"
+uid="uid://cop5uvm715i72"
+path="res://.godot/imported/button_disabled.png-4c7a268bac9bc2f241a5eb9f66d51252.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Turbo Toilet Paper (no price).png"
-dest_files=["res://.godot/imported/Turbo Toilet Paper (no price).png-58d1aae67af34c67d4b7b4cec2b5f6ce.ctex"]
+source_file="res://Images/Shops/button_disabled.png"
+dest_files=["res://.godot/imported/button_disabled.png-4c7a268bac9bc2f241a5eb9f66d51252.ctex"]
 
 [params]
 

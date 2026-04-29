@@ -2,10 +2,9 @@
 
 [ext_resource type="Script" uid="uid://d4i2e2hhyo3l2" path="res://settings_popup.gd" id="1_7puip"]
 [ext_resource type="Texture2D" uid="uid://6av6evuyrcpn" path="res://Images/settings/settings_background.png" id="1_imxq5"]
-[ext_resource type="Texture2D" uid="uid://cm8x0lskx6e4x" path="res://Images/settings/back_button.png" id="2_nhjgm"]
-[ext_resource type="Texture2D" uid="uid://cm8jajrbjt85x" path="res://Images/settings/back_button_pushed.png" id="3_jagsb"]
 [ext_resource type="Texture2D" uid="uid://da18mrcqtlmcl" path="res://Images/settings/volume_bar_empty.png" id="4_43uju"]
 [ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="4_imxq5"]
+[ext_resource type="Texture2D" uid="uid://br8fmc805wugw" path="res://Images/settings/cross_new.png" id="5_7gkj2"]
 [ext_resource type="Texture2D" uid="uid://ba4uqfxpcwndo" path="res://Images/settings/volume_bar_fill.png" id="5_eh5sn"]
 [ext_resource type="Texture2D" uid="uid://b550s5v1ptr7n" path="res://Images/settings/slider.png" id="6_10may"]
 [ext_resource type="FontFile" uid="uid://buxbeon3odxds" path="res://CustomFont/EpilepsySans.ttf" id="8_nhjgm"]
@@ -13,15 +12,52 @@
 [ext_resource type="Texture2D" uid="uid://speu0gh5p4u1" path="res://Images/settings/flags/ru.png" id="11_7gkj2"]
 [ext_resource type="Texture2D" uid="uid://bngs6ygotc6yq" path="res://Images/settings/flags/spain.png" id="12_pb312"]
 [ext_resource type="Texture2D" uid="uid://bkaxkvni8nfcw" path="res://Images/settings/flags/germany.png" id="13_he1e8"]
+[ext_resource type="Texture2D" uid="uid://b6khfgkm5leio" path="res://Images/settings/settings.png" id="14_pb312"]
+[ext_resource type="Texture2D" uid="uid://djamwdx0uj0v8" path="res://Images/settings/settings_push.png" id="15_he1e8"]
 
 [node name="SettingsPopup" type="Control" unique_id=138112148]
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 2
 script = ExtResource("1_7puip")
-metadata/_edit_vertical_guides_ = [872.0, 656.0, 872.0, 515.0, 795.0]
-metadata/_edit_horizontal_guides_ = [300.0]
+metadata/_edit_vertical_guides_ = [872.0, 656.0, 872.0, 515.0, 795.0, 1251.0]
+metadata/_edit_horizontal_guides_ = [300.0, 20.0]
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=35190839]
+[node name="SettingsButtonRoot" type="Control" parent="." unique_id=1612320575]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SettingsButton" type="TextureButton" parent="SettingsButtonRoot" unique_id=1222231269]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1191.0
+offset_top = 20.0
+offset_right = 1251.0
+offset_bottom = 80.0
+grow_horizontal = 0
+texture_normal = ExtResource("14_pb312")
+texture_pressed = ExtResource("15_he1e8")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="MenuRoot" type="Control" parent="." unique_id=1170066925]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="MenuRoot" unique_id=35190839]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,7 +68,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.019607844, 0.019607844, 0.019607844, 0.72156864)
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=2006680615]
+[node name="TextureRect" type="TextureRect" parent="MenuRoot" unique_id=2006680615]
 layout_mode = 0
 offset_left = 436.0
 offset_top = 141.0
@@ -41,43 +77,17 @@ offset_bottom = 461.0
 texture = ExtResource("1_imxq5")
 expand_mode = 1
 
-[node name="TextureButtonBack" type="TextureButton" parent="." unique_id=102015321]
+[node name="TextureButtonBack" type="TextureButton" parent="MenuRoot" unique_id=102015321]
 layout_mode = 0
-offset_left = 570.0
-offset_top = 350.0
-offset_right = 742.0
-offset_bottom = 396.0
-texture_normal = ExtResource("2_nhjgm")
-texture_pressed = ExtResource("3_jagsb")
+offset_left = 805.0
+offset_top = 169.0
+offset_right = 850.0
+offset_bottom = 214.0
+texture_normal = ExtResource("5_7gkj2")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="BackNormal" type="Label" parent="TextureButtonBack" unique_id=549292446]
-visible = false
-layout_mode = 0
-offset_left = 30.0
-offset_top = 10.0
-offset_right = 143.0
-offset_bottom = 33.0
-theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
-theme_override_fonts/font = ExtResource("4_imxq5")
-theme_override_font_sizes/font_size = 22
-text = "MENU_BACK"
-horizontal_alignment = 1
-
-[node name="BackPushed" type="Label" parent="TextureButtonBack" unique_id=1990697538]
-layout_mode = 0
-offset_left = 30.0
-offset_top = 11.0
-offset_right = 143.0
-offset_bottom = 34.0
-theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
-theme_override_fonts/font = ExtResource("4_imxq5")
-theme_override_font_sizes/font_size = 21
-text = "MENU_BACK"
-horizontal_alignment = 1
-
-[node name="Music" type="Label" parent="." unique_id=711517312]
+[node name="Music" type="Label" parent="MenuRoot" unique_id=711517312]
 layout_mode = 0
 offset_left = 515.0
 offset_top = 207.0
@@ -88,14 +98,14 @@ theme_override_fonts/font = ExtResource("4_imxq5")
 theme_override_font_sizes/font_size = 20
 text = "Music"
 
-[node name="MusicVolume" type="Control" parent="." unique_id=188216079]
+[node name="MusicVolume" type="Control" parent="MenuRoot" unique_id=188216079]
 anchors_preset = 0
 offset_left = 623.0
 offset_top = 198.0
-offset_right = 832.0
+offset_right = 794.0
 offset_bottom = 229.0
 
-[node name="VolumeTrack" type="TextureRect" parent="MusicVolume" unique_id=327644432]
+[node name="VolumeTrack" type="TextureRect" parent="MenuRoot/MusicVolume" unique_id=327644432]
 layout_mode = 0
 offset_left = -32.0
 offset_top = 11.0
@@ -104,7 +114,7 @@ offset_bottom = 30.0
 texture = ExtResource("4_43uju")
 expand_mode = 1
 
-[node name="VolumeFillClip" type="Control" parent="MusicVolume" unique_id=1860033576]
+[node name="VolumeFillClip" type="Control" parent="MenuRoot/MusicVolume" unique_id=1860033576]
 clip_contents = true
 anchors_preset = 0
 offset_left = -32.0
@@ -112,7 +122,7 @@ offset_top = 11.0
 offset_right = 172.0
 offset_bottom = 30.0
 
-[node name="VolumeFill" type="TextureRect" parent="MusicVolume/VolumeFillClip" unique_id=462987765]
+[node name="VolumeFill" type="TextureRect" parent="MenuRoot/MusicVolume/VolumeFillClip" unique_id=462987765]
 layout_mode = 0
 offset_left = -3.0
 offset_right = 206.0
@@ -120,7 +130,7 @@ offset_bottom = 19.0
 texture = ExtResource("5_eh5sn")
 expand_mode = 1
 
-[node name="VolumeKnob" type="TextureRect" parent="MusicVolume" unique_id=614854138]
+[node name="VolumeKnob" type="TextureRect" parent="MenuRoot/MusicVolume" unique_id=614854138]
 layout_mode = 0
 offset_left = -32.0
 offset_top = 8.0
@@ -129,7 +139,7 @@ offset_bottom = 33.02777
 texture = ExtResource("6_10may")
 expand_mode = 1
 
-[node name="HSlider" type="HSlider" parent="MusicVolume" unique_id=560383334]
+[node name="HSlider" type="HSlider" parent="MenuRoot/MusicVolume" unique_id=560383334]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = -32.0
@@ -137,7 +147,7 @@ offset_top = 12.0
 offset_right = 171.0
 offset_bottom = 28.487309
 
-[node name="SFX" type="Label" parent="." unique_id=1615661803]
+[node name="SFX" type="Label" parent="MenuRoot" unique_id=1615661803]
 layout_mode = 0
 offset_left = 515.0
 offset_top = 254.0
@@ -148,14 +158,14 @@ theme_override_fonts/font = ExtResource("4_imxq5")
 theme_override_font_sizes/font_size = 20
 text = "SFX"
 
-[node name="SFXVolume" type="Control" parent="." unique_id=1063241320]
+[node name="SFXVolume" type="Control" parent="MenuRoot" unique_id=1063241320]
 anchors_preset = 0
 offset_left = 588.0
 offset_top = 254.0
 offset_right = 799.0
 offset_bottom = 281.0
 
-[node name="VolumeTrack" type="TextureRect" parent="SFXVolume" unique_id=2009502876]
+[node name="VolumeTrack" type="TextureRect" parent="MenuRoot/SFXVolume" unique_id=2009502876]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 1.0
@@ -164,7 +174,7 @@ offset_bottom = 20.0
 texture = ExtResource("4_43uju")
 expand_mode = 1
 
-[node name="VolumeFillClip" type="Control" parent="SFXVolume" unique_id=1026170836]
+[node name="VolumeFillClip" type="Control" parent="MenuRoot/SFXVolume" unique_id=1026170836]
 clip_contents = true
 anchors_preset = 0
 offset_left = 3.0
@@ -172,7 +182,7 @@ offset_top = 1.0
 offset_right = 207.0
 offset_bottom = 20.0
 
-[node name="VolumeFill" type="TextureRect" parent="SFXVolume/VolumeFillClip" unique_id=302141035]
+[node name="VolumeFill" type="TextureRect" parent="MenuRoot/SFXVolume/VolumeFillClip" unique_id=302141035]
 layout_mode = 0
 offset_left = -3.0
 offset_right = 206.0
@@ -180,7 +190,7 @@ offset_bottom = 19.0
 texture = ExtResource("5_eh5sn")
 expand_mode = 1
 
-[node name="VolumeKnob" type="TextureRect" parent="SFXVolume" unique_id=1455257658]
+[node name="VolumeKnob" type="TextureRect" parent="MenuRoot/SFXVolume" unique_id=1455257658]
 layout_mode = 0
 offset_left = 4.0
 offset_top = -2.0
@@ -189,7 +199,7 @@ offset_bottom = 23.027771
 texture = ExtResource("6_10may")
 expand_mode = 1
 
-[node name="HSlider" type="HSlider" parent="SFXVolume" unique_id=935134323]
+[node name="HSlider" type="HSlider" parent="MenuRoot/SFXVolume" unique_id=935134323]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 4.0
@@ -197,7 +207,7 @@ offset_top = 2.0
 offset_right = 206.0
 offset_bottom = 18.0
 
-[node name="Language" type="Label" parent="." unique_id=1641686587]
+[node name="Language" type="Label" parent="MenuRoot" unique_id=1641686587]
 layout_mode = 0
 offset_left = 515.0
 offset_top = 298.0
@@ -208,7 +218,7 @@ theme_override_fonts/font = ExtResource("4_imxq5")
 theme_override_font_sizes/font_size = 20
 text = "Language"
 
-[node name="LanguageButton" type="OptionButton" parent="." unique_id=1595630291]
+[node name="LanguageButton" type="OptionButton" parent="MenuRoot" unique_id=1595630291]
 layout_mode = 0
 offset_left = 623.0
 offset_top = 298.0

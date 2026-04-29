@@ -4,20 +4,25 @@ const LANGUAGE_LOCALES := ["en", "ru", "es", "de"]
 const LANGUAGE_LABELS := ["English", "Русский", "Español", "Deutsch"]
 const MIN_VOLUME_DB := -80.0
 
-@onready var music_slider: HSlider = $MusicVolume/HSlider
-@onready var sfx_slider: HSlider = $SFXVolume/HSlider
-@onready var language_button: OptionButton = $LanguageButton
-@onready var back_button: TextureButton = $TextureButtonBack
+@onready var menu_root: Control = $MenuRoot
+@onready var music_volume: Control = $MenuRoot/MusicVolume
+@onready var sfx_volume: Control = $MenuRoot/SFXVolume
+@onready var music_slider: HSlider = $MenuRoot/MusicVolume/HSlider
+@onready var sfx_slider: HSlider = $MenuRoot/SFXVolume/HSlider
+@onready var language_button: OptionButton = $MenuRoot/LanguageButton
+@onready var back_button: TextureButton = $MenuRoot/TextureButtonBack
+@onready var settings_button_root: Control = $SettingsButtonRoot
+@onready var settings_button: TextureButton = $SettingsButtonRoot/SettingsButton
 
 var volume_knob_offsets := {}
 
 
 func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
-	visible = false
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	menu_root.visible = false
 
-	_remember_volume_knob_offset($MusicVolume)
-	_remember_volume_knob_offset($SFXVolume)
+	_remember_volume_knob_offset(music_volume)
+	_remember_volume_knob_offset(sfx_volume)
 	_setup_volume_slider(music_slider, "Music")
 	_setup_volume_slider(sfx_slider, "SFX")
 	_setup_language_button()
@@ -26,18 +31,21 @@ func _ready() -> void:
 	sfx_slider.value_changed.connect(_on_sfx_volume_changed)
 	language_button.item_selected.connect(_on_language_selected)
 	back_button.pressed.connect(close)
+	settings_button.pressed.connect(open)
 
-	_update_volume_view($MusicVolume, music_slider.value)
-	_update_volume_view($SFXVolume, sfx_slider.value)
+	_update_volume_view(music_volume, music_slider.value)
+	_update_volume_view(sfx_volume, sfx_slider.value)
 
 
 func open() -> void:
 	get_tree().paused = true
-	visible = true
+	settings_button_root.visible = false
+	menu_root.visible = true
 
 
 func close() -> void:
-	visible = false
+	menu_root.visible = false
+	settings_button_root.visible = true
 	get_tree().paused = false
 
 
@@ -74,12 +82,12 @@ func _apply_language_popup_font() -> void:
 
 func _on_music_volume_changed(value: float) -> void:
 	_set_bus_volume("Music", value)
-	_update_volume_view($MusicVolume, value)
+	_update_volume_view(music_volume, value)
 
 
 func _on_sfx_volume_changed(value: float) -> void:
 	_set_bus_volume("SFX", value)
-	_update_volume_view($SFXVolume, value)
+	_update_volume_view(sfx_volume, value)
 
 
 func _on_language_selected(index: int) -> void:

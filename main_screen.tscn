@@ -24,8 +24,6 @@
 [ext_resource type="Texture2D" uid="uid://ka7v655d3l1b" path="res://Images/Shops/lvl1/button_kran_disable.png" id="17_sqqhh"]
 [ext_resource type="Texture2D" uid="uid://c8mj4fopw8ppf" path="res://Images/Shops/lvl1/button_clism_disable.png" id="20_qx06n"]
 [ext_resource type="PackedScene" uid="uid://dkvxnimt40xbc" path="res://coins_counter.tscn" id="23_0dp34"]
-[ext_resource type="Texture2D" uid="uid://b6khfgkm5leio" path="res://Images/settings/settings.png" id="25_1utv4"]
-[ext_resource type="Texture2D" uid="uid://djamwdx0uj0v8" path="res://Images/settings/settings_push.png" id="26_0wrnf"]
 [ext_resource type="PackedScene" uid="uid://dg5opcmsrei71" path="res://settings_popup.tscn" id="27_g7q6i"]
 
 [node name="Main_screen" type="Node2D" unique_id=591086808]
@@ -71,27 +69,45 @@ expand_mode = 1
 
 [node name="ShopLvl1" type="Control" parent="." unique_id=550127326]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 789.0
-offset_top = 92.0
-offset_right = 1236.0
-offset_bottom = 587.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = 1300.0
+offset_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="ShopBG" type="TextureRect" parent="ShopLvl1" unique_id=565553494]
-layout_mode = 0
-offset_left = -58.0
-offset_top = 3.0
-offset_right = 427.0
-offset_bottom = 502.89572
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -570.0
+offset_top = -206.0
+offset_right = -85.0
+offset_bottom = 293.89575
+grow_horizontal = 0
+grow_vertical = 2
 texture = ExtResource("8_0osx7")
 expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ShopLvl1" unique_id=1099341455]
-layout_mode = 0
-offset_left = -32.0
-offset_top = 22.0
-offset_right = 399.0
-offset_bottom = 444.0
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -538.0
+offset_top = -187.0
+offset_right = -118.00049
+offset_bottom = 235.0
+grow_horizontal = 0
+grow_vertical = 2
 theme_override_constants/separation = 2
 
 [node name="SpreadtheCheeks" type="TextureButton" parent="ShopLvl1/VBoxContainer" unique_id=137596739]
@@ -297,23 +313,12 @@ text = "999k"
 [node name="Counter" type="CanvasLayer" parent="." unique_id=1215763883]
 
 [node name="CoinsCounter" parent="Counter" unique_id=721065191 instance=ExtResource("23_0dp34")]
-offset_left = 814.0
+offset_left = 816.0
 offset_top = 11.0
-offset_right = 1123.0
+offset_right = 1125.0
 offset_bottom = 105.0
-
-[node name="SettingsButton" type="TextureButton" parent="." unique_id=820838825]
-offset_left = 1193.0
-offset_top = 18.0
-offset_right = 1253.0
-offset_bottom = 78.0
-texture_normal = ExtResource("25_1utv4")
-texture_pressed = ExtResource("26_0wrnf")
-ignore_texture_size = true
-stretch_mode = 0
 
 [node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=135258283]
 layer = 100
 
 [node name="SettingsPopup" parent="SettingsLayer" unique_id=793784747 instance=ExtResource("27_g7q6i")]
-visible = false

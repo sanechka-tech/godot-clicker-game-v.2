@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hc4h7w210t2l"
-path="res://.godot/imported/Tap counter (Place for numbers for Tap counter).png-fcc3c119dfb0eb4ec547c5f944e2f015.ctex"
+uid="uid://b385td06bfe7t"
+path="res://.godot/imported/cross.png-036926493bca40c4cabb4a34f8d625f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Tap counter (Place for numbers for Tap counter).png"
-dest_files=["res://.godot/imported/Tap counter (Place for numbers for Tap counter).png-fcc3c119dfb0eb4ec547c5f944e2f015.ctex"]
+source_file="res://Images/settings/cross.png"
+dest_files=["res://.godot/imported/cross.png-036926493bca40c4cabb4a34f8d625f7.ctex"]
 
 [params]
 

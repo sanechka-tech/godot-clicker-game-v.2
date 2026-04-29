@@ -20,8 +20,6 @@ const ONBOARDING_ANIMATION_NAMES: Array[StringName] = [&"Onboarding_tap", &"Oboa
 @onready var effects_layer: Node2D = $TapEffects
 @onready var onboarding: CanvasItem = _find_onboarding()
 @onready var onboarding_animated_sprite: AnimatedSprite2D = _find_onboarding_animated_sprite()
-@onready var settings_button: TextureButton = $SettingsButton
-@onready var settings_popup: Control = $SettingsLayer/SettingsPopup
 
 var shop_button_text_group_start_positions := {}
 
@@ -31,7 +29,6 @@ func _ready() -> void:
 	GameState.coins_changed.connect(_on_coins_changed)
 	GameState.score_changed.connect(_on_score_changed)
 	GameState.shop_changed.connect(_on_shop_changed)
-	settings_button.pressed.connect(_on_settings_button_pressed)
 	_setup_shop_button_press_offsets()
 	_setup_shop_buttons()
 
@@ -60,10 +57,6 @@ func _on_score_changed(_new_value: int) -> void:
 
 func _on_shop_changed() -> void:
 	_update_shop_buttons()
-
-
-func _on_settings_button_pressed() -> void:
-	settings_popup.call("open")
 
 
 func _setup_shop_button_press_offsets() -> void:
