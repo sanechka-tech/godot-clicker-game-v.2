@@ -1,5 +1,8 @@
 extends Node
 
+const DEFAULT_MUSIC := preload("res://Audio/background_music.ogg")
+const MINIGAME_MUSIC := preload("res://Audio/Music/Minigame_sound.mp3")
+
 var music_player: AudioStreamPlayer
 var pops_since_last_fart := 0
 
@@ -23,9 +26,16 @@ func _ready() -> void:
 	music_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	add_child(music_player)
 
-	music_player.stream = load("res://Audio/background_music.ogg")
 	music_player.bus = "Music"
-	music_player.play()
+	play_default_music()
+
+
+func play_default_music() -> void:
+	_play_music(DEFAULT_MUSIC)
+
+
+func play_minigame_music() -> void:
+	_play_music(MINIGAME_MUSIC)
 
 
 func play_fart_mob_pop_sounds() -> void:
@@ -51,3 +61,14 @@ func _play_random_stream(streams: Array[AudioStream]) -> void:
 	add_child(player)
 	player.finished.connect(player.queue_free)
 	player.play()
+
+
+func _play_music(stream: AudioStream) -> void:
+	if music_player == null or stream == null:
+		return
+
+	if music_player.stream == stream and music_player.playing:
+		return
+
+	music_player.stream = stream
+	music_player.play()

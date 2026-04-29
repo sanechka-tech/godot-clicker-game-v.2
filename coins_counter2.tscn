@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://dkvxnimt40xbc"]
+[gd_scene format=3 uid="uid://dscjxitpvpb50"]
 
-[ext_resource type="Texture2D" uid="uid://cx51baoimhftb" path="res://Images/Counters/ShittyCoinsLevel1.png" id="1_8duvw"]
-[ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="2_cbua2"]
+[ext_resource type="Texture2D" uid="uid://byr5yplsiaom1" path="res://Images/Counters/Shitty-coint_Train.png" id="1_avvba"]
+[ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="2_pu34c"]
 
 [node name="CoinsCounter" type="Control" unique_id=721065191]
 layout_mode = 3
@@ -12,7 +12,7 @@ metadata/_edit_vertical_guides_ = [310.0]
 layout_mode = 0
 offset_right = 310.0
 offset_bottom = 98.0
-texture = ExtResource("1_8duvw")
+texture = ExtResource("1_avvba")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="." unique_id=981972309]
@@ -26,6 +26,6 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.36078432)
 theme_override_colors/font_outline_color = Color(0.9529412, 0.89411765, 0.7921569, 1)
 theme_override_constants/outline_size = 5
 theme_override_constants/shadow_outline_size = 5
-theme_override_fonts/font = ExtResource("2_cbua2")
+theme_override_fonts/font = ExtResource("2_pu34c")
 theme_override_font_sizes/font_size = 40
 text = "999k"

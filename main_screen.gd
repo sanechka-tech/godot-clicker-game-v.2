@@ -25,6 +25,8 @@ var shop_button_text_group_start_positions := {}
 
 
 func _ready() -> void:
+	AudioManager.play_default_music()
+
 	character.tapped.connect(_on_character_tapped)
 	GameState.coins_changed.connect(_on_coins_changed)
 	GameState.score_changed.connect(_on_score_changed)

@@ -3,43 +3,68 @@
 [ext_resource type="Script" uid="uid://b3f4pg6ctgw04" path="res://level_2_train.gd" id="1_h1v4g"]
 [ext_resource type="Texture2D" uid="uid://morcink88t75" path="res://Images/BGlevel2Train.png" id="1_wl44b"]
 [ext_resource type="PackedScene" uid="uid://chrkyh8fvbdnd" path="res://character/character.tscn" id="2_3rlsd"]
-[ext_resource type="Texture2D" uid="uid://byr5yplsiaom1" path="res://Images/Shitty-coint_Train.png" id="4_h7rvc"]
 [ext_resource type="Texture2D" uid="uid://blrmi5btjs6se" path="res://icon.svg" id="5_v6j0g"]
-[ext_resource type="FontFile" uid="uid://do6v0lv2ape1i" path="res://CustomFont/custom_font_atlas.fnt" id="5_yyfn6"]
 [ext_resource type="Texture2D" uid="uid://cmtbbm0efhxd2" path="res://Images/start button/button_normal.png" id="6_8dgme"]
 [ext_resource type="Texture2D" uid="uid://bvvypoq4sji6s" path="res://Images/Background_Main_screen.png" id="6_hwe8d"]
 [ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="6_yyfn6"]
+[ext_resource type="Texture2D" uid="uid://dorthgpxjhvpn" path="res://Images/Progress bars/loading_bar_empty_lvl1.png" id="7_cba62"]
 [ext_resource type="Texture2D" uid="uid://bqfa1omoepxl1" path="res://Images/start button/button_pressed.png" id="7_m1edi"]
-[ext_resource type="Texture2D" uid="uid://dkvu0uv0d35cg" path="res://Images/ShopTrain(without_price).png" id="11_yyfn6"]
+[ext_resource type="Texture2D" uid="uid://88kvdjol2juk" path="res://Images/Progress bars/loading_bar_empty_lvl1(short).png" id="8_ulx2m"]
+[ext_resource type="Texture2D" uid="uid://dv5tg3wmwdk0k" path="res://Images/Progress bars/loading_bar_full_lvl1(short).png" id="9_mdfnl"]
+[ext_resource type="Texture2D" uid="uid://bn0fddij1qj3v" path="res://Images/Progress bars/poogoal.png" id="10_konry"]
+[ext_resource type="Texture2D" uid="uid://7k4ecisi8m4c" path="res://Images/Shops/lvl1/ShopToiletLvl1.png" id="15_fla5b"]
+[ext_resource type="Texture2D" uid="uid://bvtxt7y0inis5" path="res://Images/Shops/lvl1/button_ass.png" id="16_o5noo"]
+[ext_resource type="Texture2D" uid="uid://dhgcim22sigvx" path="res://Images/Shops/lvl1/button_ass2.png" id="17_wrq8t"]
+[ext_resource type="Texture2D" uid="uid://dxss026481nll" path="res://Images/Shops/lvl1/button_ass_disable.png" id="18_bxpsd"]
+[ext_resource type="FontFile" uid="uid://buxbeon3odxds" path="res://CustomFont/EpilepsySans.ttf" id="19_6yuus"]
+[ext_resource type="Texture2D" uid="uid://baf7jklga307d" path="res://Images/Shops/lvl1/button_TT.png" id="20_ktr0o"]
+[ext_resource type="Texture2D" uid="uid://b7edtu3vjrc2u" path="res://Images/Shops/lvl1/button_TT2.png" id="21_ggh5l"]
+[ext_resource type="Texture2D" uid="uid://bfhey10w87ap2" path="res://Images/Shops/lvl1/button_TT_disable.png" id="22_0mh0o"]
+[ext_resource type="Texture2D" uid="uid://byyrvyo5n4ep2" path="res://Images/Shops/lvl1/button_kran.png" id="23_g6rqr"]
+[ext_resource type="Texture2D" uid="uid://t00tsf1gx8t4" path="res://Images/Shops/lvl1/button_kran2.png" id="24_sf30o"]
+[ext_resource type="Texture2D" uid="uid://ka7v655d3l1b" path="res://Images/Shops/lvl1/button_kran_disable.png" id="25_wk80g"]
+[ext_resource type="Texture2D" uid="uid://dclmuorqeuhju" path="res://Images/Shops/lvl1/button_clism.png" id="26_dgfeh"]
+[ext_resource type="Texture2D" uid="uid://jis4gaqkf47" path="res://Images/Shops/lvl1/button_clism2.png" id="27_inajf"]
+[ext_resource type="Texture2D" uid="uid://c8mj4fopw8ppf" path="res://Images/Shops/lvl1/button_clism_disable.png" id="28_t37m5"]
+[ext_resource type="PackedScene" uid="uid://dscjxitpvpb50" path="res://coins_counter2.tscn" id="29_mdfnl"]
+[ext_resource type="PackedScene" path="res://settings_popup.tscn" id="29_ulx2m"]
 
 [node name="Level2_train" type="Node2D" unique_id=930383090]
 script = ExtResource("1_h1v4g")
 metadata/_edit_horizontal_guides_ = [631.0]
 
 [node name="BGlevel2Train" type="Sprite2D" parent="." unique_id=1726829534]
-position = Vector2(578.00006, 326.00003)
-scale = Vector2(0.6950055, 0.6950053)
+position = Vector2(534.54956, 332.99994)
+scale = Vector2(0.92879957, 0.92879915)
 texture = ExtResource("1_wl44b")
 
 [node name="Character" parent="." unique_id=286549002 instance=ExtResource("2_3rlsd")]
-position = Vector2(-269, 87)
+position = Vector2(-271, 58)
 
-[node name="ShittyCointTrain" type="Sprite2D" parent="." unique_id=335732966]
-position = Vector2(939.00006, 186.00002)
-scale = Vector2(0.1464089, 0.14640893)
-texture = ExtResource("4_h7rvc")
+[node name="TapEffects" type="Node2D" parent="." unique_id=1676815690]
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1477322307]
-offset_left = 494.0
-offset_top = 24.0
-offset_right = 676.0
-offset_bottom = 74.0
+[node name="Control" type="Control" parent="." unique_id=1694391694]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="TimeLabel" type="Label" parent="." unique_id=1361530198]
-offset_left = 524.0
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=1477322307]
+layout_mode = 0
+offset_left = 154.0
 offset_top = 27.0
-offset_right = 654.0
-offset_bottom = 69.0
+offset_right = 336.0
+offset_bottom = 77.0
+
+[node name="TimeLabel" type="Label" parent="Control" unique_id=1361530198]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 30.0
+offset_right = 314.0
+offset_bottom = 72.0
 theme_override_colors/font_color = Color(0.16078432, 0.21176471, 0.27450982, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.3647059)
 theme_override_colors/font_outline_color = Color(0.87058824, 0.7647059, 0.6117647, 1)
@@ -51,40 +76,30 @@ text = "05:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1172452749]
+[node name="ProgressGoalBG" type="Sprite2D" parent="." unique_id=652609791]
+position = Vector2(252, 119.75)
+scale = Vector2(0.66935474, 0.6693548)
+texture = ExtResource("7_cba62")
 
-[node name="CoinsLabel" type="Label" parent="CanvasLayer" unique_id=760029660]
-visible = false
-offset_left = 899.00006
-offset_top = 167.99997
-offset_right = 1050.125
-offset_bottom = 206.99997
-theme_override_fonts/font = ExtResource("5_yyfn6")
-theme_override_font_sizes/font_size = 36
-text = "0"
-vertical_alignment = 1
-
-[node name="CoinsLabel2" type="Label" parent="CanvasLayer" unique_id=1931459731]
-offset_left = 901.0
-offset_top = 152.0
-offset_right = 1052.1249
-offset_bottom = 223.0
-theme_override_colors/font_color = Color(0.16078432, 0.21176471, 0.27450982, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.36862746)
-theme_override_colors/font_outline_color = Color(0.9372549, 0.8627451, 0.7372549, 1)
-theme_override_constants/outline_size = 5
-theme_override_constants/shadow_outline_size = 6
-theme_override_fonts/font = ExtResource("6_yyfn6")
-theme_override_font_sizes/font_size = 52
-text = "0"
-vertical_alignment = 1
-
-[node name="ProgressGoalLvl2" type="ProgressBar" parent="." unique_id=136285984]
-offset_left = 43.0
-offset_top = 123.0
-offset_right = 446.0
-offset_bottom = 158.0
+[node name="ProgressGoalLvl2" type="TextureProgressBar" parent="." unique_id=1961582118]
+offset_left = 112.0
+offset_top = 106.75
+offset_right = 394.0
+offset_bottom = 132.75
 rounded = true
+nine_patch_stretch = true
+texture_under = ExtResource("8_ulx2m")
+texture_progress = ExtResource("9_mdfnl")
+
+[node name="GoalIcon" type="TextureRect" parent="ProgressGoalLvl2" unique_id=111903630]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -5.0
+offset_right = 30.0
+offset_bottom = 35.0
+mouse_filter = 2
+texture = ExtResource("10_konry")
+expand_mode = 1
 
 [node name="Lvl2Win" type="TextureRect" parent="." unique_id=1329865549]
 visible = false
@@ -140,7 +155,259 @@ offset_right = 265.0
 offset_bottom = 181.0
 text = "LOST"
 
-[node name="ShopTrain(withoutPrice)" type="Sprite2D" parent="." unique_id=1201474556]
-position = Vector2(964.99994, 440)
-scale = Vector2(0.48873872, 0.48873875)
-texture = ExtResource("11_yyfn6")
+[node name="ShopLvl2" type="Control" parent="." unique_id=398281441]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = 1300.0
+offset_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ShopBG" type="TextureRect" parent="ShopLvl2" unique_id=1144840238]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -570.0
+offset_top = -206.0
+offset_right = -85.0
+offset_bottom = 293.89575
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("15_fla5b")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopLvl2" unique_id=612343904]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -538.0
+offset_top = -187.0
+offset_right = -118.00049
+offset_bottom = 235.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 2
+
+[node name="SpreadtheCheeks" type="TextureButton" parent="ShopLvl2/VBoxContainer" unique_id=1427319944]
+custom_minimum_size = Vector2(370, 104)
+layout_mode = 2
+texture_normal = ExtResource("16_o5noo")
+texture_pressed = ExtResource("17_wrq8t")
+texture_disabled = ExtResource("18_bxpsd")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextGroup" type="Control" parent="ShopLvl2/VBoxContainer/SpreadtheCheeks" unique_id=271380354]
+anchors_preset = 0
+offset_left = 117.0
+offset_top = 24.0
+offset_right = 324.0
+offset_bottom = 71.0
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="ShopLvl2/VBoxContainer/SpreadtheCheeks/TextGroup" unique_id=1331988645]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 4.0
+offset_right = 253.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_fonts/font = ExtResource("6_yyfn6")
+theme_override_font_sizes/font_size = 20
+text = "SHOP_SPREAD_THE_CHEEKS"
+
+[node name="Descriptoin" type="Label" parent="ShopLvl2/VBoxContainer/SpreadtheCheeks/TextGroup" unique_id=1266196201]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 28.0
+offset_right = 221.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_fonts/font = ExtResource("19_6yuus")
+theme_override_font_sizes/font_size = 16
+text = "SHOP_SPREAD_THE_CHEEKS_DIS"
+
+[node name="Price" type="Label" parent="ShopLvl2/VBoxContainer/SpreadtheCheeks/TextGroup" unique_id=2018682003]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 13.0
+offset_right = 291.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_fonts/font = ExtResource("6_yyfn6")
+theme_override_font_sizes/font_size = 24
+text = "999,2k"
+
+[node name="ScrollTikTok" type="TextureButton" parent="ShopLvl2/VBoxContainer" unique_id=2135419294]
+custom_minimum_size = Vector2(370, 104)
+layout_mode = 2
+texture_normal = ExtResource("20_ktr0o")
+texture_pressed = ExtResource("21_ggh5l")
+texture_disabled = ExtResource("22_0mh0o")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextGroup" type="Control" parent="ShopLvl2/VBoxContainer/ScrollTikTok" unique_id=1883777462]
+anchors_preset = 0
+offset_left = 117.0
+offset_top = 24.0
+offset_right = 324.0
+offset_bottom = 71.0
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="ShopLvl2/VBoxContainer/ScrollTikTok/TextGroup" unique_id=1595164015]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 3.0
+offset_right = 207.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_fonts/font = ExtResource("6_yyfn6")
+theme_override_font_sizes/font_size = 20
+text = "SHOP_SCROLL_TT"
+
+[node name="Descriptoin" type="Label" parent="ShopLvl2/VBoxContainer/ScrollTikTok/TextGroup" unique_id=1928608973]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 27.0
+offset_right = 197.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_fonts/font = ExtResource("19_6yuus")
+theme_override_font_sizes/font_size = 16
+text = "SHOP_SCROLL_TT_DIS"
+
+[node name="Price" type="Label" parent="ShopLvl2/VBoxContainer/ScrollTikTok/TextGroup" unique_id=703195227]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 11.0
+offset_right = 260.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_fonts/font = ExtResource("6_yyfn6")
+theme_override_font_sizes/font_size = 24
+text = "999k"
+
+[node name="RuntheTap" type="TextureButton" parent="ShopLvl2/VBoxContainer" unique_id=28919733]
+custom_minimum_size = Vector2(370, 104)
+layout_mode = 2
+texture_normal = ExtResource("23_g6rqr")
+texture_pressed = ExtResource("24_sf30o")
+texture_disabled = ExtResource("25_wk80g")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextGroup" type="Control" parent="ShopLvl2/VBoxContainer/RuntheTap" unique_id=1030692558]
+anchors_preset = 0
+offset_left = 117.0
+offset_top = 24.0
+offset_right = 324.0
+offset_bottom = 71.0
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="ShopLvl2/VBoxContainer/RuntheTap/TextGroup" unique_id=149344092]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 3.0
+offset_right = 207.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_fonts/font = ExtResource("6_yyfn6")
+theme_override_font_sizes/font_size = 20
+text = "SHOP_RUN_THE_TAP"
+
+[node name="Descriptoin" type="Label" parent="ShopLvl2/VBoxContainer/RuntheTap/TextGroup" unique_id=1938070264]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 27.0
+offset_right = 197.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_fonts/font = ExtResource("19_6yuus")
+theme_override_font_sizes/font_size = 16
+text = "SHOP_RUN_THE_TAP_DIS"
+
+[node name="Price" type="Label" parent="ShopLvl2/VBoxContainer/RuntheTap/TextGroup" unique_id=1937512735]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 12.0
+offset_right = 260.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_fonts/font = ExtResource("6_yyfn6")
+theme_override_font_sizes/font_size = 24
+text = "999k"
+
+[node name="UseanEnema" type="TextureButton" parent="ShopLvl2/VBoxContainer" unique_id=1196253150]
+custom_minimum_size = Vector2(370, 104)
+layout_mode = 2
+texture_normal = ExtResource("26_dgfeh")
+texture_pressed = ExtResource("27_inajf")
+texture_disabled = ExtResource("28_t37m5")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextGroup" type="Control" parent="ShopLvl2/VBoxContainer/UseanEnema" unique_id=218755874]
+anchors_preset = 0
+offset_left = 117.0
+offset_top = 24.0
+offset_right = 324.0
+offset_bottom = 71.0
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="ShopLvl2/VBoxContainer/UseanEnema/TextGroup" unique_id=1499497575]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 3.0
+offset_right = 208.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_fonts/font = ExtResource("6_yyfn6")
+theme_override_font_sizes/font_size = 20
+text = "SHOP_USE_AN_ENEMA"
+
+[node name="Descriptoin" type="Label" parent="ShopLvl2/VBoxContainer/UseanEnema/TextGroup" unique_id=2030982664]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 27.0
+offset_right = 197.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_fonts/font = ExtResource("19_6yuus")
+theme_override_font_sizes/font_size = 16
+text = "SHOP_USE_AN_ENEMA_DIS"
+
+[node name="Price" type="Label" parent="ShopLvl2/VBoxContainer/UseanEnema/TextGroup" unique_id=1891562956]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 12.0
+offset_right = 260.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_fonts/font = ExtResource("6_yyfn6")
+theme_override_font_sizes/font_size = 24
+text = "999k"
+
+[node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=427003070]
+layer = 100
+
+[node name="SettingsPopup" parent="SettingsLayer" unique_id=138112148 instance=ExtResource("29_ulx2m")]
+metadata/_edit_use_anchors_ = true
+
+[node name="Counter" type="CanvasLayer" parent="." unique_id=190927990]
+
+[node name="CoinsCounter2" parent="Counter" unique_id=721065191 instance=ExtResource("29_mdfnl")]
+offset_left = 816.0
+offset_top = 13.0
+offset_right = 816.0
+offset_bottom = 13.0

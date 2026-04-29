@@ -35,6 +35,8 @@ var boss_support_spawn_time_left := 0.0
 
 
 func _ready() -> void:
+	AudioManager.play_minigame_music()
+
 	start_button.pressed.connect(_on_start_button_pressed)
 	retry_button.pressed.connect(_on_retry_button_pressed)
 	quit_button.pressed.connect(_on_quit_button_pressed)
