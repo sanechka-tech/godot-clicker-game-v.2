@@ -41,6 +41,13 @@ var upgrade_prices := {
 	"use_an_enema": 25000,
 }
 
+var upgrade_revealed := {
+	"spread_the_cheeks": true,
+	"scroll_tiktok": false,
+	"run_the_tap": false,
+	"use_an_enema": false,
+}
+
 var upgrade_effects := {
 	"spread_the_cheeks": {
 		"tap_power": 1,
@@ -74,7 +81,10 @@ func _process(delta: float) -> void:
 	_passive_income_buffer -= income_to_add
 	_add_score(income_to_add)
 	shitty_coins += income_to_add
+	var shop_visibility_changed := _update_revealed_upgrades()
 	coins_changed.emit(shitty_coins)
+	if shop_visibility_changed:
+		shop_changed.emit()
 
 
 func add_tap_coins() -> int:
@@ -82,13 +92,16 @@ func add_tap_coins() -> int:
 
 	_add_score(tap_gain)
 	shitty_coins += tap_gain
+	var shop_visibility_changed := _update_revealed_upgrades()
 	coins_changed.emit(shitty_coins)
+	if shop_visibility_changed:
+		shop_changed.emit()
 
 	return tap_gain
 
 
 func can_buy_upgrade(upgrade_id: String) -> bool:
-	return shitty_coins >= upgrade_prices[upgrade_id]
+	return is_upgrade_revealed(upgrade_id) and shitty_coins >= upgrade_prices[upgrade_id]
 
 
 func buy_upgrade(upgrade_id: String) -> bool:
@@ -127,6 +140,24 @@ func _calculate_upgrade_price(upgrade_id: String) -> int:
 	return roundi(base_price * pow(growth, purchases))
 
 
+func is_upgrade_revealed(upgrade_id: String) -> bool:
+	return upgrade_revealed.get(upgrade_id, true)
+
+
+func _update_revealed_upgrades() -> bool:
+	var has_changes := false
+
+	for upgrade_id in upgrade_revealed.keys():
+		if upgrade_revealed[upgrade_id]:
+			continue
+
+		if shitty_coins >= upgrade_base_prices[upgrade_id]:
+			upgrade_revealed[upgrade_id] = true
+			has_changes = true
+
+	return has_changes
+
+
 func format_number(value: int) -> String:
 	if value >= 1000000:
 		return _format_compact_number(value / 1000000.0, 2) + "m"
@@ -163,7 +194,10 @@ func _format_compact_number(value: float, decimal_places: int) -> String:
 
 func add_bonus_coins(amount: int) -> void:
 	shitty_coins += amount
+	var shop_visibility_changed := _update_revealed_upgrades()
 	coins_changed.emit(shitty_coins)
+	if shop_visibility_changed:
+		shop_changed.emit()
 
 
 func start_level(new_score_goal: int) -> void:
@@ -177,6 +211,9 @@ func start_level(new_score_goal: int) -> void:
 	for upgrade_id in upgrade_purchase_counts.keys():
 		upgrade_purchase_counts[upgrade_id] = 0
 		upgrade_prices[upgrade_id] = upgrade_base_prices[upgrade_id]
+
+	for upgrade_id in upgrade_revealed.keys():
+		upgrade_revealed[upgrade_id] = upgrade_id == "spread_the_cheeks"
 
 	coins_changed.emit(shitty_coins)
 	score_changed.emit(score)

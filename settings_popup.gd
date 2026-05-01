@@ -3,6 +3,8 @@ extends Control
 const LANGUAGE_LOCALES := ["en", "ru", "es", "de"]
 const LANGUAGE_LABELS := ["English", "Русский", "Español", "Deutsch"]
 const MIN_VOLUME_DB := -80.0
+const FEEDBACK_LABEL_PRESS_OFFSET := Vector2(0.0, 2.0)
+const BACK_BUTTON_PRESS_SHRINK := Vector2(4.0, 4.0)
 
 @onready var menu_root: Control = $MenuRoot
 @onready var music_volume: Control = $MenuRoot/MusicVolume
@@ -11,10 +13,15 @@ const MIN_VOLUME_DB := -80.0
 @onready var sfx_slider: HSlider = $MenuRoot/SFXVolume/HSlider
 @onready var language_button: OptionButton = $MenuRoot/LanguageButton
 @onready var back_button: TextureButton = $MenuRoot/TextureButtonBack
+@onready var feedback_button: TextureButton = $MenuRoot/ButtonFeedback
+@onready var feedback_label: Label = $MenuRoot/ButtonFeedback/Feedback
 @onready var settings_button_root: Control = $SettingsButtonRoot
 @onready var settings_button: TextureButton = $SettingsButtonRoot/SettingsButton
 
 var volume_knob_offsets := {}
+var feedback_label_start_position := Vector2.ZERO
+var back_button_start_position := Vector2.ZERO
+var back_button_start_size := Vector2.ZERO
 
 
 func _ready() -> void:
@@ -30,7 +37,14 @@ func _ready() -> void:
 	music_slider.value_changed.connect(_on_music_volume_changed)
 	sfx_slider.value_changed.connect(_on_sfx_volume_changed)
 	language_button.item_selected.connect(_on_language_selected)
+	back_button_start_position = back_button.position
+	back_button_start_size = back_button.size
+	back_button.button_down.connect(_on_back_button_down)
+	back_button.button_up.connect(_on_back_button_up)
 	back_button.pressed.connect(close)
+	feedback_label_start_position = feedback_label.position
+	feedback_button.button_down.connect(_on_feedback_button_down)
+	feedback_button.button_up.connect(_on_feedback_button_up)
 	settings_button.pressed.connect(open)
 
 	_update_volume_view(music_volume, music_slider.value)
@@ -44,9 +58,32 @@ func open() -> void:
 
 
 func close() -> void:
+	_reset_back_button_size()
 	menu_root.visible = false
 	settings_button_root.visible = true
 	get_tree().paused = false
+
+
+func _on_feedback_button_down() -> void:
+	feedback_label.position = feedback_label_start_position + FEEDBACK_LABEL_PRESS_OFFSET
+
+
+func _on_feedback_button_up() -> void:
+	feedback_label.position = feedback_label_start_position
+
+
+func _on_back_button_down() -> void:
+	back_button.position = back_button_start_position + BACK_BUTTON_PRESS_SHRINK * 0.5
+	back_button.size = back_button_start_size - BACK_BUTTON_PRESS_SHRINK
+
+
+func _on_back_button_up() -> void:
+	_reset_back_button_size()
+
+
+func _reset_back_button_size() -> void:
+	back_button.position = back_button_start_position
+	back_button.size = back_button_start_size
 
 
 func _setup_volume_slider(slider: HSlider, bus_name: String) -> void:

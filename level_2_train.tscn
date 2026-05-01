@@ -12,30 +12,22 @@
 [ext_resource type="Texture2D" uid="uid://88kvdjol2juk" path="res://Images/Progress bars/loading_bar_empty_lvl1(short).png" id="8_ulx2m"]
 [ext_resource type="Texture2D" uid="uid://dv5tg3wmwdk0k" path="res://Images/Progress bars/loading_bar_full_lvl1(short).png" id="9_mdfnl"]
 [ext_resource type="Texture2D" uid="uid://bn0fddij1qj3v" path="res://Images/Progress bars/poogoal.png" id="10_konry"]
+[ext_resource type="Texture2D" uid="uid://bkokj0oosgyev" path="res://Images/Shops/button.png" id="14_cba62"]
 [ext_resource type="Texture2D" uid="uid://7k4ecisi8m4c" path="res://Images/Shops/lvl1/ShopToiletLvl1.png" id="15_fla5b"]
-[ext_resource type="Texture2D" uid="uid://bvtxt7y0inis5" path="res://Images/Shops/lvl1/button_ass.png" id="16_o5noo"]
-[ext_resource type="Texture2D" uid="uid://dhgcim22sigvx" path="res://Images/Shops/lvl1/button_ass2.png" id="17_wrq8t"]
+[ext_resource type="Texture2D" uid="uid://b3enrw1u1tb1o" path="res://Images/Shops/button2.png" id="15_ulx2m"]
+[ext_resource type="Texture2D" uid="uid://cop5uvm715i72" path="res://Images/Shops/button_disabled.png" id="16_mdfnl"]
 [ext_resource type="Texture2D" uid="uid://dxss026481nll" path="res://Images/Shops/lvl1/button_ass_disable.png" id="18_bxpsd"]
 [ext_resource type="FontFile" uid="uid://buxbeon3odxds" path="res://CustomFont/EpilepsySans.ttf" id="19_6yuus"]
-[ext_resource type="Texture2D" uid="uid://baf7jklga307d" path="res://Images/Shops/lvl1/button_TT.png" id="20_ktr0o"]
-[ext_resource type="Texture2D" uid="uid://b7edtu3vjrc2u" path="res://Images/Shops/lvl1/button_TT2.png" id="21_ggh5l"]
-[ext_resource type="Texture2D" uid="uid://bfhey10w87ap2" path="res://Images/Shops/lvl1/button_TT_disable.png" id="22_0mh0o"]
-[ext_resource type="Texture2D" uid="uid://byyrvyo5n4ep2" path="res://Images/Shops/lvl1/button_kran.png" id="23_g6rqr"]
-[ext_resource type="Texture2D" uid="uid://t00tsf1gx8t4" path="res://Images/Shops/lvl1/button_kran2.png" id="24_sf30o"]
-[ext_resource type="Texture2D" uid="uid://ka7v655d3l1b" path="res://Images/Shops/lvl1/button_kran_disable.png" id="25_wk80g"]
-[ext_resource type="Texture2D" uid="uid://dclmuorqeuhju" path="res://Images/Shops/lvl1/button_clism.png" id="26_dgfeh"]
-[ext_resource type="Texture2D" uid="uid://jis4gaqkf47" path="res://Images/Shops/lvl1/button_clism2.png" id="27_inajf"]
-[ext_resource type="Texture2D" uid="uid://c8mj4fopw8ppf" path="res://Images/Shops/lvl1/button_clism_disable.png" id="28_t37m5"]
 [ext_resource type="PackedScene" uid="uid://dscjxitpvpb50" path="res://coins_counter2.tscn" id="29_mdfnl"]
-[ext_resource type="PackedScene" path="res://settings_popup.tscn" id="29_ulx2m"]
+[ext_resource type="PackedScene" uid="uid://dg5opcmsrei71" path="res://settings_popup.tscn" id="29_ulx2m"]
 
 [node name="Level2_train" type="Node2D" unique_id=930383090]
 script = ExtResource("1_h1v4g")
 metadata/_edit_horizontal_guides_ = [631.0]
 
 [node name="BGlevel2Train" type="Sprite2D" parent="." unique_id=1726829534]
-position = Vector2(534.54956, 332.99994)
-scale = Vector2(0.92879957, 0.92879915)
+position = Vector2(593.777, 298.49997)
+scale = Vector2(0.85547334, 0.855473)
 texture = ExtResource("1_wl44b")
 
 [node name="Character" parent="." unique_id=286549002 instance=ExtResource("2_3rlsd")]
@@ -201,8 +193,8 @@ theme_override_constants/separation = 2
 [node name="SpreadtheCheeks" type="TextureButton" parent="ShopLvl2/VBoxContainer" unique_id=1427319944]
 custom_minimum_size = Vector2(370, 104)
 layout_mode = 2
-texture_normal = ExtResource("16_o5noo")
-texture_pressed = ExtResource("17_wrq8t")
+texture_normal = ExtResource("14_cba62")
+texture_pressed = ExtResource("15_ulx2m")
 texture_disabled = ExtResource("18_bxpsd")
 ignore_texture_size = true
 stretch_mode = 0
@@ -251,9 +243,9 @@ text = "999,2k"
 [node name="ScrollTikTok" type="TextureButton" parent="ShopLvl2/VBoxContainer" unique_id=2135419294]
 custom_minimum_size = Vector2(370, 104)
 layout_mode = 2
-texture_normal = ExtResource("20_ktr0o")
-texture_pressed = ExtResource("21_ggh5l")
-texture_disabled = ExtResource("22_0mh0o")
+texture_normal = ExtResource("14_cba62")
+texture_pressed = ExtResource("15_ulx2m")
+texture_disabled = ExtResource("16_mdfnl")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -301,9 +293,9 @@ text = "999k"
 [node name="RuntheTap" type="TextureButton" parent="ShopLvl2/VBoxContainer" unique_id=28919733]
 custom_minimum_size = Vector2(370, 104)
 layout_mode = 2
-texture_normal = ExtResource("23_g6rqr")
-texture_pressed = ExtResource("24_sf30o")
-texture_disabled = ExtResource("25_wk80g")
+texture_normal = ExtResource("14_cba62")
+texture_pressed = ExtResource("15_ulx2m")
+texture_disabled = ExtResource("16_mdfnl")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -351,9 +343,9 @@ text = "999k"
 [node name="UseanEnema" type="TextureButton" parent="ShopLvl2/VBoxContainer" unique_id=1196253150]
 custom_minimum_size = Vector2(370, 104)
 layout_mode = 2
-texture_normal = ExtResource("26_dgfeh")
-texture_pressed = ExtResource("27_inajf")
-texture_disabled = ExtResource("28_t37m5")
+texture_normal = ExtResource("14_cba62")
+texture_pressed = ExtResource("15_ulx2m")
+texture_disabled = ExtResource("16_mdfnl")
 ignore_texture_size = true
 stretch_mode = 0
 

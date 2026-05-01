@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://bkaxkvni8nfcw" path="res://Images/settings/flags/germany.png" id="13_he1e8"]
 [ext_resource type="Texture2D" uid="uid://b6khfgkm5leio" path="res://Images/settings/settings.png" id="14_pb312"]
 [ext_resource type="Texture2D" uid="uid://djamwdx0uj0v8" path="res://Images/settings/settings_push.png" id="15_he1e8"]
+[ext_resource type="Texture2D" uid="uid://dece0lj1jb4i4" path="res://Images/settings/button_feedback.png" id="15_pb312"]
+[ext_resource type="Texture2D" uid="uid://cfoq0dp51r1xl" path="res://Images/settings/button_feedback_pushed.png" id="16_he1e8"]
 
 [node name="SettingsPopup" type="Control" unique_id=138112148]
 layout_mode = 3
@@ -48,7 +50,6 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="MenuRoot" type="Control" parent="." unique_id=1170066925]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,7 +97,7 @@ offset_bottom = 230.0
 theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
 theme_override_fonts/font = ExtResource("4_imxq5")
 theme_override_font_sizes/font_size = 20
-text = "Music"
+text = "SETTINGS_MUSIC"
 
 [node name="MusicVolume" type="Control" parent="MenuRoot" unique_id=188216079]
 anchors_preset = 0
@@ -156,7 +157,7 @@ offset_bottom = 277.0
 theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
 theme_override_fonts/font = ExtResource("4_imxq5")
 theme_override_font_sizes/font_size = 20
-text = "SFX"
+text = "SETTINGS_SFX"
 
 [node name="SFXVolume" type="Control" parent="MenuRoot" unique_id=1063241320]
 anchors_preset = 0
@@ -216,7 +217,7 @@ offset_bottom = 321.0
 theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
 theme_override_fonts/font = ExtResource("4_imxq5")
 theme_override_font_sizes/font_size = 20
-text = "Language"
+text = "SETTINGS_LANG"
 
 [node name="LanguageButton" type="OptionButton" parent="MenuRoot" unique_id=1595630291]
 layout_mode = 0
@@ -240,3 +241,27 @@ popup/item_2/id = 2
 popup/item_3/text = "Deutsch"
 popup/item_3/icon = ExtResource("13_he1e8")
 popup/item_3/id = 3
+
+[node name="ButtonFeedback" type="TextureButton" parent="MenuRoot" unique_id=24874514]
+layout_mode = 0
+offset_left = 561.0
+offset_top = 346.0
+offset_right = 751.0
+offset_bottom = 390.0
+texture_normal = ExtResource("15_pb312")
+texture_pressed = ExtResource("16_he1e8")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Feedback" type="Label" parent="MenuRoot/ButtonFeedback" unique_id=1799448675]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 180.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_fonts/font = ExtResource("4_imxq5")
+theme_override_font_sizes/font_size = 20
+text = "SETTINGS_FB"
+horizontal_alignment = 1
+vertical_alignment = 1

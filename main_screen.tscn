@@ -24,7 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://ka7v655d3l1b" path="res://Images/Shops/lvl1/button_kran_disable.png" id="17_sqqhh"]
 [ext_resource type="Texture2D" uid="uid://c8mj4fopw8ppf" path="res://Images/Shops/lvl1/button_clism_disable.png" id="20_qx06n"]
 [ext_resource type="PackedScene" uid="uid://dkvxnimt40xbc" path="res://coins_counter.tscn" id="23_0dp34"]
-[ext_resource type="PackedScene" path="res://settings_popup.tscn" id="27_g7q6i"]
+[ext_resource type="PackedScene" uid="uid://dg5opcmsrei71" path="res://settings_popup.tscn" id="27_g7q6i"]
 
 [node name="Main_screen" type="Node2D" unique_id=591086808]
 script = ExtResource("1_7a4el")
@@ -68,7 +68,6 @@ texture = ExtResource("6_ywh4s")
 expand_mode = 1
 
 [node name="ShopLvl1" type="Control" parent="." unique_id=550127326]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

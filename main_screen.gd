@@ -1,6 +1,7 @@
 extends Node2D
 
 const TAP_GAIN_EFFECT_SCENE = preload("res://tap_gain_effect.tscn")
+const SHOP_UNKNOWN_TEXTURE = preload("res://Images/Shops/button_unknown.png")
 const PROGRESS_GOAL_ICON_TRACK_START_OFFSET := 0.0
 const PROGRESS_GOAL_ICON_TRACK_END_OFFSET := 0.0
 const PROGRESS_GOAL_ICON_OFFSET := Vector2.ZERO
@@ -13,6 +14,10 @@ const SHOP_UPGRADE_BUTTONS := {
 }
 const ONBOARDING_ANIMATION_NAMES: Array[StringName] = [&"Onboarding_tap", &"Oboarding_tap"]
 
+const SHOP_TEXTURE_NORMAL := &"normal"
+const SHOP_TEXTURE_PRESSED := &"pressed"
+const SHOP_TEXTURE_DISABLED := &"disabled"
+
 @onready var character = $Character
 @onready var coins_label: Label = $Counter/CoinsCounter/Label
 @onready var progress_goal: Range = $ProgressGoal
@@ -22,6 +27,7 @@ const ONBOARDING_ANIMATION_NAMES: Array[StringName] = [&"Onboarding_tap", &"Oboa
 @onready var onboarding_animated_sprite: AnimatedSprite2D = _find_onboarding_animated_sprite()
 
 var shop_button_text_group_start_positions := {}
+var shop_button_original_textures := {}
 
 
 func _ready() -> void:
@@ -81,6 +87,7 @@ func _on_shop_button_up(text_group: Control) -> void:
 func _setup_shop_buttons() -> void:
 	for upgrade_id in SHOP_UPGRADE_BUTTONS:
 		var button := get_node(SHOP_UPGRADE_BUTTONS[upgrade_id]) as TextureButton
+		_store_shop_button_textures(button)
 		button.pressed.connect(_on_shop_upgrade_pressed.bind(upgrade_id))
 
 
@@ -92,9 +99,34 @@ func _update_shop_buttons() -> void:
 	for upgrade_id in SHOP_UPGRADE_BUTTONS:
 		var button := get_node(SHOP_UPGRADE_BUTTONS[upgrade_id]) as TextureButton
 		var price_label := button.get_node("TextGroup/Price") as Label
+		var text_group := button.get_node("TextGroup") as Control
+		var is_revealed := GameState.is_upgrade_revealed(upgrade_id)
 
 		price_label.text = GameState.format_price(GameState.upgrade_prices[upgrade_id])
-		button.disabled = not GameState.can_buy_upgrade(upgrade_id)
+		text_group.visible = is_revealed
+		_apply_shop_button_reveal_state(button, is_revealed)
+		button.disabled = not is_revealed or not GameState.can_buy_upgrade(upgrade_id)
+
+
+func _store_shop_button_textures(button: TextureButton) -> void:
+	shop_button_original_textures[button] = {
+		SHOP_TEXTURE_NORMAL: button.texture_normal,
+		SHOP_TEXTURE_PRESSED: button.texture_pressed,
+		SHOP_TEXTURE_DISABLED: button.texture_disabled,
+	}
+
+
+func _apply_shop_button_reveal_state(button: TextureButton, is_revealed: bool) -> void:
+	if is_revealed:
+		var original_textures: Dictionary = shop_button_original_textures[button]
+		button.texture_normal = original_textures[SHOP_TEXTURE_NORMAL]
+		button.texture_pressed = original_textures[SHOP_TEXTURE_PRESSED]
+		button.texture_disabled = original_textures[SHOP_TEXTURE_DISABLED]
+		return
+
+	button.texture_normal = SHOP_UNKNOWN_TEXTURE
+	button.texture_pressed = SHOP_UNKNOWN_TEXTURE
+	button.texture_disabled = SHOP_UNKNOWN_TEXTURE
 
 
 func _update_coins_label() -> void:
