@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2i1qqexle5ga"
-path="res://.godot/imported/Tea.png-03434feba4cfe8f775355a67d44af465.ctex"
+uid="uid://bxxs854csbp8y"
+path="res://.godot/imported/Face.png-e41c0e243a93ad390450a36d18498e78.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Shops/ShopLevel2/Tea.png"
-dest_files=["res://.godot/imported/Tea.png-03434feba4cfe8f775355a67d44af465.ctex"]
+source_file="res://Images/Shops/lvl2/Face.png"
+dest_files=["res://.godot/imported/Face.png-e41c0e243a93ad390450a36d18498e78.ctex"]
 
 [params]
 

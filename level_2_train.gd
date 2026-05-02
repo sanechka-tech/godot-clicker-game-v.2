@@ -1,12 +1,47 @@
 extends Node2D
 
 const ROUND_DURATION_SECONDS := 300.0
-const LEVEL_GOAL_SCORE := 325000
+const LEVEL_GOAL_SCORE := 260000
 const MOB_SPAWN_INTERVAL := 5.0
 const TAP_GAIN_EFFECT_SCENE := preload("res://tap_gain_effect.tscn")
+const SHOP_UNKNOWN_TEXTURE = preload("res://Images/Shops/button_unknown.png")
 const PROGRESS_GOAL_ICON_TRACK_START_OFFSET := 0.0
 const PROGRESS_GOAL_ICON_TRACK_END_OFFSET := 0.0
 const PROGRESS_GOAL_ICON_OFFSET := Vector2.ZERO
+const SHOP_FACE_PRESS_OFFSET := Vector2(0.0, 2.0)
+const SHOP_TEXTURE_NORMAL := &"normal"
+const SHOP_TEXTURE_PRESSED := &"pressed"
+const SHOP_TEXTURE_DISABLED := &"disabled"
+const SHOP_FACE_BUTTON_PATHS := {
+	"PushHarder": "Face",
+	"HoldtheRail": "Hold",
+	"GetSomeTea": "Tea",
+	"StationCheburek": "Cheburek",
+}
+const SHOP_LEVEL_2_BUTTONS := {
+	"push_harder": "ShopLvl2/VBoxContainer/PushHarder",
+	"hold_the_rail": "ShopLvl2/VBoxContainer/HoldtheRail",
+	"get_some_tea": "ShopLvl2/VBoxContainer/GetSomeTea",
+	"station_cheburek": "ShopLvl2/VBoxContainer/StationCheburek",
+}
+const SHOP_LEVEL_2_BASE_PRICES := {
+	"push_harder": 30,
+	"hold_the_rail": 150,
+	"get_some_tea": 900,
+	"station_cheburek": 5000,
+}
+const SHOP_LEVEL_2_PRICE_GROWTH := {
+	"push_harder": 1.13,
+	"hold_the_rail": 1.15,
+	"get_some_tea": 1.17,
+	"station_cheburek": 1.19,
+}
+const SHOP_LEVEL_2_TAP_POWER := {
+	"push_harder": 1,
+	"hold_the_rail": 3,
+	"get_some_tea": 8,
+	"station_cheburek": 20,
+}
 
 const FART_1_SCENE := preload("res://character/Mobs/Fart1.tscn")
 const FART_2_SCENE := preload("res://character/Mobs/Fart2.tscn")
@@ -26,6 +61,12 @@ const FART_3_SCENE := preload("res://character/Mobs/Fart3.tscn")
 var time_left_seconds := ROUND_DURATION_SECONDS
 var round_finished := false
 var mob_spawn_time_left := MOB_SPAWN_INTERVAL
+var shop_face_start_positions := {}
+var shop_face_tweens := {}
+var shop_button_original_textures := {}
+var level_2_shop_purchase_counts := {}
+var level_2_shop_prices := {}
+var level_2_shop_revealed := {}
 
 var fart_scenes := [
 	FART_1_SCENE,
@@ -38,18 +79,22 @@ func _ready() -> void:
 	AudioManager.play_default_music()
 
 	GameState.start_level(LEVEL_GOAL_SCORE)
+	_reset_level_2_shop_state()
 
 	character.tapped.connect(_on_character_tapped)
 	GameState.coins_changed.connect(_on_coins_changed)
 	GameState.score_changed.connect(_on_score_changed)
 	level_2_retry_button.pressed.connect(_on_lvl_2_retry_pressed)
 	level_2_passed_button.pressed.connect(_on_lvl_2_passed_pressed)
+	_setup_shop_face_press_effects()
+	_setup_level_2_shop_buttons()
 
 	_hide_round_result_panels()
 	_setup_goal_progress()
 	_update_coins_label()
 	_update_time_label()
 	_update_goal_progress()
+	_update_level_2_shop_buttons()
 
 
 func _process(delta: float) -> void:
@@ -78,6 +123,7 @@ func _on_character_tapped(tap_position: Vector2) -> void:
 
 func _on_coins_changed(_new_value: int) -> void:
 	_update_coins_label()
+	_update_level_2_shop_buttons()
 
 
 func _on_score_changed(_new_value: int) -> void:
@@ -231,3 +277,128 @@ func _spawn_tap_gain_effect(tap_position: Vector2, amount: int) -> void:
 	effect.position = effects_layer.to_local(tap_position) + Vector2(randf_range(-14.0, 14.0), 5.0)
 	effects_layer.add_child(effect)
 	effect.call("setup", amount)
+
+
+func _setup_shop_face_press_effects() -> void:
+	for button_name in SHOP_FACE_BUTTON_PATHS:
+		var button := get_node("ShopLvl2/VBoxContainer/" + button_name) as BaseButton
+		var face := button.get_node(SHOP_FACE_BUTTON_PATHS[button_name]) as Node2D
+		shop_face_start_positions[face] = face.position
+		button.button_down.connect(_on_shop_face_button_down.bind(face))
+		button.button_up.connect(_on_shop_face_button_up.bind(face))
+
+
+func _on_shop_face_button_down(face: Node2D) -> void:
+	var active_tween = shop_face_tweens.get(face) as Tween
+	if active_tween != null and active_tween.is_running():
+		active_tween.kill()
+
+	face.position = shop_face_start_positions[face] + SHOP_FACE_PRESS_OFFSET
+
+
+func _on_shop_face_button_up(face: Node2D) -> void:
+	var active_tween = shop_face_tweens.get(face) as Tween
+	if active_tween != null and active_tween.is_running():
+		active_tween.kill()
+
+	var return_tween := create_tween()
+	shop_face_tweens[face] = return_tween
+	return_tween.tween_property(
+		face,
+		"position",
+		shop_face_start_positions[face],
+		0.08
+	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
+
+func _setup_level_2_shop_buttons() -> void:
+	for upgrade_id in SHOP_LEVEL_2_BUTTONS:
+		var button := get_node(SHOP_LEVEL_2_BUTTONS[upgrade_id]) as TextureButton
+		_store_shop_button_textures(button)
+		if not button.pressed.is_connected(_on_level_2_shop_upgrade_pressed.bind(upgrade_id)):
+			button.pressed.connect(_on_level_2_shop_upgrade_pressed.bind(upgrade_id))
+
+
+func _reset_level_2_shop_state() -> void:
+	level_2_shop_purchase_counts = {}
+	level_2_shop_prices = {}
+	level_2_shop_revealed = {}
+
+	for upgrade_id in SHOP_LEVEL_2_BASE_PRICES:
+		level_2_shop_purchase_counts[upgrade_id] = 0
+		level_2_shop_prices[upgrade_id] = SHOP_LEVEL_2_BASE_PRICES[upgrade_id]
+		level_2_shop_revealed[upgrade_id] = upgrade_id == "push_harder"
+
+
+func _on_level_2_shop_upgrade_pressed(upgrade_id: String) -> void:
+	if not _can_buy_level_2_upgrade(upgrade_id):
+		return
+
+	GameState.shitty_coins -= level_2_shop_prices[upgrade_id]
+	GameState.tap_power += SHOP_LEVEL_2_TAP_POWER[upgrade_id]
+	level_2_shop_purchase_counts[upgrade_id] += 1
+	level_2_shop_prices[upgrade_id] = _calculate_level_2_upgrade_price(upgrade_id)
+	_update_level_2_revealed_upgrades()
+
+	GameState.coins_changed.emit(GameState.shitty_coins)
+	GameState.tap_power_changed.emit(GameState.tap_power)
+	_update_level_2_shop_buttons()
+
+
+func _update_level_2_shop_buttons() -> void:
+	_update_level_2_revealed_upgrades()
+
+	for upgrade_id in SHOP_LEVEL_2_BUTTONS:
+		var button := get_node(SHOP_LEVEL_2_BUTTONS[upgrade_id]) as TextureButton
+		var text_group := button.get_node("TextGroup") as Control
+		var price_label := button.get_node("TextGroup/Price") as Label
+		var face_node := button.get_node(SHOP_FACE_BUTTON_PATHS[button.name]) as CanvasItem
+		var is_revealed: bool = level_2_shop_revealed.get(upgrade_id, true)
+
+		price_label.text = GameState.format_price(level_2_shop_prices[upgrade_id])
+		text_group.visible = is_revealed
+		face_node.visible = is_revealed
+		_apply_shop_button_reveal_state(button, is_revealed)
+		button.disabled = not is_revealed or not _can_buy_level_2_upgrade(upgrade_id)
+
+
+func _store_shop_button_textures(button: TextureButton) -> void:
+	shop_button_original_textures[button] = {
+		SHOP_TEXTURE_NORMAL: button.texture_normal,
+		SHOP_TEXTURE_PRESSED: button.texture_pressed,
+		SHOP_TEXTURE_DISABLED: button.texture_disabled,
+	}
+
+
+func _apply_shop_button_reveal_state(button: TextureButton, is_revealed: bool) -> void:
+	if is_revealed:
+		var original_textures: Dictionary = shop_button_original_textures[button]
+		button.texture_normal = original_textures[SHOP_TEXTURE_NORMAL]
+		button.texture_pressed = original_textures[SHOP_TEXTURE_PRESSED]
+		button.texture_disabled = original_textures[SHOP_TEXTURE_DISABLED]
+		return
+
+	button.texture_normal = SHOP_UNKNOWN_TEXTURE
+	button.texture_pressed = SHOP_UNKNOWN_TEXTURE
+	button.texture_disabled = SHOP_UNKNOWN_TEXTURE
+
+
+func _can_buy_level_2_upgrade(upgrade_id: String) -> bool:
+	return level_2_shop_revealed.get(upgrade_id, true) and GameState.shitty_coins >= level_2_shop_prices[upgrade_id]
+
+
+func _update_level_2_revealed_upgrades() -> void:
+	for upgrade_id in level_2_shop_revealed.keys():
+		if level_2_shop_revealed[upgrade_id]:
+			continue
+
+		if GameState.shitty_coins >= SHOP_LEVEL_2_BASE_PRICES[upgrade_id]:
+			level_2_shop_revealed[upgrade_id] = true
+
+
+func _calculate_level_2_upgrade_price(upgrade_id: String) -> int:
+	var base_price: int = SHOP_LEVEL_2_BASE_PRICES[upgrade_id]
+	var growth: float = SHOP_LEVEL_2_PRICE_GROWTH[upgrade_id]
+	var purchases: int = level_2_shop_purchase_counts[upgrade_id]
+
+	return roundi(base_price * pow(growth, purchases))
