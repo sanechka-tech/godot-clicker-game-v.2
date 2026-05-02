@@ -1,7 +1,7 @@
 extends Node2D
 
 const ROUND_DURATION_SECONDS := 300.0
-const LEVEL_GOAL_SCORE := 260000
+const LEVEL_GOAL_SCORE := 245000
 const MOB_SPAWN_INTERVAL := 5.0
 const TAP_GAIN_EFFECT_SCENE := preload("res://tap_gain_effect.tscn")
 const SHOP_UNKNOWN_TEXTURE = preload("res://Images/Shops/button_unknown.png")

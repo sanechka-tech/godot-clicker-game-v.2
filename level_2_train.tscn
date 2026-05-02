@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://bj4olbfx4auwn"]
 
 [ext_resource type="Script" uid="uid://b3f4pg6ctgw04" path="res://level_2_train.gd" id="1_h1v4g"]
-[ext_resource type="Texture2D" uid="uid://morcink88t75" path="res://Images/BGlevel2Train.png" id="1_wl44b"]
 [ext_resource type="PackedScene" uid="uid://chrkyh8fvbdnd" path="res://character/character.tscn" id="2_3rlsd"]
+[ext_resource type="PackedScene" uid="uid://wildq01bebk4" path="res://level_2_bg_parallax.tscn" id="2_vdiwt"]
+[ext_resource type="Texture2D" uid="uid://dywudp4lmfgle" path="res://Images/BG/BGlvl2.png" id="3_vdiwt"]
+[ext_resource type="Texture2D" uid="uid://cpug1k42wgx5s" path="res://Images/BG/BGlvl2v2.png" id="4_ag7iv"]
 [ext_resource type="Texture2D" uid="uid://blrmi5btjs6se" path="res://icon.svg" id="5_v6j0g"]
 [ext_resource type="Texture2D" uid="uid://cmtbbm0efhxd2" path="res://Images/start button/button_normal.png" id="6_8dgme"]
 [ext_resource type="Texture2D" uid="uid://bvvypoq4sji6s" path="res://Images/Background_Main_screen.png" id="6_hwe8d"]
@@ -29,10 +31,19 @@ script = ExtResource("1_h1v4g")
 metadata/_edit_horizontal_guides_ = [631.0, 234.0]
 metadata/_edit_vertical_guides_ = [826.0, 856.0]
 
-[node name="BGlevel2Train" type="Sprite2D" parent="." unique_id=1726829534]
-position = Vector2(605, 292)
-scale = Vector2(0.8161537, 0.81615305)
-texture = ExtResource("1_wl44b")
+[node name="level_2_bg_parallax" parent="." unique_id=208461330 instance=ExtResource("2_vdiwt")]
+position = Vector2(-305, -126)
+
+[node name="BGlvl2" type="Sprite2D" parent="." unique_id=432886838]
+position = Vector2(596, 321)
+scale = Vector2(0.6006192, 0.6006192)
+texture = ExtResource("3_vdiwt")
+
+[node name="BGlvl2v2" type="Sprite2D" parent="." unique_id=296955297]
+visible = false
+position = Vector2(601.99994, 325)
+scale = Vector2(0.6055727, 0.60557276)
+texture = ExtResource("4_ag7iv")
 
 [node name="Character" parent="." unique_id=286549002 instance=ExtResource("2_3rlsd")]
 position = Vector2(-271, 58)

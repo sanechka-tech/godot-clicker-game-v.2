@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://wildq01bebk4"]
+
+[ext_resource type="Script" uid="uid://cqqaiah2wrwa" path="res://level_2_bg_parallax.gd" id="1_d82kc"]
+[ext_resource type="Texture2D" uid="uid://bejqgx5wexv17" path="res://Images/BG/Lvl2BGMove/Sky.png" id="1_dycbv"]
+[ext_resource type="Texture2D" uid="uid://dbki2m6lncllt" path="res://Images/BG/Lvl2BGMove/STOLB.png" id="1_x8x3m"]
+[ext_resource type="Texture2D" uid="uid://cmbgbhvs5i3k2" path="res://Images/BG/Lvl2BGMove/Wood.png" id="2_rt54y"]
+
+[node name="level_2_bg_parallax" type="Node2D" unique_id=208461330]
+script = ExtResource("1_d82kc")
+metadata/_edit_vertical_guides_ = [174.0]
+metadata/_edit_horizontal_guides_ = [34.0]
+
+[node name="Parallax2D_sky" type="Parallax2D" parent="." unique_id=2143358159]
+
+[node name="Sky" type="Sprite2D" parent="Parallax2D_sky" unique_id=1093878043]
+position = Vector2(904, 278.00003)
+scale = Vector2(0.6572161, 0.5823591)
+texture = ExtResource("1_dycbv")
+
+[node name="Parallax2D_wood" type="Parallax2D" parent="." unique_id=712559017]
+
+[node name="Wood" type="Sprite2D" parent="Parallax2D_wood" unique_id=1310412038]
+position = Vector2(904.00006, 232)
+scale = Vector2(0.42537254, 0.4229543)
+texture = ExtResource("2_rt54y")
+
+[node name="Parallax2D_stolb" type="Parallax2D" parent="." unique_id=1297494559]
+
+[node name="Stolb" type="Sprite2D" parent="Parallax2D_stolb" unique_id=1455211731]
+position = Vector2(769, 295)
+scale = Vector2(0.29543042, 0.29543042)
+texture = ExtResource("1_x8x3m")
+
+[node name="Stolb2" type="Sprite2D" parent="Parallax2D_stolb" unique_id=998544382]
+position = Vector2(1261, 295)
+scale = Vector2(0.29543042, 0.29543042)
+texture = ExtResource("1_x8x3m")

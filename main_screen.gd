@@ -13,6 +13,7 @@ const SHOP_UPGRADE_BUTTONS := {
 	"use_an_enema": "ShopLvl1/VBoxContainer/UseanEnema",
 }
 const ONBOARDING_ANIMATION_NAMES: Array[StringName] = [&"Onboarding_tap", &"Oboarding_tap"]
+const FIRST_LEVEL_SHOP_ONBOARDING_THRESHOLD := 125
 
 const SHOP_TEXTURE_NORMAL := &"normal"
 const SHOP_TEXTURE_PRESSED := &"pressed"
@@ -25,9 +26,13 @@ const SHOP_TEXTURE_DISABLED := &"disabled"
 @onready var effects_layer: Node2D = $TapEffects
 @onready var onboarding: CanvasItem = _find_onboarding()
 @onready var onboarding_animated_sprite: AnimatedSprite2D = _find_onboarding_animated_sprite()
+@onready var onboarding_shop: CanvasItem = _find_onboarding_shop()
+@onready var onboarding_shop_animated_sprite: AnimatedSprite2D = _find_onboarding_shop_animated_sprite()
 
 var shop_button_text_group_start_positions := {}
 var shop_button_original_textures := {}
+var shop_onboarding_was_shown := false
+var shop_onboarding_was_completed := false
 
 
 func _ready() -> void:
@@ -45,6 +50,7 @@ func _ready() -> void:
 	_setup_goal_progress()
 	_update_goal_progress()
 	_update_onboarding_visibility()
+	_update_shop_onboarding_visibility()
 
 
 func _on_character_tapped(tap_position: Vector2) -> void:
@@ -57,6 +63,7 @@ func _on_character_tapped(tap_position: Vector2) -> void:
 func _on_coins_changed(_new_value: int) -> void:
 	_update_coins_label()
 	_update_shop_buttons()
+	_update_shop_onboarding_visibility()
 
 
 func _on_score_changed(_new_value: int) -> void:
@@ -92,6 +99,9 @@ func _setup_shop_buttons() -> void:
 
 
 func _on_shop_upgrade_pressed(upgrade_id: String) -> void:
+	if upgrade_id == "spread_the_cheeks":
+		_complete_shop_onboarding()
+
 	GameState.buy_upgrade(upgrade_id)
 
 
@@ -217,7 +227,7 @@ func _update_onboarding_visibility() -> void:
 	onboarding.visible = is_level_1_start
 
 	if is_level_1_start:
-		_play_onboarding_animation()
+		_play_onboarding_animation(onboarding_animated_sprite)
 
 
 func _hide_onboarding() -> void:
@@ -230,6 +240,55 @@ func _hide_onboarding() -> void:
 		onboarding_animated_sprite.stop()
 
 
+func _find_onboarding_shop() -> CanvasItem:
+	for onboarding_path in [
+		"Onboarding2",
+		"CanvasLayer/Onboarding2",
+		"main_background/Onboarding2",
+	]:
+		var onboarding_node := get_node_or_null(onboarding_path) as CanvasItem
+		if onboarding_node != null:
+			return onboarding_node
+
+	return null
+
+
+func _find_onboarding_shop_animated_sprite() -> AnimatedSprite2D:
+	if onboarding_shop == null:
+		return null
+
+	return onboarding_shop.get_node_or_null("AnimatedSprite2D") as AnimatedSprite2D
+
+
+func _update_shop_onboarding_visibility() -> void:
+	if onboarding_shop == null:
+		return
+
+	if shop_onboarding_was_completed:
+		onboarding_shop.visible = false
+		return
+
+	if not shop_onboarding_was_shown and GameState.shitty_coins >= FIRST_LEVEL_SHOP_ONBOARDING_THRESHOLD:
+		shop_onboarding_was_shown = true
+		onboarding_shop.visible = true
+		_play_onboarding_animation(onboarding_shop_animated_sprite)
+		return
+
+	if not shop_onboarding_was_shown:
+		onboarding_shop.visible = false
+
+
+func _complete_shop_onboarding() -> void:
+	if onboarding_shop == null:
+		return
+
+	shop_onboarding_was_completed = true
+	onboarding_shop.visible = false
+
+	if onboarding_shop_animated_sprite != null:
+		onboarding_shop_animated_sprite.stop()
+
+
 func _find_onboarding_animated_sprite() -> AnimatedSprite2D:
 	if onboarding == null:
 		return null
@@ -237,13 +296,13 @@ func _find_onboarding_animated_sprite() -> AnimatedSprite2D:
 	return onboarding.get_node_or_null("AnimatedSprite2D") as AnimatedSprite2D
 
 
-func _play_onboarding_animation() -> void:
-	if onboarding_animated_sprite == null:
+func _play_onboarding_animation(animated_sprite: AnimatedSprite2D) -> void:
+	if animated_sprite == null:
 		return
 
 	for animation_name in ONBOARDING_ANIMATION_NAMES:
-		if onboarding_animated_sprite.sprite_frames.has_animation(animation_name):
-			onboarding_animated_sprite.play(animation_name)
+		if animated_sprite.sprite_frames.has_animation(animation_name):
+			animated_sprite.play(animation_name)
 			return
 
-	onboarding_animated_sprite.play()
+	animated_sprite.play()
