@@ -1,25 +1,102 @@
 [gd_scene format=3 uid="uid://c0b2dd28j33x8"]
 
 [ext_resource type="Script" uid="uid://djgd0tu2vtfm" path="res://menu.gd" id="1_lti8b"]
-[ext_resource type="PackedScene" uid="uid://c7r0jvigia3fm" path="res://bg.tscn" id="2_ouk20"]
-[ext_resource type="Texture2D" uid="uid://cmtbbm0efhxd2" path="res://Images/start button/button_normal.png" id="3_4hy44"]
-[ext_resource type="Texture2D" uid="uid://bqfa1omoepxl1" path="res://Images/start button/button_pressed.png" id="4_ytr4m"]
+[ext_resource type="PackedScene" uid="uid://bvreiq4ifn4hl" path="res://menu_background.tscn" id="2_mae5d"]
+[ext_resource type="Texture2D" uid="uid://cdu1do6s2rlu8" path="res://Images/Menu/VHS.png" id="4_4hy44"]
+[ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="5_ytr4m"]
 [ext_resource type="PackedScene" uid="uid://dg5opcmsrei71" path="res://settings_popup.tscn" id="7_bhf4v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ytr4m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l48gv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ecwwl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kk3ma"]
 
 [node name="Menu" type="Node2D" unique_id=837508162]
 script = ExtResource("1_lti8b")
+metadata/_edit_vertical_guides_ = [650.0]
 
-[node name="BG" parent="." unique_id=1968208251 instance=ExtResource("2_ouk20")]
-
-[node name="TextureButton GO" type="TextureButton" parent="." unique_id=1746628193]
-offset_left = 400.0
-offset_top = 408.0
-offset_right = 751.0
-offset_bottom = 488.0
-texture_normal = ExtResource("3_4hy44")
-texture_pressed = ExtResource("4_ytr4m")
-texture_hover = ExtResource("4_ytr4m")
+[node name="MenuBackground" parent="." unique_id=475838889 instance=ExtResource("2_mae5d")]
 
 [node name="SettingsPopup" parent="." unique_id=1433266954 instance=ExtResource("7_bhf4v")]
+visible = false
 
-[connection signal="pressed" from="TextureButton GO" to="." method="_on_texture_button_pressed"]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=863593267]
+offset_left = 382.0
+offset_top = 339.0
+offset_right = 916.6313
+offset_bottom = 588.0
+texture = ExtResource("4_4hy44")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect" unique_id=1514530266]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.31563
+offset_top = -66.5
+offset_right = 180.68436
+offset_bottom = 89.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Continue" type="Button" parent="TextureRect/VBoxContainer" unique_id=712026321]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_colors/font_hover_color = Color(0.9768074, 0.96591634, 0.9705537, 1)
+theme_override_colors/font_outline_color = Color(0.3529412, 0.6431373, 0.9019608, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5_ytr4m")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ytr4m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_l48gv")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ecwwl")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kk3ma")
+action_mode = 0
+button_mask = 0
+text = "MENU_CONTINUE"
+
+[node name="NewGame" type="Button" parent="TextureRect/VBoxContainer" unique_id=376655668]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_colors/font_hover_color = Color(0.9768074, 0.96591634, 0.9705537, 1)
+theme_override_colors/font_outline_color = Color(0.3529412, 0.6431373, 0.9019608, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5_ytr4m")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ytr4m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_l48gv")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ecwwl")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kk3ma")
+action_mode = 0
+button_mask = 0
+text = "MENU_NEWGAME"
+
+[node name="Settings" type="Button" parent="TextureRect/VBoxContainer" unique_id=1493694449]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_colors/font_hover_color = Color(0.9768074, 0.96591634, 0.9705537, 1)
+theme_override_colors/font_outline_color = Color(0.3529412, 0.6431373, 0.9019608, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("5_ytr4m")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ytr4m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_l48gv")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ecwwl")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kk3ma")
+action_mode = 0
+button_mask = 0
+text = "MENU_SETTINGS"

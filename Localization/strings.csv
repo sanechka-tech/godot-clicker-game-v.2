@@ -1,5 +1,6 @@
 keys,en,ru,es,de
-MENU_START,Start,Старт,Inicio,Start
+MENU_NEWGAME,New game,Новая игра,,
+MENU_CONTINUE,Continue,Продолжить,,
 MENU_SETTINGS,Settings,Настройки,Ajustes,Einstellungen
 MENU_BACK,Back,Назад,Atrás,Zurück
 SETTINGS_SOUND,Sound,Звук,Sonido,Ton
