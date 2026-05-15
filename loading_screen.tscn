@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://c2fxlerp48fr0"]
+
+[ext_resource type="PackedScene" uid="uid://bvreiq4ifn4hl" path="res://menu_background.tscn" id="1_mggpi"]
+[ext_resource type="Script" uid="uid://dmovuxpri2dx5" path="res://loading_screen.gd" id="1_t2qcb"]
+[ext_resource type="Texture2D" uid="uid://dorthgpxjhvpn" path="res://Images/Progress bars/loading_bar_empty_lvl1.png" id="2_fgney"]
+[ext_resource type="Texture2D" uid="uid://88kvdjol2juk" path="res://Images/Progress bars/loading_bar_empty_lvl1(short).png" id="3_74xf4"]
+[ext_resource type="Texture2D" uid="uid://dv5tg3wmwdk0k" path="res://Images/Progress bars/loading_bar_full_lvl1(short).png" id="4_pa1l2"]
+
+[node name="LoadingScreen" type="Control" unique_id=1934714431]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_right = 1.0
+script = ExtResource("1_t2qcb")
+metadata/_edit_vertical_guides_ = [650.0]
+
+[node name="MenuBackground" parent="." unique_id=475838889 instance=ExtResource("1_mggpi")]
+layout_mode = 0
+offset_left = -1.0
+offset_right = -1.0
+
+[node name="Loading" type="Sprite2D" parent="." unique_id=763457777]
+position = Vector2(648, 455)
+scale = Vector2(0.8508059, 0.850806)
+texture = ExtResource("2_fgney")
+
+[node name="LoadingLine" type="TextureProgressBar" parent="Loading" unique_id=1830025042]
+offset_left = -208.68677
+offset_top = -19.048218
+offset_right = 211.12048
+offset_bottom = 19.795166
+rounded = true
+nine_patch_stretch = true
+texture_under = ExtResource("3_74xf4")
+texture_progress = ExtResource("4_pa1l2")

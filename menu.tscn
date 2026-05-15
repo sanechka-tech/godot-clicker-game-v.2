@@ -20,7 +20,7 @@ metadata/_edit_vertical_guides_ = [650.0]
 
 [node name="MenuBackground" parent="." unique_id=475838889 instance=ExtResource("2_mae5d")]
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=863593267]
+[node name="VHS" type="TextureRect" parent="." unique_id=863593267]
 offset_left = 382.0
 offset_top = 339.0
 offset_right = 916.6313
@@ -28,7 +28,7 @@ offset_bottom = 588.0
 texture = ExtResource("4_4hy44")
 expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect" unique_id=1514530266]
+[node name="VBoxContainer" type="VBoxContainer" parent="VHS" unique_id=1514530266]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -38,13 +38,13 @@ anchor_bottom = 0.5
 offset_left = -181.31563
 offset_top = -66.5
 offset_right = 180.68436
-offset_bottom = 89.5
+offset_bottom = 86.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Continue" type="Button" parent="TextureRect/VBoxContainer" unique_id=712026321]
+[node name="Continue" type="Button" parent="VHS/VBoxContainer" unique_id=712026321]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -61,7 +61,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_kk3ma")
 action_mode = 0
 text = "MENU_CONTINUE"
 
-[node name="NewGame" type="Button" parent="TextureRect/VBoxContainer" unique_id=376655668]
+[node name="NewGame" type="Button" parent="VHS/VBoxContainer" unique_id=376655668]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -78,7 +78,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_kk3ma")
 action_mode = 0
 text = "MENU_NEWGAME"
 
-[node name="Settings" type="Button" parent="TextureRect/VBoxContainer" unique_id=1493694449]
+[node name="Settings" type="Button" parent="VHS/VBoxContainer" unique_id=1493694449]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

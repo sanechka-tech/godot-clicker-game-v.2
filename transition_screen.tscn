@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dw7bcntnlcutm"]
+
+[ext_resource type="Script" uid="uid://bi4jc4gdlvgkr" path="res://transition_screen.gd" id="1_we1ch"]
+[ext_resource type="Texture2D" uid="uid://bsrv7a0lg5yxp" path="res://Images/transition screen/noise_back.png" id="2_n6j18"]
+
+[node name="TransitionScreen" type="CanvasLayer" unique_id=943638868]
+layer = 1000
+script = ExtResource("1_we1ch")
+
+[node name="FadeRect" type="TextureRect" parent="." unique_id=932454059]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -89.0
+offset_right = 29.384766
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_n6j18")
+expand_mode = 1
