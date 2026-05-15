@@ -6,6 +6,8 @@ const MIN_VOLUME_DB := -80.0
 const FEEDBACK_LABEL_PRESS_OFFSET := Vector2(0.0, 2.0)
 const BACK_BUTTON_PRESS_SHRINK := Vector2(4.0, 4.0)
 
+@export var show_open_button := true
+
 @onready var menu_root: Control = $MenuRoot
 @onready var music_volume: Control = $MenuRoot/MusicVolume
 @onready var sfx_volume: Control = $MenuRoot/SFXVolume
@@ -27,6 +29,7 @@ var back_button_start_size := Vector2.ZERO
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	menu_root.visible = false
+	settings_button_root.visible = show_open_button
 
 	_remember_volume_knob_offset(music_volume)
 	_remember_volume_knob_offset(sfx_volume)
@@ -52,6 +55,7 @@ func _ready() -> void:
 
 
 func open() -> void:
+	visible = true
 	get_tree().paused = true
 	settings_button_root.visible = false
 	menu_root.visible = true
@@ -60,7 +64,8 @@ func open() -> void:
 func close() -> void:
 	_reset_back_button_size()
 	menu_root.visible = false
-	settings_button_root.visible = true
+	settings_button_root.visible = show_open_button
+	visible = show_open_button
 	get_tree().paused = false
 
 

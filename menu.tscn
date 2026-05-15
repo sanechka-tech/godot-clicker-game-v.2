@@ -20,9 +20,6 @@ metadata/_edit_vertical_guides_ = [650.0]
 
 [node name="MenuBackground" parent="." unique_id=475838889 instance=ExtResource("2_mae5d")]
 
-[node name="SettingsPopup" parent="." unique_id=1433266954 instance=ExtResource("7_bhf4v")]
-visible = false
-
 [node name="TextureRect" type="TextureRect" parent="." unique_id=863593267]
 offset_left = 382.0
 offset_top = 339.0
@@ -62,7 +59,6 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_l48gv")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_ecwwl")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kk3ma")
 action_mode = 0
-button_mask = 0
 text = "MENU_CONTINUE"
 
 [node name="NewGame" type="Button" parent="TextureRect/VBoxContainer" unique_id=376655668]
@@ -80,7 +76,6 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_l48gv")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_ecwwl")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kk3ma")
 action_mode = 0
-button_mask = 0
 text = "MENU_NEWGAME"
 
 [node name="Settings" type="Button" parent="TextureRect/VBoxContainer" unique_id=1493694449]
@@ -98,5 +93,9 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_l48gv")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_ecwwl")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kk3ma")
 action_mode = 0
-button_mask = 0
 text = "MENU_SETTINGS"
+
+[node name="SettingsPopup" parent="." unique_id=1433266954 instance=ExtResource("7_bhf4v")]
+visible = false
+z_index = 100
+show_open_button = false
