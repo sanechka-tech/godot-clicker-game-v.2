@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://s33ubw2f74j"]
+
+[ext_resource type="Script" uid="uid://bg5fah3rkl1n7" path="res://level_3_village.gd" id="1_2m8wx"]
+[ext_resource type="Texture2D" uid="uid://cog5vly7l7ut3" path="res://Images/BG/BGlvl3.png" id="1_mgrok"]
+[ext_resource type="Texture2D" uid="uid://dorthgpxjhvpn" path="res://Images/Progress bars/loading_bar_empty_lvl1.png" id="2_pvmc0"]
+[ext_resource type="Texture2D" uid="uid://88kvdjol2juk" path="res://Images/Progress bars/loading_bar_empty_lvl1(short).png" id="3_4b8n5"]
+[ext_resource type="Texture2D" uid="uid://dv5tg3wmwdk0k" path="res://Images/Progress bars/loading_bar_full_lvl1(short).png" id="4_udrjg"]
+[ext_resource type="Texture2D" uid="uid://bn0fddij1qj3v" path="res://Images/Progress bars/poogoal.png" id="5_ckkff"]
+[ext_resource type="PackedScene" uid="uid://bp3grmiislpdx" path="res://character/Mobs/bug_fly.tscn" id="6_5dfpp"]
+[ext_resource type="PackedScene" uid="uid://dneep8y6goovc" path="res://character/Mobs/bug_maggot.tscn" id="7_4okij"]
+[ext_resource type="PackedScene" uid="uid://37ieojhay5uc" path="res://character/Mobs/bug_mantis.tscn" id="8_mylnc"]
+[ext_resource type="PackedScene" uid="uid://dcllbpvt8vyeg" path="res://character/Mobs/bug_spider.tscn" id="9_ca0sg"]
+[ext_resource type="PackedScene" uid="uid://dg5opcmsrei71" path="res://settings_popup.tscn" id="10_4okij"]
+[ext_resource type="PackedScene" uid="uid://v8xcecfye483" path="res://paper_hand.tscn" id="12_ca0sg"]
+[ext_resource type="PackedScene" uid="uid://cn8kf7ybrecdp" path="res://paper_hand_2.tscn" id="13_rh7r1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5dfpp"]
+size = Vector2(176, 20)
+
+[node name="level_3_village" type="Node2D" unique_id=293469500]
+script = ExtResource("1_2m8wx")
+
+[node name="BGlvl3" type="Sprite2D" parent="." unique_id=2146523131]
+position = Vector2(649.5, 268)
+scale = Vector2(0.7781101, 0.71838474)
+texture = ExtResource("1_mgrok")
+
+[node name="ProgressGoalBG" type="Sprite2D" parent="." unique_id=603562998]
+position = Vector2(623.6854, 576.75)
+scale = Vector2(0.66935474, 0.6693548)
+texture = ExtResource("2_pvmc0")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=2142353486]
+
+[node name="Left_area" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1239074242]
+position = Vector2(373, 594)
+shape = SubResource("RectangleShape2D_5dfpp")
+
+[node name="Right_area" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1814498575]
+position = Vector2(878, 595)
+shape = SubResource("RectangleShape2D_5dfpp")
+
+[node name="ProgressGoalLvl3" type="TextureProgressBar" parent="." unique_id=1828097691]
+offset_left = 483.6855
+offset_top = 563.75
+offset_right = 765.6854
+offset_bottom = 589.75
+rounded = true
+nine_patch_stretch = true
+texture_under = ExtResource("3_4b8n5")
+texture_progress = ExtResource("4_udrjg")
+
+[node name="GoalIcon" type="TextureRect" parent="ProgressGoalLvl3" unique_id=1758178413]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -5.0
+offset_right = 30.0
+offset_bottom = 35.0
+mouse_filter = 2
+texture = ExtResource("5_ckkff")
+expand_mode = 1
+
+[node name="bug_fly" parent="." unique_id=230701681 instance=ExtResource("6_5dfpp")]
+position = Vector2(797, 104)
+
+[node name="bug_maggot" parent="." unique_id=49609645 instance=ExtResource("7_4okij")]
+position = Vector2(375, 381)
+
+[node name="bug_mantis" parent="." unique_id=1949265443 instance=ExtResource("8_mylnc")]
+position = Vector2(921, 411)
+
+[node name="bug_spider" parent="." unique_id=23899205 instance=ExtResource("9_ca0sg")]
+position = Vector2(626, 341)
+
+[node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=1827590489]
+layer = 100
+
+[node name="SettingsPopup" parent="SettingsLayer" unique_id=138112148 instance=ExtResource("10_4okij")]
+metadata/_edit_use_anchors_ = true
+
+[node name="PaperHand" parent="." unique_id=1001257026 instance=ExtResource("12_ca0sg")]
+visible = false
+
+[node name="PaperHand2" parent="." unique_id=420159507 instance=ExtResource("13_rh7r1")]
+visible = false

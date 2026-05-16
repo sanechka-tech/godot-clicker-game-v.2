@@ -200,6 +200,21 @@ func add_bonus_coins(amount: int) -> void:
 		shop_changed.emit()
 
 
+func add_score(amount: int) -> void:
+	if amount <= 0:
+		return
+
+	_add_score(amount)
+
+
+func remove_score(amount: int) -> void:
+	if amount <= 0:
+		return
+
+	score = maxi(score - amount, 0)
+	score_changed.emit(score)
+
+
 func start_level(new_score_goal: int) -> void:
 	shitty_coins = 0
 	score = 0

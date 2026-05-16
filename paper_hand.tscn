@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://v8xcecfye483"]
+
+[ext_resource type="Texture2D" uid="uid://ugw3c6af7f1r" path="res://Images/Lvl3/HandAnimation/Hit5.png" id="1_ajngp"]
+[ext_resource type="Texture2D" uid="uid://dr02ifvujhvw8" path="res://Images/Lvl3/HandAnimation/Hit1.png" id="2_2ohhq"]
+[ext_resource type="Texture2D" uid="uid://bcrk1tmeqi2rg" path="res://Images/Lvl3/HandAnimation/Hit4.png" id="3_m3540"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mavta"]
+resource_local_to_scene = true
+radius = 50.0
+height = 100.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4v7ia"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ajngp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2ohhq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_m3540")
+}],
+"loop": false,
+"name": &"Hit",
+"speed": 15.0
+}]
+
+[node name="PaperHand" type="CharacterBody2D" unique_id=1001257026]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2005954660]
+position = Vector2(-141, 237)
+shape = SubResource("CapsuleShape2D_mavta")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1091551477]
+scale = Vector2(0.5263158, 0.5263158)
+sprite_frames = SubResource("SpriteFrames_4v7ia")
+animation = &"Hit"
+frame = 2
+frame_progress = 1.0
