@@ -5,71 +5,71 @@
 [ext_resource type="Texture2D" uid="uid://byxcb2fr3451t" path="res://Images/Lvl3/Animated insect enemy assets/AcidSplat.png" id="2_6r4ae"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_neduu"]
-radius = 36.0
+radius = 29.0
 height = 72.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u27a1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6r4ae"]
 atlas = ExtResource("1_a03rr")
-region = Rect2(0, 64, 32, 32)
+region = Rect2(0, 256, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rfurp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihdxi"]
 atlas = ExtResource("1_a03rr")
-region = Rect2(32, 64, 32, 32)
+region = Rect2(128, 256, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kgmdo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkua7"]
 atlas = ExtResource("1_a03rr")
-region = Rect2(64, 64, 32, 32)
+region = Rect2(256, 256, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_75h7q"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2yb7"]
 atlas = ExtResource("1_a03rr")
-region = Rect2(96, 64, 32, 32)
+region = Rect2(384, 256, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ak7bf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1x6uf"]
 atlas = ExtResource("1_a03rr")
-region = Rect2(0, 32, 32, 32)
+region = Rect2(0, 128, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1bqxp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjvmt"]
 atlas = ExtResource("1_a03rr")
-region = Rect2(32, 32, 32, 32)
+region = Rect2(128, 128, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8rrsx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qheud"]
 atlas = ExtResource("1_a03rr")
-region = Rect2(64, 32, 32, 32)
+region = Rect2(256, 128, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_383f1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qd0sg"]
 atlas = ExtResource("1_a03rr")
-region = Rect2(96, 32, 32, 32)
+region = Rect2(384, 128, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p2l78"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7ey7"]
 atlas = ExtResource("1_a03rr")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kfwpu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_565hh"]
 atlas = ExtResource("1_a03rr")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(128, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_psrgn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihet5"]
 atlas = ExtResource("1_a03rr")
-region = Rect2(64, 0, 32, 32)
+region = Rect2(256, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_48ip8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsqmc"]
 atlas = ExtResource("1_a03rr")
-region = Rect2(96, 0, 32, 32)
+region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hn6bl"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u27a1")
+"texture": SubResource("AtlasTexture_6r4ae")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rfurp")
+"texture": SubResource("AtlasTexture_ihdxi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kgmdo")
+"texture": SubResource("AtlasTexture_qkua7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_75h7q")
+"texture": SubResource("AtlasTexture_i2yb7")
 }],
 "loop": true,
 "name": &"moves_left",
@@ -77,16 +77,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ak7bf")
+"texture": SubResource("AtlasTexture_1x6uf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1bqxp")
+"texture": SubResource("AtlasTexture_jjvmt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8rrsx")
+"texture": SubResource("AtlasTexture_qheud")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_383f1")
+"texture": SubResource("AtlasTexture_qd0sg")
 }],
 "loop": true,
 "name": &"moves_right",
@@ -94,16 +94,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_p2l78")
+"texture": SubResource("AtlasTexture_c7ey7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kfwpu")
+"texture": SubResource("AtlasTexture_565hh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_psrgn")
+"texture": SubResource("AtlasTexture_ihet5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_48ip8")
+"texture": SubResource("AtlasTexture_nsqmc")
 }],
 "loop": true,
 "name": &"moves_toward_character",
@@ -168,11 +168,9 @@ bug_kind = &"mantis"
 shape = SubResource("CapsuleShape2D_neduu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1306223952]
-scale = Vector2(1.4374999, 1.4374999)
+scale = Vector2(0.51562506, 0.51562494)
 sprite_frames = SubResource("SpriteFrames_hn6bl")
-animation = &"moves_left"
-frame = 1
-frame_progress = 0.53878576
+animation = &"moves_toward_character"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AnimatedSprite2D" unique_id=733324728]
 visible = false
