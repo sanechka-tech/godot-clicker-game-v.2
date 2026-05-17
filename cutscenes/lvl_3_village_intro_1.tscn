@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dc52ka3iwlxh0"]
+
+[ext_resource type="Texture2D" uid="uid://chj6on3lyqf87" path="res://Images/cutscenes/Level3/lvl3_village_intro1.png" id="1_4jypk"]
+[ext_resource type="Script" uid="uid://c3v8q68vwobur" path="res://cutscenes/lvl_3_village_intro_1.gd" id="1_7v4jr"]
+[ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="2_hhxbk"]
+
+[node name="lvl3_village_intro1" type="Node2D" unique_id=897053529]
+script = ExtResource("1_7v4jr")
+
+[node name="Lvl3VillageIntro1" type="Sprite2D" parent="." unique_id=1906454269]
+position = Vector2(643.00006, 284.00003)
+scale = Vector2(0.8225291, 0.8225291)
+texture = ExtResource("1_4jypk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1491486055]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=18033854]
+offset_left = 149.0
+offset_top = 436.0
+offset_right = 1104.0
+offset_bottom = 570.0
+theme_override_fonts/normal_font = ExtResource("2_hhxbk")
+theme_override_font_sizes/normal_font_size = 30
+text = "Здравстуйте, мистер Даун! Я сейчас обосрусь, нужно спешить как можно быстрее, иначе мои штанишки покроются коричневым золотом."

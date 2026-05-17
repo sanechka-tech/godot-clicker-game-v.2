@@ -50,8 +50,8 @@ const BUG_CONFIGS := {
 const PHASE_DEFINITIONS := [
 	{
 		"end_time": 25.0,
-		"spawn_min": 2.0,
-		"spawn_max": 2.4,
+		"spawn_min": 1.7,
+		"spawn_max": 2.0,
 		"weights": {
 			"fly": 4,
 			"maggot": 2,
@@ -61,8 +61,8 @@ const PHASE_DEFINITIONS := [
 	},
 	{
 		"end_time": 60.0,
-		"spawn_min": 1.4,
-		"spawn_max": 1.8,
+		"spawn_min": 1.2,
+		"spawn_max": 1.5,
 		"weights": {
 			"fly": 3,
 			"maggot": 2,
@@ -72,8 +72,8 @@ const PHASE_DEFINITIONS := [
 	},
 	{
 		"end_time": INF,
-		"spawn_min": 1.0,
-		"spawn_max": 1.3,
+		"spawn_min": 0.85,
+		"spawn_max": 1.1,
 		"weights": {
 			"fly": 4,
 			"maggot": 1,
@@ -90,16 +90,32 @@ const PHASE_DEFINITIONS := [
 @onready var right_area: CollisionShape2D = $CharacterBody2D/Right_area
 @onready var paper_hand: CharacterBody2D = $PaperHand
 @onready var paper_hand_2: CharacterBody2D = $PaperHand2
+@onready var paper_hand_3: CharacterBody2D = $PaperHand3
 @onready var paper_hands := {
 	&"left": {
-		"node": paper_hand,
-		"collision_shape": $PaperHand/CollisionShape2D,
-		"sprite": $PaperHand/AnimatedSprite2D,
+		"node": paper_hand_3,
+		"collision_shape": $PaperHand3/CollisionShape2D,
+		"sprite": $PaperHand3/AnimatedSprite2D,
 	},
 	&"right": {
 		"node": paper_hand_2,
 		"collision_shape": $PaperHand2/CollisionShape2D,
 		"sprite": $PaperHand2/AnimatedSprite2D,
+	},
+	&"center_a": {
+		"node": paper_hand_3,
+		"collision_shape": $PaperHand3/CollisionShape2D,
+		"sprite": $PaperHand3/AnimatedSprite2D,
+	},
+	&"center_b": {
+		"node": paper_hand_2,
+		"collision_shape": $PaperHand2/CollisionShape2D,
+		"sprite": $PaperHand2/AnimatedSprite2D,
+	},
+	&"center_c": {
+		"node": paper_hand,
+		"collision_shape": $PaperHand/CollisionShape2D,
+		"sprite": $PaperHand/AnimatedSprite2D,
 	},
 }
 
@@ -444,11 +460,19 @@ func _get_paper_hand_data_for_bug(bug: CharacterBody2D) -> Dictionary:
 	if bug == null:
 		return paper_hands[&"right"]
 
-	var screen_mid_x := play_area.position.x + play_area.size.x * 0.5
-	if bug.global_position.x < screen_mid_x:
+	var left_third_boundary := play_area.position.x + play_area.size.x / 3.0
+	var right_third_boundary := play_area.position.x + play_area.size.x * 2.0 / 3.0
+	var bug_x := bug.global_position.x
+
+	if bug_x <= left_third_boundary:
 		return paper_hands[&"left"]
 
-	return paper_hands[&"right"]
+	if bug_x >= right_third_boundary:
+		return paper_hands[&"right"]
+
+	var center_hand_keys: Array[StringName] = [&"center_a", &"center_b", &"center_c"]
+	var random_center_key := center_hand_keys[randi() % center_hand_keys.size()]
+	return paper_hands[random_center_key]
 
 
 func _hide_all_paper_hands() -> void:

@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dg5opcmsrei71" path="res://settings_popup.tscn" id="10_4okij"]
 [ext_resource type="PackedScene" uid="uid://v8xcecfye483" path="res://paper_hand.tscn" id="12_ca0sg"]
 [ext_resource type="PackedScene" uid="uid://cn8kf7ybrecdp" path="res://paper_hand_2.tscn" id="13_rh7r1"]
+[ext_resource type="PackedScene" uid="uid://colayx5yic2om" path="res://paper_hand_3.tscn" id="14_f36xv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dfpp"]
 size = Vector2(176, 20)
@@ -74,7 +75,6 @@ position = Vector2(626, 341)
 
 [node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=1827590489]
 layer = 100
-visible = false
 
 [node name="SettingsPopup" parent="SettingsLayer" unique_id=138112148 instance=ExtResource("10_4okij")]
 metadata/_edit_use_anchors_ = true
@@ -83,4 +83,7 @@ metadata/_edit_use_anchors_ = true
 visible = false
 
 [node name="PaperHand2" parent="." unique_id=420159507 instance=ExtResource("13_rh7r1")]
+visible = false
+
+[node name="PaperHand3" parent="." unique_id=1745094223 instance=ExtResource("14_f36xv")]
 visible = false
