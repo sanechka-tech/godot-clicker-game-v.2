@@ -3,15 +3,18 @@ extends Node2D
 const MENU_SLIDE_DURATION := 1.1
 const BUTTONS_FADE_DURATION := 0.25
 const MENU_START_BOTTOM_MARGIN := 24.0
+const START_TRANSITION_SCENE := "res://transition_screen.tscn"
 
 @onready var settings_popup = $SettingsPopup
 @onready var vhs_panel: TextureRect = $VHS
 @onready var buttons_container: VBoxContainer = $VHS/VBoxContainer
+@onready var new_game_button: Button = $VHS/VBoxContainer/NewGame
 @onready var settings_button: Button = $VHS/VBoxContainer/Settings
 
 
 func _ready() -> void:
 	AudioManager.play_default_music()
+	new_game_button.pressed.connect(_on_new_game_pressed)
 	settings_button.pressed.connect(_on_settings_pressed)
 	_play_intro_animation()
 
@@ -22,6 +25,10 @@ func _on_button_pressed() -> void:
 
 func _on_texture_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://main_screen.tscn")
+
+
+func _on_new_game_pressed() -> void:
+	get_tree().change_scene_to_file(START_TRANSITION_SCENE)
 
 
 func _on_settings_pressed() -> void:

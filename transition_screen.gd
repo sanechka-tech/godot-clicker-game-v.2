@@ -3,15 +3,27 @@ extends CanvasLayer
 const FADE_OUT_DURATION := 0.35
 const FADE_IN_DURATION := 0.35
 
-@onready var fade_rect: ColorRect = $FadeRect
+@export var next_scene_path := "res://cutscenes/lvl_1_room_intro.tscn"
+@export var auto_start := true
+@export var hold_duration := 0.25
+
+@onready var fade_rect: CanvasItem = $FadeRect
 
 var _is_transitioning := false
 
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	visible = false
 	fade_rect.modulate.a = 0.0
+
+	if auto_start:
+		call_deferred("_play_standalone_transition")
+
+
+func _play_standalone_transition() -> void:
+	await _fade_out()
+	await get_tree().create_timer(hold_duration).timeout
+	get_tree().change_scene_to_file(next_scene_path)
 
 
 func change_scene(scene_path: String) -> void:
