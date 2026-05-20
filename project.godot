@@ -23,6 +23,7 @@ buses/default_bus_layout="uid://ct3hrshwq0bc5"
 
 GameState="*uid://df4exf47b5xih"
 AudioManager="*uid://djnrq2bpggjoc"
+TransitionScreen="*uid://dw7bcntnlcutm"
 
 [display]
 

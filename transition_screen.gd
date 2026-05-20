@@ -1,19 +1,34 @@
 extends CanvasLayer
 
-const FADE_OUT_DURATION := 0.35
-const FADE_IN_DURATION := 0.35
+signal scene_revealed
+
+const FADE_OUT_DURATION := 2.0
+const FADE_IN_DURATION := 2.0
 
 @export var next_scene_path := "res://cutscenes/lvl_1_room_intro.tscn"
-@export var auto_start := true
-@export var hold_duration := 0.25
+@export var auto_start := false
+@export var reveal_on_ready := false
+@export var hold_duration := 1.5
 
 @onready var fade_rect: CanvasItem = $FadeRect
 
 var _is_transitioning := false
 
 
+func is_transitioning() -> bool:
+	return _is_transitioning
+
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+
+	if reveal_on_ready:
+		visible = true
+		fade_rect.modulate.a = 1.0
+		call_deferred("_fade_in")
+		return
+
+	visible = false
 	fade_rect.modulate.a = 0.0
 
 	if auto_start:
@@ -33,6 +48,7 @@ func change_scene(scene_path: String) -> void:
 	await _fade_out()
 	get_tree().change_scene_to_file(scene_path)
 	await get_tree().process_frame
+	await get_tree().create_timer(hold_duration).timeout
 	await _fade_in()
 
 
@@ -43,6 +59,7 @@ func change_scene_to_packed(scene: PackedScene) -> void:
 	await _fade_out()
 	get_tree().change_scene_to_packed(scene)
 	await get_tree().process_frame
+	await get_tree().create_timer(hold_duration).timeout
 	await _fade_in()
 
 
@@ -63,3 +80,4 @@ func _fade_in() -> void:
 
 	visible = false
 	_is_transitioning = false
+	scene_revealed.emit()

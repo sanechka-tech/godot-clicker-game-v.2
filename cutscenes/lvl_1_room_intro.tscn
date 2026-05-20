@@ -4,10 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://bnf577md7702j" path="res://Images/cutscenes/bg_for_text.png" id="2_wrkyb"]
 [ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="3_lcbtw"]
 [ext_resource type="FontFile" uid="uid://buxbeon3odxds" path="res://CustomFont/EpilepsySans.ttf" id="4_snqoy"]
+[ext_resource type="Script" uid="uid://dfwpi5ktawms3" path="res://cutscenes/lvl_1_room_intro.gd" id="5_xj0fc"]
 
 [node name="Lvl1RoomIntro" type="Control" unique_id=1637976446]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("5_xj0fc")
 metadata/_edit_vertical_guides_ = [650.0, 150.0]
 
 [node name="BG Leks" type="TextureRect" parent="." unique_id=1613938926]
@@ -18,16 +20,16 @@ offset_bottom = 653.0
 texture = ExtResource("1_7yn5h")
 expand_mode = 1
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=451061372]
+[node name="BG Text" type="TextureRect" parent="." unique_id=451061372]
 layout_mode = 0
 offset_left = 115.0
-offset_top = 442.0
-offset_right = 1184.3882
-offset_bottom = 583.0
+offset_top = 432.0
+offset_right = 1184.388
+offset_bottom = 584.0
 texture = ExtResource("2_wrkyb")
 expand_mode = 1
 
-[node name="Name" type="Label" parent="TextureRect" unique_id=1109851826]
+[node name="Name" type="Label" parent="BG Text" unique_id=1109851826]
 layout_mode = 0
 offset_left = 37.0
 offset_top = 17.0
@@ -41,7 +43,7 @@ theme_override_fonts/font = ExtResource("3_lcbtw")
 theme_override_font_sizes/font_size = 32
 text = "HERO_LEKS"
 
-[node name="Story" type="Label" parent="TextureRect" unique_id=1528937573]
+[node name="Story" type="Label" parent="BG Text" unique_id=1528937573]
 layout_mode = 0
 offset_left = 37.0
 offset_top = 60.0

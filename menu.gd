@@ -3,7 +3,7 @@ extends Node2D
 const MENU_SLIDE_DURATION := 1.1
 const BUTTONS_FADE_DURATION := 0.25
 const MENU_START_BOTTOM_MARGIN := 24.0
-const START_TRANSITION_SCENE := "res://transition_screen.tscn"
+const START_INTRO_SCENE := "res://cutscenes/lvl_1_room_intro.tscn"
 
 @onready var settings_popup = $SettingsPopup
 @onready var vhs_panel: TextureRect = $VHS
@@ -28,7 +28,11 @@ func _on_texture_button_pressed() -> void:
 
 
 func _on_new_game_pressed() -> void:
-	get_tree().change_scene_to_file(START_TRANSITION_SCENE)
+	var transition_screen = get_node_or_null("/root/TransitionScreen")
+	if transition_screen != null:
+		transition_screen.change_scene(START_INTRO_SCENE)
+	else:
+		get_tree().change_scene_to_file(START_INTRO_SCENE)
 
 
 func _on_settings_pressed() -> void:
