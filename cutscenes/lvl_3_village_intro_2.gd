@@ -1,12 +1,10 @@
 extends Node2D
 
-const NEXT_SCENE_PATH := "res://cutscenes/lvl_3_village_intro_2.tscn"
+const NEXT_SCENE_PATH := "res://level_3_village.tscn"
 const PHRASE_KEYS: Array[StringName] = [
-	&"STORY_LVL3_INTRO_001",
-	&"STORY_LVL3_INTRO_002",
-	&"STORY_LVL3_INTRO_003",
-	&"STORY_LVL3_INTRO_004",
-	&"STORY_LVL3_INTRO_005",
+	&"STORY_LVL3_INTRO_006",
+	&"STORY_LVL3_INTRO_007",
+	&"STORY_LVL3_INTRO_008",
 ]
 
 @export var characters_per_second: float = 20.0

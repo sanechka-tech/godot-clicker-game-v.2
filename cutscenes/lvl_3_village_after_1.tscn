@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bbsim56ixngqy"]
+
+[ext_resource type="Texture2D" uid="uid://c20qg51smxj0a" path="res://Images/cutscenes/Level3/lvl3_village_final.png" id="1_e0tyo"]
+[ext_resource type="Texture2D" uid="uid://bnf577md7702j" path="res://Images/cutscenes/bg_for_text.png" id="2_q7ckc"]
+[ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="3_g411y"]
+[ext_resource type="FontFile" uid="uid://buxbeon3odxds" path="res://CustomFont/EpilepsySans.ttf" id="4_3jhip"]
+[ext_resource type="Script" uid="uid://oe24erfubsf3" path="res://cutscenes/lvl_3_village_after_1.gd" id="5_j44ui"]
+
+[node name="lvl3_village_after_1" type="Node2D" unique_id=2044082077]
+script = ExtResource("5_j44ui")
+
+[node name="Lvl3VillageFinal" type="Sprite2D" parent="." unique_id=1207120994]
+position = Vector2(664, 286)
+scale = Vector2(0.80127525, 0.80127525)
+texture = ExtResource("1_e0tyo")
+
+[node name="BG Text" type="TextureRect" parent="." unique_id=477933389]
+offset_left = 115.0
+offset_top = 432.0
+offset_right = 1184.388
+offset_bottom = 584.0
+texture = ExtResource("2_q7ckc")
+expand_mode = 1
+
+[node name="Name" type="Label" parent="BG Text" unique_id=360311517]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 17.0
+offset_right = 187.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.3529412)
+theme_override_colors/font_outline_color = Color(0.84705883, 0.16470589, 0.07450981, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_g411y")
+theme_override_font_sizes/font_size = 32
+text = "HERO_LEKS"
+
+[node name="Story" type="Label" parent="BG Text" unique_id=1761422847]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 60.0
+offset_right = 1037.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_colors/font_outline_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("4_3jhip")
+theme_override_font_sizes/font_size = 26
+text = "STORY_LVL3_FINISH_001"
+autowrap_mode = 3

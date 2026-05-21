@@ -1,6 +1,7 @@
 extends Node2D
 
 const LEVEL_GOAL_SCORE := 900
+const AFTER_SCENE_PATH := "res://cutscenes/lvl_3_village_after_1.tscn"
 const PASSIVE_SCORE_PER_SECOND := 10.0
 const BUG_REACH_PENALTY := 100
 const BUG_SPAWN_DELAY := 3.0
@@ -426,6 +427,11 @@ func _finish_round() -> void:
 		child.queue_free()
 
 	_hide_all_paper_hands()
+	get_tree().create_timer(0.8).timeout.connect(_go_to_after_scene)
+
+
+func _go_to_after_scene() -> void:
+	get_tree().change_scene_to_file(AFTER_SCENE_PATH)
 
 
 func _play_paper_hand_hit(bug: CharacterBody2D) -> void:

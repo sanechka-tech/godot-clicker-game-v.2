@@ -1,17 +1,18 @@
 extends Node2D
 
-const NEXT_SCENE_PATH := "res://cutscenes/lvl_3_village_intro_2.tscn"
+const NEXT_SCENE_PATH := "res://cutscenes/lvl_3_village_after_2.tscn"
 const PHRASE_KEYS: Array[StringName] = [
-	&"STORY_LVL3_INTRO_001",
-	&"STORY_LVL3_INTRO_002",
-	&"STORY_LVL3_INTRO_003",
-	&"STORY_LVL3_INTRO_004",
-	&"STORY_LVL3_INTRO_005",
+	&"STORY_LVL3_FINISH_001",
+	&"STORY_LVL3_FINISH_002",
+	&"STORY_LVL3_FINISH_003",
+	&"STORY_LVL3_FINISH_004",
+	&"STORY_LVL3_FINISH_005",
+	&"STORY_LVL3_FINISH_006",
 ]
 
 @export var characters_per_second: float = 20.0
 
-@onready var story_label: Label = _find_story_label()
+@onready var story_label: Label = get_node_or_null("BG Text/Story") as Label
 
 var visible_characters_progress := 0.0
 var typing_finished := false
@@ -72,18 +73,6 @@ func _finish_typing() -> void:
 	typing_finished = true
 	if story_label != null:
 		story_label.visible_characters = -1
-
-
-func _find_story_label() -> Label:
-	for label_path in [
-		"BG Text/Story",
-		"CanvasLayer/RichTextLabel",
-	]:
-		var label := get_node_or_null(label_path) as Label
-		if label != null:
-			return label
-
-	return null
 
 
 func _is_confirm_input(event: InputEvent) -> bool:
