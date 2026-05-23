@@ -130,6 +130,7 @@ var bugs_root: Node2D
 
 
 func _ready() -> void:
+	AudioManager.stop_level_3_intro_ambience()
 	AudioManager.play_level_3_music()
 	GameState.start_level(LEVEL_GOAL_SCORE)
 	GameState.score_changed.connect(_on_score_changed)

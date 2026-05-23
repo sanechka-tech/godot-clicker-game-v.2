@@ -11,6 +11,11 @@ const WIN := preload("res://Audio/SFX/lvl2/mini game/win.mp3")
 const MUSIC_BUS := &"Music"
 const SFX_BUS := &"SFX"
 const MINIGAME_MUSIC_LOOP_FADE_DURATION := 0.75
+const LEVEL_3_INTRO_STOMACH_SOUND := preload("res://Audio/SFX/lvl3_before/stomach_sound.mp3")
+const LEVEL_3_INTRO_RUN_AWAY := preload("res://Audio/SFX/lvl3_before/Run_away.mp3")
+const LEVEL_3_INTRO_CLOSE_THE_DOOR := preload("res://Audio/SFX/lvl3_before/Close_the_door.mp3")
+const LEVEL_3_INTRO_FIELDS_VOLUME := 0.3
+const LEVEL_3_MUSIC_VOLUME := 0.15
 
 var music_player: AudioStreamPlayer
 var pops_since_last_fart := 0
@@ -48,6 +53,11 @@ func _ready() -> void:
 
 	music_player.bus = MUSIC_BUS
 	music_player.finished.connect(_on_music_finished)
+
+	level_3_intro_ambience_player = AudioStreamPlayer.new()
+	level_3_intro_ambience_player.process_mode = Node.PROCESS_MODE_ALWAYS
+	add_child(level_3_intro_ambience_player)
+
 	play_default_music()
 
 
@@ -98,6 +108,18 @@ func fade_out_music(duration: float) -> void:
 	music_fade_tween = null
 
 
+func play_level_3_intro_fields_background() -> void:
+	if level_3_intro_ambience_player == null:
+		return
+	stop_music()
+
+	level_3_intro_ambience_player.stream = LEVEL_3_INTRO_FIELDS_BACKGROUND
+	level_3_intro_ambience_player.volume_db = linear_to_db(LEVEL_3_INTRO_FIELDS_VOLUME)
+	level_3_intro_ambience_should_loop = true
+	level_3_intro_ambience_player.play()
+
+
+func stop_level_3_intro_ambience() -> void:
 func play_fart_mob_pop_sounds() -> void:
 	_play_random_stream(bubble_burst_streams)
 
@@ -171,11 +193,11 @@ func _play_music(stream: AudioStream, should_restart_on_finish: bool = false) ->
 	restart_music_on_finish = should_restart_on_finish
 
 	if music_player.stream == stream and music_player.playing:
-		music_player.volume_db = 0.0
+		music_player.volume_db = target_volume_db
 		return
 
 	music_player.stream = stream
-	music_player.volume_db = 0.0
+	music_player.volume_db = target_volume_db
 	music_player.play()
 
 
@@ -258,3 +280,16 @@ func _stop_music_fade_tween() -> void:
 		music_fade_tween.kill()
 
 	music_fade_tween = null
+
+
+func _on_level_3_intro_ambience_finished() -> void:
+	if not level_3_intro_ambience_should_loop:
+		return
+
+	if level_3_intro_ambience_player == null:
+		return
+
+	if level_3_intro_ambience_player.stream != LEVEL_3_INTRO_FIELDS_BACKGROUND:
+		return
+
+	level_3_intro_ambience_player.play()
