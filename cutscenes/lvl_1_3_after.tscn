@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://banuc8e16cpgt"]
+
+[ext_resource type="Texture2D" uid="uid://bnf577md7702j" path="res://Images/cutscenes/bg_for_text.png" id="1_oja4m"]
+[ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="2_g21te"]
+[ext_resource type="FontFile" uid="uid://buxbeon3odxds" path="res://CustomFont/EpilepsySans.ttf" id="3_qq06t"]
+[ext_resource type="Script" path="res://cutscenes/lvl_1_3_after.gd" id="4_qq06t"]
+
+[sub_resource type="Curve" id="Curve_lp1fw"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_xsjla"]
+curve = SubResource("Curve_lp1fw")
+
+[node name="Lvl13After" type="Control" unique_id=1687668160]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("4_qq06t")
+
+[node name="BG Black" type="TextureRect" parent="." unique_id=83800445]
+layout_mode = 0
+offset_top = -80.0
+offset_right = 1302.369
+offset_bottom = 653.0
+texture = SubResource("CurveTexture_xsjla")
+expand_mode = 1
+
+[node name="BG Text" type="TextureRect" parent="." unique_id=590874468]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 432.0
+offset_right = 1184.388
+offset_bottom = 584.0
+texture = ExtResource("1_oja4m")
+expand_mode = 1
+
+[node name="Name" type="Label" parent="BG Text" unique_id=1840010659]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 17.0
+offset_right = 187.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.3529412)
+theme_override_colors/font_outline_color = Color(0.84705883, 0.16470589, 0.07450981, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_g21te")
+theme_override_font_sizes/font_size = 32
+text = "HERO_LEKS"
+
+[node name="Story" type="Label" parent="BG Text" unique_id=540670572]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 60.0
+offset_right = 1037.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_colors/font_outline_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("3_qq06t")
+theme_override_font_sizes/font_size = 26
+text = "STORY_LVL1_INTRO_024"
+autowrap_mode = 3

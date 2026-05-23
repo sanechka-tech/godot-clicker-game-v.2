@@ -3,6 +3,10 @@ extends Node
 const DEFAULT_MUSIC := preload("res://Audio/background_music.ogg")
 const MINIGAME_MUSIC := preload("res://Audio/Music/Minigame_sound.mp3")
 const LEVEL_3_MUSIC := preload("res://Audio/Music/lvl3_background_music.mp3")
+const FINAL_PRESSURE := preload("res://Audio/SFX/lvl1/final_pressure.mp3")
+const FINAL_TOILET_FLUSH := preload("res://Audio/SFX/lvl1/final_zvuk-unitaza.mp3")
+const MUSIC_BUS := &"Music"
+const SFX_BUS := &"SFX"
 
 var music_player: AudioStreamPlayer
 var pops_since_last_fart := 0
@@ -35,7 +39,7 @@ func _ready() -> void:
 	music_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	add_child(music_player)
 
-	music_player.bus = "Music"
+	music_player.bus = MUSIC_BUS
 	music_player.finished.connect(_on_music_finished)
 	play_default_music()
 
@@ -85,6 +89,14 @@ func play_fart_sound_3() -> void:
 	_play_stream(preload("res://Audio/fart_sound3.mp3"))
 
 
+func play_final_pressure() -> AudioStreamPlayer:
+	return _play_stream(FINAL_PRESSURE)
+
+
+func play_final_toilet_flush() -> AudioStreamPlayer:
+	return _play_stream(FINAL_TOILET_FLUSH)
+
+
 func _play_random_stream(streams: Array[AudioStream]) -> void:
 	if streams.is_empty():
 		return
@@ -92,17 +104,18 @@ func _play_random_stream(streams: Array[AudioStream]) -> void:
 	_play_stream(streams[randi() % streams.size()])
 
 
-func _play_stream(stream: AudioStream) -> void:
+func _play_stream(stream: AudioStream) -> AudioStreamPlayer:
 	if stream == null:
-		return
+		return null
 
 	var player := AudioStreamPlayer.new()
 	player.process_mode = Node.PROCESS_MODE_ALWAYS
-	player.bus = "Master"
+	player.bus = SFX_BUS
 	player.stream = stream
 	add_child(player)
 	player.finished.connect(player.queue_free)
 	player.play()
+	return player
 
 
 func _play_music(stream: AudioStream, should_restart_on_finish: bool = false) -> void:

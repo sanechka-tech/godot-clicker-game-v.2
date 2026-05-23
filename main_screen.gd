@@ -14,12 +14,19 @@ const SHOP_UPGRADE_BUTTONS := {
 }
 const ONBOARDING_ANIMATION_NAMES: Array[StringName] = [&"Onboarding_tap", &"Oboarding_tap"]
 const FIRST_LEVEL_SHOP_ONBOARDING_THRESHOLD := 125
+const FINAL_UI_EXIT_DURATION := 0.8
+const FINAL_UI_EXIT_EXTRA_DISTANCE := 80.0
+const LEVEL_1_AFTER_SCENE_PATH := "res://cutscenes/lvl_1_3_after.tscn"
+const LEVEL_1_AFTER_TRANSITION_FADE_OUT_DURATION := 0.6
+const LEVEL_1_AFTER_TRANSITION_FADE_IN_DURATION := 0.1
 
 const SHOP_TEXTURE_NORMAL := &"normal"
 const SHOP_TEXTURE_PRESSED := &"pressed"
 const SHOP_TEXTURE_DISABLED := &"disabled"
 
 @onready var character = $Character
+@onready var counter: CanvasLayer = $Counter
+@onready var shop_lvl_1: Control = $ShopLvl1
 @onready var coins_label: Label = $Counter/CoinsCounter/Label
 @onready var progress_goal: Range = $ProgressGoal
 @onready var progress_goal_icon: Control = _find_progress_goal_icon()
@@ -33,6 +40,7 @@ var shop_button_text_group_start_positions := {}
 var shop_button_original_textures := {}
 var shop_onboarding_was_shown := false
 var shop_onboarding_was_completed := false
+var final_pressure_sequence_started := false
 
 
 func _ready() -> void:
@@ -51,6 +59,7 @@ func _ready() -> void:
 	_update_goal_progress()
 	_update_onboarding_visibility()
 	_update_shop_onboarding_visibility()
+	_try_start_final_pressure_sequence()
 
 
 func _on_character_tapped(tap_position: Vector2) -> void:
@@ -68,6 +77,7 @@ func _on_coins_changed(_new_value: int) -> void:
 
 func _on_score_changed(_new_value: int) -> void:
 	_update_goal_progress()
+	_try_start_final_pressure_sequence()
 
 
 func _on_shop_changed() -> void:
@@ -152,6 +162,51 @@ func _setup_goal_progress() -> void:
 func _update_goal_progress() -> void:
 	progress_goal.value = min(GameState.score, GameState.score_goal)
 	_update_goal_icon()
+
+
+func _try_start_final_pressure_sequence() -> void:
+	if final_pressure_sequence_started:
+		return
+
+	if GameState.score < GameState.score_goal:
+		return
+
+	final_pressure_sequence_started = true
+	_play_final_pressure_sequence()
+
+
+func _play_final_pressure_sequence() -> void:
+	if character.has_method("lock_final_pose"):
+		character.lock_final_pose()
+
+	for upgrade_id in SHOP_UPGRADE_BUTTONS:
+		var button := get_node(SHOP_UPGRADE_BUTTONS[upgrade_id]) as TextureButton
+		button.disabled = true
+
+	var final_pressure_player := AudioManager.play_final_pressure()
+	var exit_distance := get_viewport_rect().size.x + FINAL_UI_EXIT_EXTRA_DISTANCE
+	var tween := create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(counter, "offset:x", counter.offset.x + exit_distance, FINAL_UI_EXIT_DURATION)
+	tween.tween_property(shop_lvl_1, "position:x", shop_lvl_1.position.x + exit_distance, FINAL_UI_EXIT_DURATION)
+
+	await tween.finished
+	if is_instance_valid(final_pressure_player) and final_pressure_player.playing:
+		await final_pressure_player.finished
+
+	AudioManager.play_final_toilet_flush()
+
+	var transition_screen = get_node_or_null("/root/TransitionScreen")
+	if transition_screen != null:
+		transition_screen.change_scene(
+			LEVEL_1_AFTER_SCENE_PATH,
+			LEVEL_1_AFTER_TRANSITION_FADE_OUT_DURATION,
+			LEVEL_1_AFTER_TRANSITION_FADE_IN_DURATION
+		)
+	else:
+		get_tree().change_scene_to_file(LEVEL_1_AFTER_SCENE_PATH)
 
 
 func _update_goal_icon() -> void:

@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://upiafuqcufot" path="res://character/Mobs/space_enemy_2.tscn" id="6_w5blw"]
 [ext_resource type="PackedScene" uid="uid://c116yonxlmj6c" path="res://character/Mobs/space_enemy_1.tscn" id="7_y3hlb"]
 [ext_resource type="FontFile" uid="uid://buxbeon3odxds" path="res://CustomFont/EpilepsySans.ttf" id="8_w5blw"]
-[ext_resource type="PackedScene" path="res://settings_popup.tscn" id="11_agkrw"]
+[ext_resource type="PackedScene" uid="uid://dg5opcmsrei71" path="res://settings_popup.tscn" id="11_agkrw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5lqjt"]
 texture = ExtResource("2_y3hlb")

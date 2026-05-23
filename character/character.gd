@@ -7,6 +7,8 @@ signal tapped(tap_position: Vector2)
 
 @export var tap_animation: StringName = &"tap"
 
+var final_pose_locked := false
+
 
 func _ready() -> void:
 	input_pickable = true
@@ -20,8 +22,19 @@ func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void
 
 
 func _on_tap(tap_position: Vector2) -> void:
+	if final_pose_locked:
+		return
+
 	animated_sprite.play(tap_animation)
 	tapped.emit(tap_position)
+
+
+func lock_final_pose() -> void:
+	final_pose_locked = true
+	input_pickable = false
+	animated_sprite.play(tap_animation)
+	animated_sprite.set_frame_and_progress(1, 0.0)
+	animated_sprite.pause()
 
 
 func _event_to_world_position(event: InputEvent) -> Vector2:

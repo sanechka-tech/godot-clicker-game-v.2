@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bwx870mpbpkw1"]
+
+[ext_resource type="Texture2D" uid="uid://cn4csjyv1t8fi" path="res://Images/cutscenes/Level2/train.png" id="1_8u2dq"]
+
+[node name="Lvl2Platform" type="Control" unique_id=644512576]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="BG Phone" type="TextureRect" parent="." unique_id=1950665467]
+layout_mode = 0
+offset_top = -80.0
+offset_right = 1302.369
+offset_bottom = 653.0
+texture = ExtResource("1_8u2dq")
+expand_mode = 1
