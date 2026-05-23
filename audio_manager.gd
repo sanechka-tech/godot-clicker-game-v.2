@@ -11,6 +11,7 @@ const WIN := preload("res://Audio/SFX/lvl2/mini game/win.mp3")
 const MUSIC_BUS := &"Music"
 const SFX_BUS := &"SFX"
 const MINIGAME_MUSIC_LOOP_FADE_DURATION := 0.75
+const LEVEL_3_INTRO_FIELDS_BACKGROUND := preload("res://Audio/SFX/lvl3_before/Fields_background.mp3")
 const LEVEL_3_INTRO_STOMACH_SOUND := preload("res://Audio/SFX/lvl3_before/stomach_sound.mp3")
 const LEVEL_3_INTRO_RUN_AWAY := preload("res://Audio/SFX/lvl3_before/Run_away.mp3")
 const LEVEL_3_INTRO_CLOSE_THE_DOOR := preload("res://Audio/SFX/lvl3_before/Close_the_door.mp3")
@@ -18,11 +19,13 @@ const LEVEL_3_INTRO_FIELDS_VOLUME := 0.3
 const LEVEL_3_MUSIC_VOLUME := 0.15
 
 var music_player: AudioStreamPlayer
+var level_3_intro_ambience_player: AudioStreamPlayer
 var pops_since_last_fart := 0
 var restart_music_on_finish := false
 var minigame_music_loop_enabled := false
 var minigame_music_loop_transitioning := false
 var music_fade_tween: Tween
+var level_3_intro_ambience_should_loop := false
 
 var bubble_burst_streams: Array[AudioStream] = [
 	preload("res://Audio/bubble_burst1.mp3"),
@@ -56,6 +59,9 @@ func _ready() -> void:
 
 	level_3_intro_ambience_player = AudioStreamPlayer.new()
 	level_3_intro_ambience_player.process_mode = Node.PROCESS_MODE_ALWAYS
+	level_3_intro_ambience_player.bus = "Master"
+	level_3_intro_ambience_player.volume_db = linear_to_db(LEVEL_3_INTRO_FIELDS_VOLUME)
+	level_3_intro_ambience_player.finished.connect(_on_level_3_intro_ambience_finished)
 	add_child(level_3_intro_ambience_player)
 
 	play_default_music()
@@ -74,7 +80,8 @@ func play_minigame_music() -> void:
 
 func play_level_3_music() -> void:
 	minigame_music_loop_enabled = false
-	_play_music(LEVEL_3_MUSIC, true)
+	minigame_music_loop_transitioning = false
+	_play_music(LEVEL_3_MUSIC, true, LEVEL_3_MUSIC_VOLUME)
 
 
 func stop_music() -> void:
@@ -111,7 +118,11 @@ func fade_out_music(duration: float) -> void:
 func play_level_3_intro_fields_background() -> void:
 	if level_3_intro_ambience_player == null:
 		return
+
 	stop_music()
+
+	if level_3_intro_ambience_player.stream == LEVEL_3_INTRO_FIELDS_BACKGROUND and level_3_intro_ambience_player.playing:
+		return
 
 	level_3_intro_ambience_player.stream = LEVEL_3_INTRO_FIELDS_BACKGROUND
 	level_3_intro_ambience_player.volume_db = linear_to_db(LEVEL_3_INTRO_FIELDS_VOLUME)
@@ -120,6 +131,26 @@ func play_level_3_intro_fields_background() -> void:
 
 
 func stop_level_3_intro_ambience() -> void:
+	level_3_intro_ambience_should_loop = false
+
+	if level_3_intro_ambience_player == null:
+		return
+
+	level_3_intro_ambience_player.stop()
+
+
+func play_level_3_intro_stomach_sound() -> AudioStreamPlayer:
+	return _play_stream(LEVEL_3_INTRO_STOMACH_SOUND)
+
+
+func play_level_3_intro_run_away() -> AudioStreamPlayer:
+	return _play_stream(LEVEL_3_INTRO_RUN_AWAY)
+
+
+func play_level_3_intro_close_the_door() -> AudioStreamPlayer:
+	return _play_stream(LEVEL_3_INTRO_CLOSE_THE_DOOR)
+
+
 func play_fart_mob_pop_sounds() -> void:
 	_play_random_stream(bubble_burst_streams)
 
@@ -185,12 +216,13 @@ func _play_stream(stream: AudioStream) -> AudioStreamPlayer:
 	return player
 
 
-func _play_music(stream: AudioStream, should_restart_on_finish: bool = false) -> void:
+func _play_music(stream: AudioStream, should_restart_on_finish: bool = false, volume_linear: float = 1.0) -> void:
 	if music_player == null or stream == null:
 		return
 
 	_stop_music_fade_tween()
 	restart_music_on_finish = should_restart_on_finish
+	var target_volume_db := linear_to_db(volume_linear)
 
 	if music_player.stream == stream and music_player.playing:
 		music_player.volume_db = target_volume_db
