@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://cr5jwd51j57eb"]
+
+[ext_resource type="Texture2D" uid="uid://bafk2ttlettaj" path="res://Images/MiniGame/GayBoyBG.png" id="1_ycbvk"]
+[ext_resource type="Texture2D" uid="uid://bnf577md7702j" path="res://Images/cutscenes/bg_for_text.png" id="2_vrbo1"]
+[ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="3_6b6s5"]
+[ext_resource type="FontFile" uid="uid://buxbeon3odxds" path="res://CustomFont/EpilepsySans.ttf" id="4_eh4up"]
+[ext_resource type="Script" path="res://cutscenes/lvl_2_2_after_mini_game.gd" id="5_eh4up"]
+
+[sub_resource type="Curve" id="Curve_jret1"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_qbway"]
+curve = SubResource("Curve_jret1")
+
+[node name="Lvl22AfterMiniGame" type="Control" unique_id=563691886]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("5_eh4up")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=36059669]
+layout_mode = 0
+offset_left = 379.0
+offset_top = 174.0
+offset_right = 907.0
+offset_bottom = 491.0
+texture = SubResource("CurveTexture_qbway")
+
+[node name="GayBoyBg" type="Sprite2D" parent="." unique_id=1413302527]
+position = Vector2(644, 279)
+scale = Vector2(1.5834222, 1.5834221)
+texture = ExtResource("1_ycbvk")
+
+[node name="BG Text" type="TextureRect" parent="." unique_id=1046364557]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 432.0
+offset_right = 1184.388
+offset_bottom = 584.0
+texture = ExtResource("2_vrbo1")
+expand_mode = 1
+
+[node name="Name" type="Label" parent="BG Text" unique_id=702000020]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 17.0
+offset_right = 187.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.3529412)
+theme_override_colors/font_outline_color = Color(0.84705883, 0.16470589, 0.07450981, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_6b6s5")
+theme_override_font_sizes/font_size = 32
+text = "HERO_LEKS"
+
+[node name="Story" type="Label" parent="BG Text" unique_id=1995446696]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 60.0
+offset_right = 1037.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_colors/font_outline_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("4_eh4up")
+theme_override_font_sizes/font_size = 26
+text = "STORY_LVL2_MINIGAME_WIN"
+autowrap_mode = 3

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://f5encbjbcgsh"
+path="res://.godot/imported/you died.mp3-99dc22b70426136213edfb3614ac81bd.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/lvl2/mini game/you died.mp3"
+dest_files=["res://.godot/imported/you died.mp3-99dc22b70426136213edfb3614ac81bd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

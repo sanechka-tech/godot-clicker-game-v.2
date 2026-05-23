@@ -71,6 +71,26 @@ func change_scene_to_packed(
 	await _fade_in(fade_in_duration)
 
 
+func change_scene_with_black_screen_sound(
+	scene_path: String,
+	sound_callback: Callable,
+	fade_out_duration: float = FADE_OUT_DURATION,
+	fade_in_duration: float = FADE_IN_DURATION
+) -> void:
+	if _is_transitioning:
+		return
+
+	await _fade_out(fade_out_duration)
+	get_tree().change_scene_to_file(scene_path)
+	await get_tree().process_frame
+
+	var sound_player = sound_callback.call() as AudioStreamPlayer
+	if is_instance_valid(sound_player) and sound_player.playing:
+		await sound_player.finished
+
+	await _fade_in(fade_in_duration)
+
+
 func _fade_out(duration: float = FADE_OUT_DURATION) -> void:
 	_is_transitioning = true
 	visible = true

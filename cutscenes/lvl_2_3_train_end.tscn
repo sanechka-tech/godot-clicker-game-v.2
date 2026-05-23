@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://chffv8m8s2ng3"]
+
+[ext_resource type="Texture2D" uid="uid://dcrhtcd6k0w1v" path="res://Images/cutscenes/Level2/train inside arrival.png" id="1_1vyoe"]
+[ext_resource type="Texture2D" uid="uid://bnf577md7702j" path="res://Images/cutscenes/bg_for_text.png" id="2_eqeko"]
+[ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="3_opri1"]
+[ext_resource type="FontFile" uid="uid://buxbeon3odxds" path="res://CustomFont/EpilepsySans.ttf" id="4_ijuuk"]
+[ext_resource type="Script" path="res://cutscenes/lvl_2_3_train_end.gd" id="5_ijuuk"]
+
+[node name="Lvl23TrainEnd" type="Control" unique_id=956104619]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("5_ijuuk")
+
+[node name="BG Train" type="TextureRect" parent="." unique_id=2048417340]
+layout_mode = 0
+offset_top = -80.0
+offset_right = 1302.369
+offset_bottom = 653.0
+texture = ExtResource("1_1vyoe")
+expand_mode = 1
+
+[node name="BG Text" type="TextureRect" parent="." unique_id=2144263474]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 432.0
+offset_right = 1184.388
+offset_bottom = 584.0
+texture = ExtResource("2_eqeko")
+expand_mode = 1
+
+[node name="Name" type="Label" parent="BG Text" unique_id=424677055]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 17.0
+offset_right = 187.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.3529412)
+theme_override_colors/font_outline_color = Color(0.84705883, 0.16470589, 0.07450981, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_opri1")
+theme_override_font_sizes/font_size = 32
+text = "HERO_LEKS"
+
+[node name="Story" type="Label" parent="BG Text" unique_id=1409740464]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 60.0
+offset_right = 1037.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_colors/font_outline_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("4_ijuuk")
+theme_override_font_sizes/font_size = 26
+text = "STORY_LVL2_INTRO_004"
+autowrap_mode = 3

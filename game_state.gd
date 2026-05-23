@@ -11,6 +11,7 @@ var score: int = 0
 var tap_power: int = 100000
 var passive_score_per_second: int = 0
 var score_goal: int = 1000000
+var mini_game_after_story_key: StringName = &"STORY_LVL2_MINIGAME_WIN"
 var _passive_income_buffer: float = 0.0
 
 var upgrade_purchase_counts := {

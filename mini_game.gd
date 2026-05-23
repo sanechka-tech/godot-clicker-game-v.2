@@ -10,7 +10,8 @@ const ENEMY_SPAWN_MAX_Y := 240.0
 const MAX_ACTIVE_ENEMIES := 6
 const MAX_SUPPORT_ENEMIES_DURING_BOSS := 2
 const BOSS_SPAWN_TIME := 90.0
-
+const WIN_SCREEN_INPUT_LOCK_DURATION := 2.0
+const AFTER_MINI_GAME_SCENE_PATH := "res://cutscenes/lvl_2_2_after_mini_game.tscn"
 const SPACE_ENEMY_1_SCENE := preload("res://character/Mobs/space_enemy_1.tscn")
 const SPACE_ENEMY_2_SCENE := preload("res://character/Mobs/space_enemy_2.tscn")
 const SPACE_ENEMY_3_SCENE := preload("res://character/Mobs/space_enemy_3.tscn")
@@ -32,11 +33,13 @@ var spawn_time_left := 0.0
 var boss_spawned := false
 var boss_defeated := false
 var boss_support_spawn_time_left := 0.0
+var death_audio_started := false
+var death_sound_player: AudioStreamPlayer
+var win_screen_visible := false
+var win_screen_accepts_input := false
 
 
 func _ready() -> void:
-	AudioManager.play_minigame_music()
-
 	start_button.pressed.connect(_on_start_button_pressed)
 	retry_button.pressed.connect(_on_retry_button_pressed)
 	quit_button.pressed.connect(_on_quit_button_pressed)
@@ -48,6 +51,15 @@ func _ready() -> void:
 
 	_show_start_screen()
 	set_process(false)
+	call_deferred("_play_music_after_transition")
+
+
+func _play_music_after_transition() -> void:
+	var transition_screen = get_node_or_null("/root/TransitionScreen")
+	if transition_screen != null and transition_screen.is_transitioning():
+		await transition_screen.scene_revealed
+
+	AudioManager.play_minigame_music()
 
 
 func _process(delta: float) -> void:
@@ -71,19 +83,38 @@ func _on_start_button_pressed() -> void:
 
 
 func _on_retry_button_pressed() -> void:
+	AudioManager.stop_music()
+	_stop_death_sound()
 	get_tree().reload_current_scene()
 
 
 func _on_quit_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://menu.tscn")
+	AudioManager.stop_music()
+	_stop_death_sound()
+	GameState.mini_game_after_story_key = &"STORY_LVL2_MINIGAME_LOSE"
+	get_tree().change_scene_to_file(AFTER_MINI_GAME_SCENE_PATH)
 
 
 func _on_player_died() -> void:
+	if death_audio_started:
+		return
+
+	death_audio_started = true
 	game_running = false
 	set_process(false)
 	player.stop_run()
 	_clear_enemies_and_projectiles()
 	lose_label.visible = true
+	AudioManager.stop_music()
+	death_sound_player = AudioManager.play_you_died()
+
+
+func _stop_death_sound() -> void:
+	if not is_instance_valid(death_sound_player):
+		return
+
+	death_sound_player.stop()
+	death_sound_player.queue_free()
 
 
 func _start_game() -> void:
@@ -197,7 +228,39 @@ func _on_enemy_defeated(enemy_role: StringName) -> void:
 	set_process(false)
 	player.stop_run()
 	_clear_enemies_and_projectiles()
+	AudioManager.stop_music()
+	AudioManager.play_win()
 	win_label.visible = true
+	win_screen_visible = true
+	win_screen_accepts_input = false
+	call_deferred("_unlock_win_screen_input")
+
+
+func _unlock_win_screen_input() -> void:
+	await get_tree().create_timer(WIN_SCREEN_INPUT_LOCK_DURATION).timeout
+	win_screen_accepts_input = true
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not win_screen_visible or not win_screen_accepts_input:
+		return
+
+	if not _is_confirm_input(event):
+		return
+
+	get_viewport().set_input_as_handled()
+	GameState.mini_game_after_story_key = &"STORY_LVL2_MINIGAME_WIN"
+	get_tree().change_scene_to_file(AFTER_MINI_GAME_SCENE_PATH)
+
+
+func _is_confirm_input(event: InputEvent) -> bool:
+	if event is InputEventScreenTouch:
+		return event.pressed
+
+	if event is InputEventMouseButton:
+		return event.pressed and event.button_index == MOUSE_BUTTON_LEFT
+
+	return false
 
 
 func _active_enemy_count() -> int:

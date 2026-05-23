@@ -3,12 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://bnf577md7702j" path="res://Images/cutscenes/bg_for_text.png" id="1_oja4m"]
 [ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="2_g21te"]
 [ext_resource type="FontFile" uid="uid://buxbeon3odxds" path="res://CustomFont/EpilepsySans.ttf" id="3_qq06t"]
-[ext_resource type="Script" path="res://cutscenes/lvl_1_3_after.gd" id="4_qq06t"]
+[ext_resource type="Script" uid="uid://c7dsd0jrj0j0v" path="res://cutscenes/lvl_1_3_after.gd" id="4_qq06t"]
 
-[sub_resource type="Curve" id="Curve_lp1fw"]
+[sub_resource type="Curve" id="Curve_g21te"]
 
 [sub_resource type="CurveTexture" id="CurveTexture_xsjla"]
-curve = SubResource("Curve_lp1fw")
+curve = SubResource("Curve_g21te")
 
 [node name="Lvl13After" type="Control" unique_id=1687668160]
 layout_mode = 3
