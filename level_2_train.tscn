@@ -5,15 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://wildq01bebk4" path="res://level_2_bg_parallax.tscn" id="2_vdiwt"]
 [ext_resource type="Texture2D" uid="uid://dywudp4lmfgle" path="res://Images/BG/BGlvl2.png" id="3_vdiwt"]
 [ext_resource type="Texture2D" uid="uid://cpug1k42wgx5s" path="res://Images/BG/BGlvl2v2.png" id="4_ag7iv"]
-[ext_resource type="Texture2D" uid="uid://blrmi5btjs6se" path="res://icon.svg" id="5_v6j0g"]
-[ext_resource type="Texture2D" uid="uid://cmtbbm0efhxd2" path="res://Images/start button/button_normal.png" id="6_8dgme"]
-[ext_resource type="Texture2D" uid="uid://bvvypoq4sji6s" path="res://Images/Background_Main_screen.png" id="6_hwe8d"]
 [ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="6_yyfn6"]
 [ext_resource type="Texture2D" uid="uid://dorthgpxjhvpn" path="res://Images/Progress bars/loading_bar_empty_lvl1.png" id="7_cba62"]
-[ext_resource type="Texture2D" uid="uid://bqfa1omoepxl1" path="res://Images/start button/button_pressed.png" id="7_m1edi"]
 [ext_resource type="Texture2D" uid="uid://88kvdjol2juk" path="res://Images/Progress bars/loading_bar_empty_lvl1(short).png" id="8_ulx2m"]
 [ext_resource type="Texture2D" uid="uid://dv5tg3wmwdk0k" path="res://Images/Progress bars/loading_bar_full_lvl1(short).png" id="9_mdfnl"]
 [ext_resource type="Texture2D" uid="uid://bn0fddij1qj3v" path="res://Images/Progress bars/poogoal.png" id="10_konry"]
+[ext_resource type="Texture2D" uid="uid://dm122enjmixdr" path="res://Images/Lvl2/lose_area.png" id="11_63twg"]
+[ext_resource type="Texture2D" uid="uid://dece0lj1jb4i4" path="res://Images/settings/button_feedback.png" id="12_vdiwt"]
 [ext_resource type="Texture2D" uid="uid://bkokj0oosgyev" path="res://Images/Shops/button.png" id="14_cba62"]
 [ext_resource type="Texture2D" uid="uid://7k4ecisi8m4c" path="res://Images/Shops/lvl1/ShopToiletLvl1.png" id="15_fla5b"]
 [ext_resource type="Texture2D" uid="uid://b3enrw1u1tb1o" path="res://Images/Shops/button2.png" id="15_ulx2m"]
@@ -28,8 +26,8 @@
 
 [node name="Level2_train" type="Node2D" unique_id=930383090]
 script = ExtResource("1_h1v4g")
-metadata/_edit_horizontal_guides_ = [631.0, 234.0]
-metadata/_edit_vertical_guides_ = [826.0, 856.0]
+metadata/_edit_horizontal_guides_ = [631.0, 234.0, 300.0]
+metadata/_edit_vertical_guides_ = [826.0, 856.0, 650.0]
 
 [node name="level_2_bg_parallax" parent="." unique_id=208461330 instance=ExtResource("2_vdiwt")]
 position = Vector2(-305, -126)
@@ -107,60 +105,6 @@ offset_bottom = 35.0
 mouse_filter = 2
 texture = ExtResource("10_konry")
 expand_mode = 1
-
-[node name="Lvl2Win" type="TextureRect" parent="." unique_id=1329865549]
-visible = false
-offset_left = 329.0
-offset_top = 166.0
-offset_right = 813.0
-offset_bottom = 499.0
-texture = ExtResource("5_v6j0g")
-
-[node name="TextEdit" type="TextEdit" parent="Lvl2Win" unique_id=1923828481]
-layout_mode = 0
-offset_left = 190.0
-offset_top = 84.0
-offset_right = 294.0
-offset_bottom = 146.0
-text = "You won"
-
-[node name="Lvl2Passed" type="TextureButton" parent="Lvl2Win" unique_id=1941807197]
-layout_mode = 0
-offset_left = 79.0
-offset_top = 190.0
-offset_right = 429.0
-offset_bottom = 266.0
-action_mode = 0
-texture_normal = ExtResource("6_8dgme")
-texture_pressed = ExtResource("6_8dgme")
-texture_hover = ExtResource("7_m1edi")
-
-[node name="Lvl2Lose" type="TextureRect" parent="." unique_id=572542563]
-visible = false
-offset_left = 389.0
-offset_top = 143.0
-offset_right = 793.0
-offset_bottom = 544.0
-texture = ExtResource("6_hwe8d")
-
-[node name="Lvl2Retry" type="TextureButton" parent="Lvl2Lose" unique_id=882034792]
-layout_mode = 0
-offset_left = 33.0
-offset_top = 265.0
-offset_right = 383.0
-offset_bottom = 341.0
-action_mode = 0
-texture_normal = ExtResource("6_8dgme")
-texture_pressed = ExtResource("6_8dgme")
-texture_hover = ExtResource("7_m1edi")
-
-[node name="TextEdit" type="TextEdit" parent="Lvl2Lose" unique_id=204706255]
-layout_mode = 0
-offset_left = 161.0
-offset_top = 119.0
-offset_right = 265.0
-offset_bottom = 181.0
-text = "LOST"
 
 [node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=427003070]
 layer = 100
@@ -438,3 +382,58 @@ theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
 theme_override_fonts/font = ExtResource("6_yyfn6")
 theme_override_font_sizes/font_size = 24
 text = "999k"
+
+[node name="LoseLayer" type="CanvasLayer" parent="." unique_id=1931496673]
+layer = 50
+
+[node name="Lvl2LoseDim" type="ColorRect" parent="LoseLayer" unique_id=1063408154]
+visible = false
+offset_right = 1300.0
+offset_bottom = 600.0
+color = Color(0.019607844, 0.019607844, 0.019607844, 0.72156864)
+
+[node name="Lvl2Lose" type="TextureRect" parent="LoseLayer" unique_id=572542563]
+visible = false
+offset_left = 286.0
+offset_top = 129.0
+offset_right = 1014.2154
+offset_bottom = 472.0
+texture = ExtResource("11_63twg")
+expand_mode = 1
+
+[node name="Lvl2Retry" type="TextureButton" parent="LoseLayer/Lvl2Lose" unique_id=882034792]
+layout_mode = 0
+offset_left = 249.0
+offset_top = 195.0
+offset_right = 479.0
+offset_bottom = 251.0
+action_mode = 0
+texture_normal = ExtResource("12_vdiwt")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Retry" type="Label" parent="LoseLayer/Lvl2Lose/Lvl2Retry" unique_id=1204927482]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 13.0
+offset_right = 195.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_fonts/font = ExtResource("6_yyfn6")
+theme_override_font_sizes/font_size = 20
+text = "LEVEL_RETRY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lose" type="Label" parent="LoseLayer/Lvl2Lose" unique_id=1388903352]
+layout_mode = 0
+offset_left = 154.0
+offset_top = 114.0
+offset_right = 575.0
+offset_bottom = 176.0
+theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+theme_override_fonts/font = ExtResource("6_yyfn6")
+theme_override_font_sizes/font_size = 38
+text = "STORY_LVL2_TRAIN_LOSE"
+horizontal_alignment = 1
+vertical_alignment = 1

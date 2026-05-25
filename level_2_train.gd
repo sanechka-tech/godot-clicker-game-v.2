@@ -9,6 +9,11 @@ const PROGRESS_GOAL_ICON_TRACK_START_OFFSET := 0.0
 const PROGRESS_GOAL_ICON_TRACK_END_OFFSET := 0.0
 const PROGRESS_GOAL_ICON_OFFSET := Vector2.ZERO
 const SHOP_FACE_PRESS_OFFSET := Vector2(0.0, 2.0)
+const FINAL_UI_EXIT_DURATION := 0.8
+const FINAL_UI_EXIT_EXTRA_DISTANCE := 80.0
+const LEVEL_2_AFTER_SCENE_PATH := "res://cutscenes/lvl_3_village_intro_1.tscn"
+const LEVEL_2_AFTER_TRANSITION_FADE_OUT_DURATION := 0.6
+const LEVEL_2_AFTER_TRANSITION_FADE_IN_DURATION := 0.1
 const SHOP_TEXTURE_NORMAL := &"normal"
 const SHOP_TEXTURE_PRESSED := &"pressed"
 const SHOP_TEXTURE_DISABLED := &"disabled"
@@ -48,18 +53,21 @@ const FART_2_SCENE := preload("res://character/Mobs/Fart2.tscn")
 const FART_3_SCENE := preload("res://character/Mobs/Fart3.tscn")
 
 @onready var character = $Character
+@onready var level_2_bg_parallax = $level_2_bg_parallax
+@onready var counter: CanvasLayer = $Counter
+@onready var shop_lvl_2: Control = $ShopLvl2
 @onready var coins_label: Label = $Counter/CoinsCounter2/Label
 @onready var time_label: Label = _find_time_label()
 @onready var progress_goal: Range = $ProgressGoalLvl2
 @onready var progress_goal_icon: Control = _find_progress_goal_icon()
 @onready var effects_layer: Node2D = $TapEffects
-@onready var level_2_win: CanvasItem = $Lvl2Win
-@onready var level_2_lose: CanvasItem = $Lvl2Lose
-@onready var level_2_retry_button: BaseButton = $Lvl2Lose/Lvl2Retry
-@onready var level_2_passed_button: BaseButton = $Lvl2Win/Lvl2Passed
+@onready var level_2_lose_dim: CanvasItem = $LoseLayer/Lvl2LoseDim
+@onready var level_2_lose: CanvasItem = $LoseLayer/Lvl2Lose
+@onready var level_2_retry_button: BaseButton = $LoseLayer/Lvl2Lose/Lvl2Retry
 
 var time_left_seconds := ROUND_DURATION_SECONDS
 var round_finished := false
+var final_pressure_sequence_started := false
 var mob_spawn_time_left := MOB_SPAWN_INTERVAL
 var shop_face_start_positions := {}
 var shop_face_tweens := {}
@@ -85,7 +93,6 @@ func _ready() -> void:
 	GameState.coins_changed.connect(_on_coins_changed)
 	GameState.score_changed.connect(_on_score_changed)
 	level_2_retry_button.pressed.connect(_on_lvl_2_retry_pressed)
-	level_2_passed_button.pressed.connect(_on_lvl_2_passed_pressed)
 	_setup_shop_face_press_effects()
 	_setup_level_2_shop_buttons()
 
@@ -160,7 +167,7 @@ func _update_goal_progress() -> void:
 
 
 func _hide_round_result_panels() -> void:
-	level_2_win.visible = false
+	level_2_lose_dim.visible = false
 	level_2_lose.visible = false
 
 
@@ -169,8 +176,12 @@ func _finish_round(did_win: bool) -> void:
 		return
 
 	round_finished = true
-	level_2_win.visible = did_win
-	level_2_lose.visible = not did_win
+	if did_win:
+		_start_final_pressure_sequence()
+	else:
+		_pause_level_2_background_motion()
+		level_2_lose_dim.visible = true
+		level_2_lose.visible = true
 
 	for fart_mob in get_tree().get_nodes_in_group("fart_mobs"):
 		fart_mob.queue_free()
@@ -180,8 +191,51 @@ func _on_lvl_2_retry_pressed() -> void:
 	get_tree().reload_current_scene()
 
 
-func _on_lvl_2_passed_pressed() -> void:
-	pass
+func _pause_level_2_background_motion() -> void:
+	if level_2_bg_parallax != null and level_2_bg_parallax.has_method("set_scroll_enabled"):
+		level_2_bg_parallax.set_scroll_enabled(false)
+
+
+func _start_final_pressure_sequence() -> void:
+	if final_pressure_sequence_started:
+		return
+
+	final_pressure_sequence_started = true
+	_play_final_pressure_sequence()
+
+
+func _play_final_pressure_sequence() -> void:
+	if character.has_method("lock_final_pose"):
+		character.lock_final_pose()
+
+	for upgrade_id in SHOP_LEVEL_2_BUTTONS:
+		var button := get_node(SHOP_LEVEL_2_BUTTONS[upgrade_id]) as TextureButton
+		button.disabled = true
+
+	var final_pressure_player := AudioManager.play_final_pressure()
+	var exit_distance := get_viewport_rect().size.x + FINAL_UI_EXIT_EXTRA_DISTANCE
+	var tween := create_tween()
+	tween.set_parallel(true)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(counter, "offset:x", counter.offset.x + exit_distance, FINAL_UI_EXIT_DURATION)
+	tween.tween_property(shop_lvl_2, "position:x", shop_lvl_2.position.x + exit_distance, FINAL_UI_EXIT_DURATION)
+
+	await tween.finished
+	if is_instance_valid(final_pressure_player) and final_pressure_player.playing:
+		await final_pressure_player.finished
+
+	AudioManager.play_final_toilet_flush()
+
+	var transition_screen = get_node_or_null("/root/TransitionScreen")
+	if transition_screen != null:
+		transition_screen.change_scene(
+			LEVEL_2_AFTER_SCENE_PATH,
+			LEVEL_2_AFTER_TRANSITION_FADE_OUT_DURATION,
+			LEVEL_2_AFTER_TRANSITION_FADE_IN_DURATION
+		)
+	else:
+		get_tree().change_scene_to_file(LEVEL_2_AFTER_SCENE_PATH)
 
 
 func _find_time_label() -> Label:

@@ -15,12 +15,25 @@ func _ready() -> void:
 	_setup_layer(parallax_stolb, stolb_scroll_speed)
 
 
+func set_scroll_enabled(is_enabled: bool) -> void:
+	_set_layer_scroll_enabled(parallax_sky, sky_scroll_speed, is_enabled)
+	_set_layer_scroll_enabled(parallax_wood, wood_scroll_speed, is_enabled)
+	_set_layer_scroll_enabled(parallax_stolb, stolb_scroll_speed, is_enabled)
+
+
 func _setup_layer(layer: Parallax2D, scroll_speed: float) -> void:
 	if layer == null:
 		return
 
 	layer.autoscroll = Vector2(scroll_speed, 0.0)
 	layer.repeat_size = _calculate_repeat_size(layer)
+
+
+func _set_layer_scroll_enabled(layer: Parallax2D, scroll_speed: float, is_enabled: bool) -> void:
+	if layer == null:
+		return
+
+	layer.autoscroll = Vector2(scroll_speed, 0.0) if is_enabled else Vector2.ZERO
 
 
 func _calculate_repeat_size(layer: Parallax2D) -> Vector2:
