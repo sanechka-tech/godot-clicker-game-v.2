@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b4essxt7epbcu"]
 
 [ext_resource type="Texture2D" uid="uid://co7wpm2xo2env" path="res://Images/cutscenes/Level1/screen-1.png" id="1_7yn5h"]
+[ext_resource type="Texture2D" uid="uid://bxcbemjt4nm72" path="res://Images/cutscenes/Level1/screen-1(error).png" id="2_5wq1e"]
 [ext_resource type="Texture2D" uid="uid://bnf577md7702j" path="res://Images/cutscenes/bg_for_text.png" id="2_wrkyb"]
 [ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="3_lcbtw"]
 [ext_resource type="FontFile" uid="uid://buxbeon3odxds" path="res://CustomFont/EpilepsySans.ttf" id="4_snqoy"]
@@ -18,6 +19,15 @@ offset_top = -80.0
 offset_right = 1302.369
 offset_bottom = 653.0
 texture = ExtResource("1_7yn5h")
+expand_mode = 1
+
+[node name="BG Leks(error)" type="TextureRect" parent="." unique_id=1923587001]
+visible = false
+layout_mode = 0
+offset_top = -80.0
+offset_right = 1302.369
+offset_bottom = 653.0
+texture = ExtResource("2_5wq1e")
 expand_mode = 1
 
 [node name="BG Text" type="TextureRect" parent="." unique_id=451061372]

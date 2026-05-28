@@ -15,18 +15,29 @@ const LEVEL_3_INTRO_FIELDS_BACKGROUND := preload("res://Audio/SFX/lvl3_before/Fi
 const LEVEL_3_INTRO_STOMACH_SOUND := preload("res://Audio/SFX/lvl3_before/stomach_sound.mp3")
 const LEVEL_3_INTRO_RUN_AWAY := preload("res://Audio/SFX/lvl3_before/Run_away.mp3")
 const LEVEL_3_INTRO_CLOSE_THE_DOOR := preload("res://Audio/SFX/lvl3_before/Close_the_door.mp3")
+const LEVEL_1_INTRO_BG_ROOM := preload("res://Audio/SFX/lvl1_before/bg_room.mp3")
+const LEVEL_1_INTRO_BIP_BIP := preload("res://Audio/SFX/lvl1_before/bip-bip.mp3")
+const LEVEL_1_INTRO_ERROR := preload("res://Audio/SFX/lvl1_before/error.mp3")
+const LEVEL_1_CALL_RING_PHONE := preload("res://Audio/SFX/lvl1_before/ring_phone.mp3")
+const TYPEWRITER_SFX := preload("res://Audio/SFX/keyboard for text.mp3")
 const LEVEL_3_INTRO_FIELDS_VOLUME := 0.3
 const LEVEL_3_MUSIC_VOLUME := 0.15
 const MAIN_THEME_VOLUME := 0.3
+const LEVEL_1_CALL_RING_PHONE_VOLUME := 0.5
+const TYPEWRITER_VOLUME := 0.3
+const TYPEWRITER_MIN_EXCERPT_LENGTH := 0.35
 
 var music_player: AudioStreamPlayer
 var level_3_intro_ambience_player: AudioStreamPlayer
+var typewriter_player: AudioStreamPlayer
 var pops_since_last_fart := 0
 var restart_music_on_finish := false
 var minigame_music_loop_enabled := false
 var minigame_music_loop_transitioning := false
 var music_fade_tween: Tween
 var level_3_intro_ambience_should_loop := false
+var typewriter_active := false
+var typewriter_rng := RandomNumberGenerator.new()
 
 var bubble_burst_streams: Array[AudioStream] = [
 	preload("res://Audio/bubble_burst1.mp3"),
@@ -65,6 +76,13 @@ func _ready() -> void:
 	level_3_intro_ambience_player.finished.connect(_on_level_3_intro_ambience_finished)
 	add_child(level_3_intro_ambience_player)
 
+	typewriter_player = AudioStreamPlayer.new()
+	typewriter_player.process_mode = Node.PROCESS_MODE_ALWAYS
+	typewriter_player.bus = SFX_BUS
+	typewriter_player.stream = TYPEWRITER_SFX
+	typewriter_player.finished.connect(_on_typewriter_finished)
+	add_child(typewriter_player)
+
 
 func play_minigame_music() -> void:
 	minigame_music_loop_enabled = true
@@ -75,7 +93,13 @@ func play_minigame_music() -> void:
 func play_main_theme() -> void:
 	minigame_music_loop_enabled = false
 	minigame_music_loop_transitioning = false
-	_play_music(MAIN_THEME, true, MAIN_THEME_VOLUME)
+	var main_theme_stream := MAIN_THEME.duplicate() as AudioStreamMP3
+	if main_theme_stream == null:
+		_play_music(MAIN_THEME, true, MAIN_THEME_VOLUME)
+		return
+
+	main_theme_stream.loop = true
+	_play_music(main_theme_stream, false, MAIN_THEME_VOLUME)
 
 
 func play_level_3_music() -> void:
@@ -152,6 +176,55 @@ func play_level_3_intro_close_the_door() -> AudioStreamPlayer:
 	return _play_stream(LEVEL_3_INTRO_CLOSE_THE_DOOR)
 
 
+func play_level_1_intro_bg_room() -> AudioStreamPlayer:
+	var bg_room_stream := LEVEL_1_INTRO_BG_ROOM.duplicate() as AudioStreamMP3
+	if bg_room_stream == null:
+		return _play_stream(LEVEL_1_INTRO_BG_ROOM)
+
+	bg_room_stream.loop = true
+	return _play_stream(bg_room_stream)
+
+
+func play_level_1_intro_bip_bip() -> AudioStreamPlayer:
+	var bip_bip_stream := LEVEL_1_INTRO_BIP_BIP.duplicate() as AudioStreamMP3
+	if bip_bip_stream == null:
+		return _play_stream(LEVEL_1_INTRO_BIP_BIP)
+
+	bip_bip_stream.loop = true
+	return _play_stream(bip_bip_stream)
+
+
+func play_level_1_intro_error() -> AudioStreamPlayer:
+	return _play_stream(LEVEL_1_INTRO_ERROR)
+
+
+func play_level_1_call_ring_phone() -> AudioStreamPlayer:
+	return _play_stream(LEVEL_1_CALL_RING_PHONE, LEVEL_1_CALL_RING_PHONE_VOLUME)
+
+
+func start_typewriter_sfx(speed_scale: float = 1.0) -> void:
+	if typewriter_player == null or TYPEWRITER_SFX == null:
+		return
+
+	typewriter_active = true
+	typewriter_player.volume_db = linear_to_db(TYPEWRITER_VOLUME)
+	typewriter_player.pitch_scale = 1.0
+	_play_typewriter_excerpt()
+
+
+func set_typewriter_speed(speed_scale: float) -> void:
+	return
+
+
+func stop_typewriter_sfx() -> void:
+	typewriter_active = false
+
+	if typewriter_player == null:
+		return
+
+	typewriter_player.stop()
+
+
 func play_fart_mob_pop_sounds() -> void:
 	_play_random_stream(bubble_burst_streams)
 
@@ -203,7 +276,7 @@ func _play_random_stream(streams: Array[AudioStream]) -> void:
 	_play_stream(streams[randi() % streams.size()])
 
 
-func _play_stream(stream: AudioStream) -> AudioStreamPlayer:
+func _play_stream(stream: AudioStream, volume_linear: float = 1.0) -> AudioStreamPlayer:
 	if stream == null:
 		return null
 
@@ -211,6 +284,7 @@ func _play_stream(stream: AudioStream) -> AudioStreamPlayer:
 	player.process_mode = Node.PROCESS_MODE_ALWAYS
 	player.bus = SFX_BUS
 	player.stream = stream
+	player.volume_db = linear_to_db(volume_linear)
 	add_child(player)
 	player.finished.connect(player.queue_free)
 	player.play()
@@ -326,3 +400,24 @@ func _on_level_3_intro_ambience_finished() -> void:
 		return
 
 	level_3_intro_ambience_player.play()
+
+
+func _on_typewriter_finished() -> void:
+	if not typewriter_active:
+		return
+
+	_play_typewriter_excerpt()
+
+
+func _play_typewriter_excerpt() -> void:
+	if typewriter_player == null or typewriter_player.stream == null:
+		return
+
+	var stream_length := typewriter_player.stream.get_length()
+	var max_start_time := maxf(stream_length - TYPEWRITER_MIN_EXCERPT_LENGTH, 0.0)
+	var start_time := 0.0
+
+	if max_start_time > 0.0:
+		start_time = typewriter_rng.randf_range(0.0, max_start_time)
+
+	typewriter_player.play(start_time)

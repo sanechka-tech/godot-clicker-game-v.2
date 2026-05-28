@@ -6,6 +6,8 @@ const NAME_FADE_DURATION := 0.2
 const STORY_SECONDS_PER_CHARACTER := 0.1
 const FAST_STORY_SECONDS_PER_CHARACTER := 0.008
 const HIDDEN_SPEAKER_KEY := "NONE"
+const BIP_BIP_STORY_KEY := "STORY_LVL1_INTRO_018"
+const STOMACH_SOUND_STORY_KEY := "STORY_LVL1_INTRO_022"
 const NEXT_SCENE_PATH := "res://main_screen.tscn"
 const DIALOG_LINES := [
 	{"name": "HERO_LEKS", "story": "STORY_LVL1_INTRO_002"},
@@ -36,6 +38,8 @@ const DIALOG_LINES := [
 @onready var name_label: Label = $"BG Text/Name"
 @onready var story_label: Label = $"BG Text/Story"
 
+var _ring_phone_player: AudioStreamPlayer
+var _bip_bip_player: AudioStreamPlayer
 var _is_typing_story := false
 var _story_type_speed := STORY_SECONDS_PER_CHARACTER
 var _story_finished := false
@@ -54,7 +58,7 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if _is_typing_story:
-		_story_type_speed = FAST_STORY_SECONDS_PER_CHARACTER
+		_set_story_type_speed(FAST_STORY_SECONDS_PER_CHARACTER)
 		return
 
 	if _dialog_finished:
@@ -76,12 +80,23 @@ func _ready() -> void:
 	call_deferred("_play_intro_sequence")
 
 
+func _exit_tree() -> void:
+	AudioManager.stop_typewriter_sfx()
+	_stop_bip_bip()
+	if is_instance_valid(_ring_phone_player):
+		_ring_phone_player.stop()
+
+
 func _play_intro_sequence() -> void:
 	var transition_screen = get_node_or_null("/root/TransitionScreen")
+	_ring_phone_player = AudioManager.play_level_1_call_ring_phone()
+
 	if transition_screen != null and transition_screen.is_transitioning():
 		await transition_screen.scene_revealed
 
 	await get_tree().create_timer(INTRO_DELAY_AFTER_REVEAL).timeout
+	if is_instance_valid(_ring_phone_player):
+		_ring_phone_player.stop()
 	await _show_bg_text()
 	await _show_current_line()
 
@@ -136,18 +151,33 @@ func _type_story(story_key: String) -> void:
 
 	var character_count := story_label.get_total_character_count()
 	if character_count <= 0:
+		AudioManager.stop_typewriter_sfx()
 		_story_finished = true
 		return
 
 	_is_typing_story = true
-	_story_type_speed = STORY_SECONDS_PER_CHARACTER
+	_set_story_type_speed(STORY_SECONDS_PER_CHARACTER)
+	if story_key == BIP_BIP_STORY_KEY:
+		_bip_bip_player = AudioManager.play_level_1_intro_bip_bip()
+	if story_key == STOMACH_SOUND_STORY_KEY:
+		AudioManager.play_level_3_intro_stomach_sound()
+	AudioManager.start_typewriter_sfx(STORY_SECONDS_PER_CHARACTER / _story_type_speed)
 
 	while story_label.visible_characters < character_count:
 		story_label.visible_characters += 1
 		await get_tree().create_timer(_story_type_speed).timeout
 
 	_is_typing_story = false
+	AudioManager.stop_typewriter_sfx()
+	if story_key == BIP_BIP_STORY_KEY:
+		_stop_bip_bip()
 	_story_finished = true
+
+
+func _set_story_type_speed(value: float) -> void:
+	_story_type_speed = value
+	if _is_typing_story:
+		AudioManager.set_typewriter_speed(STORY_SECONDS_PER_CHARACTER / _story_type_speed)
 
 
 func _show_next_line() -> void:
@@ -167,8 +197,21 @@ func _change_to_next_scene() -> void:
 		return
 
 	_is_changing_scene = true
+	_stop_bip_bip()
+	if is_instance_valid(_ring_phone_player):
+		_ring_phone_player.stop()
 	var transition_screen = get_node_or_null("/root/TransitionScreen")
 	if transition_screen != null:
 		transition_screen.change_scene(NEXT_SCENE_PATH)
 	else:
 		get_tree().change_scene_to_file(NEXT_SCENE_PATH)
+
+
+func _stop_bip_bip() -> void:
+	if not is_instance_valid(_bip_bip_player):
+		_bip_bip_player = null
+		return
+
+	_bip_bip_player.stop()
+	_bip_bip_player.queue_free()
+	_bip_bip_player = null

@@ -33,7 +33,7 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if _is_typing_story:
-		_story_type_speed = FAST_STORY_SECONDS_PER_CHARACTER
+		_set_story_type_speed(FAST_STORY_SECONDS_PER_CHARACTER)
 		return
 
 	if _dialog_finished:
@@ -53,6 +53,10 @@ func _ready() -> void:
 	story_label.visible_characters = 0
 
 	call_deferred("_play_intro_sequence")
+
+
+func _exit_tree() -> void:
+	AudioManager.stop_typewriter_sfx()
 
 
 func _play_intro_sequence() -> void:
@@ -109,18 +113,27 @@ func _type_story(story_key: String) -> void:
 
 	var character_count := story_label.get_total_character_count()
 	if character_count <= 0:
+		AudioManager.stop_typewriter_sfx()
 		_story_finished = true
 		return
 
 	_is_typing_story = true
-	_story_type_speed = STORY_SECONDS_PER_CHARACTER
+	_set_story_type_speed(STORY_SECONDS_PER_CHARACTER)
+	AudioManager.start_typewriter_sfx(STORY_SECONDS_PER_CHARACTER / _story_type_speed)
 
 	while story_label.visible_characters < character_count:
 		story_label.visible_characters += 1
 		await get_tree().create_timer(_story_type_speed).timeout
 
 	_is_typing_story = false
+	AudioManager.stop_typewriter_sfx()
 	_story_finished = true
+
+
+func _set_story_type_speed(value: float) -> void:
+	_story_type_speed = value
+	if _is_typing_story:
+		AudioManager.set_typewriter_speed(STORY_SECONDS_PER_CHARACTER / _story_type_speed)
 
 
 func _show_next_line() -> void:

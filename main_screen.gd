@@ -44,7 +44,7 @@ var final_pressure_sequence_started := false
 
 
 func _ready() -> void:
-	AudioManager.stop_music()
+	AudioManager.play_main_theme()
 
 	character.tapped.connect(_on_character_tapped)
 	GameState.coins_changed.connect(_on_coins_changed)
@@ -172,6 +172,7 @@ func _try_start_final_pressure_sequence() -> void:
 		return
 
 	final_pressure_sequence_started = true
+	AudioManager.stop_music()
 	_play_final_pressure_sequence()
 
 
