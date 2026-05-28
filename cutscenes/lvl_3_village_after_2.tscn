@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://c32v1bxh4a1kt"]
 
 [ext_resource type="Texture2D" uid="uid://dqsy2i04thulg" path="res://Images/cutscenes/Level3/lvl3_village_the_end.jpg" id="1_4icn7"]
-[ext_resource type="Texture2D" uid="uid://bnf577md7702j" path="res://Images/cutscenes/bg_for_text.png" id="2_lrdy3"]
 [ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="3_gosmf"]
 [ext_resource type="Script" uid="uid://crdwuj2swarcf" path="res://cutscenes/lvl_3_village_after_2.gd" id="5_fw32b"]
 
@@ -27,27 +26,3 @@ theme_override_font_sizes/font_size = 75
 text = "STORY_END_FINISH_001"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="BG Text" type="TextureRect" parent="." unique_id=2104468547]
-visible = false
-offset_left = 115.0
-offset_top = 432.0
-offset_right = 1184.388
-offset_bottom = 584.0
-texture = ExtResource("2_lrdy3")
-expand_mode = 1
-
-[node name="Name" type="Label" parent="BG Text" unique_id=1448923789]
-visible = false
-layout_mode = 0
-offset_left = 37.0
-offset_top = 17.0
-offset_right = 187.0
-offset_bottom = 50.0
-theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.3529412)
-theme_override_colors/font_outline_color = Color(0.84705883, 0.16470589, 0.07450981, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("3_gosmf")
-theme_override_font_sizes/font_size = 32
-text = "HERO_LEKS"

@@ -44,7 +44,7 @@ var final_pressure_sequence_started := false
 
 
 func _ready() -> void:
-	AudioManager.play_default_music()
+	AudioManager.stop_music()
 
 	character.tapped.connect(_on_character_tapped)
 	GameState.coins_changed.connect(_on_coins_changed)
@@ -197,6 +197,7 @@ func _play_final_pressure_sequence() -> void:
 		await final_pressure_player.finished
 
 	AudioManager.play_final_toilet_flush()
+	GameState.save_progress(LEVEL_1_AFTER_SCENE_PATH)
 
 	var transition_screen = get_node_or_null("/root/TransitionScreen")
 	if transition_screen != null:

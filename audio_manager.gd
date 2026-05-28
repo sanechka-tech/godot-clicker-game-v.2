@@ -1,6 +1,6 @@
 extends Node
 
-const DEFAULT_MUSIC := preload("res://Audio/background_music.ogg")
+const MAIN_THEME := preload("res://Audio/Music/main_theme.mp3")
 const MINIGAME_MUSIC := preload("res://Audio/Music/Minigame_sound.mp3")
 const LEVEL_3_MUSIC := preload("res://Audio/Music/lvl3_background_music.mp3")
 const FINAL_PRESSURE := preload("res://Audio/SFX/lvl1/final_pressure.mp3")
@@ -17,6 +17,7 @@ const LEVEL_3_INTRO_RUN_AWAY := preload("res://Audio/SFX/lvl3_before/Run_away.mp
 const LEVEL_3_INTRO_CLOSE_THE_DOOR := preload("res://Audio/SFX/lvl3_before/Close_the_door.mp3")
 const LEVEL_3_INTRO_FIELDS_VOLUME := 0.3
 const LEVEL_3_MUSIC_VOLUME := 0.15
+const MAIN_THEME_VOLUME := 0.3
 
 var music_player: AudioStreamPlayer
 var level_3_intro_ambience_player: AudioStreamPlayer
@@ -64,18 +65,17 @@ func _ready() -> void:
 	level_3_intro_ambience_player.finished.connect(_on_level_3_intro_ambience_finished)
 	add_child(level_3_intro_ambience_player)
 
-	play_default_music()
-
-
-func play_default_music() -> void:
-	minigame_music_loop_enabled = false
-	_play_music(DEFAULT_MUSIC)
-
 
 func play_minigame_music() -> void:
 	minigame_music_loop_enabled = true
 	minigame_music_loop_transitioning = false
 	_play_music(MINIGAME_MUSIC)
+
+
+func play_main_theme() -> void:
+	minigame_music_loop_enabled = false
+	minigame_music_loop_transitioning = false
+	_play_music(MAIN_THEME, true, MAIN_THEME_VOLUME)
 
 
 func play_level_3_music() -> void:
@@ -94,6 +94,7 @@ func stop_music() -> void:
 		return
 
 	music_player.stop()
+	music_player.stream = null
 	music_player.volume_db = 0.0
 
 

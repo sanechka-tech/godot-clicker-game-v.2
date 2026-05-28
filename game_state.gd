@@ -6,6 +6,9 @@ signal tap_power_changed(new_value: int)
 signal passive_score_per_second_changed(new_value: int)
 signal shop_changed
 
+const SAVE_FILE_PATH := "user://save_game.json"
+const SAVE_VERSION := 1
+
 var shitty_coins: int = 0
 var score: int = 0
 var tap_power: int = 100000
@@ -236,3 +239,51 @@ func start_level(new_score_goal: int) -> void:
 	tap_power_changed.emit(tap_power)
 	passive_score_per_second_changed.emit(passive_score_per_second)
 	shop_changed.emit()
+
+
+func save_progress(scene_path: String) -> bool:
+	if scene_path.is_empty() or not ResourceLoader.exists(scene_path):
+		return false
+
+	var save_data := {
+		"version": SAVE_VERSION,
+		"scene_path": scene_path,
+	}
+	var save_file := FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
+	if save_file == null:
+		push_warning("Could not open save file for writing: %s" % FileAccess.get_open_error())
+		return false
+
+	save_file.store_string(JSON.stringify(save_data))
+	return true
+
+
+func has_save() -> bool:
+	var scene_path := get_saved_scene_path()
+	return not scene_path.is_empty()
+
+
+func get_saved_scene_path() -> String:
+	if not FileAccess.file_exists(SAVE_FILE_PATH):
+		return ""
+
+	var save_file := FileAccess.open(SAVE_FILE_PATH, FileAccess.READ)
+	if save_file == null:
+		return ""
+
+	var parsed_data = JSON.parse_string(save_file.get_as_text())
+	if not (parsed_data is Dictionary):
+		return ""
+
+	var scene_path := str(parsed_data.get("scene_path", ""))
+	if scene_path.is_empty() or not ResourceLoader.exists(scene_path):
+		return ""
+
+	return scene_path
+
+
+func clear_progress() -> void:
+	if FileAccess.file_exists(SAVE_FILE_PATH):
+		var user_dir := DirAccess.open("user://")
+		if user_dir != null:
+			user_dir.remove("save_game.json")

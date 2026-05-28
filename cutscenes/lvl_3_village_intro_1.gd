@@ -1,151 +1,159 @@
 extends Node2D
 
 const NEXT_SCENE_PATH := "res://cutscenes/lvl_3_village_intro_2.tscn"
-const RUN_AWAY_FALLBACK_DURATION := 7.0
-const PHRASE_KEYS: Array[StringName] = [
-	&"STORY_LVL3_INTRO_001",
-	&"STORY_LVL3_INTRO_002",
-	&"STORY_LVL3_INTRO_003",
-	&"STORY_LVL3_INTRO_004",
-	&"STORY_LVL3_INTRO_005",
+const INTRO_DELAY_AFTER_REVEAL := 1.0
+const BG_TEXT_FADE_DURATION := 0.25
+const NAME_FADE_DURATION := 0.2
+const STORY_SECONDS_PER_CHARACTER := 0.1
+const FAST_STORY_SECONDS_PER_CHARACTER := 0.008
+const DIALOG_LINES := [
+	{"name": "HERO_LEKS", "story": "STORY_LVL3_INTRO_001"},
+	{"name": "HERO_LEKS", "story": "STORY_LVL3_INTRO_002"},
+	{"name": "HERO_LEKS", "story": "STORY_LVL3_INTRO_003"},
+	{"name": "HERO_LEKS", "story": "STORY_LVL3_INTRO_004"},
+	{"name": "HERO_LEKS", "story": "STORY_LVL3_INTRO_005"},
 ]
 
-@export var characters_per_second: float = 20.0
+@onready var bg_text: TextureRect = $"BG Text"
+@onready var name_label: Label = $"BG Text/Name"
+@onready var story_label: Label = $"BG Text/Story"
 
-@onready var story_label: Label = _find_story_label()
-
-var fade_rect: ColorRect
-var visible_characters_progress := 0.0
-var typing_finished := false
-var phrase_index := 0
-var transition_locked := false
+var _is_typing_story := false
+var _story_type_speed := STORY_SECONDS_PER_CHARACTER
+var _story_finished := false
+var _current_line_index := 0
+var _current_name_key := ""
+var _dialog_finished := false
+var _is_changing_scene := false
 
 
 func _ready() -> void:
-	_setup_fade_overlay()
 	AudioManager.play_level_3_intro_fields_background()
 
-	if story_label == null:
-		return
-
-	_start_current_phrase()
-
-
-func _process(delta: float) -> void:
-	if transition_locked or typing_finished or story_label == null:
-		return
-
-	visible_characters_progress += characters_per_second * delta
-	story_label.visible_characters = floori(visible_characters_progress)
-
-	if story_label.visible_characters >= story_label.text.length():
-		_finish_typing()
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	if not _is_confirm_input(event):
-		return
-
-	get_viewport().set_input_as_handled()
-
-	if transition_locked or story_label == null:
-		return
-
-	if not typing_finished:
-		_finish_typing()
-		return
-
-	_show_next_phrase_or_scene()
-
-
-func _start_current_phrase() -> void:
-	story_label.text = tr(String(PHRASE_KEYS[phrase_index]))
+	bg_text.visible = false
+	name_label.visible = false
+	story_label.visible = false
+	bg_text.modulate.a = 0.0
+	name_label.modulate.a = 0.0
 	story_label.visible_characters = 0
-	visible_characters_progress = 0.0
-	typing_finished = story_label.text.length() <= 0
 
-	if PHRASE_KEYS[phrase_index] == &"STORY_LVL3_INTRO_003":
+	call_deferred("_play_intro_sequence")
+
+
+func _input(event: InputEvent) -> void:
+	if not _is_confirm_input(event) or _is_changing_scene:
+		return
+
+	if _is_typing_story:
+		_story_type_speed = FAST_STORY_SECONDS_PER_CHARACTER
+		return
+
+	if _dialog_finished:
+		_change_to_next_scene()
+		return
+
+	if _story_finished:
+		_show_next_line()
+
+
+func _play_intro_sequence() -> void:
+	var transition_screen = get_node_or_null("/root/TransitionScreen")
+	if transition_screen != null and transition_screen.is_transitioning():
+		await transition_screen.scene_revealed
+
+	await get_tree().create_timer(INTRO_DELAY_AFTER_REVEAL).timeout
+	await _show_bg_text()
+	await _show_current_line()
+
+
+func _show_bg_text() -> void:
+	bg_text.visible = true
+
+	var tween := create_tween()
+	tween.tween_property(bg_text, "modulate:a", 1.0, BG_TEXT_FADE_DURATION)
+	await tween.finished
+
+
+func _show_current_line() -> void:
+	if _current_line_index >= DIALOG_LINES.size():
+		return
+
+	_story_finished = false
+	story_label.visible = false
+	story_label.visible_characters = 0
+	var line: Dictionary = DIALOG_LINES[_current_line_index]
+	var name_key := line["name"] as String
+	var story_key := line["story"] as String
+
+	if story_key == "STORY_LVL3_INTRO_003":
 		AudioManager.play_level_3_intro_stomach_sound()
 
-	if typing_finished:
-		story_label.visible_characters = -1
+	await _show_name(name_key)
+	await _type_story(story_key)
 
 
-func _show_next_phrase_or_scene() -> void:
-	if phrase_index >= PHRASE_KEYS.size() - 1:
+func _show_name(name_key: String) -> void:
+	if name_key == _current_name_key:
+		return
+
+	_current_name_key = name_key
+	name_label.modulate.a = 0.0
+	name_label.text = tr(name_key)
+	name_label.visible = true
+
+	var tween := create_tween()
+	tween.tween_property(name_label, "modulate:a", 1.0, NAME_FADE_DURATION)
+	await tween.finished
+
+
+func _type_story(story_key: String) -> void:
+	story_label.text = tr(story_key).replace("\\n", "\n")
+	story_label.visible = true
+	story_label.visible_characters = 0
+
+	var character_count := story_label.get_total_character_count()
+	if character_count <= 0:
+		_story_finished = true
+		return
+
+	_is_typing_story = true
+	_story_type_speed = STORY_SECONDS_PER_CHARACTER
+
+	while story_label.visible_characters < character_count:
+		story_label.visible_characters += 1
+		await get_tree().create_timer(_story_type_speed).timeout
+
+	_is_typing_story = false
+	_story_finished = true
+
+
+func _show_next_line() -> void:
+	_story_finished = false
+	_current_line_index += 1
+
+	if _current_line_index >= DIALOG_LINES.size():
+		_dialog_finished = true
+		return
+
+	call_deferred("_show_current_line")
+
+
+func _change_to_next_scene() -> void:
+	if _is_changing_scene:
+		return
+
+	_is_changing_scene = true
+	var transition_screen = get_node_or_null("/root/TransitionScreen")
+	if transition_screen != null:
+		transition_screen.change_scene_with_black_screen_sound(
+			NEXT_SCENE_PATH,
+			Callable(AudioManager, "play_level_3_intro_run_away")
+		)
+	else:
+		var run_away_player := AudioManager.play_level_3_intro_run_away()
+		if is_instance_valid(run_away_player) and run_away_player.playing:
+			await run_away_player.finished
 		get_tree().change_scene_to_file(NEXT_SCENE_PATH)
-		return
-
-	phrase_index += 1
-	_start_current_phrase()
-
-
-func _finish_typing() -> void:
-	if typing_finished:
-		return
-
-	typing_finished = true
-	if story_label != null:
-		story_label.visible_characters = -1
-
-	var phrase_key := PHRASE_KEYS[phrase_index]
-	if phrase_key == &"STORY_LVL3_INTRO_005":
-		_start_run_away_transition()
-
-
-func _start_run_away_transition() -> void:
-	if transition_locked:
-		return
-
-	transition_locked = true
-	var run_away_player: AudioStreamPlayer = AudioManager.play_level_3_intro_run_away()
-	var transition_duration := _get_player_stream_length(run_away_player, RUN_AWAY_FALLBACK_DURATION)
-
-	if fade_rect != null:
-		fade_rect.visible = true
-		fade_rect.modulate.a = 0.0
-		var tween := create_tween()
-		tween.tween_property(fade_rect, "modulate:a", 1.0, transition_duration)
-
-	await get_tree().create_timer(transition_duration).timeout
-	get_tree().change_scene_to_file(NEXT_SCENE_PATH)
-
-
-func _setup_fade_overlay() -> void:
-	var fade_layer := CanvasLayer.new()
-	fade_layer.layer = 100
-	add_child(fade_layer)
-
-	fade_rect = ColorRect.new()
-	fade_rect.color = Color.BLACK
-	fade_rect.visible = false
-	fade_rect.modulate.a = 0.0
-	fade_rect.mouse_filter = Control.MOUSE_FILTER_STOP
-	fade_rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	fade_layer.add_child(fade_rect)
-
-
-func _get_player_stream_length(player: AudioStreamPlayer, fallback_duration: float) -> float:
-	if player == null or player.stream == null:
-		return fallback_duration
-
-	var stream_length := player.stream.get_length()
-	if stream_length <= 0.0:
-		return fallback_duration
-
-	return stream_length
-
-
-func _find_story_label() -> Label:
-	for label_path in [
-		"BG Text/Story",
-		"CanvasLayer/RichTextLabel",
-	]:
-		var label := get_node_or_null(label_path) as Label
-		if label != null:
-			return label
-
-	return null
 
 
 func _is_confirm_input(event: InputEvent) -> bool:

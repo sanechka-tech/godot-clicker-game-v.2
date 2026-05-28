@@ -12,8 +12,6 @@ const SHOP_FACE_PRESS_OFFSET := Vector2(0.0, 2.0)
 const FINAL_UI_EXIT_DURATION := 0.8
 const FINAL_UI_EXIT_EXTRA_DISTANCE := 80.0
 const LEVEL_2_AFTER_SCENE_PATH := "res://cutscenes/lvl_3_village_intro_1.tscn"
-const LEVEL_2_AFTER_TRANSITION_FADE_OUT_DURATION := 0.6
-const LEVEL_2_AFTER_TRANSITION_FADE_IN_DURATION := 0.1
 const SHOP_TEXTURE_NORMAL := &"normal"
 const SHOP_TEXTURE_PRESSED := &"pressed"
 const SHOP_TEXTURE_DISABLED := &"disabled"
@@ -84,7 +82,7 @@ var fart_scenes := [
 
 
 func _ready() -> void:
-	AudioManager.play_default_music()
+	AudioManager.stop_music()
 
 	GameState.start_level(LEVEL_GOAL_SCORE)
 	_reset_level_2_shop_state()
@@ -226,14 +224,11 @@ func _play_final_pressure_sequence() -> void:
 		await final_pressure_player.finished
 
 	AudioManager.play_final_toilet_flush()
+	GameState.save_progress(LEVEL_2_AFTER_SCENE_PATH)
 
 	var transition_screen = get_node_or_null("/root/TransitionScreen")
 	if transition_screen != null:
-		transition_screen.change_scene(
-			LEVEL_2_AFTER_SCENE_PATH,
-			LEVEL_2_AFTER_TRANSITION_FADE_OUT_DURATION,
-			LEVEL_2_AFTER_TRANSITION_FADE_IN_DURATION
-		)
+		transition_screen.change_scene(LEVEL_2_AFTER_SCENE_PATH)
 	else:
 		get_tree().change_scene_to_file(LEVEL_2_AFTER_SCENE_PATH)
 

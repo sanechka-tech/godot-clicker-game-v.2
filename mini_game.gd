@@ -92,6 +92,7 @@ func _on_quit_button_pressed() -> void:
 	AudioManager.stop_music()
 	_stop_death_sound()
 	GameState.mini_game_after_story_key = &"STORY_LVL2_MINIGAME_LOSE"
+	GameState.save_progress(AFTER_MINI_GAME_SCENE_PATH)
 	get_tree().change_scene_to_file(AFTER_MINI_GAME_SCENE_PATH)
 
 
@@ -250,6 +251,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	get_viewport().set_input_as_handled()
 	GameState.mini_game_after_story_key = &"STORY_LVL2_MINIGAME_WIN"
+	GameState.save_progress(AFTER_MINI_GAME_SCENE_PATH)
 	get_tree().change_scene_to_file(AFTER_MINI_GAME_SCENE_PATH)
 
 

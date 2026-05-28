@@ -13,6 +13,7 @@ var _load_failed := false
 
 
 func _ready() -> void:
+	AudioManager.play_main_theme()
 	background_animation.stop()
 	loading_line.min_value = 0.0
 	loading_line.max_value = 100.0

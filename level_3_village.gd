@@ -131,7 +131,7 @@ var bugs_root: Node2D
 
 func _ready() -> void:
 	AudioManager.stop_level_3_intro_ambience()
-	AudioManager.play_level_3_music()
+	call_deferred("_play_music_after_transition_reveal")
 	GameState.start_level(LEVEL_GOAL_SCORE)
 	GameState.score_changed.connect(_on_score_changed)
 
@@ -145,6 +145,14 @@ func _ready() -> void:
 	_setup_goal_progress()
 	_update_goal_progress()
 	_setup_paper_hand()
+
+
+func _play_music_after_transition_reveal() -> void:
+	var transition_screen = get_node_or_null("/root/TransitionScreen")
+	if transition_screen != null and transition_screen.is_transitioning():
+		await transition_screen.scene_revealed
+
+	AudioManager.play_level_3_music()
 
 
 func _process(delta: float) -> void:
@@ -421,18 +429,31 @@ func _finish_round() -> void:
 		return
 
 	round_finished = true
-	AudioManager.stop_music()
-	AudioManager.play_fart_sound_3()
 
 	for child in bugs_root.get_children():
 		child.queue_free()
 
 	_hide_all_paper_hands()
-	get_tree().create_timer(0.8).timeout.connect(_go_to_after_scene)
+	_play_final_pressure_sequence()
 
 
 func _go_to_after_scene() -> void:
-	get_tree().change_scene_to_file(AFTER_SCENE_PATH)
+	GameState.save_progress(AFTER_SCENE_PATH)
+
+	var transition_screen = get_node_or_null("/root/TransitionScreen")
+	if transition_screen != null:
+		transition_screen.change_scene(AFTER_SCENE_PATH)
+	else:
+		get_tree().change_scene_to_file(AFTER_SCENE_PATH)
+
+
+func _play_final_pressure_sequence() -> void:
+	AudioManager.stop_music()
+	var final_pressure_player := AudioManager.play_final_pressure()
+	if is_instance_valid(final_pressure_player) and final_pressure_player.playing:
+		await final_pressure_player.finished
+
+	_go_to_after_scene()
 
 
 func _play_paper_hand_hit(bug: CharacterBody2D) -> void:

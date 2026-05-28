@@ -1,6 +1,7 @@
 extends Control
 
 const NEXT_SCENE := "res://loading_screen.tscn"
+const LOGO_HOLD_DURATION := 1.0
 
 @onready var logo: TextureRect = $Logo
 
@@ -11,6 +12,7 @@ func _ready() -> void:
 	var tween := create_tween()
 	tween.tween_interval(1.0)
 	tween.tween_property(logo, "modulate:a", 1.0, 1.0)
+	tween.tween_interval(LOGO_HOLD_DURATION)
 	tween.finished.connect(_go_to_loading_screen)
 
 

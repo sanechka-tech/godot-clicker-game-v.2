@@ -6,14 +6,17 @@ const MENU_START_BOTTOM_MARGIN := 24.0
 const START_INTRO_SCENE := "res://cutscenes/lvl_1_room_intro.tscn"
 
 @onready var settings_popup = $SettingsPopup
+@onready var menu_background = $MenuBackground
 @onready var vhs_panel: TextureRect = $VHS
 @onready var buttons_container: VBoxContainer = $VHS/VBoxContainer
+@onready var continue_button: Button = $VHS/VBoxContainer/Continue
 @onready var new_game_button: Button = $VHS/VBoxContainer/NewGame
 @onready var settings_button: Button = $VHS/VBoxContainer/Settings
 
 
 func _ready() -> void:
-	AudioManager.play_default_music()
+	continue_button.visible = GameState.has_save()
+	continue_button.pressed.connect(_on_continue_pressed)
 	new_game_button.pressed.connect(_on_new_game_pressed)
 	settings_button.pressed.connect(_on_settings_pressed)
 	_play_intro_animation()
@@ -27,12 +30,31 @@ func _on_texture_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://main_screen.tscn")
 
 
+func _on_continue_pressed() -> void:
+	var saved_scene_path := GameState.get_saved_scene_path()
+	if saved_scene_path.is_empty():
+		continue_button.visible = false
+		return
+
+	_change_scene(saved_scene_path)
+
+
 func _on_new_game_pressed() -> void:
+	GameState.clear_progress()
+	continue_button.visible = false
+	AudioManager.stop_music()
+	_change_scene(START_INTRO_SCENE)
+
+
+func _change_scene(scene_path: String) -> void:
+	if menu_background != null and menu_background.has_method("freeze_and_stop_tv"):
+		menu_background.freeze_and_stop_tv()
+
 	var transition_screen = get_node_or_null("/root/TransitionScreen")
 	if transition_screen != null:
-		transition_screen.change_scene(START_INTRO_SCENE)
+		transition_screen.change_scene(scene_path)
 	else:
-		get_tree().change_scene_to_file(START_INTRO_SCENE)
+		get_tree().change_scene_to_file(scene_path)
 
 
 func _on_settings_pressed() -> void:
