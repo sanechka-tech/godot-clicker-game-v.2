@@ -12,6 +12,9 @@ const SHOP_FACE_PRESS_OFFSET := Vector2(0.0, 2.0)
 const FINAL_UI_EXIT_DURATION := 0.8
 const FINAL_UI_EXIT_EXTRA_DISTANCE := 80.0
 const LEVEL_2_AFTER_SCENE_PATH := "res://cutscenes/lvl_3_village_intro_1.tscn"
+const LEVEL_2_AFTER_TRANSITION_FADE_OUT_DURATION := 2.0
+const LEVEL_2_AFTER_TRANSITION_FADE_IN_DURATION := 2.0
+const TRAIN_INSIDE_VOLUME := 0.04
 const SHOP_TEXTURE_NORMAL := &"normal"
 const SHOP_TEXTURE_PRESSED := &"pressed"
 const SHOP_TEXTURE_DISABLED := &"disabled"
@@ -73,6 +76,7 @@ var shop_button_original_textures := {}
 var level_2_shop_purchase_counts := {}
 var level_2_shop_prices := {}
 var level_2_shop_revealed := {}
+var train_inside_player: AudioStreamPlayer
 
 var fart_scenes := [
 	FART_1_SCENE,
@@ -82,7 +86,8 @@ var fart_scenes := [
 
 
 func _ready() -> void:
-	AudioManager.stop_music()
+	AudioManager.play_main_theme()
+	_start_train_inside()
 
 	GameState.start_level(LEVEL_GOAL_SCORE)
 	_reset_level_2_shop_state()
@@ -100,6 +105,10 @@ func _ready() -> void:
 	_update_time_label()
 	_update_goal_progress()
 	_update_level_2_shop_buttons()
+
+
+func _exit_tree() -> void:
+	_stop_train_inside()
 
 
 func _process(delta: float) -> void:
@@ -177,6 +186,9 @@ func _finish_round(did_win: bool) -> void:
 	if did_win:
 		_start_final_pressure_sequence()
 	else:
+		AudioManager.stop_music()
+		_stop_train_inside()
+		AudioManager.play_you_died()
 		_pause_level_2_background_motion()
 		level_2_lose_dim.visible = true
 		level_2_lose.visible = true
@@ -199,6 +211,7 @@ func _start_final_pressure_sequence() -> void:
 		return
 
 	final_pressure_sequence_started = true
+	AudioManager.stop_music()
 	_play_final_pressure_sequence()
 
 
@@ -228,9 +241,39 @@ func _play_final_pressure_sequence() -> void:
 
 	var transition_screen = get_node_or_null("/root/TransitionScreen")
 	if transition_screen != null:
-		transition_screen.change_scene(LEVEL_2_AFTER_SCENE_PATH)
+		_fade_train_inside(LEVEL_2_AFTER_TRANSITION_FADE_OUT_DURATION)
+		transition_screen.change_scene(
+			LEVEL_2_AFTER_SCENE_PATH,
+			LEVEL_2_AFTER_TRANSITION_FADE_OUT_DURATION,
+			LEVEL_2_AFTER_TRANSITION_FADE_IN_DURATION
+		)
 	else:
 		get_tree().change_scene_to_file(LEVEL_2_AFTER_SCENE_PATH)
+
+
+func _start_train_inside() -> void:
+	if is_instance_valid(train_inside_player):
+		return
+
+	train_inside_player = AudioManager.play_level_2_train_inside(TRAIN_INSIDE_VOLUME)
+
+
+func _fade_train_inside(duration: float) -> void:
+	if not is_instance_valid(train_inside_player):
+		return
+
+	var tween := create_tween()
+	tween.tween_property(train_inside_player, "volume_db", -80.0, duration)
+
+
+func _stop_train_inside() -> void:
+	if not is_instance_valid(train_inside_player):
+		train_inside_player = null
+		return
+
+	train_inside_player.stop()
+	train_inside_player.queue_free()
+	train_inside_player = null
 
 
 func _find_time_label() -> Label:

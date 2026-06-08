@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://ddhi25rf83e68"]
+
+[ext_resource type="Texture2D" uid="uid://dqsy2i04thulg" path="res://Images/cutscenes/Level3/lvl3_village_the_end.jpg" id="1_sojvs"]
+[ext_resource type="Script" uid="uid://b6asg0id0e0ih" path="res://titles_screen.gd" id="3_lqg7g"]
+[ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="3_vnsl6"]
+
+[node name="TitlesScreen" type="Control" unique_id=2136399830]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("3_lqg7g")
+
+[node name="BGblack" type="Sprite2D" parent="." unique_id=1522985303]
+position = Vector2(670, 301)
+scale = Vector2(1.2138889, 1.2138889)
+texture = ExtResource("1_sojvs")
+
+[node name="Titles" type="VBoxContainer" parent="." unique_id=1142440342]
+layout_mode = 0
+offset_right = 1298.0
+offset_bottom = 601.0
+
+[node name="ThankYouLabel" type="Label" parent="." unique_id=654916782]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -1.0
+offset_right = 1300.0
+offset_bottom = 598.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_vnsl6")
+theme_override_font_sizes/font_size = 90
+text = "TITLES_THANK_YOU"
+horizontal_alignment = 1
+vertical_alignment = 1

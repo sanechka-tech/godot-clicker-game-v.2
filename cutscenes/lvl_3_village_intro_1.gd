@@ -4,8 +4,8 @@ const NEXT_SCENE_PATH := "res://cutscenes/lvl_3_village_intro_2.tscn"
 const INTRO_DELAY_AFTER_REVEAL := 1.0
 const BG_TEXT_FADE_DURATION := 0.25
 const NAME_FADE_DURATION := 0.2
-const STORY_SECONDS_PER_CHARACTER := 0.1
-const FAST_STORY_SECONDS_PER_CHARACTER := 0.008
+const STORY_SECONDS_PER_CHARACTER := 0.05
+const FAST_STORY_SECONDS_PER_CHARACTER := 0.004
 const DIALOG_LINES := [
 	{"name": "HERO_LEKS", "story": "STORY_LVL3_INTRO_001"},
 	{"name": "HERO_LEKS", "story": "STORY_LVL3_INTRO_002"},

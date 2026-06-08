@@ -36,6 +36,7 @@ func _on_continue_pressed() -> void:
 		continue_button.visible = false
 		return
 
+	AudioManager.stop_music()
 	_change_scene(saved_scene_path)
 
 

@@ -3,9 +3,10 @@ extends Control
 const INTRO_DELAY_AFTER_REVEAL := 4.0
 const BG_TEXT_FADE_DURATION := 0.25
 const NAME_FADE_DURATION := 0.2
-const STORY_SECONDS_PER_CHARACTER := 0.1
-const FAST_STORY_SECONDS_PER_CHARACTER := 0.008
+const STORY_SECONDS_PER_CHARACTER := 0.05
+const FAST_STORY_SECONDS_PER_CHARACTER := 0.004
 const NEXT_SCENE_PATH := "res://cutscenes/lvl_1_2_call_intro.tscn"
+const NEXT_SCENE_AUDIO_FADE_OUT_DURATION := 2.0
 
 @onready var bg_text: TextureRect = $"BG Text"
 @onready var name_label: Label = $"BG Text/Name"
@@ -130,13 +131,21 @@ func _set_story_type_speed(value: float) -> void:
 
 func _change_to_next_scene() -> void:
 	_is_changing_scene = true
-	_stop_bg_room()
 
 	var transition_screen = get_node_or_null("/root/TransitionScreen")
 	if transition_screen != null:
+		_fade_bg_room(NEXT_SCENE_AUDIO_FADE_OUT_DURATION)
 		transition_screen.change_scene(NEXT_SCENE_PATH)
 	else:
 		get_tree().change_scene_to_file(NEXT_SCENE_PATH)
+
+
+func _fade_bg_room(duration: float) -> void:
+	if not is_instance_valid(_bg_room_player):
+		return
+
+	var tween := create_tween()
+	tween.tween_property(_bg_room_player, "volume_db", -80.0, duration)
 
 
 func _stop_bg_room() -> void:

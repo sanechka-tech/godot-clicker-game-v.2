@@ -3,9 +3,11 @@ extends Control
 const INTRO_DELAY_AFTER_REVEAL := 0.5
 const BG_TEXT_FADE_DURATION := 0.25
 const NAME_FADE_DURATION := 0.2
-const STORY_SECONDS_PER_CHARACTER := 0.1
-const FAST_STORY_SECONDS_PER_CHARACTER := 0.008
+const STORY_SECONDS_PER_CHARACTER := 0.05
+const FAST_STORY_SECONDS_PER_CHARACTER := 0.004
 const NEXT_SCENE_PATH := "res://mini_game.tscn"
+const NEXT_SCENE_FADE_OUT_DURATION := 0.6
+const NEXT_SCENE_FADE_IN_DURATION := 0.6
 const DIALOG_LINES := [
 	{"name": "HERO_LEKS", "story": "STORY_LVL2_INTRO_002"},
 	{"name": "HERO_LEKS", "story": "STORY_LVL2_INTRO_003"},
@@ -23,6 +25,7 @@ var _current_name_key := ""
 var _scene_confirmed := false
 var _dialog_finished := false
 var _is_changing_scene := false
+var _train_inside_player: AudioStreamPlayer
 
 
 func _input(event: InputEvent) -> void:
@@ -57,12 +60,17 @@ func _ready() -> void:
 
 func _exit_tree() -> void:
 	AudioManager.stop_typewriter_sfx()
+	_stop_train_inside()
 
 
 func _play_intro_sequence() -> void:
 	var transition_screen = get_node_or_null("/root/TransitionScreen")
 	if transition_screen != null and transition_screen.is_transitioning():
+		await transition_screen.fade_in_started
+		_start_train_inside()
 		await transition_screen.scene_revealed
+	else:
+		_start_train_inside()
 
 	await get_tree().create_timer(INTRO_DELAY_AFTER_REVEAL).timeout
 	await _show_bg_text()
@@ -155,11 +163,37 @@ func _change_to_next_scene() -> void:
 	_is_changing_scene = true
 	var transition_screen = get_node_or_null("/root/TransitionScreen")
 	if transition_screen != null:
+		_fade_train_inside(NEXT_SCENE_FADE_OUT_DURATION)
 		transition_screen.change_scene_with_black_screen_sound(
 			NEXT_SCENE_PATH,
 			Callable(AudioManager, "play_zipper"),
-			0.6,
-			0.6
+			NEXT_SCENE_FADE_OUT_DURATION,
+			NEXT_SCENE_FADE_IN_DURATION
 		)
 	else:
 		get_tree().change_scene_to_file(NEXT_SCENE_PATH)
+
+
+func _start_train_inside() -> void:
+	if is_instance_valid(_train_inside_player):
+		return
+
+	_train_inside_player = AudioManager.play_level_2_train_inside()
+
+
+func _fade_train_inside(duration: float) -> void:
+	if not is_instance_valid(_train_inside_player):
+		return
+
+	var tween := create_tween()
+	tween.tween_property(_train_inside_player, "volume_db", -80.0, duration)
+
+
+func _stop_train_inside() -> void:
+	if not is_instance_valid(_train_inside_player):
+		_train_inside_player = null
+		return
+
+	_train_inside_player.stop()
+	_train_inside_player.queue_free()
+	_train_inside_player = null

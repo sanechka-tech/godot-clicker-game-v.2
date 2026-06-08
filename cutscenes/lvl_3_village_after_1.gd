@@ -6,15 +6,16 @@ const NEXT_SCENE_FADE_IN_DURATION := 0.2
 const INTRO_DELAY_AFTER_REVEAL := 0.5
 const BG_TEXT_FADE_DURATION := 0.25
 const NAME_FADE_DURATION := 0.2
-const STORY_SECONDS_PER_CHARACTER := 0.1
-const FAST_STORY_SECONDS_PER_CHARACTER := 0.008
+const STORY_SECONDS_PER_CHARACTER := 0.05
+const FAST_STORY_SECONDS_PER_CHARACTER := 0.004
+const STOMACH_SOUND_STORY_KEY := "STORY_LVL3_FINISH_004"
 const DIALOG_LINES := [
 	{"name": "HERO_LEKS", "story": "STORY_LVL3_FINISH_001"},
 	{"name": "HERO_LEKS", "story": "STORY_LVL3_FINISH_002"},
 	{"name": "HERO_LEKS", "story": "STORY_LVL3_FINISH_003"},
 	{"name": "HERO_LEKS", "story": "STORY_LVL3_FINISH_004"},
 	{"name": "HERO_LEKS", "story": "STORY_LVL3_FINISH_005"},
-	{"name": "HERO_LEKS", "story": "STORY_LVL3_FINISH_006"},
+	{"name": "HERO_GRANNY", "story": "STORY_LVL3_FINISH_006"},
 ]
 
 @onready var bg_text: TextureRect = $"BG Text"
@@ -28,9 +29,13 @@ var _current_line_index := 0
 var _current_name_key := ""
 var _dialog_finished := false
 var _is_changing_scene := false
+var _happy_birthday_player: AudioStreamPlayer
 
 
 func _ready() -> void:
+	AudioManager.play_level_3_intro_fields_background()
+	_happy_birthday_player = AudioManager.play_level_3_happy_birthday()
+
 	bg_text.visible = false
 	name_label.visible = false
 	story_label.visible = false
@@ -43,6 +48,7 @@ func _ready() -> void:
 
 func _exit_tree() -> void:
 	AudioManager.stop_typewriter_sfx()
+	_stop_happy_birthday()
 
 
 func _input(event: InputEvent) -> void:
@@ -89,6 +95,9 @@ func _show_current_line() -> void:
 	var line: Dictionary = DIALOG_LINES[_current_line_index]
 	var name_key := line["name"] as String
 	var story_key := line["story"] as String
+
+	if story_key == STOMACH_SOUND_STORY_KEY:
+		AudioManager.play_level_3_intro_stomach_sound()
 
 	await _show_name(name_key)
 	await _type_story(story_key)
@@ -156,6 +165,7 @@ func _change_to_next_scene() -> void:
 	_is_changing_scene = true
 	var transition_screen = get_node_or_null("/root/TransitionScreen")
 	if transition_screen != null:
+		_fade_happy_birthday(NEXT_SCENE_FADE_OUT_DURATION)
 		transition_screen.change_scene(
 			NEXT_SCENE_PATH,
 			NEXT_SCENE_FADE_OUT_DURATION,
@@ -163,6 +173,24 @@ func _change_to_next_scene() -> void:
 		)
 	else:
 		get_tree().change_scene_to_file(NEXT_SCENE_PATH)
+
+
+func _fade_happy_birthday(duration: float) -> void:
+	if not is_instance_valid(_happy_birthday_player):
+		return
+
+	var tween := create_tween()
+	tween.tween_property(_happy_birthday_player, "volume_db", -80.0, duration)
+
+
+func _stop_happy_birthday() -> void:
+	if not is_instance_valid(_happy_birthday_player):
+		_happy_birthday_player = null
+		return
+
+	_happy_birthday_player.stop()
+	_happy_birthday_player.queue_free()
+	_happy_birthday_player = null
 
 
 func _is_confirm_input(event: InputEvent) -> bool:

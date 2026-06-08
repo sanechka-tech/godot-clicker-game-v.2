@@ -1,9 +1,13 @@
 extends Node2D
 
+const NEXT_SCENE_PATH := "res://titles_screen.tscn"
+const NEXT_SCENE_FADE_OUT_DURATION := 1.0
+const NEXT_SCENE_FADE_IN_DURATION := 1.0
+const FINAL_LINE_HOLD_DURATION := 3.0
 const INTRO_DELAY_AFTER_REVEAL := 0.0
 const STORY_FADE_DURATION := 0.1
-const STORY_SECONDS_PER_CHARACTER := 0.1
-const FAST_STORY_SECONDS_PER_CHARACTER := 0.008
+const STORY_SECONDS_PER_CHARACTER := 0.05
+const FAST_STORY_SECONDS_PER_CHARACTER := 0.004
 const DIALOG_LINES := [
 	{"story": "STORY_END_FINISH_001"},
 ]
@@ -15,6 +19,7 @@ var _story_type_speed := STORY_SECONDS_PER_CHARACTER
 var _story_finished := false
 var _current_line_index := 0
 var _dialog_finished := false
+var _is_changing_scene := false
 
 
 func _ready() -> void:
@@ -33,7 +38,7 @@ func _exit_tree() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if story_label == null or not _is_confirm_input(event):
+	if story_label == null or _is_changing_scene or not _is_confirm_input(event):
 		return
 
 	if _is_typing_story:
@@ -41,6 +46,7 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if _dialog_finished:
+		_change_to_next_scene()
 		return
 
 	if _story_finished:
@@ -82,6 +88,7 @@ func _type_story(story_key: String) -> void:
 	if character_count <= 0:
 		AudioManager.stop_typewriter_sfx()
 		_story_finished = true
+		_start_auto_transition_if_final_line()
 		return
 
 	_is_typing_story = true
@@ -95,6 +102,7 @@ func _type_story(story_key: String) -> void:
 	_is_typing_story = false
 	AudioManager.stop_typewriter_sfx()
 	_story_finished = true
+	_start_auto_transition_if_final_line()
 
 
 func _set_story_type_speed(value: float) -> void:
@@ -112,6 +120,33 @@ func _show_next_line() -> void:
 		return
 
 	call_deferred("_show_current_line")
+
+
+func _change_to_next_scene() -> void:
+	if _is_changing_scene:
+		return
+
+	_is_changing_scene = true
+	var transition_screen = get_node_or_null("/root/TransitionScreen")
+	if transition_screen != null:
+		transition_screen.change_scene(
+			NEXT_SCENE_PATH,
+			NEXT_SCENE_FADE_OUT_DURATION,
+			NEXT_SCENE_FADE_IN_DURATION
+		)
+	else:
+		get_tree().change_scene_to_file(NEXT_SCENE_PATH)
+
+
+func _start_auto_transition_if_final_line() -> void:
+	if _current_line_index >= DIALOG_LINES.size() - 1:
+		_dialog_finished = true
+		call_deferred("_change_to_next_scene_after_hold")
+
+
+func _change_to_next_scene_after_hold() -> void:
+	await get_tree().create_timer(FINAL_LINE_HOLD_DURATION).timeout
+	_change_to_next_scene()
 
 
 func _is_confirm_input(event: InputEvent) -> bool:

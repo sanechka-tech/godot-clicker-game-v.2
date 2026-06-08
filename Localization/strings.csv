@@ -33,6 +33,7 @@ SHOP_STATION_CHEBUREK,Station Cheburek,Чебурек с вокзала,,
 SHOP_STATION_CHEBUREK_DIS,+20 Tap Power,+20 сила клика,,
 HERO_LEKS,Leks,Лекс,,
 HERO_MOM,Mom,Мама,,
+HERO_GRANNY,Granny,Бабушка,,
 STORY_LVL1_INTRO_001,,"— Сейчас… еще пять минут…",,
 STORY_LVL1_INTRO_002,,"— Алло.. Да.. Мам, привет!",,
 STORY_LVL1_INTRO_003,,"— Лекс, привет. Ты что спишь?",,
@@ -51,7 +52,7 @@ STORY_LVL1_INTRO_015,,"— Хорошо. Тогда не тяни, выходи 
 STORY_LVL1_INTRO_016,,"— Выхожу.",,
 STORY_LVL1_INTRO_017,,"— Давай, до встречи.",,
 STORY_LVL1_INTRO_018,,"*ПИП-ПИП-ПИП*",,
-STORY_LVL1_INTRO_019,,"— Нужно спешить.",,
+STORY_LVL1_INTRO_019,,"— Нужно спешить!",,
 STORY_LVL1_INTRO_020,,"— ..... .....",,
 STORY_LVL1_INTRO_021,,"— Очень сильно спешить.",,
 STORY_LVL1_INTRO_022,,"*Звук урчания живота*",,
@@ -68,18 +69,33 @@ STORY_LVL2_INTRO_006,,"*Звук застегивания рюкзака*",,
 STORY_LVL2_INTRO_007,,"*Звук урчания живота*",,
 STORY_LVL2_INTRO_008,,"— Ну неееееет!",,
 STORY_LVL2_TRAIN_LOSE,,"Поезд проехал станцию!",,
-STORY_LVL3_INTRO_001,,"— Так, пол дела сделано. Теперь успеть бы до шести.",,
-STORY_LVL3_INTRO_002,,"…",,
+STORY_LVL3_INTRO_001,,"— Так, пол дела сделано. Теперь успеть бы до шести!",,
+STORY_LVL3_INTRO_002,,"— ...",,
 STORY_LVL3_INTRO_003,,"*Звук урчания живота*",,
 STORY_LVL3_INTRO_004,,"— Серьезно?",,
-STORY_LVL3_INTRO_005,,"— Оххх, лишь бы не удобрить поля по дороге…",,
-STORY_LVL3_INTRO_006,,"— Нужно срочно найти укромное место",,
+STORY_LVL3_INTRO_005,,"— Оххх, лишь бы не удобрить поля по дороге...",,
+STORY_LVL3_INTRO_006,,"— Нужно срочно найти укромное место..",,
 STORY_LVL3_INTRO_007,,"… *Звук урчания живота*",,
-STORY_LVL3_INTRO_008,,"— Любое место",,
-STORY_LVL3_FINISH_001,,"— Бабуль, желаю тебе…",,
-STORY_LVL3_FINISH_002,,"…",,
-STORY_LVL3_FINISH_003,,"…",,
+STORY_LVL3_INTRO_008,,"— Любое место!",,
+STORY_LVL3_FINISH_001,,"— Бабуль, желаю тебе...",,
+STORY_LVL3_FINISH_002,,"— ...",,
+STORY_LVL3_FINISH_003,,"— ..... .....",,
 STORY_LVL3_FINISH_004,,"*Звук урчания живота*",,
-STORY_LVL3_FINISH_005,,"…",,
+STORY_LVL3_FINISH_005,,"— ...",,
 STORY_LVL3_FINISH_006,,"— Лешенька?",,
 STORY_END_FINISH_001,,"Конец?",,
+TITLES_CREDITS_TEXT,"A Game by Stone and Stick\n\nDesign Aleksandr Stone/Leks Stick\nProgramming Aleksandr Stone/Leks Stick\nArt Aleksandr Stone/Leks Stick\nAnimation Aleksandr Stone/Leks Stick\nMusic Aleksandr Stone/Leks Stick\nSound Effects Aleksandr Stone/Leks Stick\nWriting Aleksandr Stone/Leks Stick\nLocalization Aleksandr Stone/Leks Stick\nTesting Aleksandr Stone/Leks Stick\n\nSpecial Thanks nlold\n\nMade with Godot","A Game by Stone and Stick\n\nDesign Aleksandr Stone/Leks Stick\nProgramming Aleksandr Stone/Leks Stick\nArt Aleksandr Stone/Leks Stick\nAnimation Aleksandr Stone/Leks Stick\nMusic Aleksandr Stone/Leks Stick\nSound Effects Aleksandr Stone/Leks Stick\nWriting Aleksandr Stone/Leks Stick\nLocalization Aleksandr Stone/Leks Stick\nTesting Aleksandr Stone/Leks Stick\n\nSpecial Thanks nlold\n\nMade with Godot","A Game by Stone and Stick\n\nDesign Aleksandr Stone/Leks Stick\nProgramming Aleksandr Stone/Leks Stick\nArt Aleksandr Stone/Leks Stick\nAnimation Aleksandr Stone/Leks Stick\nMusic Aleksandr Stone/Leks Stick\nSound Effects Aleksandr Stone/Leks Stick\nWriting Aleksandr Stone/Leks Stick\nLocalization Aleksandr Stone/Leks Stick\nTesting Aleksandr Stone/Leks Stick\n\nSpecial Thanks nlold\n\nMade with Godot","A Game by Stone and Stick\n\nDesign Aleksandr Stone/Leks Stick\nProgramming Aleksandr Stone/Leks Stick\nArt Aleksandr Stone/Leks Stick\nAnimation Aleksandr Stone/Leks Stick\nMusic Aleksandr Stone/Leks Stick\nSound Effects Aleksandr Stone/Leks Stick\nWriting Aleksandr Stone/Leks Stick\nLocalization Aleksandr Stone/Leks Stick\nTesting Aleksandr Stone/Leks Stick\n\nSpecial Thanks nlold\n\nMade with Godot"
+TITLES_GAME_BY,A Game by Stone and Stick,A Game by Stone and Stick,A Game by Stone and Stick,A Game by Stone and Stick
+TITLES_ROLE_DESIGN,Design,Design,Design,Design
+TITLES_ROLE_PROGRAMMING,Programming,Programming,Programming,Programming
+TITLES_ROLE_ART,Art,Art,Art,Art
+TITLES_ROLE_ANIMATION,Animation,Animation,Animation,Animation
+TITLES_ROLE_MUSIC,Music,Music,Music,Music
+TITLES_ROLE_SOUND_EFFECTS,Sound Effects,Sound Effects,Sound Effects,Sound Effects
+TITLES_ROLE_WRITING,Writing,Writing,Writing,Writing
+TITLES_ROLE_LOCALIZATION,Localization,Localization,Localization,Localization
+TITLES_ROLE_TESTING,Testing,Testing,Testing,Testing
+TITLES_NAME_MAIN,Aleksandr Stone/Leks Stick,Aleksandr Stone/Leks Stick,Aleksandr Stone/Leks Stick,Aleksandr Stone/Leks Stick
+TITLES_SPECIAL_THANKS,Special Thanks,Special Thanks,Special Thanks,Special Thanks
+TITLES_SPECIAL_THANKS_NAME,NLOLD,NLOLD,NLOLD,NLOLD
+TITLES_THANK_YOU,Thank you for playing!,Спасибо за игру!,Thank you for playing!,Thank you for playing!

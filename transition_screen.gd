@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal scene_revealed
+signal fade_in_started
 
 const FADE_OUT_DURATION := 2.0
 const FADE_IN_DURATION := 2.0
@@ -102,6 +103,7 @@ func _fade_out(duration: float = FADE_OUT_DURATION) -> void:
 
 
 func _fade_in(duration: float = FADE_IN_DURATION) -> void:
+	fade_in_started.emit()
 	var tween := create_tween()
 	tween.tween_property(fade_rect, "modulate:a", 0.0, duration)
 	await tween.finished

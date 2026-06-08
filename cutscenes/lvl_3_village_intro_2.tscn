@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="2_62bog"]
 [ext_resource type="Texture2D" uid="uid://bnf577md7702j" path="res://Images/cutscenes/bg_for_text.png" id="2_qoeyt"]
 [ext_resource type="FontFile" uid="uid://buxbeon3odxds" path="res://CustomFont/EpilepsySans.ttf" id="4_g15nl"]
-[ext_resource type="Script" path="res://cutscenes/lvl_3_village_intro_2.gd" id="5_4qoyo"]
+[ext_resource type="Script" uid="uid://4n4ju6tpf2y5" path="res://cutscenes/lvl_3_village_intro_2.gd" id="5_4qoyo"]
 
 [node name="lvl3_village_intro2" type="Node2D" unique_id=823658768]
 script = ExtResource("5_4qoyo")

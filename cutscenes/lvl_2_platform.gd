@@ -2,10 +2,12 @@ extends Control
 
 const MIN_SCENE_DURATION := 2.0
 const NEXT_SCENE_PATH := "res://cutscenes/lvl_2_1_train.tscn"
+const NEXT_SCENE_AUDIO_FADE_OUT_DURATION := 2.0
+const INFORMATOR_DELAY := 1.5
 const BG_TEXT_FADE_DURATION := 0.2
 const NAME_FADE_DURATION := 0.2
-const STORY_SECONDS_PER_CHARACTER := 0.1
-const FAST_STORY_SECONDS_PER_CHARACTER := 0.008
+const STORY_SECONDS_PER_CHARACTER := 0.05
+const FAST_STORY_SECONDS_PER_CHARACTER := 0.004
 
 @onready var bg_text: TextureRect = $"BG Text"
 @onready var name_label: Label = $"BG Text/Name"
@@ -19,6 +21,10 @@ var _story_type_speed := STORY_SECONDS_PER_CHARACTER
 var _story_finished := false
 var _dialog_finished := false
 var _is_changing_scene := false
+var _run_player: AudioStreamPlayer
+var _station_player: AudioStreamPlayer
+var _informator_player: AudioStreamPlayer
+var _station_audio_active := false
 
 
 func _ready() -> void:
@@ -37,6 +43,7 @@ func _ready() -> void:
 
 func _exit_tree() -> void:
 	AudioManager.stop_typewriter_sfx()
+	_stop_station_audio()
 
 
 func _input(event: InputEvent) -> void:
@@ -58,7 +65,11 @@ func _input(event: InputEvent) -> void:
 func _play_intro_sequence() -> void:
 	var transition_screen = get_node_or_null("/root/TransitionScreen")
 	if transition_screen != null and transition_screen.is_transitioning():
+		await transition_screen.fade_in_started
+		_start_station_audio()
 		await transition_screen.scene_revealed
+	else:
+		_start_station_audio()
 
 	await get_tree().create_timer(MIN_SCENE_DURATION).timeout
 	_can_continue = true
@@ -118,9 +129,61 @@ func _change_to_next_scene() -> void:
 	_is_changing_scene = true
 	var transition_screen = get_node_or_null("/root/TransitionScreen")
 	if transition_screen != null:
+		_fade_station_audio(NEXT_SCENE_AUDIO_FADE_OUT_DURATION)
 		transition_screen.change_scene(NEXT_SCENE_PATH)
 	else:
 		get_tree().change_scene_to_file(NEXT_SCENE_PATH)
+
+
+func _start_station_audio() -> void:
+	if _station_audio_active:
+		return
+
+	_station_audio_active = true
+	_run_player = AudioManager.play_level_2_run()
+	_station_player = AudioManager.play_level_2_station_railway_station()
+	_play_informator_after_delay()
+
+
+func _play_informator_after_delay() -> void:
+	await get_tree().create_timer(INFORMATOR_DELAY).timeout
+	if not _station_audio_active or _is_changing_scene:
+		return
+
+	_informator_player = AudioManager.play_level_2_informator_railway()
+
+
+func _stop_station_audio() -> void:
+	_station_audio_active = false
+	_stop_audio_player(_run_player)
+	_run_player = null
+	_stop_audio_player(_station_player)
+	_station_player = null
+	_stop_audio_player(_informator_player)
+	_informator_player = null
+
+
+func _fade_station_audio(duration: float) -> void:
+	_station_audio_active = false
+	_fade_audio_player(_run_player, duration)
+	_fade_audio_player(_station_player, duration)
+	_fade_audio_player(_informator_player, duration)
+
+
+func _fade_audio_player(player, duration: float) -> void:
+	if not is_instance_valid(player):
+		return
+
+	var tween := create_tween()
+	tween.tween_property(player, "volume_db", -80.0, duration)
+
+
+func _stop_audio_player(player) -> void:
+	if not is_instance_valid(player):
+		return
+
+	player.stop()
+	player.queue_free()
 
 
 func _is_confirm_input(event: InputEvent) -> bool:

@@ -6,6 +6,12 @@ const LEVEL_3_MUSIC := preload("res://Audio/Music/lvl3_background_music.mp3")
 const FINAL_PRESSURE := preload("res://Audio/SFX/lvl1/final_pressure.mp3")
 const FINAL_TOILET_FLUSH := preload("res://Audio/SFX/lvl1/final_zvuk-unitaza.mp3")
 const ZIPPER := preload("res://Audio/SFX/lvl2/zipper.mp3")
+const LEVEL_2_RUN := preload("res://Audio/SFX/lvl2/run.mp3")
+const LEVEL_2_STATION_RAILWAY_STATION := preload("res://Audio/SFX/lvl2/station-railway-station.mp3")
+const LEVEL_2_INFORMATOR_RAILWAY := preload("res://Audio/SFX/lvl2/informator-railway.mp3")
+const LEVEL_2_TRAIN_INSIDE := preload("res://Audio/SFX/lvl2/train-inside.mp3")
+const LEVEL_2_ANNOUNCEMENT_STATION := preload("res://Audio/SFX/lvl2/announcement_station.mp3")
+const LEVEL_2_ZIPPER_CLOSE_NEW := preload("res://Audio/SFX/lvl2/zipper-close-new.mp3")
 const YOU_DIED := preload("res://Audio/SFX/lvl2/mini game/you died.mp3")
 const WIN := preload("res://Audio/SFX/lvl2/mini game/win.mp3")
 const MUSIC_BUS := &"Music"
@@ -15,17 +21,24 @@ const LEVEL_3_INTRO_FIELDS_BACKGROUND := preload("res://Audio/SFX/lvl3_before/Fi
 const LEVEL_3_INTRO_STOMACH_SOUND := preload("res://Audio/SFX/lvl3_before/stomach_sound.mp3")
 const LEVEL_3_INTRO_RUN_AWAY := preload("res://Audio/SFX/lvl3_before/Run_away.mp3")
 const LEVEL_3_INTRO_CLOSE_THE_DOOR := preload("res://Audio/SFX/lvl3_before/Close_the_door.mp3")
+const LEVEL_3_HAPPY_BIRTHDAY := preload("res://Audio/SFX/lvl3_after/Happy Birthday Song.mp3")
 const LEVEL_1_INTRO_BG_ROOM := preload("res://Audio/SFX/lvl1_before/bg_room.mp3")
 const LEVEL_1_INTRO_BIP_BIP := preload("res://Audio/SFX/lvl1_before/bip-bip.mp3")
 const LEVEL_1_INTRO_ERROR := preload("res://Audio/SFX/lvl1_before/error.mp3")
 const LEVEL_1_CALL_RING_PHONE := preload("res://Audio/SFX/lvl1_before/ring_phone.mp3")
 const TYPEWRITER_SFX := preload("res://Audio/SFX/keyboard for text.mp3")
 const LEVEL_3_INTRO_FIELDS_VOLUME := 0.3
+const LEVEL_3_HAPPY_BIRTHDAY_VOLUME := 0.15
 const LEVEL_3_MUSIC_VOLUME := 0.15
 const MAIN_THEME_VOLUME := 0.3
 const LEVEL_1_CALL_RING_PHONE_VOLUME := 0.5
-const TYPEWRITER_VOLUME := 0.3
-const TYPEWRITER_MIN_EXCERPT_LENGTH := 0.35
+const LEVEL_2_RUN_VOLUME := 0.5
+const LEVEL_2_RAILWAY_VOLUME := 0.3
+const LEVEL_2_TRAIN_INSIDE_VOLUME := 0.06
+const LEVEL_2_ANNOUNCEMENT_STATION_VOLUME := 0.5
+const LEVEL_2_ZIPPER_CLOSE_NEW_VOLUME := 0.5
+const YOU_DIED_VOLUME := 0.4
+const TYPEWRITER_VOLUME := 0.05
 
 var music_player: AudioStreamPlayer
 var level_3_intro_ambience_player: AudioStreamPlayer
@@ -36,8 +49,6 @@ var minigame_music_loop_enabled := false
 var minigame_music_loop_transitioning := false
 var music_fade_tween: Tween
 var level_3_intro_ambience_should_loop := false
-var typewriter_active := false
-var typewriter_rng := RandomNumberGenerator.new()
 
 var bubble_burst_streams: Array[AudioStream] = [
 	preload("res://Audio/bubble_burst1.mp3"),
@@ -79,8 +90,7 @@ func _ready() -> void:
 	typewriter_player = AudioStreamPlayer.new()
 	typewriter_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	typewriter_player.bus = SFX_BUS
-	typewriter_player.stream = TYPEWRITER_SFX
-	typewriter_player.finished.connect(_on_typewriter_finished)
+	typewriter_player.stream = _create_looping_typewriter_stream()
 	add_child(typewriter_player)
 
 
@@ -88,6 +98,20 @@ func play_minigame_music() -> void:
 	minigame_music_loop_enabled = true
 	minigame_music_loop_transitioning = false
 	_play_music(MINIGAME_MUSIC)
+
+
+func play_minigame_music_from(offset_seconds: float, volume_linear: float = 1.0) -> void:
+	if music_player == null or MINIGAME_MUSIC == null:
+		return
+
+	minigame_music_loop_enabled = false
+	minigame_music_loop_transitioning = false
+	restart_music_on_finish = false
+	_stop_music_fade_tween()
+
+	music_player.stream = MINIGAME_MUSIC
+	music_player.volume_db = linear_to_db(volume_linear)
+	music_player.play(maxf(offset_seconds, 0.0))
 
 
 func play_main_theme() -> void:
@@ -146,10 +170,15 @@ func play_level_3_intro_fields_background() -> void:
 
 	stop_music()
 
-	if level_3_intro_ambience_player.stream == LEVEL_3_INTRO_FIELDS_BACKGROUND and level_3_intro_ambience_player.playing:
+	if level_3_intro_ambience_player.playing:
 		return
 
-	level_3_intro_ambience_player.stream = LEVEL_3_INTRO_FIELDS_BACKGROUND
+	var fields_stream := LEVEL_3_INTRO_FIELDS_BACKGROUND.duplicate() as AudioStreamMP3
+	if fields_stream != null:
+		fields_stream.loop = true
+		level_3_intro_ambience_player.stream = fields_stream
+	else:
+		level_3_intro_ambience_player.stream = LEVEL_3_INTRO_FIELDS_BACKGROUND
 	level_3_intro_ambience_player.volume_db = linear_to_db(LEVEL_3_INTRO_FIELDS_VOLUME)
 	level_3_intro_ambience_should_loop = true
 	level_3_intro_ambience_player.play()
@@ -174,6 +203,15 @@ func play_level_3_intro_run_away() -> AudioStreamPlayer:
 
 func play_level_3_intro_close_the_door() -> AudioStreamPlayer:
 	return _play_stream(LEVEL_3_INTRO_CLOSE_THE_DOOR)
+
+
+func play_level_3_happy_birthday() -> AudioStreamPlayer:
+	var happy_birthday_stream := LEVEL_3_HAPPY_BIRTHDAY.duplicate() as AudioStreamMP3
+	if happy_birthday_stream == null:
+		return _play_stream(LEVEL_3_HAPPY_BIRTHDAY, LEVEL_3_HAPPY_BIRTHDAY_VOLUME)
+
+	happy_birthday_stream.loop = true
+	return _play_stream(happy_birthday_stream, LEVEL_3_HAPPY_BIRTHDAY_VOLUME)
 
 
 func play_level_1_intro_bg_room() -> AudioStreamPlayer:
@@ -206,10 +244,12 @@ func start_typewriter_sfx(speed_scale: float = 1.0) -> void:
 	if typewriter_player == null or TYPEWRITER_SFX == null:
 		return
 
-	typewriter_active = true
+	if typewriter_player.stream == null:
+		typewriter_player.stream = _create_looping_typewriter_stream()
+
 	typewriter_player.volume_db = linear_to_db(TYPEWRITER_VOLUME)
 	typewriter_player.pitch_scale = 1.0
-	_play_typewriter_excerpt()
+	typewriter_player.play()
 
 
 func set_typewriter_speed(speed_scale: float) -> void:
@@ -217,8 +257,6 @@ func set_typewriter_speed(speed_scale: float) -> void:
 
 
 func stop_typewriter_sfx() -> void:
-	typewriter_active = false
-
 	if typewriter_player == null:
 		return
 
@@ -261,8 +299,47 @@ func play_zipper() -> AudioStreamPlayer:
 	return _play_stream(ZIPPER)
 
 
+func play_level_2_run() -> AudioStreamPlayer:
+	return _play_stream(LEVEL_2_RUN, LEVEL_2_RUN_VOLUME)
+
+
+func play_level_2_station_railway_station() -> AudioStreamPlayer:
+	var station_stream := LEVEL_2_STATION_RAILWAY_STATION.duplicate() as AudioStreamMP3
+	if station_stream == null:
+		return _play_stream(LEVEL_2_STATION_RAILWAY_STATION, LEVEL_2_RAILWAY_VOLUME)
+
+	station_stream.loop = true
+	return _play_stream(station_stream, LEVEL_2_RAILWAY_VOLUME)
+
+
+func play_level_2_informator_railway() -> AudioStreamPlayer:
+	return _play_stream(LEVEL_2_INFORMATOR_RAILWAY, LEVEL_2_RAILWAY_VOLUME)
+
+
+func play_level_2_train_inside(volume_linear: float = LEVEL_2_TRAIN_INSIDE_VOLUME) -> AudioStreamPlayer:
+	var train_inside_stream := LEVEL_2_TRAIN_INSIDE.duplicate() as AudioStreamMP3
+	if train_inside_stream == null:
+		return _play_stream(LEVEL_2_TRAIN_INSIDE, volume_linear)
+
+	train_inside_stream.loop = true
+	return _play_stream(train_inside_stream, volume_linear)
+
+
+func play_level_2_announcement_station() -> AudioStreamPlayer:
+	return _play_stream(LEVEL_2_ANNOUNCEMENT_STATION, LEVEL_2_ANNOUNCEMENT_STATION_VOLUME)
+
+
+func play_level_2_zipper_close_new() -> AudioStreamPlayer:
+	var zipper_close_stream := LEVEL_2_ZIPPER_CLOSE_NEW.duplicate() as AudioStreamMP3
+	if zipper_close_stream == null:
+		return _play_stream(LEVEL_2_ZIPPER_CLOSE_NEW, LEVEL_2_ZIPPER_CLOSE_NEW_VOLUME)
+
+	zipper_close_stream.loop = true
+	return _play_stream(zipper_close_stream, LEVEL_2_ZIPPER_CLOSE_NEW_VOLUME)
+
+
 func play_you_died() -> AudioStreamPlayer:
-	return _play_stream(YOU_DIED)
+	return _play_stream(YOU_DIED, YOU_DIED_VOLUME)
 
 
 func play_win() -> AudioStreamPlayer:
@@ -396,28 +473,13 @@ func _on_level_3_intro_ambience_finished() -> void:
 	if level_3_intro_ambience_player == null:
 		return
 
-	if level_3_intro_ambience_player.stream != LEVEL_3_INTRO_FIELDS_BACKGROUND:
-		return
-
 	level_3_intro_ambience_player.play()
 
 
-func _on_typewriter_finished() -> void:
-	if not typewriter_active:
-		return
+func _create_looping_typewriter_stream() -> AudioStream:
+	var typewriter_stream := TYPEWRITER_SFX.duplicate() as AudioStreamMP3
+	if typewriter_stream == null:
+		return TYPEWRITER_SFX
 
-	_play_typewriter_excerpt()
-
-
-func _play_typewriter_excerpt() -> void:
-	if typewriter_player == null or typewriter_player.stream == null:
-		return
-
-	var stream_length := typewriter_player.stream.get_length()
-	var max_start_time := maxf(stream_length - TYPEWRITER_MIN_EXCERPT_LENGTH, 0.0)
-	var start_time := 0.0
-
-	if max_start_time > 0.0:
-		start_time = typewriter_rng.randf_range(0.0, max_start_time)
-
-	typewriter_player.play(start_time)
+	typewriter_stream.loop = true
+	return typewriter_stream
