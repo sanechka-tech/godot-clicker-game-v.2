@@ -1,101 +1,101 @@
 keys,en,ru,es,de
-MENU_NEWGAME,New game,Новая игра,,
-MENU_CONTINUE,Continue,Продолжить,,
-MENU_SETTINGS,Settings,Настройки,Ajustes,Einstellungen
-MENU_BACK,Back,Назад,Atrás,Zurück
-SETTINGS_SOUND,Sound,Звук,Sonido,Ton
-LEVEL_WIN,You won,Победа,Victoria,Gewonnen
-LEVEL_LOSE,Lost,Поражение,Derrota,Verloren
-LEVEL_RETRY,Retry,Повтор,Reintentar,Erneut
-SHOP_PLUNGER,Plunger,Вантуз,Desatascador,Pömpel
-SHOP_TURBO_TOILET_PAPER,Turbo Toilet Paper,Турбо-бумага,Papel turbo,Turbo-Klopapier
-SHOP_BATHROOM_READER,Bathroom Reader,Чтиво для ванной,Lectura de baño,Badlektüre
-SHOP_GOLDEN_TOILET_SEAT,Golden Toilet Seat,Золотое сиденье,Asiento dorado,Goldener Toilettensitz
-SHOP_SPREAD_THE_CHEEKS,Spread the Cheeks,Раздвинуть булки,,
-SHOP_SPREAD_THE_CHEEKS_DIS,+1 tap power,+1 сила клика,,
-SHOP_SCROLL_TT,Scroll TikTok,Полистать ТикТок,,
-SHOP_SCROLL_TT_DIS,+25 coins/sec,+25 монет/сек,,
-SHOP_RUN_THE_TAP,Run the Tap,Открыть кран,,
-SHOP_RUN_THE_TAP_DIS,+180 coins/sec,+180 монет/сек,,
-SHOP_USE_AN_ENEMA,Use an Enema,Сделать клизму,,
-SHOP_USE_AN_ENEMA_DIS,+900 coins/sec,+900 монет/сек,,
-SETTINGS_MUSIC,Music,Музыка,,
-SETTINGS_SFX,SFX,Звуки,,
-SETTINGS_LANG,Language,Язык,,
-SETTINGS_FB,Feedback,Обратная связь,,
-SHOP_PUSH_HARDER,Push Harder,Поднатужиться,,
-SHOP_PUSH_HARDER_DIS,+1 Tap Power,+1 сила клика,,
-SHOP_HOLD_THE_RAIL,Hold the Rail,Схватить поручень,,
-SHOP_HOLD_THE_RAIL_DIS,+3 Tap Power,+3 сила клика,,
-SHOP_GET_SOME_TEA,Get some tea,Заказать чайку,,
-SHOP_GET_SOME_TEA_DIS,+8 Tap Power,+8 сила клика,,
-SHOP_STATION_CHEBUREK,Station Cheburek,Чебурек с вокзала,,
-SHOP_STATION_CHEBUREK_DIS,+20 Tap Power,+20 сила клика,,
-HERO_LEKS,Leks,Лекс,,
-HERO_MOM,Mom,Мама,,
-HERO_GRANNY,Granny,Бабушка,,
-STORY_LVL1_INTRO_001,,"— Сейчас… еще пять минут…",,
-STORY_LVL1_INTRO_002,,"— Алло.. Да.. Мам, привет!",,
-STORY_LVL1_INTRO_003,,"— Лекс, привет. Ты что спишь?",,
-STORY_LVL1_INTRO_004,,"— Ты же не забыл, что сегодня у бабушки юбилей?",,
-STORY_LVL1_INTRO_005,,"— Нет, конечно помню!",,
-STORY_LVL1_INTRO_006,,"— Мы собираемся всей семьей к 18:00. Это будет сюрприз, так что прошу тебя - не опаздывай!",,
-STORY_LVL1_INTRO_007,,"— Да-да, помню. Не переживай.",,
-STORY_LVL1_INTRO_008,,"— Билеты на электричку купил?",,
+MENU_NEWGAME,"New Game","Новая игра","Nueva partida","Neues Spiel"
+MENU_CONTINUE,"Continue","Продолжить","Continuar","Fortsetzen"
+MENU_SETTINGS,"Settings","Настройки","Ajustes","Einstellungen"
+MENU_BACK,"Back","Назад","Atrás","Zurück"
+SETTINGS_SOUND,"Sound","Звук","Sonido","Ton"
+LEVEL_WIN,"You won","Победа","Victoria","Gewonnen"
+LEVEL_LOSE,"Lost","Поражение","Derrota","Verloren"
+LEVEL_RETRY,"Retry","Повторить","Reintentar","Erneut versuchen"
+SHOP_PLUNGER,"Plunger","Вантуз","Desatascador","Pömpel"
+SHOP_TURBO_TOILET_PAPER,"Turbo Toilet Paper","Турбо-туалетная бумага","Papel higiénico turbo","Turbo-Klopapier"
+SHOP_BATHROOM_READER,"Bathroom Reader","Чтиво для ванной","Lectura de baño","Badlektüre"
+SHOP_GOLDEN_TOILET_SEAT,"Golden Toilet Seat","Золотое сиденье для унитаза","Asiento dorado","Goldener Toilettensitz"
+SHOP_SPREAD_THE_CHEEKS,"Spread the Cheeks","Раздвинуть булки","Separar las nalgas","Backen spreizen"
+SHOP_SPREAD_THE_CHEEKS_DIS,"+1 tap power","+1 сила клика","+1 fuerza de toque","+1 Tippkraft"
+SHOP_SCROLL_TT,"Scroll TikTok","Полистать ТикТок","Ver TikTok","TikTok scrollen"
+SHOP_SCROLL_TT_DIS,"+25 coins/sec","+25 монет/сек","+25 monedas/s","+25 Münzen/s"
+SHOP_RUN_THE_TAP,"Run the Tap","Открыть кран","Abrir el grifo","Wasserhahn aufdrehen"
+SHOP_RUN_THE_TAP_DIS,"+180 coins/sec","+180 монет/сек","+180 monedas/s","+180 Münzen/s"
+SHOP_USE_AN_ENEMA,"Use an Enema","Сделать клизму","Usar un enema","Einlauf benutzen"
+SHOP_USE_AN_ENEMA_DIS,"+900 coins/sec","+900 монет/сек","+900 monedas/s","+900 Münzen/s"
+SETTINGS_MUSIC,"Music","Музыка","Música","Musik"
+SETTINGS_SFX,"SFX","Звуки","Efectos","Soundeffekte"
+SETTINGS_LANG,"Language","Язык","Idioma","Sprache"
+SETTINGS_FB,"Feedback","Обратная связь","Comentarios","Feedback"
+SHOP_PUSH_HARDER,"Push Harder","Поднатужиться","Empujar más fuerte","Stärker drücken"
+SHOP_PUSH_HARDER_DIS,"+1 tap power","+1 сила клика","+1 fuerza de toque","+1 Tippkraft"
+SHOP_HOLD_THE_RAIL,"Hold the Rail","Схватиться за поручень","Agarrarse a la barra","An der Stange festhalten"
+SHOP_HOLD_THE_RAIL_DIS,"+3 tap power","+3 сила клика","+3 fuerza de toque","+3 Tippkraft"
+SHOP_GET_SOME_TEA,"Get some tea","Заказать чайку","Pedir un té","Einen Tee holen"
+SHOP_GET_SOME_TEA_DIS,"+8 tap power","+8 сила клика","+8 fuerza de toque","+8 Tippkraft"
+SHOP_STATION_CHEBUREK,"Station Cheburek","Чебурек с вокзала","Cheburek de estación","Bahnhofscheburek"
+SHOP_STATION_CHEBUREK_DIS,"+20 tap power","+20 сила клика","+20 fuerza de toque","+20 Tippkraft"
+HERO_LEKS,"Leks","Лекс","Leks","Leks"
+HERO_MOM,"Mom","Мама","Mamá","Mama"
+HERO_GRANNY,"Granny","Бабушка","Abuela","Oma"
+STORY_LVL1_INTRO_001,"— Just... five more minutes...","— Сейчас... еще пять минут...","— Solo... cinco minutos más...","— Nur noch... fünf Minuten..."
+STORY_LVL1_INTRO_002,"— Hello.. Yeah.. Hi Mom!","— Алло.. Да.. Мам, привет!","— ¿Hola?.. Sí.. ¡Mamá, hola!","— Hallo.. Ja.. Hi Mama!"
+STORY_LVL1_INTRO_003,"— Leks, hi! Were you sleeping?","— Лекс, привет! Ты что спишь?","— ¡Leks, hola! ¿Estabas durmiendo?","— Leks, hi! Hast du etwa geschlafen?"
+STORY_LVL1_INTRO_004,"— You didn't forget it's Granny's anniversary today?","— Ты же не забыл, что сегодня у бабушки юбилей?","— No habrás olvidado que hoy es el aniversario de la abuela, ¿verdad?","— Du hast doch nicht vergessen, dass Oma heute Jubiläum hat?"
+STORY_LVL1_INTRO_005,"— No, of course I remember!","— Нет, конечно помню!","— No, claro que me acuerdo!","— Nein, natürlich denke ich daran!"
+STORY_LVL1_INTRO_006,"— The whole family is meeting at 6 PM. It's going to be a surprise, so please don't be late!","— Мы собираемся всей семьей к 18:00. Это будет сюрприз, так что прошу тебя - не опаздывай!","— Toda la familia se reúne a las 18:00. Será una sorpresa, así que por favor no llegues tarde!","— Die ganze Familie trifft sich um 18:00 Uhr. Es wird eine Überraschung, also komm bitte nicht zu spät!"
+STORY_LVL1_INTRO_007,"— Yeah-yeah, I remember.. Don't worry.","— Да-да, помню.. Не переживай.","— Sí, sí, me acuerdo.. No te preocupes.","— Ja, ja, ich weiß.. Keine Sorge."
+STORY_LVL1_INTRO_008,"— Did you buy the train tickets?","— Билеты на электричку купил?","— ¿Compraste los billetes del tren?","— Hast du die Zugtickets gekauft?"
 STORY_LVL1_INTRO_009,"— ........ ..... .......","— ........ ..... .......","— ........ ..... .......","— ........ ..... ......."
-STORY_LVL1_INTRO_010,,"— Да, еще вчера.",,
-STORY_LVL1_INTRO_011,,"— А почему ты еще не вышел?! Последняя электричка уходит через полчаса. Ты точно успеешь?",,
-STORY_LVL1_INTRO_012,,"— Мам, ну да. Я уже почти собран.",,
-STORY_LVL1_INTRO_013,,"— Лекс, это серьезно. Бабушка очень расстроилась в прошлый раз, когда ты не смог приехать.",,
-STORY_LVL1_INTRO_014,,"— Я помню. Приеду вовремя.",,
-STORY_LVL1_INTRO_015,,"— Хорошо. Тогда не тяни, выходи уже, а то опоздаешь.",,
-STORY_LVL1_INTRO_016,,"— Выхожу.",,
-STORY_LVL1_INTRO_017,,"— Давай, до встречи.",,
-STORY_LVL1_INTRO_018,,"*ПИП-ПИП-ПИП*",,
-STORY_LVL1_INTRO_019,,"— Нужно спешить!",,
-STORY_LVL1_INTRO_020,,"— ..... .....",,
-STORY_LVL1_INTRO_021,,"— Очень сильно спешить.",,
-STORY_LVL1_INTRO_022,,"*Звук урчания живота*",,
-STORY_LVL1_INTRO_023,,"— Ну да, ну да. Идеальный момент...",,
-STORY_LVL1_INTRO_024,,"— Мне уже срочно пора бежать...",,
-STORY_LVL2_INTRO_001,,"— Фух, еле успел.",,
-STORY_LVL2_INTRO_002,,"— Ехать примерно час.",,
-STORY_LVL2_INTRO_003,,"— Можно зачилиться.",,
-STORY_LVL2_MINIGAME_WIN,,"— Скилл еще не растерян!",,
-STORY_LVL2_MINIGAME_LOSE,,"— Это была разминочная! В следующий раз я выиграю.",,
-STORY_LVL2_INTRO_004,,"— Поезд прибывает на станцию Козловка через 10 минут.",,
-STORY_LVL2_INTRO_005,,"— Пора собираться.",,
-STORY_LVL2_INTRO_006,,"*Звук застегивания рюкзака*",,
-STORY_LVL2_INTRO_007,,"*Звук урчания живота*",,
-STORY_LVL2_INTRO_008,,"— Ну неееееет!",,
-STORY_LVL2_TRAIN_LOSE,,"Поезд проехал станцию!",,
-STORY_LVL3_INTRO_001,,"— Так, пол дела сделано. Теперь успеть бы до шести!",,
-STORY_LVL3_INTRO_002,,"— ...",,
-STORY_LVL3_INTRO_003,,"*Звук урчания живота*",,
-STORY_LVL3_INTRO_004,,"— Серьезно?",,
-STORY_LVL3_INTRO_005,,"— Оххх, лишь бы не удобрить поля по дороге...",,
-STORY_LVL3_INTRO_006,,"— Нужно срочно найти укромное место..",,
-STORY_LVL3_INTRO_007,,"… *Звук урчания живота*",,
-STORY_LVL3_INTRO_008,,"— Любое место!",,
-STORY_LVL3_FINISH_001,,"— Бабуль, желаю тебе...",,
-STORY_LVL3_FINISH_002,,"— ...",,
-STORY_LVL3_FINISH_003,,"— ..... .....",,
-STORY_LVL3_FINISH_004,,"*Звук урчания живота*",,
-STORY_LVL3_FINISH_005,,"— ...",,
-STORY_LVL3_FINISH_006,,"— Лешенька?",,
-STORY_END_FINISH_001,,"Конец?",,
-TITLES_CREDITS_TEXT,"A Game by Stone and Stick\n\nDesign Aleksandr Stone/Leks Stick\nProgramming Aleksandr Stone/Leks Stick\nArt Aleksandr Stone/Leks Stick\nAnimation Aleksandr Stone/Leks Stick\nMusic Aleksandr Stone/Leks Stick\nSound Effects Aleksandr Stone/Leks Stick\nWriting Aleksandr Stone/Leks Stick\nLocalization Aleksandr Stone/Leks Stick\nTesting Aleksandr Stone/Leks Stick\n\nSpecial Thanks nlold\n\nMade with Godot","A Game by Stone and Stick\n\nDesign Aleksandr Stone/Leks Stick\nProgramming Aleksandr Stone/Leks Stick\nArt Aleksandr Stone/Leks Stick\nAnimation Aleksandr Stone/Leks Stick\nMusic Aleksandr Stone/Leks Stick\nSound Effects Aleksandr Stone/Leks Stick\nWriting Aleksandr Stone/Leks Stick\nLocalization Aleksandr Stone/Leks Stick\nTesting Aleksandr Stone/Leks Stick\n\nSpecial Thanks nlold\n\nMade with Godot","A Game by Stone and Stick\n\nDesign Aleksandr Stone/Leks Stick\nProgramming Aleksandr Stone/Leks Stick\nArt Aleksandr Stone/Leks Stick\nAnimation Aleksandr Stone/Leks Stick\nMusic Aleksandr Stone/Leks Stick\nSound Effects Aleksandr Stone/Leks Stick\nWriting Aleksandr Stone/Leks Stick\nLocalization Aleksandr Stone/Leks Stick\nTesting Aleksandr Stone/Leks Stick\n\nSpecial Thanks nlold\n\nMade with Godot","A Game by Stone and Stick\n\nDesign Aleksandr Stone/Leks Stick\nProgramming Aleksandr Stone/Leks Stick\nArt Aleksandr Stone/Leks Stick\nAnimation Aleksandr Stone/Leks Stick\nMusic Aleksandr Stone/Leks Stick\nSound Effects Aleksandr Stone/Leks Stick\nWriting Aleksandr Stone/Leks Stick\nLocalization Aleksandr Stone/Leks Stick\nTesting Aleksandr Stone/Leks Stick\n\nSpecial Thanks nlold\n\nMade with Godot"
-TITLES_GAME_BY,A Game by Stone and Stick,A Game by Stone and Stick,A Game by Stone and Stick,A Game by Stone and Stick
-TITLES_ROLE_DESIGN,Design,Design,Design,Design
-TITLES_ROLE_PROGRAMMING,Programming,Programming,Programming,Programming
-TITLES_ROLE_ART,Art,Art,Art,Art
-TITLES_ROLE_ANIMATION,Animation,Animation,Animation,Animation
-TITLES_ROLE_MUSIC,Music,Music,Music,Music
-TITLES_ROLE_SOUND_EFFECTS,Sound Effects,Sound Effects,Sound Effects,Sound Effects
-TITLES_ROLE_WRITING,Writing,Writing,Writing,Writing
-TITLES_ROLE_LOCALIZATION,Localization,Localization,Localization,Localization
-TITLES_ROLE_TESTING,Testing,Testing,Testing,Testing
-TITLES_NAME_MAIN,Aleksandr Stone/Leks Stick,Aleksandr Stone/Leks Stick,Aleksandr Stone/Leks Stick,Aleksandr Stone/Leks Stick
-TITLES_SPECIAL_THANKS,Special Thanks,Special Thanks,Special Thanks,Special Thanks
-TITLES_SPECIAL_THANKS_NAME,NLOLD,NLOLD,NLOLD,NLOLD
-TITLES_THANK_YOU,Thank you for playing!,Спасибо за игру!,Thank you for playing!,Thank you for playing!
+STORY_LVL1_INTRO_010,"— Yeah, yesterday.","— Да, еще вчера.","— Sí, ayer mismo.","— Ja, schon gestern."
+STORY_LVL1_INTRO_011,"— Then why haven't you left yet?! The last train leaves in half an hour. Are you sure you'll make it?","— А почему ты еще не вышел?! Последняя электричка уходит через полчаса. Ты точно успеешь?","— Entonces, ¿por qué no has salido todavía?! El último tren sale en media hora. ¿Seguro que llegas?","— Warum bist du dann noch nicht los?! Der letzte Zug fährt in einer halben Stunde. Schaffst du das wirklich?"
+STORY_LVL1_INTRO_012,"— Mom, yeah. I'm basically ready.","— Мам, ну да. Я уже почти собран.","— Mamá, sí. Ya casi estoy listo.","— Mama, ja. Ich bin praktisch fertig."
+STORY_LVL1_INTRO_013,"— Leks, this is serious. Granny was really upset last time when you couldn't come.","— Лекс, это серьезно. Бабушка очень расстроилась в прошлый раз, когда ты не смог приехать.","— Leks, esto va en serio. La abuela se quedó muy triste la última vez que no pudiste venir.","— Leks, das ist ernst. Oma war letztes Mal wirklich traurig, als du nicht kommen konntest."
+STORY_LVL1_INTRO_014,"— I remember. I'll be there on time.","— Я помню. Приеду вовремя.","— Me acuerdo. Llegaré a tiempo.","— Ich weiß. Ich komme pünktlich."
+STORY_LVL1_INTRO_015,"— Good. Then don't drag it out, get going or you'll be late.","— Хорошо. Тогда не тяни, выходи уже, а то опоздаешь.","— Bien. Entonces no te entretengas, sal ya o llegarás tarde.","— Gut. Dann trödel nicht, geh jetzt los, sonst kommst du zu spät."
+STORY_LVL1_INTRO_016,"— I'm leaving.","— Выхожу.","— Ya salgo.","— Ich gehe los."
+STORY_LVL1_INTRO_017,"— Okay, see you soon.","— Давай, до встречи.","— Vale, nos vemos.","— Gut, bis gleich."
+STORY_LVL1_INTRO_018,"*BEEP-BEEP-BEEP*","*ПИП-ПИП-ПИП*","*PIP-PIP-PIP*","*PIEP-PIEP-PIEP*"
+STORY_LVL1_INTRO_019,"— Need to hurry!","— Нужно спешить!","— Tengo que darme prisa!","— Ich muss mich beeilen!"
+STORY_LVL1_INTRO_020,"— ..... .....","— ..... .....","— ..... .....","— ..... ....."
+STORY_LVL1_INTRO_021,"— Really hurry.","— Очень сильно спешить.","— Darme muchísima prisa.","— Mich wirklich sehr beeilen."
+STORY_LVL1_INTRO_022,"*Stomach rumbling*","*Звук урчания живота*","*Ruido de tripas*","*Magenknurren*"
+STORY_LVL1_INTRO_023,"— Of course... Perfect timing....","— Ну да, ну да... Идеальный момент....","— Claro que sí... El momento perfecto....","— Ja klar... Perfektes Timing...."
+STORY_LVL1_INTRO_024,"— I really need to run!!!","— Мне уже срочно пора бежать!!!","— Tengo que salir corriendo ya!!!","— Ich muss jetzt dringend losrennen!!!"
+STORY_LVL2_INTRO_001,"— Whew, barely made it.","— Фух, еле успел.","— Uf, llegué por los pelos.","— Puh, gerade so geschafft."
+STORY_LVL2_INTRO_002,"— About an hour to go.","— Ехать примерно час.","— Queda como una hora de viaje.","— Die Fahrt dauert ungefähr eine Stunde."
+STORY_LVL2_INTRO_003,"— Time to chill.","— Можно зачилиться.","— Puedo relajarme un poco.","— Jetzt kann ich entspannen."
+STORY_LVL2_MINIGAME_WIN,"— Still got it!","— Скилл еще не растерян!","— Todavía lo tengo!","— Ich hab's noch drauf!"
+STORY_LVL2_MINIGAME_LOSE,"— Just a warm-up! Next time I'll win.","— Разминочная! В следующий раз я выиграю.","— Era de calentamiento! La próxima gano.","— War nur zum Aufwärmen! Nächstes Mal gewinne ich."
+STORY_LVL2_INTRO_004,"— The train arrives at Kozlovka station in 10 minutes.","— Поезд прибывает на станцию Козловка через 10 минут.","— El tren llegará a la estación de Kozlovka en 10 minutos.","— Der Zug erreicht den Bahnhof Koslowka in 10 Minuten."
+STORY_LVL2_INTRO_005,"— Time to pack up.","— Пора собираться.","— Hora de recoger.","— Zeit, meine Sachen zu packen."
+STORY_LVL2_INTRO_006,"*Backpack zipper sound*","*Звук застегивания рюкзака*","*Sonido de cremallera de mochila*","*Rucksackreißverschluss*"
+STORY_LVL2_INTRO_007,"*Stomach rumbling*","*Звук урчания живота*","*Ruido de tripas*","*Magenknurren*"
+STORY_LVL2_INTRO_008,"— Oh nooooo!!!","— Ну неееееет!!!","— Oh nooooo!!!","— Oh neiiiin!!!"
+STORY_LVL2_TRAIN_LOSE,"The train passed the station!","Поезд проехал станцию!","¡El tren se pasó la estación!","Der Zug ist am Bahnhof vorbeigefahren!"
+STORY_LVL3_INTRO_001,"— Okay, half the job is done. Now I just need to make it by six!","— Так, пол дела сделано. Теперь успеть бы до шести!","— Bien, la mitad está hecha. Ahora solo tengo que llegar antes de las seis!","— Gut, die Hälfte ist geschafft. Jetzt nur noch bis sechs ankommen!"
+STORY_LVL3_INTRO_002,"— ...","— ...","— ...","— ..."
+STORY_LVL3_INTRO_003,"*Stomach rumbling*","*Звук урчания живота*","*Ruido de tripas*","*Magenknurren*"
+STORY_LVL3_INTRO_004,"— Seriously?..","— Серьезно?..","— ¿En serio?..","— Ernsthaft?.."
+STORY_LVL3_INTRO_005,"— Ohhh, please don't let me fertilize the fields on the way...","— Оххх, лишь бы не удобрить поля по дороге...","— Ufff, solo espero no abonar los campos por el camino...","— Ohhh, hoffentlich dünge ich unterwegs nicht die Felder..."
+STORY_LVL3_INTRO_006,"— I need to find a private spot fast..","— Нужно срочно найти укромное место..","— Tengo que encontrar un sitio apartado ya..","— Ich muss dringend ein stilles Plätzchen finden.."
+STORY_LVL3_INTRO_007,"— ... *Stomach rumbling*","… *Звук урчания живота*","— ... *Ruido de tripas*","— ... *Magenknurren*"
+STORY_LVL3_INTRO_008,"— Any spot!","— Любое место!","— Cualquier sitio!","— Irgendein Platz!"
+STORY_LVL3_FINISH_001,"— Granny, I wish you...","— Бабуль, желаю тебе...","— Abuela, te deseo...","— Oma, ich wünsche dir..."
+STORY_LVL3_FINISH_002,"— ...","— ...","— ...","— ..."
+STORY_LVL3_FINISH_003,"— ..... .....","— ..... .....","— ..... .....","— ..... ....."
+STORY_LVL3_FINISH_004,"*Stomach rumbling*","*Звук урчания живота*","*Ruido de tripas*","*Magenknurren*"
+STORY_LVL3_FINISH_005,"— ...","— ...","— ...","— ..."
+STORY_LVL3_FINISH_006,"— Alyoshenka?","— Лешенька?","— ¿Alyoshenka?","— Aljoschenka?"
+STORY_END_FINISH_001,"The End?","Конец?","¿Fin?","Ende?"
+TITLES_CREDITS_TEXT,"A Game by Stone and Stick\n\nDesign Aleksandr Stone/Leks Stick\nProgramming Aleksandr Stone/Leks Stick\nArt Aleksandr Stone/Leks Stick\nAnimation Aleksandr Stone/Leks Stick\nMusic Aleksandr Stone/Leks Stick\nSound Effects Aleksandr Stone/Leks Stick\nWriting Aleksandr Stone/Leks Stick\nLocalization Aleksandr Stone/Leks Stick\nTesting Aleksandr Stone/Leks Stick\n\nSpecial Thanks NLOLD\n\nMade with Godot","Игра от Stone and Stick\n\nДизайн Александр Stone/Leks Stick\nПрограммирование Александр Stone/Leks Stick\nАрт Александр Stone/Leks Stick\nАнимация Александр Stone/Leks Stick\nМузыка Александр Stone/Leks Stick\nЗвуковые эффекты Александр Stone/Leks Stick\nСценарий Александр Stone/Leks Stick\nЛокализация Александр Stone/Leks Stick\nТестирование Александр Stone/Leks Stick\n\nОсобая благодарность NLOLD\n\nСделано на Godot","Un juego de Stone and Stick\n\nDiseño Aleksandr Stone/Leks Stick\nProgramación Aleksandr Stone/Leks Stick\nArte Aleksandr Stone/Leks Stick\nAnimación Aleksandr Stone/Leks Stick\nMúsica Aleksandr Stone/Leks Stick\nEfectos de sonido Aleksandr Stone/Leks Stick\nGuion Aleksandr Stone/Leks Stick\nLocalización Aleksandr Stone/Leks Stick\nPruebas Aleksandr Stone/Leks Stick\n\nAgradecimiento especial a NLOLD\n\nHecho con Godot","Ein Spiel von Stone and Stick\n\nDesign Aleksandr Stone/Leks Stick\nProgrammierung Aleksandr Stone/Leks Stick\nGrafik Aleksandr Stone/Leks Stick\nAnimation Aleksandr Stone/Leks Stick\nMusik Aleksandr Stone/Leks Stick\nSoundeffekte Aleksandr Stone/Leks Stick\nText Aleksandr Stone/Leks Stick\nLokalisierung Aleksandr Stone/Leks Stick\nTests Aleksandr Stone/Leks Stick\n\nBesonderer Dank an NLOLD\n\nErstellt mit Godot"
+TITLES_GAME_BY,"A Game by Stone and Stick","Игра от Stone and Stick","Un juego de Stone and Stick","Ein Spiel von Stone and Stick"
+TITLES_ROLE_DESIGN,"Design","Дизайн","Diseño","Design"
+TITLES_ROLE_PROGRAMMING,"Programming","Программирование","Programación","Programmierung"
+TITLES_ROLE_ART,"Art","Арт","Arte","Grafik"
+TITLES_ROLE_ANIMATION,"Animation","Анимация","Animación","Animation"
+TITLES_ROLE_MUSIC,"Music","Музыка","Música","Musik"
+TITLES_ROLE_SOUND_EFFECTS,"Sound Effects","Звуковые эффекты","Efectos de sonido","Soundeffekte"
+TITLES_ROLE_WRITING,"Writing","Сценарий","Guion","Text"
+TITLES_ROLE_LOCALIZATION,"Localization","Локализация","Localización","Lokalisierung"
+TITLES_ROLE_TESTING,"Testing","Тестирование","Pruebas","Tests"
+TITLES_NAME_MAIN,"Aleksandr Stone/Leks Stick","Aleksandr Stone/Leks Stick","Aleksandr Stone/Leks Stick","Aleksandr Stone/Leks Stick"
+TITLES_SPECIAL_THANKS,"Special Thanks","Особая благодарность","Agradecimiento especial","Besonderer Dank"
+TITLES_SPECIAL_THANKS_NAME,"NLOLD","NLOLD","NLOLD","NLOLD"
+TITLES_THANK_YOU,"Thank you for playing!","Спасибо за игру!","¡Gracias por jugar!","Danke fürs Spielen!"

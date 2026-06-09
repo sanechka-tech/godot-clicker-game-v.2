@@ -2,8 +2,8 @@ extends Control
 
 const TV_NOISE := preload("res://Audio/SFX/menu/TV_noise.mp3")
 const TV_ADS := preload("res://Audio/SFX/menu/TV_ads.mp3")
-const TV_NOISE_VOLUME := 0.04
-const TV_ADS_VOLUME := 0.005
+const TV_NOISE_VOLUME := 0.07
+const TV_ADS_VOLUME := 0.008
 
 const NOISE_FRAMES := [2, 4, 7, 9, 12]
 const ADS_FRAMES := [5, 6, 10, 11]

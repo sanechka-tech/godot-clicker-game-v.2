@@ -5,6 +5,7 @@ const SHOP_UNKNOWN_TEXTURE = preload("res://Images/Shops/button_unknown.png")
 const PROGRESS_GOAL_ICON_TRACK_START_OFFSET := 0.0
 const PROGRESS_GOAL_ICON_TRACK_END_OFFSET := 0.0
 const PROGRESS_GOAL_ICON_OFFSET := Vector2.ZERO
+const PROGRESS_VISUAL_EXPONENT := 0.55
 const SHOP_BUTTON_TEXT_PRESS_OFFSET := Vector2(0.0, 2.0)
 const SHOP_UPGRADE_BUTTONS := {
 	"spread_the_cheeks": "ShopLvl1/VBoxContainer/SpreadtheCheeks",
@@ -160,8 +161,17 @@ func _setup_goal_progress() -> void:
 
 
 func _update_goal_progress() -> void:
-	progress_goal.value = min(GameState.score, GameState.score_goal)
+	progress_goal.value = _get_visual_goal_progress_value(GameState.score, GameState.score_goal)
 	_update_goal_icon()
+
+
+func _get_visual_goal_progress_value(current_score: int, goal_score: int) -> float:
+	if goal_score <= 0:
+		return 0.0
+
+	var raw_ratio := clampf(float(current_score) / float(goal_score), 0.0, 1.0)
+	var visual_ratio := pow(raw_ratio, PROGRESS_VISUAL_EXPONENT)
+	return visual_ratio * goal_score
 
 
 func _try_start_final_pressure_sequence() -> void:

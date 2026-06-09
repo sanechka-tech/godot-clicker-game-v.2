@@ -1,14 +1,16 @@
 extends Node2D
 
 const ROUND_DURATION_SECONDS := 300.0
-const LEVEL_GOAL_SCORE := 245000
+const LEVEL_GOAL_SCORE := 200000
 const MOB_SPAWN_INTERVAL := 5.0
 const TAP_GAIN_EFFECT_SCENE := preload("res://tap_gain_effect.tscn")
 const SHOP_UNKNOWN_TEXTURE = preload("res://Images/Shops/button_unknown.png")
 const PROGRESS_GOAL_ICON_TRACK_START_OFFSET := 0.0
 const PROGRESS_GOAL_ICON_TRACK_END_OFFSET := 0.0
 const PROGRESS_GOAL_ICON_OFFSET := Vector2.ZERO
+const PROGRESS_VISUAL_EXPONENT := 0.55
 const SHOP_FACE_PRESS_OFFSET := Vector2(0.0, 2.0)
+const SHOP_BUTTON_TEXT_PRESS_OFFSET := Vector2(0.0, 2.0)
 const FINAL_UI_EXIT_DURATION := 0.8
 const FINAL_UI_EXIT_EXTRA_DISTANCE := 80.0
 const LEVEL_2_AFTER_SCENE_PATH := "res://cutscenes/lvl_3_village_intro_1.tscn"
@@ -72,6 +74,7 @@ var final_pressure_sequence_started := false
 var mob_spawn_time_left := MOB_SPAWN_INTERVAL
 var shop_face_start_positions := {}
 var shop_face_tweens := {}
+var shop_button_text_group_start_positions := {}
 var shop_button_original_textures := {}
 var level_2_shop_purchase_counts := {}
 var level_2_shop_prices := {}
@@ -127,6 +130,14 @@ func _process(delta: float) -> void:
 		_finish_round(false)
 
 
+func _input(event: InputEvent) -> void:
+	if round_finished or not _is_primary_press(event):
+		return
+
+	if _pop_fart_mob_at_global_position(get_global_mouse_position()):
+		get_viewport().set_input_as_handled()
+
+
 func _on_character_tapped(tap_position: Vector2) -> void:
 	if round_finished:
 		return
@@ -169,8 +180,17 @@ func _setup_goal_progress() -> void:
 
 
 func _update_goal_progress() -> void:
-	progress_goal.value = min(GameState.score, LEVEL_GOAL_SCORE)
+	progress_goal.value = _get_visual_goal_progress_value(GameState.score, LEVEL_GOAL_SCORE)
 	_update_goal_icon()
+
+
+func _get_visual_goal_progress_value(current_score: int, goal_score: int) -> float:
+	if goal_score <= 0:
+		return 0.0
+
+	var raw_ratio := clampf(float(current_score) / float(goal_score), 0.0, 1.0)
+	var visual_ratio := pow(raw_ratio, PROGRESS_VISUAL_EXPONENT)
+	return visual_ratio * goal_score
 
 
 func _hide_round_result_panels() -> void:
@@ -355,6 +375,25 @@ func _spawn_random_fart_mob() -> void:
 	add_child(fart_mob)
 
 
+func _pop_fart_mob_at_global_position(global_point: Vector2) -> bool:
+	var query := PhysicsPointQueryParameters2D.new()
+	query.position = global_point
+	query.collide_with_bodies = true
+	query.collide_with_areas = false
+
+	var results := get_world_2d().direct_space_state.intersect_point(query, 16)
+	for result in results:
+		var collider := result.get("collider") as Node
+		if collider == null or not collider.is_in_group("fart_mobs"):
+			continue
+
+		if collider.has_method("pop_from_external_input"):
+			collider.pop_from_external_input()
+			return true
+
+	return false
+
+
 func _on_fart_mob_popped() -> void:
 	if round_finished:
 		return
@@ -362,6 +401,19 @@ func _on_fart_mob_popped() -> void:
 	var bonus_coins := (GameState.tap_power + 1) * 10
 	GameState.add_bonus_coins(bonus_coins)
 	AudioManager.play_fart_mob_pop_sounds()
+
+
+func _is_primary_press(event: InputEvent) -> bool:
+	if event is InputEventScreenTouch:
+		return event.pressed
+
+	if event is InputEventMouseButton:
+		return (
+			event.pressed
+			and event.button_index in [MOUSE_BUTTON_LEFT, MOUSE_BUTTON_RIGHT]
+		)
+
+	return false
 
 
 func _spawn_tap_gain_effect(tap_position: Vector2, amount: int) -> void:
@@ -375,9 +427,13 @@ func _setup_shop_face_press_effects() -> void:
 	for button_name in SHOP_FACE_BUTTON_PATHS:
 		var button := get_node("ShopLvl2/VBoxContainer/" + button_name) as BaseButton
 		var face := button.get_node(SHOP_FACE_BUTTON_PATHS[button_name]) as Node2D
+		var text_group := button.get_node("TextGroup") as Control
 		shop_face_start_positions[face] = face.position
+		shop_button_text_group_start_positions[text_group] = text_group.position
 		button.button_down.connect(_on_shop_face_button_down.bind(face))
 		button.button_up.connect(_on_shop_face_button_up.bind(face))
+		button.button_down.connect(_on_shop_button_text_down.bind(text_group))
+		button.button_up.connect(_on_shop_button_text_up.bind(text_group))
 
 
 func _on_shop_face_button_down(face: Node2D) -> void:
@@ -401,6 +457,14 @@ func _on_shop_face_button_up(face: Node2D) -> void:
 		shop_face_start_positions[face],
 		0.08
 	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
+
+func _on_shop_button_text_down(text_group: Control) -> void:
+	text_group.position = shop_button_text_group_start_positions[text_group] + SHOP_BUTTON_TEXT_PRESS_OFFSET
+
+
+func _on_shop_button_text_up(text_group: Control) -> void:
+	text_group.position = shop_button_text_group_start_positions[text_group]
 
 
 func _setup_level_2_shop_buttons() -> void:

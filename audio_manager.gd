@@ -39,6 +39,8 @@ const LEVEL_2_ANNOUNCEMENT_STATION_VOLUME := 0.5
 const LEVEL_2_ZIPPER_CLOSE_NEW_VOLUME := 0.5
 const YOU_DIED_VOLUME := 0.4
 const TYPEWRITER_VOLUME := 0.05
+const FART_MOB_POP_VOLUME := 0.3
+const LEVEL_3_BUG_DEATH_VOLUME := 0.5
 
 var music_player: AudioStreamPlayer
 var level_3_intro_ambience_player: AudioStreamPlayer
@@ -48,6 +50,7 @@ var restart_music_on_finish := false
 var minigame_music_loop_enabled := false
 var minigame_music_loop_transitioning := false
 var music_fade_tween: Tween
+var level_3_intro_ambience_fade_tween: Tween
 var level_3_intro_ambience_should_loop := false
 
 var bubble_burst_streams: Array[AudioStream] = [
@@ -169,6 +172,7 @@ func play_level_3_intro_fields_background() -> void:
 		return
 
 	stop_music()
+	_stop_level_3_intro_ambience_fade_tween()
 
 	if level_3_intro_ambience_player.playing:
 		return
@@ -186,6 +190,7 @@ func play_level_3_intro_fields_background() -> void:
 
 func stop_level_3_intro_ambience() -> void:
 	level_3_intro_ambience_should_loop = false
+	_stop_level_3_intro_ambience_fade_tween()
 
 	if level_3_intro_ambience_player == null:
 		return
@@ -193,8 +198,24 @@ func stop_level_3_intro_ambience() -> void:
 	level_3_intro_ambience_player.stop()
 
 
+func fade_out_level_3_intro_ambience(duration: float) -> void:
+	level_3_intro_ambience_should_loop = false
+	_stop_level_3_intro_ambience_fade_tween()
+
+	if level_3_intro_ambience_player == null or not level_3_intro_ambience_player.playing:
+		return
+
+	level_3_intro_ambience_fade_tween = create_tween()
+	level_3_intro_ambience_fade_tween.tween_property(level_3_intro_ambience_player, "volume_db", -80.0, duration)
+	await level_3_intro_ambience_fade_tween.finished
+
+	level_3_intro_ambience_player.stop()
+	level_3_intro_ambience_player.volume_db = linear_to_db(LEVEL_3_INTRO_FIELDS_VOLUME)
+	level_3_intro_ambience_fade_tween = null
+
+
 func play_level_3_intro_stomach_sound() -> AudioStreamPlayer:
-	return _play_stream(LEVEL_3_INTRO_STOMACH_SOUND)
+	return _play_stream(LEVEL_3_INTRO_STOMACH_SOUND, 0.5)
 
 
 func play_level_3_intro_run_away() -> AudioStreamPlayer:
@@ -264,11 +285,11 @@ func stop_typewriter_sfx() -> void:
 
 
 func play_fart_mob_pop_sounds() -> void:
-	_play_random_stream(bubble_burst_streams)
+	_play_random_stream(bubble_burst_streams, FART_MOB_POP_VOLUME)
 
 	var should_play_fart := pops_since_last_fart >= 3 or randf() < 0.25
 	if should_play_fart:
-		_play_random_stream(fart_streams)
+		_play_random_stream(fart_streams, FART_MOB_POP_VOLUME)
 		pops_since_last_fart = 0
 		return
 
@@ -280,7 +301,7 @@ func play_level_3_bug_death_sound(bug_kind: StringName) -> void:
 	if stream == null:
 		return
 
-	_play_stream(stream)
+	_play_stream(stream, LEVEL_3_BUG_DEATH_VOLUME)
 
 
 func play_fart_sound_3() -> void:
@@ -292,7 +313,7 @@ func play_final_pressure() -> AudioStreamPlayer:
 
 
 func play_final_toilet_flush() -> AudioStreamPlayer:
-	return _play_stream(FINAL_TOILET_FLUSH)
+	return _play_stream(FINAL_TOILET_FLUSH, 0.6)
 
 
 func play_zipper() -> AudioStreamPlayer:
@@ -346,11 +367,11 @@ func play_win() -> AudioStreamPlayer:
 	return _play_stream(WIN)
 
 
-func _play_random_stream(streams: Array[AudioStream]) -> void:
+func _play_random_stream(streams: Array[AudioStream], volume_linear: float = 1.0) -> void:
 	if streams.is_empty():
 		return
 
-	_play_stream(streams[randi() % streams.size()])
+	_play_stream(streams[randi() % streams.size()], volume_linear)
 
 
 func _play_stream(stream: AudioStream, volume_linear: float = 1.0) -> AudioStreamPlayer:
@@ -464,6 +485,16 @@ func _stop_music_fade_tween() -> void:
 		music_fade_tween.kill()
 
 	music_fade_tween = null
+
+
+func _stop_level_3_intro_ambience_fade_tween() -> void:
+	if level_3_intro_ambience_fade_tween == null:
+		return
+
+	if level_3_intro_ambience_fade_tween.is_valid():
+		level_3_intro_ambience_fade_tween.kill()
+
+	level_3_intro_ambience_fade_tween = null
 
 
 func _on_level_3_intro_ambience_finished() -> void:

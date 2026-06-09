@@ -139,7 +139,7 @@ offset_right = 253.0
 offset_bottom = 25.0
 theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
 theme_override_fonts/font = ExtResource("11_sj757")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 18
 text = "SHOP_SPREAD_THE_CHEEKS"
 
 [node name="Descriptoin" type="Label" parent="ShopLvl1/VBoxContainer/SpreadtheCheeks/TextGroup" unique_id=929653848]
@@ -155,13 +155,13 @@ text = "SHOP_SPREAD_THE_CHEEKS_DIS"
 
 [node name="Price" type="Label" parent="ShopLvl1/VBoxContainer/SpreadtheCheeks/TextGroup" unique_id=267936045]
 layout_mode = 0
-offset_left = 208.0
+offset_left = 195.0
 offset_top = 13.0
-offset_right = 291.0
+offset_right = 278.0
 offset_bottom = 38.0
 theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
 theme_override_fonts/font = ExtResource("11_sj757")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 23
 text = "999,2k"
 
 [node name="ScrollTikTok" type="TextureButton" parent="ShopLvl1/VBoxContainer" unique_id=592909982]
@@ -189,7 +189,7 @@ offset_right = 207.0
 offset_bottom = 24.0
 theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
 theme_override_fonts/font = ExtResource("11_sj757")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 18
 text = "SHOP_SCROLL_TT"
 
 [node name="Descriptoin" type="Label" parent="ShopLvl1/VBoxContainer/ScrollTikTok/TextGroup" unique_id=63959692]
@@ -205,13 +205,13 @@ text = "SHOP_SCROLL_TT_DIS"
 
 [node name="Price" type="Label" parent="ShopLvl1/VBoxContainer/ScrollTikTok/TextGroup" unique_id=836132632]
 layout_mode = 0
-offset_left = 208.0
+offset_left = 195.0
 offset_top = 11.0
-offset_right = 260.0
+offset_right = 247.0
 offset_bottom = 36.0
 theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
 theme_override_fonts/font = ExtResource("11_sj757")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 23
 text = "999k"
 
 [node name="RuntheTap" type="TextureButton" parent="ShopLvl1/VBoxContainer" unique_id=1498602867]
@@ -239,7 +239,7 @@ offset_right = 207.0
 offset_bottom = 24.0
 theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
 theme_override_fonts/font = ExtResource("11_sj757")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 18
 text = "SHOP_RUN_THE_TAP"
 
 [node name="Descriptoin" type="Label" parent="ShopLvl1/VBoxContainer/RuntheTap/TextGroup" unique_id=339992630]
@@ -255,13 +255,13 @@ text = "SHOP_RUN_THE_TAP_DIS"
 
 [node name="Price" type="Label" parent="ShopLvl1/VBoxContainer/RuntheTap/TextGroup" unique_id=1593711646]
 layout_mode = 0
-offset_left = 208.0
+offset_left = 195.0
 offset_top = 12.0
-offset_right = 260.0
+offset_right = 247.0
 offset_bottom = 37.0
 theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
 theme_override_fonts/font = ExtResource("11_sj757")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 23
 text = "999k"
 
 [node name="UseanEnema" type="TextureButton" parent="ShopLvl1/VBoxContainer" unique_id=1241318776]
@@ -289,7 +289,7 @@ offset_right = 208.0
 offset_bottom = 24.0
 theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
 theme_override_fonts/font = ExtResource("11_sj757")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 18
 text = "SHOP_USE_AN_ENEMA"
 
 [node name="Descriptoin" type="Label" parent="ShopLvl1/VBoxContainer/UseanEnema/TextGroup" unique_id=1035524316]
@@ -305,14 +305,14 @@ text = "SHOP_USE_AN_ENEMA_DIS"
 
 [node name="Price" type="Label" parent="ShopLvl1/VBoxContainer/UseanEnema/TextGroup" unique_id=1402138050]
 layout_mode = 0
-offset_left = 208.0
+offset_left = 191.0
 offset_top = 12.0
-offset_right = 260.0
+offset_right = 263.0
 offset_bottom = 37.0
 theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
 theme_override_fonts/font = ExtResource("11_sj757")
-theme_override_font_sizes/font_size = 24
-text = "999k"
+theme_override_font_sizes/font_size = 23
+text = "999.1k"
 
 [node name="Counter" type="CanvasLayer" parent="." unique_id=1215763883]
 
@@ -325,6 +325,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=135258283]
 layer = 100
+visible = false
 
 [node name="SettingsPopup" parent="SettingsLayer" unique_id=793784747 instance=ExtResource("27_g7q6i")]
 metadata/_edit_use_anchors_ = true

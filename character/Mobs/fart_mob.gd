@@ -64,6 +64,10 @@ func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> vo
 		_pop()
 
 
+func pop_from_external_input() -> void:
+	_pop()
+
+
 func _pop() -> void:
 	if _is_popped:
 		return

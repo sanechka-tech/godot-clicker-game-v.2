@@ -11,7 +11,7 @@ const SAVE_VERSION := 1
 
 var shitty_coins: int = 0
 var score: int = 0
-var tap_power: int = 100000
+var tap_power: int = 0
 var passive_score_per_second: int = 0
 var score_goal: int = 1000000
 var mini_game_after_story_key: StringName = &"STORY_LVL2_MINIGAME_WIN"

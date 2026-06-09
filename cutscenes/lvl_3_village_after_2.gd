@@ -129,6 +129,7 @@ func _change_to_next_scene() -> void:
 	_is_changing_scene = true
 	var transition_screen = get_node_or_null("/root/TransitionScreen")
 	if transition_screen != null:
+		AudioManager.fade_out_level_3_intro_ambience(NEXT_SCENE_FADE_OUT_DURATION)
 		transition_screen.change_scene(
 			NEXT_SCENE_PATH,
 			NEXT_SCENE_FADE_OUT_DURATION,
