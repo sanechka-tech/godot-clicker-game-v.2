@@ -17,11 +17,17 @@ const BACK_BUTTON_PRESS_SHRINK := Vector2(4.0, 4.0)
 @onready var back_button: TextureButton = $MenuRoot/TextureButtonBack
 @onready var feedback_button: TextureButton = $MenuRoot/ButtonFeedback
 @onready var feedback_label: Label = $MenuRoot/ButtonFeedback/Feedback
+@onready var feedback_area: TextureRect = $MenuRoot/FeedbackArea
+@onready var feedback_text: TextEdit = $MenuRoot/FeedbackArea/FeedbackText
+@onready var send_feedback_button: TextureButton = $MenuRoot/FeedbackArea/ButtonFeedback
+@onready var send_feedback_label: Label = $MenuRoot/FeedbackArea/ButtonFeedback/SendFeedback
+@onready var feedback_button_back: TextureButton = $MenuRoot/FeedbackArea/FeedbackButtonBack
 @onready var settings_button_root: Control = $SettingsButtonRoot
 @onready var settings_button: TextureButton = $SettingsButtonRoot/SettingsButton
 
 var volume_knob_offsets := {}
 var feedback_label_start_position := Vector2.ZERO
+var send_feedback_label_start_position := Vector2.ZERO
 var back_button_start_position := Vector2.ZERO
 var back_button_start_size := Vector2.ZERO
 var paused_audio_players: Array[Node] = []
@@ -30,6 +36,7 @@ var paused_audio_players: Array[Node] = []
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	menu_root.visible = false
+	feedback_area.visible = false
 	settings_button_root.visible = show_open_button
 
 	_remember_volume_knob_offset(music_volume)
@@ -49,6 +56,11 @@ func _ready() -> void:
 	feedback_label_start_position = feedback_label.position
 	feedback_button.button_down.connect(_on_feedback_button_down)
 	feedback_button.button_up.connect(_on_feedback_button_up)
+	feedback_button.pressed.connect(_open_feedback_area)
+	send_feedback_label_start_position = send_feedback_label.position
+	send_feedback_button.button_down.connect(_on_send_feedback_button_down)
+	send_feedback_button.button_up.connect(_on_send_feedback_button_up)
+	feedback_button_back.pressed.connect(_close_feedback_area)
 	settings_button.pressed.connect(open)
 
 	_update_volume_view(music_volume, music_slider.value)
@@ -66,6 +78,7 @@ func open() -> void:
 
 func close() -> void:
 	_reset_back_button_size()
+	_close_feedback_area()
 	menu_root.visible = false
 	settings_button_root.visible = show_open_button
 	visible = show_open_button
@@ -92,6 +105,25 @@ func _on_feedback_button_down() -> void:
 
 func _on_feedback_button_up() -> void:
 	feedback_label.position = feedback_label_start_position
+
+
+func _open_feedback_area() -> void:
+	feedback_area.visible = true
+	feedback_text.grab_focus()
+
+
+func _close_feedback_area() -> void:
+	_on_send_feedback_button_up()
+	feedback_text.release_focus()
+	feedback_area.visible = false
+
+
+func _on_send_feedback_button_down() -> void:
+	send_feedback_label.position = send_feedback_label_start_position + FEEDBACK_LABEL_PRESS_OFFSET
+
+
+func _on_send_feedback_button_up() -> void:
+	send_feedback_label.position = send_feedback_label_start_position
 
 
 func _on_back_button_down() -> void:
