@@ -134,7 +134,8 @@ func _input(event: InputEvent) -> void:
 	if round_finished or not _is_primary_press(event):
 		return
 
-	if _pop_fart_mob_at_global_position(get_global_mouse_position()):
+	var input_global_position := _get_input_global_position(event)
+	if _pop_fart_mob_at_global_position(input_global_position):
 		get_viewport().set_input_as_handled()
 
 
@@ -414,6 +415,16 @@ func _is_primary_press(event: InputEvent) -> bool:
 		)
 
 	return false
+
+
+func _get_input_global_position(event: InputEvent) -> Vector2:
+	if event is InputEventScreenTouch:
+		return get_global_transform_with_canvas().affine_inverse() * event.position
+
+	if event is InputEventMouseButton:
+		return get_global_mouse_position()
+
+	return get_global_mouse_position()
 
 
 func _spawn_tap_gain_effect(tap_position: Vector2, amount: int) -> void:

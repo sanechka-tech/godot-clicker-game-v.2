@@ -51,7 +51,14 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if _scroll_finished or not (event is InputEventMouseButton):
+	if _scroll_finished:
+		return
+
+	if event is InputEventScreenTouch:
+		_set_scroll_speed_scale(FAST_SCROLL_SPEED_SCALE if event.pressed else 1.0)
+		return
+
+	if not (event is InputEventMouseButton):
 		return
 
 	if event.button_index != MOUSE_BUTTON_LEFT:

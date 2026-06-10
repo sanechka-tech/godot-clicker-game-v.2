@@ -54,10 +54,7 @@ func _input(event: InputEvent) -> void:
 	if _is_settings_input(event):
 		return
 
-	if not (event is InputEventMouseButton):
-		return
-
-	if not event.pressed or event.button_index != MOUSE_BUTTON_LEFT:
+	if not _is_confirm_input(event):
 		return
 
 	if _is_typing_story:
@@ -256,3 +253,13 @@ func _refresh_story_label_translation(story_key: String) -> void:
 func _is_settings_input(event: InputEvent) -> bool:
 	var settings_popup = get_node_or_null("SettingsLayer/SettingsPopup")
 	return settings_popup != null and settings_popup.has_method("is_scene_input_blocked") and settings_popup.is_scene_input_blocked(event)
+
+
+func _is_confirm_input(event: InputEvent) -> bool:
+	if event is InputEventScreenTouch:
+		return event.pressed
+
+	if event is InputEventMouseButton:
+		return event.pressed and event.button_index == MOUSE_BUTTON_LEFT
+
+	return false
