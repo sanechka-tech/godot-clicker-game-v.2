@@ -5,6 +5,8 @@ const LANGUAGE_LABELS := ["English", "Русский", "Español", "Deutsch"]
 const MIN_VOLUME_DB := -80.0
 const FEEDBACK_LABEL_PRESS_OFFSET := Vector2(0.0, 2.0)
 const BACK_BUTTON_PRESS_SHRINK := Vector2(4.0, 4.0)
+const FEEDBACK_WEBHOOK_URL := "https://n8n.botmother.xyz/webhook/58a503e5-502b-425c-a1f3-eac3134478cc"
+const FEEDBACK_REQUEST_HEADERS := ["Content-Type: application/json"]
 
 @export var show_open_button := true
 
@@ -24,6 +26,7 @@ const BACK_BUTTON_PRESS_SHRINK := Vector2(4.0, 4.0)
 @onready var feedback_button_back: TextureButton = $MenuRoot/FeedbackArea/FeedbackButtonBack
 @onready var settings_button_root: Control = $SettingsButtonRoot
 @onready var settings_button: TextureButton = $SettingsButtonRoot/SettingsButton
+@onready var feedback_request: HTTPRequest = _ensure_feedback_request()
 
 var volume_knob_offsets := {}
 var feedback_label_start_position := Vector2.ZERO
@@ -31,6 +34,7 @@ var send_feedback_label_start_position := Vector2.ZERO
 var back_button_start_position := Vector2.ZERO
 var back_button_start_size := Vector2.ZERO
 var paused_audio_players: Array[Node] = []
+var feedback_request_in_flight := false
 
 
 func _ready() -> void:
@@ -60,11 +64,15 @@ func _ready() -> void:
 	send_feedback_label_start_position = send_feedback_label.position
 	send_feedback_button.button_down.connect(_on_send_feedback_button_down)
 	send_feedback_button.button_up.connect(_on_send_feedback_button_up)
+	send_feedback_button.pressed.connect(_submit_feedback)
+	feedback_text.text_changed.connect(_update_send_feedback_button_state)
 	feedback_button_back.pressed.connect(_close_feedback_area)
+	feedback_request.request_completed.connect(_on_feedback_request_completed)
 	settings_button.pressed.connect(open)
 
 	_update_volume_view(music_volume, music_slider.value)
 	_update_volume_view(sfx_volume, sfx_slider.value)
+	_update_send_feedback_button_state()
 
 
 func open() -> void:
@@ -109,6 +117,7 @@ func _on_feedback_button_up() -> void:
 
 func _open_feedback_area() -> void:
 	feedback_area.visible = true
+	_update_send_feedback_button_state()
 	feedback_text.grab_focus()
 
 
@@ -124,6 +133,62 @@ func _on_send_feedback_button_down() -> void:
 
 func _on_send_feedback_button_up() -> void:
 	send_feedback_label.position = send_feedback_label_start_position
+
+
+func _submit_feedback() -> void:
+	var feedback_value := feedback_text.text.strip_edges()
+	if feedback_request_in_flight or feedback_value.is_empty():
+		return
+
+	feedback_request_in_flight = true
+	_update_send_feedback_button_state()
+
+	var payload := JSON.stringify({
+		"text": feedback_value,
+	})
+	var error := feedback_request.request(
+		FEEDBACK_WEBHOOK_URL,
+		FEEDBACK_REQUEST_HEADERS,
+		HTTPClient.METHOD_POST,
+		payload
+	)
+
+	if error != OK:
+		feedback_request_in_flight = false
+		_update_send_feedback_button_state()
+
+
+func _on_feedback_request_completed(
+	_result: int,
+	response_code: int,
+	_headers: PackedStringArray,
+	_body: PackedByteArray
+) -> void:
+	feedback_request_in_flight = false
+
+	if response_code >= 200 and response_code < 300:
+		feedback_text.text = ""
+		_close_feedback_area()
+
+	_update_send_feedback_button_state()
+
+
+func _update_send_feedback_button_state() -> void:
+	var has_feedback_text := not feedback_text.text.strip_edges().is_empty()
+	send_feedback_button.disabled = feedback_request_in_flight or not has_feedback_text
+
+
+func _ensure_feedback_request() -> HTTPRequest:
+	var existing_request := get_node_or_null("FeedbackRequest") as HTTPRequest
+	if existing_request != null:
+		existing_request.process_mode = Node.PROCESS_MODE_ALWAYS
+		return existing_request
+
+	var request := HTTPRequest.new()
+	request.name = "FeedbackRequest"
+	request.process_mode = Node.PROCESS_MODE_ALWAYS
+	add_child(request)
+	return request
 
 
 func _on_back_button_down() -> void:

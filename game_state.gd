@@ -25,7 +25,7 @@ var upgrade_purchase_counts := {
 }
 
 var upgrade_base_prices := {
-	"spread_the_cheeks": 125,
+	"spread_the_cheeks": 30,
 	"scroll_tiktok": 400,
 	"run_the_tap": 4500,
 	"use_an_enema": 25000,
@@ -39,7 +39,7 @@ var upgrade_price_growth := {
 }
 
 var upgrade_prices := {
-	"spread_the_cheeks": 125,
+	"spread_the_cheeks": 30,
 	"scroll_tiktok": 400,
 	"run_the_tap": 4500,
 	"use_an_enema": 25000,

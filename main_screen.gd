@@ -14,7 +14,7 @@ const SHOP_UPGRADE_BUTTONS := {
 	"use_an_enema": "ShopLvl1/VBoxContainer/UseanEnema",
 }
 const ONBOARDING_ANIMATION_NAMES: Array[StringName] = [&"Onboarding_tap", &"Oboarding_tap"]
-const FIRST_LEVEL_SHOP_ONBOARDING_THRESHOLD := 125
+const FIRST_LEVEL_SHOP_ONBOARDING_THRESHOLD := 30
 const FINAL_UI_EXIT_DURATION := 0.8
 const FINAL_UI_EXIT_EXTRA_DISTANCE := 80.0
 const LEVEL_1_AFTER_SCENE_PATH := "res://cutscenes/lvl_1_3_after.tscn"
