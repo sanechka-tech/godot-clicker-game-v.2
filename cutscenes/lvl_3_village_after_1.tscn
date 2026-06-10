@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="3_g411y"]
 [ext_resource type="FontFile" uid="uid://buxbeon3odxds" path="res://CustomFont/EpilepsySans.ttf" id="4_3jhip"]
 [ext_resource type="Script" uid="uid://oe24erfubsf3" path="res://cutscenes/lvl_3_village_after_1.gd" id="5_j44ui"]
+[ext_resource type="PackedScene" uid="uid://dg5opcmsrei71" path="res://settings_popup.tscn" id="settings_popup_auto"]
 
 [node name="lvl3_village_after_1" type="Node2D" unique_id=2044082077]
 script = ExtResource("5_j44ui")
@@ -49,3 +50,8 @@ theme_override_fonts/font = ExtResource("4_3jhip")
 theme_override_font_sizes/font_size = 26
 text = "STORY_LVL3_FINISH_001"
 autowrap_mode = 3
+[node name="SettingsLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="SettingsPopup" parent="SettingsLayer" instance=ExtResource("settings_popup_auto")]
+metadata/_edit_use_anchors_ = true

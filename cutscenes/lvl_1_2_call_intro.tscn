@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="3_4ubqj"]
 [ext_resource type="FontFile" uid="uid://buxbeon3odxds" path="res://CustomFont/EpilepsySans.ttf" id="4_5ocae"]
 [ext_resource type="Script" uid="uid://c6t613onuv1d2" path="res://cutscenes/lvl_1_2_call_intro.gd" id="5_05tct"]
+[ext_resource type="PackedScene" uid="uid://dg5opcmsrei71" path="res://settings_popup.tscn" id="settings_popup_auto"]
 
 [node name="Lvl12CallIntro" type="Control" unique_id=1252671738]
 layout_mode = 3
@@ -55,3 +56,9 @@ theme_override_fonts/font = ExtResource("4_5ocae")
 theme_override_font_sizes/font_size = 26
 text = "STORY_LVL1_INTRO_002"
 autowrap_mode = 3
+
+[node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=700491080]
+layer = 100
+
+[node name="SettingsPopup" parent="SettingsLayer" unique_id=1450125066 instance=ExtResource("settings_popup_auto")]
+metadata/_edit_use_anchors_ = true

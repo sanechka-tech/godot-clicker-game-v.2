@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bnf577md7702j" path="res://Images/cutscenes/bg_for_text.png" id="3_8u2dq"]
 [ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="4_8u2dq"]
 [ext_resource type="FontFile" uid="uid://buxbeon3odxds" path="res://CustomFont/EpilepsySans.ttf" id="5_8u2dq"]
+[ext_resource type="PackedScene" uid="uid://dg5opcmsrei71" path="res://settings_popup.tscn" id="settings_popup_auto"]
 
 [node name="Lvl2Platform" type="Control" unique_id=644512576]
 layout_mode = 3
@@ -55,3 +56,9 @@ theme_override_fonts/font = ExtResource("5_8u2dq")
 theme_override_font_sizes/font_size = 26
 text = "STORY_LVL2_INTRO_001"
 autowrap_mode = 3
+
+[node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=2126613784]
+layer = 100
+
+[node name="SettingsPopup" parent="SettingsLayer" unique_id=1614367154 instance=ExtResource("settings_popup_auto")]
+metadata/_edit_use_anchors_ = true

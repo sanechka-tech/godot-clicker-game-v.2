@@ -101,7 +101,6 @@ expand_mode = 1
 
 [node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=427003070]
 layer = 100
-visible = false
 
 [node name="SettingsPopup" parent="SettingsLayer" unique_id=138112148 instance=ExtResource("29_ulx2m")]
 metadata/_edit_use_anchors_ = true

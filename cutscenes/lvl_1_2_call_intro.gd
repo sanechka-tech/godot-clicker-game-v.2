@@ -51,6 +51,9 @@ var _is_changing_scene := false
 
 
 func _input(event: InputEvent) -> void:
+	if _is_settings_input(event):
+		return
+
 	if not (event is InputEventMouseButton):
 		return
 
@@ -94,7 +97,7 @@ func _play_intro_sequence() -> void:
 	if transition_screen != null and transition_screen.is_transitioning():
 		await transition_screen.scene_revealed
 
-	await get_tree().create_timer(INTRO_DELAY_AFTER_REVEAL).timeout
+	await get_tree().create_timer(INTRO_DELAY_AFTER_REVEAL, false).timeout
 	if is_instance_valid(_ring_phone_player):
 		_ring_phone_player.stop()
 	await _show_bg_text()
@@ -104,7 +107,7 @@ func _play_intro_sequence() -> void:
 func _show_bg_text() -> void:
 	bg_text.visible = true
 
-	var tween := create_tween()
+	var tween := create_tween().set_pause_mode(Tween.TWEEN_PAUSE_BOUND)
 	tween.tween_property(bg_text, "modulate:a", 1.0, BG_TEXT_FADE_DURATION)
 	await tween.finished
 
@@ -139,7 +142,7 @@ func _show_name(name_key: String) -> void:
 	name_label.text = tr(name_key)
 	name_label.visible = true
 
-	var tween := create_tween()
+	var tween := create_tween().set_pause_mode(Tween.TWEEN_PAUSE_BOUND)
 	tween.tween_property(name_label, "modulate:a", 1.0, NAME_FADE_DURATION)
 	await tween.finished
 
@@ -165,7 +168,8 @@ func _type_story(story_key: String) -> void:
 
 	while story_label.visible_characters < character_count:
 		story_label.visible_characters += 1
-		await get_tree().create_timer(_story_type_speed).timeout
+		await get_tree().create_timer(_story_type_speed, false).timeout
+		character_count = story_label.get_total_character_count()
 
 	_is_typing_story = false
 	AudioManager.stop_typewriter_sfx()
@@ -215,3 +219,40 @@ func _stop_bip_bip() -> void:
 	_bip_bip_player.stop()
 	_bip_bip_player.queue_free()
 	_bip_bip_player = null
+
+
+func refresh_localized_text() -> void:
+	if _current_line_index >= DIALOG_LINES.size():
+		return
+
+	var line: Dictionary = DIALOG_LINES[_current_line_index]
+	var name_key := line.get("name", "") as String
+	var story_key := line.get("story", "") as String
+
+	if name_label != null and name_label.visible and not name_key.is_empty() and name_key != "NONE":
+		name_label.text = tr(name_key)
+
+	_refresh_story_label_translation(story_key)
+
+
+func _refresh_story_label_translation(story_key: String) -> void:
+	if story_label == null or not story_label.visible or story_key.is_empty():
+		return
+
+	var old_total: int = maxi(1, story_label.get_total_character_count())
+	var old_visible: int = story_label.visible_characters
+	var visible_ratio := clampf(float(old_visible) / float(old_total), 0.0, 1.0)
+	story_label.text = tr(story_key).replace("\\n", "\n")
+	var new_total: int = story_label.get_total_character_count()
+
+	if _story_finished:
+		story_label.visible_characters = new_total
+	elif _is_typing_story:
+		story_label.visible_characters = clampi(roundi(float(new_total) * visible_ratio), 0, new_total)
+	else:
+		story_label.visible_characters = old_visible
+
+
+func _is_settings_input(event: InputEvent) -> bool:
+	var settings_popup = get_node_or_null("SettingsLayer/SettingsPopup")
+	return settings_popup != null and settings_popup.has_method("is_scene_input_blocked") and settings_popup.is_scene_input_blocked(event)

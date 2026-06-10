@@ -24,6 +24,7 @@ var volume_knob_offsets := {}
 var feedback_label_start_position := Vector2.ZERO
 var back_button_start_position := Vector2.ZERO
 var back_button_start_size := Vector2.ZERO
+var paused_audio_players: Array[Node] = []
 
 
 func _ready() -> void:
@@ -55,6 +56,8 @@ func _ready() -> void:
 
 
 func open() -> void:
+	get_viewport().set_input_as_handled()
+	_pause_playing_audio(get_tree().root)
 	visible = true
 	get_tree().paused = true
 	settings_button_root.visible = false
@@ -67,6 +70,20 @@ func close() -> void:
 	settings_button_root.visible = show_open_button
 	visible = show_open_button
 	get_tree().paused = false
+	_resume_paused_audio()
+
+
+func is_scene_input_blocked(event: InputEvent) -> bool:
+	if get_tree().paused or menu_root.visible:
+		return true
+
+	if event is InputEventMouseButton:
+		return settings_button_root.visible and _control_has_screen_point(settings_button, event.position)
+
+	if event is InputEventScreenTouch:
+		return settings_button_root.visible and _control_has_screen_point(settings_button, event.position)
+
+	return false
 
 
 func _on_feedback_button_down() -> void:
@@ -89,6 +106,32 @@ func _on_back_button_up() -> void:
 func _reset_back_button_size() -> void:
 	back_button.position = back_button_start_position
 	back_button.size = back_button_start_size
+
+
+func _pause_playing_audio(node: Node) -> void:
+	if _is_pauseable_audio_player(node):
+		if node.get("playing") and not node.get("stream_paused"):
+			node.set("stream_paused", true)
+			paused_audio_players.append(node)
+
+	for child in node.get_children():
+		_pause_playing_audio(child)
+
+
+func _resume_paused_audio() -> void:
+	for player in paused_audio_players:
+		if is_instance_valid(player):
+			player.set("stream_paused", false)
+
+	paused_audio_players.clear()
+
+
+func _is_pauseable_audio_player(node: Node) -> bool:
+	return node is AudioStreamPlayer or node is AudioStreamPlayer2D or node is AudioStreamPlayer3D
+
+
+func _control_has_screen_point(control: Control, point: Vector2) -> bool:
+	return control.get_global_rect().has_point(point)
 
 
 func _setup_volume_slider(slider: HSlider, bus_name: String) -> void:
@@ -139,6 +182,7 @@ func _on_language_selected(index: int) -> void:
 		return
 
 	TranslationServer.set_locale(LANGUAGE_LOCALES[locale_index])
+	_refresh_current_scene_localized_text()
 
 
 func _set_bus_volume(bus_name: String, value: float) -> void:
@@ -147,6 +191,12 @@ func _set_bus_volume(bus_name: String, value: float) -> void:
 		return
 
 	AudioServer.set_bus_volume_db(bus_index, _linear_to_volume_db(value))
+
+
+func _refresh_current_scene_localized_text() -> void:
+	var current_scene := get_tree().current_scene
+	if current_scene != null and current_scene.has_method("refresh_localized_text"):
+		current_scene.refresh_localized_text()
 
 
 func _get_bus_volume_linear(bus_name: String) -> float:

@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dqsy2i04thulg" path="res://Images/cutscenes/Level3/lvl3_village_the_end.jpg" id="1_4icn7"]
 [ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="3_gosmf"]
 [ext_resource type="Script" uid="uid://crdwuj2swarcf" path="res://cutscenes/lvl_3_village_after_2.gd" id="5_fw32b"]
+[ext_resource type="PackedScene" uid="uid://dg5opcmsrei71" path="res://settings_popup.tscn" id="settings_popup_auto"]
 
 [node name="lvl3_village_after_2" type="Node2D" unique_id=1531243278]
 script = ExtResource("5_fw32b")
@@ -26,3 +27,8 @@ theme_override_font_sizes/font_size = 75
 text = "STORY_END_FINISH_001"
 horizontal_alignment = 1
 vertical_alignment = 1
+[node name="SettingsLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="SettingsPopup" parent="SettingsLayer" instance=ExtResource("settings_popup_auto")]
+metadata/_edit_use_anchors_ = true
