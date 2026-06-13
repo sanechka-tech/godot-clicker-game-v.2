@@ -215,7 +215,7 @@ func fade_out_level_3_intro_ambience(duration: float) -> void:
 
 
 func play_level_3_intro_stomach_sound() -> AudioStreamPlayer:
-	return _play_stream(LEVEL_3_INTRO_STOMACH_SOUND, 0.5)
+	return _play_stream(LEVEL_3_INTRO_STOMACH_SOUND, 1.25)
 
 
 func play_level_3_intro_run_away() -> AudioStreamPlayer:
