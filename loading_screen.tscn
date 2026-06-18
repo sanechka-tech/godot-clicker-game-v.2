@@ -12,7 +12,7 @@ anchors_preset = 0
 offset_left = 1.0
 offset_right = 1.0
 script = ExtResource("1_t2qcb")
-metadata/_edit_vertical_guides_ = [650.0]
+metadata/_edit_vertical_guides_ = [640.0]
 
 [node name="MenuBackground" parent="." unique_id=475838889 instance=ExtResource("1_mggpi")]
 layout_mode = 0
@@ -20,7 +20,7 @@ offset_left = -1.0
 offset_right = -1.0
 
 [node name="Loading" type="Sprite2D" parent="." unique_id=763457777]
-position = Vector2(648, 455)
+position = Vector2(640.00006, 572)
 scale = Vector2(0.8508059, 0.850806)
 texture = ExtResource("2_fgney")
 

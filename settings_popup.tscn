@@ -24,8 +24,8 @@ layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
 script = ExtResource("1_7puip")
-metadata/_edit_vertical_guides_ = [872.0, 656.0, 872.0, 515.0, 795.0, 1251.0, 561.0]
-metadata/_edit_horizontal_guides_ = [300.0, 20.0, 360.0]
+metadata/_edit_vertical_guides_ = [872.0, 640.0, 872.0, 515.0, 795.0, 1251.0, 561.0]
+metadata/_edit_horizontal_guides_ = [300.0, 360.0]
 
 [node name="SettingsButtonRoot" type="Control" parent="." unique_id=1612320575]
 layout_mode = 1
@@ -73,18 +73,18 @@ color = Color(0.019607844, 0.019607844, 0.019607844, 0.72156864)
 
 [node name="TextureRect" type="TextureRect" parent="MenuRoot" unique_id=2006680615]
 layout_mode = 0
-offset_left = 436.0
+offset_left = 420.0
 offset_top = 201.0
-offset_right = 876.0
+offset_right = 860.0
 offset_bottom = 521.0
 texture = ExtResource("1_imxq5")
 expand_mode = 1
 
 [node name="TextureButtonBack" type="TextureButton" parent="MenuRoot" unique_id=102015321]
 layout_mode = 0
-offset_left = 805.0
+offset_left = 789.0
 offset_top = 229.0
-offset_right = 850.0
+offset_right = 834.0
 offset_bottom = 274.0
 texture_normal = ExtResource("5_7gkj2")
 ignore_texture_size = true
@@ -92,9 +92,9 @@ stretch_mode = 0
 
 [node name="Music" type="Label" parent="MenuRoot" unique_id=711517312]
 layout_mode = 0
-offset_left = 497.0
+offset_left = 494.0
 offset_top = 267.0
-offset_right = 643.0
+offset_right = 640.0
 offset_bottom = 290.0
 theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
 theme_override_fonts/font = ExtResource("4_imxq5")
@@ -103,9 +103,9 @@ text = "SETTINGS_MUSIC"
 
 [node name="MusicVolume" type="Control" parent="MenuRoot" unique_id=188216079]
 anchors_preset = 0
-offset_left = 627.0
+offset_left = 611.0
 offset_top = 258.0
-offset_right = 798.0
+offset_right = 782.0
 offset_bottom = 289.0
 
 [node name="VolumeTrack" type="TextureRect" parent="MenuRoot/MusicVolume" unique_id=327644432]
@@ -152,9 +152,9 @@ offset_bottom = 28.487309
 
 [node name="SFX" type="Label" parent="MenuRoot" unique_id=1615661803]
 layout_mode = 0
-offset_left = 497.0
+offset_left = 494.0
 offset_top = 314.0
-offset_right = 622.0
+offset_right = 619.0
 offset_bottom = 337.0
 theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
 theme_override_fonts/font = ExtResource("4_imxq5")
@@ -163,9 +163,9 @@ text = "SETTINGS_SFX"
 
 [node name="SFXVolume" type="Control" parent="MenuRoot" unique_id=1063241320]
 anchors_preset = 0
-offset_left = 592.0
+offset_left = 576.0
 offset_top = 314.0
-offset_right = 803.0
+offset_right = 787.0
 offset_bottom = 341.0
 
 [node name="VolumeTrack" type="TextureRect" parent="MenuRoot/SFXVolume" unique_id=2009502876]
@@ -212,9 +212,9 @@ offset_bottom = 18.0
 
 [node name="Language" type="Label" parent="MenuRoot" unique_id=1641686587]
 layout_mode = 0
-offset_left = 497.0
+offset_left = 494.0
 offset_top = 358.0
-offset_right = 635.0
+offset_right = 632.0
 offset_bottom = 381.0
 theme_override_colors/font_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
 theme_override_fonts/font = ExtResource("4_imxq5")
@@ -223,9 +223,9 @@ text = "SETTINGS_LANG"
 
 [node name="LanguageButton" type="OptionButton" parent="MenuRoot" unique_id=1595630291]
 layout_mode = 0
-offset_left = 627.0
+offset_left = 611.0
 offset_top = 358.0
-offset_right = 799.0
+offset_right = 783.0
 offset_bottom = 381.0
 theme_override_fonts/font = ExtResource("8_nhjgm")
 theme_override_font_sizes/font_size = 14
@@ -246,9 +246,9 @@ popup/item_3/id = 3
 
 [node name="ButtonFeedback" type="TextureButton" parent="MenuRoot" unique_id=24874514]
 layout_mode = 0
-offset_left = 561.0
+offset_left = 545.0
 offset_top = 406.0
-offset_right = 751.0
+offset_right = 735.0
 offset_bottom = 450.0
 texture_normal = ExtResource("15_pb312")
 texture_pressed = ExtResource("16_he1e8")
@@ -269,11 +269,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="FeedbackArea" type="TextureRect" parent="MenuRoot" unique_id=192155939]
-visible = false
 layout_mode = 0
-offset_left = 376.0
+offset_left = 359.0
 offset_top = 156.0
-offset_right = 938.375
+offset_right = 921.375
 offset_bottom = 565.0
 texture = ExtResource("1_imxq5")
 expand_mode = 1
@@ -301,9 +300,9 @@ caret_blink_interval = 0.5
 
 [node name="ButtonFeedback" type="TextureButton" parent="MenuRoot/FeedbackArea" unique_id=1063318911]
 layout_mode = 0
-offset_left = 184.0
+offset_left = 186.0
 offset_top = 288.0
-offset_right = 374.0
+offset_right = 376.0
 offset_bottom = 332.0
 texture_normal = ExtResource("15_pb312")
 texture_pressed = ExtResource("16_he1e8")

@@ -11,21 +11,23 @@
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("5_05tct")
+metadata/_edit_horizontal_guides_ = [650.0]
+metadata/_edit_vertical_guides_ = [640.0]
 
 [node name="BG Phone" type="TextureRect" parent="." unique_id=2047270942]
 layout_mode = 0
-offset_top = -80.0
+offset_top = -9.0
 offset_right = 1302.369
-offset_bottom = 653.0
+offset_bottom = 724.0
 texture = ExtResource("1_uwdkj")
 expand_mode = 1
 
 [node name="BG Text" type="TextureRect" parent="." unique_id=997345352]
 layout_mode = 0
-offset_left = 115.0
-offset_top = 432.0
-offset_right = 1184.388
-offset_bottom = 584.0
+offset_left = 106.0
+offset_top = 499.0
+offset_right = 1175.388
+offset_bottom = 651.0
 texture = ExtResource("2_fdaq5")
 expand_mode = 1
 
@@ -61,4 +63,5 @@ autowrap_mode = 3
 layer = 100
 
 [node name="SettingsPopup" parent="SettingsLayer" unique_id=1450125066 instance=ExtResource("settings_popup_auto")]
+visible = false
 metadata/_edit_use_anchors_ = true

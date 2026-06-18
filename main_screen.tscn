@@ -28,7 +28,7 @@
 
 [node name="Main_screen" type="Node2D" unique_id=591086808]
 script = ExtResource("1_7a4el")
-metadata/_edit_horizontal_guides_ = [100.0, 20.0]
+metadata/_edit_horizontal_guides_ = [100.0]
 
 [node name="main_background" parent="." unique_id=262141879 instance=ExtResource("1_w0p2i")]
 
@@ -42,20 +42,20 @@ position = Vector2(-258, 47)
 [node name="TapEffects" type="Node2D" parent="." unique_id=1024279730]
 
 [node name="Onboarding" parent="." unique_id=1342624142 instance=ExtResource("4_ue4rx")]
-position = Vector2(170, 232)
+position = Vector2(170, 264)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=864686036]
 
 [node name="ProgressGoalBG" type="Sprite2D" parent="." unique_id=175418603]
-position = Vector2(252, 119.75)
+position = Vector2(252, 160.75)
 scale = Vector2(0.66935474, 0.6693548)
 texture = ExtResource("4_4sclt")
 
 [node name="ProgressGoal" type="TextureProgressBar" parent="." unique_id=710880973]
 offset_left = 112.0
-offset_top = 106.75
+offset_top = 147.74998
 offset_right = 394.0
-offset_bottom = 132.75
+offset_bottom = 173.74998
 rounded = true
 nine_patch_stretch = true
 texture_under = ExtResource("5_ue4rx")
@@ -78,7 +78,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1.0
 offset_right = 1300.0
-offset_bottom = 600.0
+offset_bottom = 719.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -91,9 +91,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -570.0
-offset_top = -206.0
+offset_top = -217.0
 offset_right = -85.0
-offset_bottom = 293.89575
+offset_bottom = 282.89575
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("8_0osx7")
@@ -107,9 +107,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -538.0
-offset_top = -187.0
+offset_top = -198.0
 offset_right = -118.00049
-offset_bottom = 235.0
+offset_bottom = 224.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 2

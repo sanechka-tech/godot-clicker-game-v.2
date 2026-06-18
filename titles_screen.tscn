@@ -10,8 +10,8 @@ anchors_preset = 0
 script = ExtResource("3_lqg7g")
 
 [node name="BGblack" type="Sprite2D" parent="." unique_id=1522985303]
-position = Vector2(670, 301)
-scale = Vector2(1.2138889, 1.2138889)
+position = Vector2(603.55554, 358)
+scale = Vector2(1.1100694, 1.0555555)
 texture = ExtResource("1_sojvs")
 
 [node name="Titles" type="VBoxContainer" parent="." unique_id=1142440342]

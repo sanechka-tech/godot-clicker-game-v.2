@@ -14,22 +14,22 @@ curve = SubResource("Curve_p541y")
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_t2qcb")
-metadata/_edit_vertical_guides_ = [650.0]
-metadata/_edit_horizontal_guides_ = [300.0]
+metadata/_edit_vertical_guides_ = [640.0]
+metadata/_edit_horizontal_guides_ = [360.0]
 
 [node name="BG white" type="TextureRect" parent="." unique_id=425957909]
 layout_mode = 0
 offset_left = -60.0
-offset_top = -151.0
+offset_top = -85.0
 offset_right = 1362.0
-offset_bottom = 715.0
+offset_bottom = 781.0
 texture = SubResource("CurveTexture_8yg8y")
 
 [node name="Logo" type="TextureRect" parent="." unique_id=1921591900]
 layout_mode = 0
-offset_left = 509.0
-offset_top = 125.0
-offset_right = 789.0
-offset_bottom = 475.9677
+offset_left = 501.0
+offset_top = 184.0
+offset_right = 781.0
+offset_bottom = 534.9677
 texture = ExtResource("1_jevva")
 expand_mode = 1

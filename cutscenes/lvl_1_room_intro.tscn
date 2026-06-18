@@ -12,31 +12,32 @@
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("5_xj0fc")
-metadata/_edit_vertical_guides_ = [650.0, 150.0]
+metadata/_edit_vertical_guides_ = [640.0, 150.0]
+metadata/_edit_horizontal_guides_ = [650.0]
 
 [node name="BG Leks" type="TextureRect" parent="." unique_id=1613938926]
 layout_mode = 0
-offset_top = -80.0
+offset_top = -9.0
 offset_right = 1302.369
-offset_bottom = 653.0
+offset_bottom = 724.0
 texture = ExtResource("1_7yn5h")
 expand_mode = 1
 
 [node name="BG Leks(error)" type="TextureRect" parent="." unique_id=1923587001]
 visible = false
 layout_mode = 0
-offset_top = -80.0
+offset_top = -9.0
 offset_right = 1302.369
-offset_bottom = 653.0
+offset_bottom = 724.0
 texture = ExtResource("2_5wq1e")
 expand_mode = 1
 
 [node name="BG Text" type="TextureRect" parent="." unique_id=451061372]
 layout_mode = 0
-offset_left = 115.0
-offset_top = 432.0
-offset_right = 1184.388
-offset_bottom = 584.0
+offset_left = 106.0
+offset_top = 498.0
+offset_right = 1175.388
+offset_bottom = 650.0
 texture = ExtResource("2_wrkyb")
 expand_mode = 1
 
@@ -66,8 +67,9 @@ theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("4_snqoy")
 theme_override_font_sizes/font_size = 26
 text = "STORY_LVL1_INTRO_001"
-[node name="SettingsLayer" type="CanvasLayer" parent="."]
+
+[node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=419586054]
 layer = 100
 
-[node name="SettingsPopup" parent="SettingsLayer" instance=ExtResource("settings_popup_auto")]
+[node name="SettingsPopup" parent="SettingsLayer" unique_id=424299845 instance=ExtResource("settings_popup_auto")]
 metadata/_edit_use_anchors_ = true

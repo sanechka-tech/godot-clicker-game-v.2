@@ -13,11 +13,12 @@ metadata/_edit_horizontal_guides_ = [34.0]
 [node name="Parallax2D_sky" type="Parallax2D" parent="." unique_id=2143358159]
 
 [node name="Sky" type="Sprite2D" parent="Parallax2D_sky" unique_id=1093878043]
-position = Vector2(904, 278.00003)
+position = Vector2(904, 300.00003)
 scale = Vector2(0.6572161, 0.5823591)
 texture = ExtResource("1_dycbv")
 
 [node name="Parallax2D_wood" type="Parallax2D" parent="." unique_id=712559017]
+scroll_offset = Vector2(0, 45)
 
 [node name="Wood" type="Sprite2D" parent="Parallax2D_wood" unique_id=1310412038]
 position = Vector2(904.00006, 232)
@@ -25,6 +26,7 @@ scale = Vector2(0.42537254, 0.4229543)
 texture = ExtResource("2_rt54y")
 
 [node name="Parallax2D_stolb" type="Parallax2D" parent="." unique_id=1297494559]
+scroll_offset = Vector2(0, 45)
 
 [node name="Stolb" type="Sprite2D" parent="Parallax2D_stolb" unique_id=1455211731]
 position = Vector2(769, 295)
