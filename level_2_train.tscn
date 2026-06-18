@@ -32,8 +32,8 @@ metadata/_edit_vertical_guides_ = [826.0, 856.0, 650.0]
 position = Vector2(-305, -126)
 
 [node name="BGlvl2" type="Sprite2D" parent="." unique_id=432886838]
-position = Vector2(638.7632, 362)
-scale = Vector2(1.0022649, 1.0022651)
+position = Vector2(633.3273, 332.25003)
+scale = Vector2(1.0107585, 1.0107588)
 texture = ExtResource("3_vdiwt")
 
 [node name="Character" parent="." unique_id=286549002 instance=ExtResource("2_3rlsd")]
