@@ -325,7 +325,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=135258283]
 layer = 100
-visible = false
 
 [node name="SettingsPopup" parent="SettingsLayer" unique_id=793784747 instance=ExtResource("27_g7q6i")]
 metadata/_edit_use_anchors_ = true

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxjypwmkiueds"
-path="res://.godot/imported/train inside.png-0ad03c9dff41a8aee375dd406ee9a513.ctex"
+uid="uid://8ihqdx7yo2gs"
+path="res://.godot/imported/train inside.jpg-e5a4516169aea15b0f850fa192f03f19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/cutscenes/Level2/train inside.png"
-dest_files=["res://.godot/imported/train inside.png-0ad03c9dff41a8aee375dd406ee9a513.ctex"]
+source_file="res://Images/cutscenes/Level2/train inside.jpg"
+dest_files=["res://.godot/imported/train inside.jpg-e5a4516169aea15b0f850fa192f03f19.ctex"]
 
 [params]
 

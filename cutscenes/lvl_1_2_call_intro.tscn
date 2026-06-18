@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cvpfwdgays17o"]
 
-[ext_resource type="Texture2D" uid="uid://c50irptb40c2c" path="res://Images/cutscenes/Level1/screen-2 (phone).png" id="1_uwdkj"]
+[ext_resource type="Texture2D" uid="uid://1es0n3yiy3n4" path="res://Images/cutscenes/Level1/screen-2 (phone).jpg" id="1_uwdkj"]
 [ext_resource type="Texture2D" uid="uid://bnf577md7702j" path="res://Images/cutscenes/bg_for_text.png" id="2_fdaq5"]
 [ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="3_4ubqj"]
 [ext_resource type="FontFile" uid="uid://buxbeon3odxds" path="res://CustomFont/EpilepsySans.ttf" id="4_5ocae"]
@@ -63,5 +63,4 @@ autowrap_mode = 3
 layer = 100
 
 [node name="SettingsPopup" parent="SettingsLayer" unique_id=1450125066 instance=ExtResource("settings_popup_auto")]
-visible = false
 metadata/_edit_use_anchors_ = true

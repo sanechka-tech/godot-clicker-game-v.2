@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bkbavmhyu6uhp"]
 
-[ext_resource type="Texture2D" uid="uid://dxjypwmkiueds" path="res://Images/cutscenes/Level2/train inside.png" id="1_6u5wy"]
+[ext_resource type="Texture2D" uid="uid://8ihqdx7yo2gs" path="res://Images/cutscenes/Level2/train inside.jpg" id="1_6u5wy"]
 [ext_resource type="Texture2D" uid="uid://bnf577md7702j" path="res://Images/cutscenes/bg_for_text.png" id="2_xtete"]
 [ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="3_lkfl2"]
 [ext_resource type="FontFile" uid="uid://buxbeon3odxds" path="res://CustomFont/EpilepsySans.ttf" id="4_3i34a"]
@@ -11,21 +11,24 @@
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("5_3i34a")
+metadata/_edit_vertical_guides_ = [640.0]
+metadata/_edit_horizontal_guides_ = [650.0]
 
 [node name="BG Train" type="TextureRect" parent="." unique_id=967955359]
 layout_mode = 0
-offset_top = -80.0
+offset_left = -15.990967
+offset_top = -7.0
 offset_right = 1302.369
-offset_bottom = 653.0
+offset_bottom = 735.0
 texture = ExtResource("1_6u5wy")
 expand_mode = 1
 
 [node name="BG Text" type="TextureRect" parent="." unique_id=483968075]
 layout_mode = 0
-offset_left = 115.0
-offset_top = 432.0
-offset_right = 1184.388
-offset_bottom = 584.0
+offset_left = 106.0
+offset_top = 498.0
+offset_right = 1175.388
+offset_bottom = 650.0
 texture = ExtResource("2_xtete")
 expand_mode = 1
 
@@ -56,8 +59,9 @@ theme_override_fonts/font = ExtResource("4_3i34a")
 theme_override_font_sizes/font_size = 26
 text = "STORY_LVL2_INTRO_002"
 autowrap_mode = 3
-[node name="SettingsLayer" type="CanvasLayer" parent="."]
+
+[node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=1436160514]
 layer = 100
 
-[node name="SettingsPopup" parent="SettingsLayer" instance=ExtResource("settings_popup_auto")]
+[node name="SettingsPopup" parent="SettingsLayer" unique_id=2105525124 instance=ExtResource("settings_popup_auto")]
 metadata/_edit_use_anchors_ = true

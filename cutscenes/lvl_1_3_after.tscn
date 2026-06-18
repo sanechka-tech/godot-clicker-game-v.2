@@ -15,21 +15,24 @@ curve = SubResource("Curve_g21te")
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("4_qq06t")
+metadata/_edit_horizontal_guides_ = [650.0]
+metadata/_edit_vertical_guides_ = [640.0]
 
 [node name="BG Black" type="TextureRect" parent="." unique_id=83800445]
 layout_mode = 0
+offset_left = -5.0
 offset_top = -80.0
 offset_right = 1302.369
-offset_bottom = 653.0
+offset_bottom = 728.0
 texture = SubResource("CurveTexture_xsjla")
 expand_mode = 1
 
 [node name="BG Text" type="TextureRect" parent="." unique_id=590874468]
 layout_mode = 0
-offset_left = 115.0
-offset_top = 432.0
-offset_right = 1184.388
-offset_bottom = 584.0
+offset_left = 106.0
+offset_top = 498.0
+offset_right = 1175.388
+offset_bottom = 650.0
 texture = ExtResource("1_oja4m")
 expand_mode = 1
 

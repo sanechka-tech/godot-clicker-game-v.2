@@ -24,8 +24,8 @@ layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
 script = ExtResource("1_7puip")
-metadata/_edit_vertical_guides_ = [872.0, 640.0, 872.0, 515.0, 795.0, 1251.0, 561.0]
-metadata/_edit_horizontal_guides_ = [300.0, 360.0]
+metadata/_edit_vertical_guides_ = [640.0]
+metadata/_edit_horizontal_guides_ = [360.0]
 
 [node name="SettingsButtonRoot" type="Control" parent="." unique_id=1612320575]
 layout_mode = 1

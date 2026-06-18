@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bnf577md7702j" path="res://Images/cutscenes/bg_for_text.png" id="2_vrbo1"]
 [ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="3_6b6s5"]
 [ext_resource type="FontFile" uid="uid://buxbeon3odxds" path="res://CustomFont/EpilepsySans.ttf" id="4_eh4up"]
-[ext_resource type="Script" path="res://cutscenes/lvl_2_2_after_mini_game.gd" id="5_eh4up"]
+[ext_resource type="Script" uid="uid://cmr0w7adq3y0j" path="res://cutscenes/lvl_2_2_after_mini_game.gd" id="5_eh4up"]
 [ext_resource type="PackedScene" uid="uid://dg5opcmsrei71" path="res://settings_popup.tscn" id="settings_popup_auto"]
 
 [sub_resource type="Curve" id="Curve_jret1"]
@@ -16,6 +16,8 @@ curve = SubResource("Curve_jret1")
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("5_eh4up")
+metadata/_edit_horizontal_guides_ = [650.0]
+metadata/_edit_vertical_guides_ = [640.0]
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=36059669]
 layout_mode = 0
@@ -32,10 +34,10 @@ texture = ExtResource("1_ycbvk")
 
 [node name="BG Text" type="TextureRect" parent="." unique_id=1046364557]
 layout_mode = 0
-offset_left = 115.0
-offset_top = 432.0
-offset_right = 1184.388
-offset_bottom = 584.0
+offset_left = 105.0
+offset_top = 497.0
+offset_right = 1174.388
+offset_bottom = 649.0
 texture = ExtResource("2_vrbo1")
 expand_mode = 1
 
@@ -66,8 +68,9 @@ theme_override_fonts/font = ExtResource("4_eh4up")
 theme_override_font_sizes/font_size = 26
 text = "STORY_LVL2_MINIGAME_WIN"
 autowrap_mode = 3
-[node name="SettingsLayer" type="CanvasLayer" parent="."]
+
+[node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=1926219312]
 layer = 100
 
-[node name="SettingsPopup" parent="SettingsLayer" instance=ExtResource("settings_popup_auto")]
+[node name="SettingsPopup" parent="SettingsLayer" unique_id=406532105 instance=ExtResource("settings_popup_auto")]
 metadata/_edit_use_anchors_ = true

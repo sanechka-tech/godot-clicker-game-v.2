@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxcbemjt4nm72"
-path="res://.godot/imported/screen-1(error).png-c8ed0524eac41941f802201c5bc5b4eb.ctex"
+uid="uid://bxqfdkvo53mjp"
+path="res://.godot/imported/train inside arrival.jpg-ebed600b5f388ead6e02dd9cd85bcda6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/cutscenes/Level1/screen-1(error).png"
-dest_files=["res://.godot/imported/screen-1(error).png-c8ed0524eac41941f802201c5bc5b4eb.ctex"]
+source_file="res://Images/cutscenes/Level2/train inside arrival.jpg"
+dest_files=["res://.godot/imported/train inside arrival.jpg-ebed600b5f388ead6e02dd9cd85bcda6.ctex"]
 
 [params]
 

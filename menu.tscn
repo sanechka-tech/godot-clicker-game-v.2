@@ -96,6 +96,5 @@ action_mode = 0
 text = "MENU_SETTINGS"
 
 [node name="SettingsPopup" parent="." unique_id=1433266954 instance=ExtResource("7_bhf4v")]
-visible = false
 z_index = 100
 show_open_button = false
