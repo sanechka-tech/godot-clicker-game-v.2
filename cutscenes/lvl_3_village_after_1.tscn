@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bbsim56ixngqy"]
 
-[ext_resource type="Texture2D" uid="uid://c20qg51smxj0a" path="res://Images/cutscenes/Level3/lvl3_village_final.png" id="1_e0tyo"]
+[ext_resource type="Texture2D" uid="uid://csj4qg52k8b5m" path="res://Images/cutscenes/Level3/lvl3_village_final.jpg" id="1_e0tyo"]
 [ext_resource type="Texture2D" uid="uid://bnf577md7702j" path="res://Images/cutscenes/bg_for_text.png" id="2_q7ckc"]
 [ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="3_g411y"]
 [ext_resource type="FontFile" uid="uid://buxbeon3odxds" path="res://CustomFont/EpilepsySans.ttf" id="4_3jhip"]
@@ -9,17 +9,19 @@
 
 [node name="lvl3_village_after_1" type="Node2D" unique_id=2044082077]
 script = ExtResource("5_j44ui")
+metadata/_edit_horizontal_guides_ = [650.0, 650.0]
+metadata/_edit_vertical_guides_ = [640.0]
 
 [node name="Lvl3VillageFinal" type="Sprite2D" parent="." unique_id=1207120994]
-position = Vector2(664, 286)
-scale = Vector2(0.80127525, 0.80127525)
+position = Vector2(659, 349)
+scale = Vector2(0.79277384, 0.79277366)
 texture = ExtResource("1_e0tyo")
 
 [node name="BG Text" type="TextureRect" parent="." unique_id=477933389]
-offset_left = 115.0
-offset_top = 432.0
-offset_right = 1184.388
-offset_bottom = 584.0
+offset_left = 106.0
+offset_top = 498.0
+offset_right = 1175.388
+offset_bottom = 650.0
 texture = ExtResource("2_q7ckc")
 expand_mode = 1
 
@@ -50,8 +52,10 @@ theme_override_fonts/font = ExtResource("4_3jhip")
 theme_override_font_sizes/font_size = 26
 text = "STORY_LVL3_FINISH_001"
 autowrap_mode = 3
-[node name="SettingsLayer" type="CanvasLayer" parent="."]
-layer = 100
 
-[node name="SettingsPopup" parent="SettingsLayer" instance=ExtResource("settings_popup_auto")]
+[node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=925480208]
+layer = 100
+visible = false
+
+[node name="SettingsPopup" parent="SettingsLayer" unique_id=715839564 instance=ExtResource("settings_popup_auto")]
 metadata/_edit_use_anchors_ = true

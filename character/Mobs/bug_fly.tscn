@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://byxcb2fr3451t" path="res://Images/Lvl3/Animated insect enemy assets/AcidSplat.png" id="2_m4kln"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xj53g"]
-radius = 30.0
-height = 60.0
+radius = 48.0
+height = 96.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6aler"]
 atlas = ExtResource("1_27aw1")

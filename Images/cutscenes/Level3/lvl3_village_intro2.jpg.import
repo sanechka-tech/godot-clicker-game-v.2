@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://morcink88t75"
-path="res://.godot/imported/BGlevel2Train.png-52ff4eedb9fecf7bea3654c045e3187b.ctex"
+uid="uid://c1oxx1puk0p8l"
+path="res://.godot/imported/lvl3_village_intro2.jpg-487c242874f5fb62a5a6e95283fbb5c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/BGlevel2Train.png"
-dest_files=["res://.godot/imported/BGlevel2Train.png-52ff4eedb9fecf7bea3654c045e3187b.ctex"]
+source_file="res://Images/cutscenes/Level3/lvl3_village_intro2.jpg"
+dest_files=["res://.godot/imported/lvl3_village_intro2.jpg-487c242874f5fb62a5a6e95283fbb5c2.ctex"]
 
 [params]
 

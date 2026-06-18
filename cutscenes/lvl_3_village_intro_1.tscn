@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dc52ka3iwlxh0"]
 
-[ext_resource type="Texture2D" uid="uid://chj6on3lyqf87" path="res://Images/cutscenes/Level3/lvl3_village_intro1.png" id="1_4jypk"]
+[ext_resource type="Texture2D" uid="uid://b1a5w1up4krnv" path="res://Images/cutscenes/Level3/lvl3_village_intro1.jpg" id="1_4jypk"]
 [ext_resource type="Script" uid="uid://c3v8q68vwobur" path="res://cutscenes/lvl_3_village_intro_1.gd" id="1_7v4jr"]
 [ext_resource type="FontFile" uid="uid://dypcll5r5cw5k" path="res://CustomFont/EpilepsySansBold.ttf" id="2_hhxbk"]
 [ext_resource type="Texture2D" uid="uid://bnf577md7702j" path="res://Images/cutscenes/bg_for_text.png" id="3_wrqlb"]
@@ -9,17 +9,19 @@
 
 [node name="lvl3_village_intro1" type="Node2D" unique_id=897053529]
 script = ExtResource("1_7v4jr")
+metadata/_edit_vertical_guides_ = [640.0]
+metadata/_edit_horizontal_guides_ = [650.0]
 
 [node name="Lvl3VillageIntro1" type="Sprite2D" parent="." unique_id=1906454269]
-position = Vector2(643.00006, 284.00003)
-scale = Vector2(0.8225291, 0.8225291)
+position = Vector2(643.00006, 358)
+scale = Vector2(0.78214675, 0.78214675)
 texture = ExtResource("1_4jypk")
 
 [node name="BG Text" type="TextureRect" parent="." unique_id=796572722]
-offset_left = 115.0
-offset_top = 432.0
-offset_right = 1184.388
-offset_bottom = 584.0
+offset_left = 106.0
+offset_top = 500.0
+offset_right = 1175.388
+offset_bottom = 652.0
 texture = ExtResource("3_wrqlb")
 expand_mode = 1
 
@@ -50,8 +52,9 @@ theme_override_fonts/font = ExtResource("5_iuspj")
 theme_override_font_sizes/font_size = 26
 text = "STORY_LVL3_INTRO_001"
 autowrap_mode = 3
-[node name="SettingsLayer" type="CanvasLayer" parent="."]
+
+[node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=1003346863]
 layer = 100
 
-[node name="SettingsPopup" parent="SettingsLayer" instance=ExtResource("settings_popup_auto")]
+[node name="SettingsPopup" parent="SettingsLayer" unique_id=324681234 instance=ExtResource("settings_popup_auto")]
 metadata/_edit_use_anchors_ = true

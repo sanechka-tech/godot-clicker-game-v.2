@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chj6on3lyqf87"
-path="res://.godot/imported/lvl3_village_intro1.png-129dd8f4dd59978f4ea783e041415c3f.ctex"
+uid="uid://csj4qg52k8b5m"
+path="res://.godot/imported/lvl3_village_final.jpg-3aeb5e12215c7b3b283048bebd37c40a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/cutscenes/Level3/lvl3_village_intro1.png"
-dest_files=["res://.godot/imported/lvl3_village_intro1.png-129dd8f4dd59978f4ea783e041415c3f.ctex"]
+source_file="res://Images/cutscenes/Level3/lvl3_village_final.jpg"
+dest_files=["res://.godot/imported/lvl3_village_final.jpg-3aeb5e12215c7b3b283048bebd37c40a.ctex"]
 
 [params]
 

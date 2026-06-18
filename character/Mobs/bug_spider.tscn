@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://ded0ibpixdjfm" path="res://Images/Lvl3/Animated insect enemy assets/Spider-Sprite-Sheet.png" id="3_q741w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q741w"]
-radius = 21.0
-height = 42.0
+radius = 92.0
+height = 184.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3l0vr"]
 atlas = ExtResource("3_q741w")
