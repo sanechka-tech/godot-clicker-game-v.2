@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Shitty-coins v.0.2"
+config/name="Hold It, Leks!"
 run/main_scene="uid://k4vlpirnxubf"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://cwaeyy88p4lxp"
 
 [audio]
 

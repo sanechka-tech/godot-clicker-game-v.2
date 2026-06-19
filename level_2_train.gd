@@ -143,7 +143,7 @@ func _on_character_tapped(tap_position: Vector2) -> void:
 	if round_finished:
 		return
 
-	var tap_gain := GameState.add_tap_coins()
+	var tap_gain: int = GameState.add_tap_coins()
 	_spawn_tap_gain_effect(tap_position, tap_gain)
 
 
@@ -244,7 +244,7 @@ func _play_final_pressure_sequence() -> void:
 		var button := get_node(SHOP_LEVEL_2_BUTTONS[upgrade_id]) as TextureButton
 		button.disabled = true
 
-	var final_pressure_player := AudioManager.play_final_pressure()
+	var final_pressure_player: AudioStreamPlayer = AudioManager.play_final_pressure()
 	var exit_distance := get_viewport_rect().size.x + FINAL_UI_EXIT_EXTRA_DISTANCE
 	var tween := create_tween()
 	tween.set_parallel(true)
@@ -399,7 +399,7 @@ func _on_fart_mob_popped() -> void:
 	if round_finished:
 		return
 
-	var bonus_coins := (GameState.tap_power + 1) * 10
+	var bonus_coins: int = (GameState.tap_power + 1) * 10
 	GameState.add_bonus_coins(bonus_coins)
 	AudioManager.play_fart_mob_pop_sounds()
 

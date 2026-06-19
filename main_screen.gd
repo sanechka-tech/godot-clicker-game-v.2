@@ -66,7 +66,7 @@ func _ready() -> void:
 func _on_character_tapped(tap_position: Vector2) -> void:
 	_hide_onboarding()
 
-	var tap_gain := GameState.add_tap_coins()
+	var tap_gain: int = GameState.add_tap_coins()
 	_spawn_tap_gain_effect(tap_position, tap_gain)
 
 
@@ -121,7 +121,7 @@ func _update_shop_buttons() -> void:
 		var button := get_node(SHOP_UPGRADE_BUTTONS[upgrade_id]) as TextureButton
 		var price_label := button.get_node("TextGroup/Price") as Label
 		var text_group := button.get_node("TextGroup") as Control
-		var is_revealed := GameState.is_upgrade_revealed(upgrade_id)
+		var is_revealed: bool = GameState.is_upgrade_revealed(upgrade_id)
 
 		price_label.text = GameState.format_price(GameState.upgrade_prices[upgrade_id])
 		text_group.visible = is_revealed
@@ -194,7 +194,7 @@ func _play_final_pressure_sequence() -> void:
 		var button := get_node(SHOP_UPGRADE_BUTTONS[upgrade_id]) as TextureButton
 		button.disabled = true
 
-	var final_pressure_player := AudioManager.play_final_pressure()
+	var final_pressure_player: AudioStreamPlayer = AudioManager.play_final_pressure()
 	var exit_distance := get_viewport_rect().size.x + FINAL_UI_EXIT_EXTRA_DISTANCE
 	var tween := create_tween()
 	tween.set_parallel(true)
@@ -290,7 +290,7 @@ func _update_onboarding_visibility() -> void:
 	if onboarding == null:
 		return
 
-	var is_level_1_start := GameState.score == 0 and GameState.shitty_coins == 0
+	var is_level_1_start: bool = GameState.score == 0 and GameState.shitty_coins == 0
 	onboarding.visible = is_level_1_start
 
 	if is_level_1_start:

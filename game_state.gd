@@ -8,6 +8,7 @@ signal shop_changed
 
 const SAVE_FILE_PATH := "user://save_game.json"
 const SAVE_VERSION := 1
+const SAVE_CHECKSUM_SALT := "stone_and_stick_save_v1"
 
 var shitty_coins: int = 0
 var score: int = 0
@@ -249,6 +250,7 @@ func save_progress(scene_path: String) -> bool:
 		"version": SAVE_VERSION,
 		"scene_path": scene_path,
 	}
+	save_data["checksum"] = _calculate_save_checksum(save_data)
 	var save_file := FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
 	if save_file == null:
 		push_warning("Could not open save file for writing: %s" % FileAccess.get_open_error())
@@ -275,11 +277,30 @@ func get_saved_scene_path() -> String:
 	if not (parsed_data is Dictionary):
 		return ""
 
+	if not _is_save_checksum_valid(parsed_data):
+		return ""
+
 	var scene_path := str(parsed_data.get("scene_path", ""))
 	if scene_path.is_empty() or not ResourceLoader.exists(scene_path):
 		return ""
 
 	return scene_path
+
+
+func _is_save_checksum_valid(save_data: Dictionary) -> bool:
+	var saved_checksum := str(save_data.get("checksum", ""))
+	if saved_checksum.is_empty():
+		return false
+
+	return saved_checksum == _calculate_save_checksum(save_data)
+
+
+func _calculate_save_checksum(save_data: Dictionary) -> String:
+	var version := int(save_data.get("version", 0))
+	var scene_path := str(save_data.get("scene_path", ""))
+	var checksum_source := "%s|%s|%s" % [SAVE_CHECKSUM_SALT, version, scene_path]
+
+	return checksum_source.sha256_text()
 
 
 func clear_progress() -> void:

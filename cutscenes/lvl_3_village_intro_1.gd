@@ -167,7 +167,7 @@ func _change_to_next_scene() -> void:
 			Callable(AudioManager, "play_level_3_intro_run_away")
 		)
 	else:
-		var run_away_player := AudioManager.play_level_3_intro_run_away()
+		var run_away_player: AudioStreamPlayer = AudioManager.play_level_3_intro_run_away()
 		if is_instance_valid(run_away_player) and run_away_player.playing:
 			await run_away_player.finished
 		get_tree().change_scene_to_file(NEXT_SCENE_PATH)

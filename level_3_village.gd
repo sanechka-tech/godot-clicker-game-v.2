@@ -449,7 +449,7 @@ func _go_to_after_scene() -> void:
 
 func _play_final_pressure_sequence() -> void:
 	AudioManager.stop_music()
-	var final_pressure_player := AudioManager.play_final_pressure()
+	var final_pressure_player: AudioStreamPlayer = AudioManager.play_final_pressure()
 	if is_instance_valid(final_pressure_player) and final_pressure_player.playing:
 		await final_pressure_player.finished
 

@@ -31,7 +31,7 @@ func _on_texture_button_pressed() -> void:
 
 
 func _on_continue_pressed() -> void:
-	var saved_scene_path := GameState.get_saved_scene_path()
+	var saved_scene_path: String = GameState.get_saved_scene_path()
 	if saved_scene_path.is_empty():
 		continue_button.visible = false
 		return
