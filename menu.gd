@@ -15,6 +15,10 @@ const START_INTRO_SCENE := "res://cutscenes/lvl_1_room_intro.tscn"
 
 
 func _ready() -> void:
+	var analytics := get_node_or_null("/root/Analytics")
+	if analytics != null:
+		analytics.track_game_open()
+
 	continue_button.visible = GameState.has_save()
 	continue_button.pressed.connect(_on_continue_pressed)
 	new_game_button.pressed.connect(_on_new_game_pressed)

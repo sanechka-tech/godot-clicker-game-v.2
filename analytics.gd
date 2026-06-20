@@ -12,13 +12,13 @@ var game_analytics: Object
 var sdk_ready := false
 var timer_started_at_msec := {}
 var session_end_tracked := false
+var game_open_tracked := false
 
 
 func _ready() -> void:
 	print("[Analytics] Autoload ready")
 	_initialize_sdk()
 	start_timer("session")
-	track_game_open()
 
 
 func _notification(what: int) -> void:
@@ -41,6 +41,10 @@ func stop_timer_and_send(timer_id: String, event_id: String) -> void:
 
 
 func track_game_open() -> void:
+	if game_open_tracked:
+		return
+
+	game_open_tracked = true
 	print("[Analytics] track_game_open")
 	_send_design_event("meta:game_open")
 

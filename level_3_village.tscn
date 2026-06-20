@@ -75,7 +75,6 @@ position = Vector2(626, 341)
 
 [node name="SettingsLayer" type="CanvasLayer" parent="." unique_id=1827590489]
 layer = 100
-visible = false
 
 [node name="SettingsPopup" parent="SettingsLayer" unique_id=138112148 instance=ExtResource("10_4okij")]
 metadata/_edit_use_anchors_ = true
