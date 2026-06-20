@@ -93,6 +93,7 @@ func _ready() -> void:
 	_start_train_inside()
 
 	GameState.start_level(LEVEL_GOAL_SCORE)
+	_track_level_start()
 	_reset_level_2_shop_state()
 
 	character.tapped.connect(_on_character_tapped)
@@ -205,8 +206,10 @@ func _finish_round(did_win: bool) -> void:
 
 	round_finished = true
 	if did_win:
+		_track_level_complete()
 		_start_final_pressure_sequence()
 	else:
+		_track_level_fail()
 		AudioManager.stop_music()
 		_stop_train_inside()
 		AudioManager.play_you_died()
@@ -569,3 +572,25 @@ func _calculate_level_2_upgrade_price(upgrade_id: String) -> int:
 	var purchases: int = level_2_shop_purchase_counts[upgrade_id]
 
 	return roundi(base_price * pow(growth, purchases))
+
+
+func _get_analytics() -> Node:
+	return get_node_or_null("/root/Analytics")
+
+
+func _track_level_start() -> void:
+	var analytics := _get_analytics()
+	if analytics != null:
+		analytics.track_level_start("lvl2")
+
+
+func _track_level_complete() -> void:
+	var analytics := _get_analytics()
+	if analytics != null:
+		analytics.track_level_complete("lvl2", GameState.score)
+
+
+func _track_level_fail() -> void:
+	var analytics := _get_analytics()
+	if analytics != null:
+		analytics.track_level_fail("lvl2", GameState.score)

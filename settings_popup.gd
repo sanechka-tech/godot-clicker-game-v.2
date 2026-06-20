@@ -167,6 +167,7 @@ func _on_feedback_request_completed(
 	feedback_request_in_flight = false
 
 	if response_code >= 200 and response_code < 300:
+		_track_feedback_sent()
 		feedback_text.text = ""
 		_close_feedback_area()
 
@@ -363,3 +364,13 @@ func _get_slider_handle_x(slider: HSlider, ratio: float) -> float:
 	var end_x := slider.position.x + slider.size.x - half_grabber_width
 
 	return lerpf(start_x, end_x, clampf(ratio, 0.0, 1.0))
+
+
+func _get_analytics() -> Node:
+	return get_node_or_null("/root/Analytics")
+
+
+func _track_feedback_sent() -> void:
+	var analytics := _get_analytics()
+	if analytics != null:
+		analytics.track_feedback_sent()

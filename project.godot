@@ -24,6 +24,7 @@ buses/default_bus_layout="uid://ct3hrshwq0bc5"
 GameState="*uid://df4exf47b5xih"
 AudioManager="*uid://djnrq2bpggjoc"
 TransitionScreen="*uid://dw7bcntnlcutm"
+Analytics="*res://analytics.gd"
 
 [display]
 
@@ -31,6 +32,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/GameAnalytics/plugin.cfg")
 
 [internationalization]
 

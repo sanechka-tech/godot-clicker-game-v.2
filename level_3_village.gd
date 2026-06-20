@@ -133,6 +133,7 @@ func _ready() -> void:
 	AudioManager.stop_level_3_intro_ambience()
 	call_deferred("_play_music_after_transition_reveal")
 	GameState.start_level(LEVEL_GOAL_SCORE)
+	_track_level_start()
 	GameState.score_changed.connect(_on_score_changed)
 
 	play_area = Rect2(Vector2.ZERO, get_viewport_rect().size)
@@ -429,6 +430,8 @@ func _finish_round() -> void:
 		return
 
 	round_finished = true
+	_track_level_complete()
+	_track_game_complete()
 
 	for child in bugs_root.get_children():
 		child.queue_free()
@@ -509,3 +512,25 @@ func _hide_all_paper_hands() -> void:
 		var hand_node := hand_data["node"] as CharacterBody2D
 		if hand_node != null:
 			hand_node.visible = false
+
+
+func _get_analytics() -> Node:
+	return get_node_or_null("/root/Analytics")
+
+
+func _track_level_start() -> void:
+	var analytics := _get_analytics()
+	if analytics != null:
+		analytics.track_level_start("lvl3")
+
+
+func _track_level_complete() -> void:
+	var analytics := _get_analytics()
+	if analytics != null:
+		analytics.track_level_complete("lvl3", GameState.score)
+
+
+func _track_game_complete() -> void:
+	var analytics := _get_analytics()
+	if analytics != null:
+		analytics.track_game_complete()

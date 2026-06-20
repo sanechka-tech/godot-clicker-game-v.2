@@ -1,4 +1,4 @@
-extends Node2D
+﻿extends Node2D
 
 const NEXT_SCENE_PATH := "res://level_3_village.tscn"
 const INTRO_DELAY_AFTER_REVEAL := 0.5
@@ -48,7 +48,7 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if _is_typing_story:
-		_set_story_type_speed(FAST_STORY_SECONDS_PER_CHARACTER)
+		_reveal_story_immediately()
 		return
 
 	if _dialog_finished:
@@ -134,6 +134,15 @@ func _type_story(story_key: String) -> void:
 	_story_finished = true
 
 
+func _reveal_story_immediately() -> void:
+	if not _is_typing_story:
+		return
+
+	story_label.visible_characters = story_label.get_total_character_count()
+	_is_typing_story = false
+	_story_finished = true
+	AudioManager.stop_typewriter_sfx()
+
 func _set_story_type_speed(value: float) -> void:
 	_story_type_speed = value
 	if _is_typing_story:
@@ -209,3 +218,4 @@ func _refresh_story_label_translation(story_key: String) -> void:
 func _is_settings_input(event: InputEvent) -> bool:
 	var settings_popup = get_node_or_null("SettingsLayer/SettingsPopup")
 	return settings_popup != null and settings_popup.has_method("is_scene_input_blocked") and settings_popup.is_scene_input_blocked(event)
+

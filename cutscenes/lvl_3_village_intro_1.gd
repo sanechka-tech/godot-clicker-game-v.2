@@ -52,7 +52,7 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if _is_typing_story:
-		_set_story_type_speed(FAST_STORY_SECONDS_PER_CHARACTER)
+		_reveal_story_immediately()
 		return
 
 	if _dialog_finished:
@@ -137,6 +137,15 @@ func _type_story(story_key: String) -> void:
 	AudioManager.stop_typewriter_sfx()
 	_story_finished = true
 
+
+func _reveal_story_immediately() -> void:
+	if not _is_typing_story:
+		return
+
+	story_label.visible_characters = story_label.get_total_character_count()
+	_is_typing_story = false
+	_story_finished = true
+	AudioManager.stop_typewriter_sfx()
 
 func _set_story_type_speed(value: float) -> void:
 	_story_type_speed = value

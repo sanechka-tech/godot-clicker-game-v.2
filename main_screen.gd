@@ -46,6 +46,7 @@ var final_pressure_sequence_started := false
 
 func _ready() -> void:
 	AudioManager.play_main_theme()
+	_track_level_start()
 
 	character.tapped.connect(_on_character_tapped)
 	GameState.coins_changed.connect(_on_coins_changed)
@@ -182,8 +183,25 @@ func _try_start_final_pressure_sequence() -> void:
 		return
 
 	final_pressure_sequence_started = true
+	_track_level_complete()
 	AudioManager.stop_music()
 	_play_final_pressure_sequence()
+
+
+func _get_analytics() -> Node:
+	return get_node_or_null("/root/Analytics")
+
+
+func _track_level_start() -> void:
+	var analytics := _get_analytics()
+	if analytics != null:
+		analytics.track_level_start("lvl1")
+
+
+func _track_level_complete() -> void:
+	var analytics := _get_analytics()
+	if analytics != null:
+		analytics.track_level_complete("lvl1", GameState.score)
 
 
 func _play_final_pressure_sequence() -> void:

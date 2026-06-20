@@ -37,6 +37,7 @@ var death_audio_started := false
 var death_sound_player: AudioStreamPlayer
 var win_screen_visible := false
 var win_screen_accepts_input := false
+var minigame_result_tracked := false
 
 
 func _ready() -> void:
@@ -91,6 +92,7 @@ func _on_retry_button_pressed() -> void:
 func _on_quit_button_pressed() -> void:
 	AudioManager.stop_music()
 	_stop_death_sound()
+	_track_minigame_fail()
 	GameState.mini_game_after_story_key = &"STORY_LVL2_MINIGAME_LOSE"
 	GameState.save_progress(AFTER_MINI_GAME_SCENE_PATH)
 	get_tree().change_scene_to_file(AFTER_MINI_GAME_SCENE_PATH)
@@ -101,6 +103,7 @@ func _on_player_died() -> void:
 		return
 
 	death_audio_started = true
+	_track_minigame_fail()
 	game_running = false
 	set_process(false)
 	player.stop_run()
@@ -122,6 +125,7 @@ func _start_game() -> void:
 	_clear_enemies_and_projectiles()
 
 	game_running = true
+	_track_minigame_start()
 	elapsed_time = 0.0
 	boss_spawned = false
 	boss_defeated = false
@@ -225,6 +229,7 @@ func _on_enemy_defeated(enemy_role: StringName) -> void:
 		return
 
 	boss_defeated = true
+	_track_minigame_complete()
 	game_running = false
 	set_process(false)
 	player.stop_run()
@@ -299,3 +304,34 @@ func _clear_regular_enemies_and_projectiles() -> void:
 		enemy.queue_free()
 
 	_clear_enemy_projectiles()
+
+
+func _get_analytics() -> Node:
+	return get_node_or_null("/root/Analytics")
+
+
+func _track_minigame_start() -> void:
+	minigame_result_tracked = false
+	var analytics := _get_analytics()
+	if analytics != null:
+		analytics.track_minigame_start("train_shooter")
+
+
+func _track_minigame_complete() -> void:
+	if minigame_result_tracked:
+		return
+
+	minigame_result_tracked = true
+	var analytics := _get_analytics()
+	if analytics != null:
+		analytics.track_minigame_complete("train_shooter")
+
+
+func _track_minigame_fail() -> void:
+	if minigame_result_tracked:
+		return
+
+	minigame_result_tracked = true
+	var analytics := _get_analytics()
+	if analytics != null:
+		analytics.track_minigame_fail("train_shooter")
